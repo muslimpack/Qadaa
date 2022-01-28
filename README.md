@@ -1,3 +1,6 @@
+[![version](https://img.shields.io/badge/version-1.0.0-yellow.svg)](https://github.com/HasanEltantawy/Qadaa)
+![GitHub all releases](https://img.shields.io/github/downloads/HasanEltantawy/Qadaa/total?color=green&label=Total%20Downloads)
+
 <p align="Left">
   <img src="https://user-images.githubusercontent.com/50374022/151571263-02d7d411-b9cb-4057-8dfb-d3bd42f96915.png" width="100" >
 </p>
