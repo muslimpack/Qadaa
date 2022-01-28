@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:hive/hive.dart';
 
 SettingsManager settingsManager = SettingsManager();
@@ -26,13 +25,12 @@ class SettingsManager {
   String getqadaaEveryDay() {
     String? data =
         Hive.box("Prayers").get("qadaaEveryDay", defaultValue: "1").toString();
-    debugPrint("getqadaaEveryDay: " + data);
+
     return data == "0" ? "1" : data;
   }
 
   setqadaaEveryDay(String? count) {
     Hive.box("Prayers").put("qadaaEveryDay", count ?? 1);
-    debugPrint("setqadaaEveryDay: " + count!);
   }
 
   resetqadaaEveryDay() {

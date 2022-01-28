@@ -32,43 +32,12 @@ class _QadaaState extends State<Qadaa> with SingleTickerProviderStateMixin {
         appBar: AppBar(
           title: const Text("قضاء"),
           centerTitle: true,
-          // leading: GestureDetector(
-          //   onTap: () async {
-          //     showModalBottomSheet(
-          //         isScrollControlled: true,
-          //         backgroundColor: Colors.transparent,
-          //         context: context,
-          //         builder: (BuildContext context) {
-          //           return YesOrNoDialog(onYes: () {
-          //             prayersSettings.reset();
-          //           });
-          //         }).then((value) {
-          //       setState(() {});
-          //     });
-          //     // await showDialog(
-          //     //   context: context,
-          //     //   builder: (BuildContext context) {
-          //     //     return YesOrNoDialog(onYes: () {
-          //     //       prayersSettings.reset();
-          //     //     });
-          //     //   },
-          //     // ).then((value) {
-          //     //   setState(() {});
-          //     // });
-          //   },
-          //   child: Icon(
-          //     Icons.reset_tv,
-          //     color: Colors.red.shade200,
-          //     size: 30,
-          //   ),
-          // ),
           actions: [
             GestureDetector(
               onTap: () {
                 // Navigator.push(context, TweenPageRoute(widget: Settings()));
                 transitionAnimation.fromLeft2Right(
                     context: context, goToPage: const Settings());
-                // print('Settings Tapped');
               },
               child: const CircleAvatar(
                   backgroundColor: Colors.transparent,
@@ -80,8 +49,8 @@ class _QadaaState extends State<Qadaa> with SingleTickerProviderStateMixin {
             ),
           ],
           bottom: TabBar(
-            indicatorColor: Colors.blue.shade200,
-            labelColor: Colors.blue.shade200,
+            indicatorColor: AppConstant.mainColor,
+            labelColor: AppConstant.mainColor,
             unselectedLabelColor: Colors.white,
             tabs: const <Widget>[
               Tab(

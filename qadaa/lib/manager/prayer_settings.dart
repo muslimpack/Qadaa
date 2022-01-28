@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:hive/hive.dart';
 
 import 'settings_manager.dart';
@@ -193,7 +192,7 @@ class PrayersSettings {
 
     endDayOfQdaa = DateTime.now()
         .add(Duration(days: getAllRemainingPrayer() ~/ prayesPerDay));
-    debugPrint(endDayOfQdaa.toString());
+
     return endDayOfQdaa;
   }
 
