@@ -1,14 +1,27 @@
+<div align="center">
+
+<img src="https://user-images.githubusercontent.com/50374022/151571263-02d7d411-b9cb-4057-8dfb-d3bd42f96915.png" alt='Qadaa logo' width="200"/>
+
+
+# تطبيق قضاء
+  
 [![version](https://img.shields.io/badge/version-1.0.0-yellow.svg)](https://github.com/HasanEltantawy/Qadaa)
-![GitHub all releases](https://img.shields.io/github/downloads/HasanEltantawy/Qadaa/total?color=green&label=Total%20Downloads)
+![GitHub all releases](https://img.shields.io/github/downloads/HasanEltantawy/HisnElmoslem_App/total?color=green&label=Total%20Downloads)
 
-<p align="Left">
-  <img src="https://user-images.githubusercontent.com/50374022/151571263-02d7d411-b9cb-4057-8dfb-d3bd42f96915.png" width="100" >
-</p>
-
-# Qadaa
 Keep tracking your prayers.
+  
+[<img src="https://user-images.githubusercontent.com/50374022/152713461-d367ec7a-687b-40ca-a881-30e49d69821c.png"
+      alt='Get it on Google Play'
+      height="80">](https://play.google.com/store/apps/details?id=com.hassaneltantawy.qadaa)
+[<img src="https://user-images.githubusercontent.com/50374022/152713265-c54cec69-9583-4ecd-bc7c-35b227c4a8cf.png"
+      alt='Get it on AppGallery'
+      height="80">](https://appgallery.huawei.com/app/C105464965)
+  
 
-# مميزات التطبيق
+<div align="right">
+
+ # مميزات التطبيق
+  
 ## v1.0.0
 
 - سهولة وبساطة الواجهة.
@@ -20,6 +33,7 @@ Keep tracking your prayers.
 - تحديد عدد الصلوات التي تقضيها في اليوم.
 - رسالة تظهر لك تاريخ انتهاء القضاء بناء على عدد الصلوات وعدد القضاء لليوم الواحد.
 
+<div align="center">
 
 # صور من التطبيق
 
