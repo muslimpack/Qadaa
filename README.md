@@ -6,7 +6,7 @@
 # تطبيق قضاء
   
 [![version](https://img.shields.io/badge/version-1.0.0-yellow.svg)](https://github.com/HasanEltantawy/Qadaa)
-![GitHub all releases](https://img.shields.io/github/downloads/HasanEltantawy/HisnElmoslem_App/total?color=green&label=Total%20Downloads)
+![GitHub all releases](https://img.shields.io/github/downloads/HasanEltantawy/Qadaa/total?color=green&label=Total%20Downloads)
 
 Keep tracking your prayers.
   
