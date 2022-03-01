@@ -1,50 +1,6 @@
 import 'package:qadaa/manager/constant.dart';
 import 'package:flutter/material.dart';
 
-// class YesOrNoDialog extends StatelessWidget {
-//   final Function onYes;
-//   const YesOrNoDialog({Key? key,required this.onYes}) : super(key: key);
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return CupertinoAlertDialog(
-//       title: Text("هل أنت متأكد من رغبتك بإعادة ضبط كل شئ؟"),
-//       actions: [
-//         GestureDetector(
-//           child: Padding(
-//             padding: const EdgeInsets.all(8.0),
-//             child: Text(
-//               "لا",
-//               textAlign: TextAlign.center,
-//               style: TextStyle(fontWeight: FontWeight.bold),
-//             ),
-//           ),
-//           onTap: () {
-//             Navigator.of(context, rootNavigator: true).pop();
-//           },
-//         ),
-//         GestureDetector(
-//           child: Padding(
-//             padding: const EdgeInsets.all(8.0),
-//             child: Text(
-//               "نعم",
-//               textAlign: TextAlign.center,
-//               style: TextStyle(fontWeight: FontWeight.bold),
-//             ),
-//           ),
-//           onTap:() {
-//             onYes();
-//             Navigator.of(context, rootNavigator: true).pop();
-//           },
-//         ),
-//       ],
-//       content: Column(
-//         children: [],
-//       ),
-//     );
-//   }
-// }
-
 class YesOrNoDialog extends StatelessWidget {
   final Function onYes;
 
@@ -85,7 +41,7 @@ class YesOrNoDialog extends StatelessWidget {
                     ),
                     onTap: () {
                       onYes();
-                      Navigator.pop(context, false);
+                      Navigator.pop<bool>(context, true);
                     },
                   ),
                 ),
@@ -98,7 +54,7 @@ class YesOrNoDialog extends StatelessWidget {
                         TextStyle(fontSize: 20, color: AppConstant.mainColor),
                   ),
                   onTap: () {
-                    Navigator.pop(context, false);
+                    Navigator.pop<bool>(context, false);
                   },
                 )),
               ],

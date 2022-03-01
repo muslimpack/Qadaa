@@ -94,16 +94,15 @@ class _SettingsState extends State<Settings> {
                   backgroundColor: Colors.transparent,
                   context: context,
                   builder: (BuildContext context) {
-                    return YesOrNoDialog(onYes: () {
-                      prayersSettings.reset();
-                      settingsManager.resetqadaaEveryDay();
-                    });
-                  }).then((value) {
-                setState(() {
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => const Dashboard()));
-                });
-              });
+                    return YesOrNoDialog(
+                      onYes: () {
+                        prayersSettings.reset();
+                        settingsManager.resetqadaaEveryDay();
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                            builder: (context) => const Dashboard()));
+                      },
+                    );
+                  });
             },
           )
         ],

@@ -35,7 +35,6 @@ class _QadaaState extends State<Qadaa> with SingleTickerProviderStateMixin {
           actions: [
             GestureDetector(
               onTap: () {
-                // Navigator.push(context, TweenPageRoute(widget: Settings()));
                 transitionAnimation.fromLeft2Right(
                     context: context, goToPage: const Settings());
               },
