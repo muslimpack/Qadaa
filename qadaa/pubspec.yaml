@@ -22,6 +22,8 @@ dependencies:
   wakelock: ^0.6.1+1
   flutter_screen_lock: ^5.0.12
   get: ^4.6.5
+  confetti: ^0.6.0
+  audioplayers: ^0.20.1
 
 dev_dependencies:
   flutter_test:
@@ -36,3 +38,4 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/sounds/

@@ -1,7 +1,10 @@
+import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
+import 'controllers/effect_manager.dart';
 import 'manager/notification_manager.dart';
 import 'screens/dashboard.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -54,7 +57,28 @@ class _MyAppState extends State<MyApp> {
             if (snapshot.hasError) {
               return Text(snapshot.error.toString());
             } else {
-              return const Dashboard();
+              return GetBuilder<EffectManager>(
+                  init: EffectManager(),
+                  builder: (controller) {
+                    return Stack(
+                      children: [
+                        const Dashboard(),
+                        Align(
+                          alignment: controller.confettiAlignment,
+                          child: ConfettiWidget(
+                            confettiController: controller.confettiController,
+                            blastDirectionality: BlastDirectionality
+                                .explosive, // don't specify a direction, blast randomly
+                            shouldLoop: false,
+                            colors: controller
+                                .colors, // manually specify the colors to be used
+                            createParticlePath: controller
+                                .drawStar, // define a custom shape/path.
+                          ),
+                        ),
+                      ],
+                    );
+                  });
             }
           } else {
             return const Scaffold();

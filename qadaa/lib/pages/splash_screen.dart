@@ -1,9 +1,11 @@
 import 'dart:math';
 import 'dart:ui';
 import 'package:get/get.dart';
+import 'package:qadaa/controllers/effect_manager.dart';
 import 'package:qadaa/controllers/settings_controller.dart';
 import 'package:qadaa/manager/constant.dart';
 import 'package:qadaa/controllers/prayer_controller.dart';
+import 'package:qadaa/shared/enum/sound_type.dart';
 import 'package:qadaa/shared/widgets/custom_sleek.dart';
 import 'package:flutter/material.dart';
 import 'package:wakelock/wakelock.dart';
@@ -38,6 +40,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.dispose();
   }
 
+  final effectManager = Get.put(EffectManager());
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -76,6 +79,10 @@ class _SplashScreenState extends State<SplashScreen> {
                         setState(() {
                           controller.addDay(value: -1);
                         });
+                        effectManager.playConfetti(
+                            milliseconds: 1000,
+                            alignment: Alignment.topCenter,
+                            soundType: SoundType.big);
                       },
                       onLongTap: () {
                         setState(() {
@@ -99,6 +106,10 @@ class _SplashScreenState extends State<SplashScreen> {
                             setState(() {
                               controller.addPrayer(fajr: -1);
                             });
+                            effectManager.playConfetti(
+                                milliseconds: 1000,
+                                alignment: Alignment.center,
+                                soundType: SoundType.small);
                           },
                           size: size.width * .3,
                           tFontSize: 15,
@@ -120,6 +131,10 @@ class _SplashScreenState extends State<SplashScreen> {
                               setState(() {
                                 controller.addPrayer(dhuhr: -1);
                               });
+                              effectManager.playConfetti(
+                                  milliseconds: 1000,
+                                  alignment: Alignment.center,
+                                  soundType: SoundType.small);
                             },
                             onLongTap: () {
                               setState(() {
@@ -146,6 +161,10 @@ class _SplashScreenState extends State<SplashScreen> {
                               setState(() {
                                 controller.addPrayer(asr: -1);
                               });
+                              effectManager.playConfetti(
+                                  milliseconds: 1000,
+                                  alignment: Alignment.center,
+                                  soundType: SoundType.small);
                             },
                             onLongTap: () {
                               setState(() {
@@ -166,6 +185,10 @@ class _SplashScreenState extends State<SplashScreen> {
                               setState(() {
                                 controller.addPrayer(maghrib: -1);
                               });
+                              effectManager.playConfetti(
+                                  milliseconds: 1000,
+                                  alignment: Alignment.center,
+                                  soundType: SoundType.small);
                             },
                             onLongTap: () {
                               setState(() {
@@ -186,6 +209,10 @@ class _SplashScreenState extends State<SplashScreen> {
                               setState(() {
                                 controller.addPrayer(isha: -1);
                               });
+                              effectManager.playConfetti(
+                                  milliseconds: 1000,
+                                  alignment: Alignment.center,
+                                  soundType: SoundType.small);
                             },
                             onLongTap: () {
                               setState(() {
