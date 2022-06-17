@@ -10,6 +10,7 @@ class EffectManager extends GetxController {
   /* *************** Variables *************** */
   late ConfettiController confettiController;
   AlignmentGeometry confettiAlignment = Alignment.topCenter;
+  double gravity = 0.2;
   final player = AudioCache();
   List<Color>? colors = const [
     Color.fromARGB(255, 233, 30, 99),
@@ -64,17 +65,19 @@ class EffectManager extends GetxController {
       SoundType soundType = SoundType.big}) async {
     confettiAlignment = alignment;
     confettiController.duration = Duration(milliseconds: milliseconds);
-    update();
-    confettiController.play();
 
     switch (soundType) {
       case SoundType.big:
         player.play("sounds/big_finish.mp3");
+        gravity = 0.9;
         break;
       case SoundType.small:
         player.play("sounds/small_finish.mp3");
+        gravity = 0.2;
         break;
       default:
     }
+    update();
+    confettiController.play();
   }
 }

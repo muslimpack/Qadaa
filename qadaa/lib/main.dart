@@ -1,11 +1,10 @@
-import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
+import 'package:qadaa/screens/onboarding.dart';
 import 'controllers/app_controller.dart';
-import 'controllers/effect_manager.dart';
 import 'manager/notification_manager.dart';
 import 'screens/app_dashboard.dart';
 
@@ -57,27 +56,12 @@ class MyApp extends StatelessWidget {
                   if (snapshot.hasError) {
                     return Text(snapshot.error.toString());
                   } else {
-                    return GetBuilder<EffectManager>(
-                        init: EffectManager(),
-                        builder: (controller) {
-                          return Stack(
-                            children: [
-                              const AppDashboard(),
-                              Align(
-                                alignment: controller.confettiAlignment,
-                                child: ConfettiWidget(
-                                  confettiController:
-                                      controller.confettiController,
-                                  blastDirectionality:
-                                      BlastDirectionality.explosive,
-                                  shouldLoop: false,
-                                  colors: controller.colors,
-                                  createParticlePath: controller.drawStar,
-                                ),
-                              ),
-                            ],
-                          );
-                        });
+                    //TODO remove next release
+                    final Box box = Hive.box("Prayers");
+
+                    return box.get("is_v1.1_first_open", defaultValue: true)
+                        ? const OnBoardingPage()
+                        : const AppDashboard();
                   }
                 } else {
                   return const Scaffold();

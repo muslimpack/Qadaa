@@ -214,7 +214,7 @@ class PrayersController extends GetxController {
     } else {
       Duration diffrence = updateEndDateOfQadaa().difference(DateTime.now());
       if ((diffrence.inHours / 24).round() == 0) {
-        return "اليوم إن شاء الله";
+        return "موعد انتهاء القضاء:\n اليوم إن شاء الله";
       } else {
         return 'موعد انتهاء القضاء:\n ${updateEndDateOfQadaa().day} / ${updateEndDateOfQadaa().month} / ${updateEndDateOfQadaa().year}';
       }

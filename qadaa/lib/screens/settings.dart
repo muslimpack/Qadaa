@@ -27,6 +27,7 @@ class Settings extends StatelessWidget {
               onChange: (count) {
                 if (count.isNotEmpty) {
                   settingsController.prayersController.setqadaaEveryDay(count);
+                  settingsController.update();
                 }
               },
             ),
@@ -79,6 +80,9 @@ class Settings extends StatelessWidget {
                             onYes: () {
                               controller.prayersController.reset();
                               controller.prayersController.resetqadaaEveryDay();
+                              controller.prayersController.update();
+                              controller.qadaaController =
+                                  TextEditingController(text: "1");
                               controller.update();
                             },
                           );
