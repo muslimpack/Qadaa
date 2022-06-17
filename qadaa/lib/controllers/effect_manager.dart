@@ -61,7 +61,7 @@ class EffectManager extends GetxController {
   playConfetti(
       {int milliseconds = 1000,
       AlignmentGeometry alignment = Alignment.topCenter,
-      SoundType soundType = SoundType.big}) {
+      SoundType soundType = SoundType.big}) async {
     confettiAlignment = alignment;
     confettiController.duration = Duration(milliseconds: milliseconds);
     update();

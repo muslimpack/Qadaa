@@ -8,17 +8,12 @@ import 'package:qadaa/shared/enum/sound_type.dart';
 import 'package:qadaa/shared/functions/random_notification.dart';
 import 'package:flutter/material.dart';
 
-class Done extends StatefulWidget {
+class Done extends StatelessWidget {
   const Done({Key? key}) : super(key: key);
 
   @override
-  _DoneState createState() => _DoneState();
-}
-
-class _DoneState extends State<Done> {
-  final effectManager = Get.put(EffectManager());
-  @override
   Widget build(BuildContext context) {
+    final effectManager = Get.put(EffectManager());
     return GetBuilder<PrayersController>(builder: (controller) {
       return Scaffold(
           body: Scrollbar(
@@ -31,14 +26,12 @@ class _DoneState extends State<Done> {
               icon: Icons.done,
               trailing: controller.getDays().toInt().toString(),
               onTap: () {
-                setState(() {
-                  if (controller.getDays() > 0) {
-                    controller.addDay(value: -1);
-                    showRandomNotification();
-                    effectManager.playConfetti(
-                        milliseconds: 5000, alignment: Alignment.topCenter);
-                  }
-                });
+                if (controller.getDays() > 0) {
+                  controller.addDay(value: -1);
+                  showRandomNotification();
+                  effectManager.playConfetti(
+                      milliseconds: 5000, alignment: Alignment.topCenter);
+                }
               },
             ),
             MyTile(
@@ -46,18 +39,15 @@ class _DoneState extends State<Done> {
               icon: Icons.done,
               trailing: controller.getDays().toInt().toString(),
               onTap: () {
-                setState(() {
-                  showModalBottomSheet(
-                      isScrollControlled: true,
-                      backgroundColor: Colors.transparent,
-                      context: context,
-                      builder: (BuildContext context) {
-                        return const DeleteDaysDialog();
-                      }).then((value) {
-                    setState(() {});
-                    effectManager.playConfetti(
-                        milliseconds: 5000, alignment: Alignment.topCenter);
-                  });
+                showModalBottomSheet(
+                    isScrollControlled: true,
+                    backgroundColor: Colors.transparent,
+                    context: context,
+                    builder: (BuildContext context) {
+                      return const DeleteDaysDialog();
+                    }).then((value) {
+                  effectManager.playConfetti(
+                      milliseconds: 5000, alignment: Alignment.topCenter);
                 });
               },
             ),
@@ -67,9 +57,8 @@ class _DoneState extends State<Done> {
               icon: Icons.done,
               trailing: controller.getFajr().toInt().toString(),
               onTap: () {
-                setState(() {
-                  controller.addPrayer(fajr: -1);
-                });
+                controller.addPrayer(fajr: -1);
+
                 effectManager.playConfetti(
                     milliseconds: 1000,
                     alignment: Alignment.center,
@@ -81,9 +70,8 @@ class _DoneState extends State<Done> {
               icon: Icons.done,
               trailing: controller.getDhuhr().toInt().toString(),
               onTap: () {
-                setState(() {
-                  controller.addPrayer(dhuhr: -1);
-                });
+                controller.addPrayer(dhuhr: -1);
+
                 effectManager.playConfetti(
                     milliseconds: 1000,
                     alignment: Alignment.center,
@@ -95,9 +83,8 @@ class _DoneState extends State<Done> {
               icon: Icons.done,
               trailing: controller.getAsr().toInt().toString(),
               onTap: () {
-                setState(() {
-                  controller.addPrayer(asr: -1);
-                });
+                controller.addPrayer(asr: -1);
+
                 effectManager.playConfetti(
                     milliseconds: 1000,
                     alignment: Alignment.center,
@@ -109,9 +96,8 @@ class _DoneState extends State<Done> {
               icon: Icons.done,
               trailing: controller.getMaghrib().toInt().toString(),
               onTap: () {
-                setState(() {
-                  controller.addPrayer(maghrib: -1);
-                });
+                controller.addPrayer(maghrib: -1);
+
                 effectManager.playConfetti(
                     milliseconds: 1000,
                     alignment: Alignment.center,
@@ -123,9 +109,8 @@ class _DoneState extends State<Done> {
               icon: Icons.done,
               trailing: controller.getIsha().toInt().toString(),
               onTap: () {
-                setState(() {
-                  controller.addPrayer(isha: -1);
-                });
+                controller.addPrayer(isha: -1);
+
                 effectManager.playConfetti(
                     milliseconds: 1000,
                     alignment: Alignment.center,
@@ -137,20 +122,17 @@ class _DoneState extends State<Done> {
               icon: Icons.done,
               trailing: (controller.getAllRemainingPrayer()).toInt().toString(),
               onTap: () {
-                setState(() {
-                  showModalBottomSheet(
-                      isScrollControlled: true,
-                      backgroundColor: Colors.transparent,
-                      context: context,
-                      builder: (BuildContext context) {
-                        return const DeletePrayersDialog();
-                      }).then((value) {
-                    setState(() {});
-                    effectManager.playConfetti(
-                        milliseconds: 1000,
-                        alignment: Alignment.topCenter,
-                        soundType: SoundType.big);
-                  });
+                showModalBottomSheet(
+                    isScrollControlled: true,
+                    backgroundColor: Colors.transparent,
+                    context: context,
+                    builder: (BuildContext context) {
+                      return const DeletePrayersDialog();
+                    }).then((value) {
+                  effectManager.playConfetti(
+                      milliseconds: 1000,
+                      alignment: Alignment.topCenter,
+                      soundType: SoundType.big);
                 });
               },
             ),

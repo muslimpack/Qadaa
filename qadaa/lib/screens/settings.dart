@@ -1,33 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qadaa/Shared/Widgets/Tile.dart';
-import 'package:qadaa/controllers/prayer_controller.dart';
 import 'package:qadaa/controllers/settings_controller.dart';
 import 'package:qadaa/shared/dialogs/yes__no_popup.dart';
 import 'package:qadaa/shared/widgets/user_text_field.dart';
 
-import 'dashboard.dart';
-
-class Settings extends StatefulWidget {
+class Settings extends StatelessWidget {
   const Settings({Key? key}) : super(key: key);
 
-  @override
-  _SettingsState createState() => _SettingsState();
-}
-
-class _SettingsState extends State<Settings> {
-  TextEditingController? qadaaController = TextEditingController();
-  final settingsController = Get.put(SettingsController());
-
-  @override
-  void initState() {
-    super.initState();
-
-    qadaaController =
-        TextEditingController(text: settingsController.getqadaaEveryDay());
-  }
-
-  Widget count(PrayersController prayersController) {
+  Widget count(SettingsController settingsController) {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 10),
       child: Padding(
@@ -41,20 +22,16 @@ class _SettingsState extends State<Settings> {
               ),
             ),
             UserTextFieldChanged(
-              controller: qadaaController!,
+              controller: settingsController.qadaaController,
               hintText: "عدد صلوات القضاء اليومية ",
               onChange: (count) {
-                setState(() {
-                  if (count.isNotEmpty) {
-                    setState(() {
-                      settingsController.setqadaaEveryDay(count);
-                    });
-                  }
-                });
+                if (count.isNotEmpty) {
+                  settingsController.prayersController.setqadaaEveryDay(count);
+                }
               },
             ),
             Text(
-              prayersController.getEndDateText(),
+              settingsController.prayersController.getEndDateText(),
               style: TextStyle(
                   fontWeight: FontWeight.bold, color: Colors.blue.shade200),
               textAlign: TextAlign.center,
@@ -67,54 +44,51 @@ class _SettingsState extends State<Settings> {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<PrayersController>(builder: (controller) {
-      return Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          title: const Text("الإعدادات"),
-          //backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        ),
-        body: ListView(
-          children: [
-            const Title(title: "عام"),
-            count(controller),
-            const Divider(),
-            MyTile(
-              title: 'صفحة البدء',
-              icon: Icons.palette_outlined,
-              onTap: () {
-                setState(() {
-                  settingsController.toggleSplashBackground();
-                });
-              },
-              trailing: settingsController.getSplashBackground(),
+    return GetBuilder<SettingsController>(
+        init: SettingsController(),
+        builder: (controller) {
+          return Scaffold(
+            appBar: AppBar(
+              elevation: 0,
+              title: const Text("الإعدادات"),
             ),
-            MyTile(
-              title: 'إعادة ضبط كل شيء',
-              icon: Icons.delete_forever,
-              trailing: "",
-              onTap: () {
-                showModalBottomSheet(
-                    isScrollControlled: true,
-                    backgroundColor: Colors.transparent,
-                    context: context,
-                    builder: (BuildContext context) {
-                      return YesOrNoDialog(
-                        onYes: () {
-                          controller.reset();
-                          settingsController.resetqadaaEveryDay();
-                          Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                  builder: (context) => const Dashboard()));
-                        },
-                      );
-                    });
-              },
-            )
-          ],
-        ),
-      );
-    });
+            body: ListView(
+              children: [
+                const Title(title: "عام"),
+                count(controller),
+                const Divider(),
+                MyTile(
+                  title: 'صفحة البدء',
+                  icon: Icons.palette_outlined,
+                  onTap: () {
+                    controller.toggleSplashBackground();
+                  },
+                  trailing: controller.getSplashBackground(),
+                ),
+                MyTile(
+                  title: 'إعادة ضبط كل شيء',
+                  icon: Icons.delete_forever,
+                  trailing: "",
+                  onTap: () {
+                    showModalBottomSheet(
+                        isScrollControlled: true,
+                        backgroundColor: Colors.transparent,
+                        context: context,
+                        builder: (BuildContext context) {
+                          return YesOrNoDialog(
+                            onYes: () {
+                              controller.prayersController.reset();
+                              controller.prayersController.resetqadaaEveryDay();
+                              controller.update();
+                            },
+                          );
+                        });
+                  },
+                )
+              ],
+            ),
+          );
+        });
   }
 }
 

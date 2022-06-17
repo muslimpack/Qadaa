@@ -4,10 +4,10 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
+import 'controllers/app_controller.dart';
 import 'controllers/effect_manager.dart';
 import 'manager/notification_manager.dart';
-import 'screens/dashboard.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+import 'screens/app_dashboard.dart';
 
 void main() async {
   //Make sure all stuff are initialized
@@ -27,71 +27,64 @@ void main() async {
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
       overlays: [SystemUiOverlay.top]);
 
+  /// Keep app in portrait mode and
+  /// make it static when phone rotation change
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      localizationsDelegates: const [
-        GlobalCupertinoLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      supportedLocales: const [Locale('ar', 'AE')],
-      debugShowCheckedModeBanner: false,
-      title: 'فوائت',
-      theme: ThemeData.dark(),
-      home: FutureBuilder(
-        future: Hive.openBox("Prayers"),
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            if (snapshot.hasError) {
-              return Text(snapshot.error.toString());
-            } else {
-              return GetBuilder<EffectManager>(
-                  init: EffectManager(),
-                  builder: (controller) {
-                    return Stack(
-                      children: [
-                        const Dashboard(),
-                        Align(
-                          alignment: controller.confettiAlignment,
-                          child: ConfettiWidget(
-                            confettiController: controller.confettiController,
-                            blastDirectionality: BlastDirectionality
-                                .explosive, // don't specify a direction, blast randomly
-                            shouldLoop: false,
-                            colors: controller
-                                .colors, // manually specify the colors to be used
-                            createParticlePath: controller
-                                .drawStar, // define a custom shape/path.
-                          ),
-                        ),
-                      ],
-                    );
-                  });
-            }
-          } else {
-            return const Scaffold();
-          }
-        },
-      ),
-    );
-  }
-
-  @override
-  void dispose() {
-    //Close All Boxes
-    Hive.close();
-    super.dispose();
+    return GetBuilder<AppController>(
+        init: AppController(),
+        builder: (context) {
+          return GetMaterialApp(
+            locale: const Locale('ar'),
+            debugShowCheckedModeBanner: false,
+            title: 'فوائت',
+            theme: ThemeData.dark(),
+            home: FutureBuilder(
+              future: Hive.openBox("Prayers"),
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  if (snapshot.hasError) {
+                    return Text(snapshot.error.toString());
+                  } else {
+                    return GetBuilder<EffectManager>(
+                        init: EffectManager(),
+                        builder: (controller) {
+                          return Stack(
+                            children: [
+                              const AppDashboard(),
+                              Align(
+                                alignment: controller.confettiAlignment,
+                                child: ConfettiWidget(
+                                  confettiController:
+                                      controller.confettiController,
+                                  blastDirectionality:
+                                      BlastDirectionality.explosive,
+                                  shouldLoop: false,
+                                  colors: controller.colors,
+                                  createParticlePath: controller.drawStar,
+                                ),
+                              ),
+                            ],
+                          );
+                        });
+                  }
+                } else {
+                  return const Scaffold();
+                }
+              },
+            ),
+          );
+        });
   }
 }

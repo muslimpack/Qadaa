@@ -5,14 +5,9 @@ import 'package:qadaa/shared/dialogs/add_prayers_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:qadaa/shared/widgets/tile.dart';
 
-class AddNew extends StatefulWidget {
+class AddNew extends StatelessWidget {
   const AddNew({Key? key}) : super(key: key);
 
-  @override
-  _AddNewState createState() => _AddNewState();
-}
-
-class _AddNewState extends State<AddNew> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<PrayersController>(builder: (controller) {
@@ -33,9 +28,7 @@ class _AddNewState extends State<AddNew> {
                       context: context,
                       builder: (BuildContext context) {
                         return const AddPeriodDialog();
-                      }).then((value) {
-                    setState(() {});
-                  });
+                      }).then((value) {});
                 },
               ),
               MyTile(
@@ -43,9 +36,7 @@ class _AddNewState extends State<AddNew> {
                 icon: Icons.add,
                 trailing: controller.getDays().toInt().toString(),
                 onTap: () {
-                  setState(() {
-                    controller.addDay(value: 1);
-                  });
+                  controller.addDay(value: 1);
                 },
               ),
               MyTile(
@@ -53,9 +44,7 @@ class _AddNewState extends State<AddNew> {
                 icon: Icons.add,
                 trailing: (controller.getDays() ~/ 7).toString(),
                 onTap: () {
-                  setState(() {
-                    controller.addWeek(value: 1);
-                  });
+                  controller.addWeek(value: 1);
                 },
               ),
               MyTile(
@@ -63,9 +52,7 @@ class _AddNewState extends State<AddNew> {
                 icon: Icons.add,
                 trailing: (controller.getDays() ~/ 30).toString(),
                 onTap: () {
-                  setState(() {
-                    controller.addMonth(value: 1);
-                  });
+                  controller.addMonth(value: 1);
                 },
               ),
               MyTile(
@@ -73,9 +60,7 @@ class _AddNewState extends State<AddNew> {
                 icon: Icons.add,
                 trailing: (controller.getDays() ~/ 365).toString(),
                 onTap: () {
-                  setState(() {
-                    controller.addYear(value: 1);
-                  });
+                  controller.addYear(value: 1);
                 },
               ),
 
@@ -87,9 +72,7 @@ class _AddNewState extends State<AddNew> {
                 icon: Icons.add,
                 trailing: controller.getFajr().toInt().toString(),
                 onTap: () {
-                  setState(() {
-                    controller.addPrayer(fajr: 1);
-                  });
+                  controller.addPrayer(fajr: 1);
                 },
               ),
               MyTile(
@@ -97,9 +80,7 @@ class _AddNewState extends State<AddNew> {
                 icon: Icons.add,
                 trailing: controller.getDhuhr().toInt().toString(),
                 onTap: () {
-                  setState(() {
-                    controller.addPrayer(dhuhr: 1);
-                  });
+                  controller.addPrayer(dhuhr: 1);
                 },
               ),
               MyTile(
@@ -107,9 +88,7 @@ class _AddNewState extends State<AddNew> {
                 icon: Icons.add,
                 trailing: controller.getAsr().toInt().toString(),
                 onTap: () {
-                  setState(() {
-                    controller.addPrayer(asr: 1);
-                  });
+                  controller.addPrayer(asr: 1);
                 },
               ),
               MyTile(
@@ -117,9 +96,7 @@ class _AddNewState extends State<AddNew> {
                 icon: Icons.add,
                 trailing: controller.getMaghrib().toInt().toString(),
                 onTap: () {
-                  setState(() {
-                    controller.addPrayer(maghrib: 1);
-                  });
+                  controller.addPrayer(maghrib: 1);
                 },
               ),
               MyTile(
@@ -127,9 +104,7 @@ class _AddNewState extends State<AddNew> {
                 icon: Icons.add,
                 trailing: controller.getIsha().toInt().toString(),
                 onTap: () {
-                  setState(() {
-                    controller.addPrayer(isha: 1);
-                  });
+                  controller.addPrayer(isha: 1);
                 },
               ),
               MyTile(
@@ -144,9 +119,7 @@ class _AddNewState extends State<AddNew> {
                       context: context,
                       builder: (BuildContext context) {
                         return const AddPrayersDialog();
-                      }).then((value) {
-                    setState(() {});
-                  });
+                      }).then((value) {});
                 },
               ),
             ],

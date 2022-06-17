@@ -1,10 +1,16 @@
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
-import 'package:qadaa/controllers/settings_controller.dart';
 
 class PrayersController extends GetxController {
-  Box prayerBox = Hive.box("Prayers");
-  final settingsController = Get.put(SettingsController());
+  late Box prayerBox;
+  bool isLoading = true;
+  @override
+  void onInit() {
+    super.onInit();
+    prayerBox = Hive.box("Prayers");
+    isLoading = false;
+    update();
+  }
 
   reset() {
     prayerBox.put("Fajr", 0);
@@ -194,7 +200,7 @@ class PrayersController extends GetxController {
   DateTime updateEndDateOfQadaa() {
     DateTime? endDayOfQdaa = DateTime.now();
     int? prayesPerDay = 1;
-    prayesPerDay = int.parse(settingsController.getqadaaEveryDay());
+    prayesPerDay = int.parse(getqadaaEveryDay());
 
     endDayOfQdaa = DateTime.now()
         .add(Duration(days: getAllRemainingPrayer() ~/ prayesPerDay));
@@ -213,5 +219,23 @@ class PrayersController extends GetxController {
         return 'موعد انتهاء القضاء:\n ${updateEndDateOfQadaa().day} / ${updateEndDateOfQadaa().month} / ${updateEndDateOfQadaa().year}';
       }
     }
+  }
+
+  // qadaa every day
+  String getqadaaEveryDay() {
+    String? data =
+        Hive.box("Prayers").get("qadaaEveryDay", defaultValue: "1").toString();
+
+    return data == "0" ? "1" : data;
+  }
+
+  setqadaaEveryDay(String? count) {
+    Hive.box("Prayers").put("qadaaEveryDay", count ?? 1);
+    update();
+  }
+
+  resetqadaaEveryDay() {
+    Hive.box("Prayers").put("qadaaEveryDay", 1);
+    update();
   }
 }

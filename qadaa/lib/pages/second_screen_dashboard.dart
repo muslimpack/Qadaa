@@ -6,23 +6,8 @@ import 'package:flutter/material.dart';
 import 'add_new.dart';
 import 'done.dart';
 
-class Qadaa extends StatefulWidget {
-  const Qadaa({Key? key}) : super(key: key);
-
-  @override
-  _QadaaState createState() => _QadaaState();
-}
-
-class _QadaaState extends State<Qadaa> with SingleTickerProviderStateMixin {
-  late TabController tabController;
-  late PageController pageController;
-
-  @override
-  void initState() {
-    super.initState();
-    pageController = PageController(initialPage: 1);
-    tabController = TabController(initialIndex: 1, length: 2, vsync: this);
-  }
+class SecondScreenDashboard extends StatelessWidget {
+  const SecondScreenDashboard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

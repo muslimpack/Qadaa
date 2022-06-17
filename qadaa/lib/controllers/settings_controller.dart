@@ -1,10 +1,19 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
+import 'package:qadaa/controllers/prayer_controller.dart';
 
 class SettingsController extends GetxController {
   /* *************** Variables *************** */
-
+  late TextEditingController qadaaController;
+  final PrayersController prayersController = Get.put(PrayersController());
   /* *************** Controller life cycle *************** */
+  @override
+  void onInit() {
+    super.onInit();
+    qadaaController =
+        TextEditingController(text: prayersController.getqadaaEveryDay());
+  }
 
   /* *************** Functions *************** */
   // First Screen
@@ -23,23 +32,5 @@ class SettingsController extends GetxController {
     return Hive.box("Prayers")
         .get("SplashBackground", defaultValue: "صورة")
         .toString();
-  }
-
-  // qadaa every day
-  String getqadaaEveryDay() {
-    String? data =
-        Hive.box("Prayers").get("qadaaEveryDay", defaultValue: "1").toString();
-
-    return data == "0" ? "1" : data;
-  }
-
-  setqadaaEveryDay(String? count) {
-    Hive.box("Prayers").put("qadaaEveryDay", count ?? 1);
-    update();
-  }
-
-  resetqadaaEveryDay() {
-    Hive.box("Prayers").put("qadaaEveryDay", 1);
-    update();
   }
 }
