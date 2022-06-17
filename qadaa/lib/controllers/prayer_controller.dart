@@ -1,11 +1,10 @@
+import 'package:get/get.dart';
 import 'package:hive/hive.dart';
+import 'package:qadaa/controllers/settings_controller.dart';
 
-import 'settings_manager.dart';
-
-PrayersSettings prayersSettings = PrayersSettings();
-
-class PrayersSettings {
+class PrayersController extends GetxController {
   Box prayerBox = Hive.box("Prayers");
+  final settingsController = Get.put(SettingsController());
 
   reset() {
     prayerBox.put("Fajr", 0);
@@ -18,6 +17,7 @@ class PrayersSettings {
     prayerBox.put("MaxAsr", 1);
     prayerBox.put("MaxMaghrib", 1);
     prayerBox.put("MaxIsha", 1);
+    update();
   }
 
   addPrayer(
@@ -71,6 +71,7 @@ class PrayersSettings {
     prayerBox.put("Asr", newRecordAsr < 0 ? 0 : newRecordAsr);
     prayerBox.put("Maghrib", newRecordMaghrib < 0 ? 0 : newRecordMaghrib);
     prayerBox.put("Isha", newRecordIsha < 0 ? 0 : newRecordIsha);
+    update();
   }
 
   addDay({required int? value}) {
@@ -83,24 +84,28 @@ class PrayersSettings {
         isha: value,
       );
     }
+    update();
   }
 
   addWeek({required int? value}) {
     if (value != null) {
       addDay(value: value * 7);
     }
+    update();
   }
 
   addMonth({required int? value}) {
     if (value != null) {
       addDay(value: value * 30);
     }
+    update();
   }
 
   addYear({required int? value}) {
     if (value != null) {
       addDay(value: value * 365);
     }
+    update();
   }
 
   int getDays() {
@@ -112,6 +117,7 @@ class PrayersSettings {
       getIsha().toInt()
     ];
     prayerTimesForEach.sort();
+
     return prayerTimesForEach.first;
   }
 
@@ -188,7 +194,7 @@ class PrayersSettings {
   DateTime updateEndDateOfQadaa() {
     DateTime? endDayOfQdaa = DateTime.now();
     int? prayesPerDay = 1;
-    prayesPerDay = int.parse(settingsManager.getqadaaEveryDay());
+    prayesPerDay = int.parse(settingsController.getqadaaEveryDay());
 
     endDayOfQdaa = DateTime.now()
         .add(Duration(days: getAllRemainingPrayer() ~/ prayesPerDay));
@@ -197,7 +203,7 @@ class PrayersSettings {
   }
 
   String getEndDateText() {
-    if (prayersSettings.getAllRemainingPrayer() == 0) {
+    if (getAllRemainingPrayer() == 0) {
       return "لا يوجد قضاء عليك";
     } else {
       Duration diffrence = updateEndDateOfQadaa().difference(DateTime.now());

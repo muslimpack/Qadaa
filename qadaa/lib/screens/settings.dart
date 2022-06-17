@@ -1,10 +1,12 @@
-import 'package:qadaa/Shared/Widgets/Tile.dart';
 import 'package:flutter/material.dart';
-import 'package:qadaa/manager/prayer_settings.dart';
-import 'package:qadaa/manager/settings_manager.dart';
-import 'package:qadaa/screens/dashboard.dart';
+import 'package:get/get.dart';
+import 'package:qadaa/Shared/Widgets/Tile.dart';
+import 'package:qadaa/controllers/prayer_controller.dart';
+import 'package:qadaa/controllers/settings_controller.dart';
 import 'package:qadaa/shared/dialogs/yes__no_popup.dart';
 import 'package:qadaa/shared/widgets/user_text_field.dart';
+
+import 'dashboard.dart';
 
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
@@ -15,15 +17,17 @@ class Settings extends StatefulWidget {
 
 class _SettingsState extends State<Settings> {
   TextEditingController? qadaaController = TextEditingController();
+  final settingsController = Get.put(SettingsController());
+
   @override
   void initState() {
     super.initState();
 
     qadaaController =
-        TextEditingController(text: settingsManager.getqadaaEveryDay());
+        TextEditingController(text: settingsController.getqadaaEveryDay());
   }
 
-  Widget count() {
+  Widget count(PrayersController prayersController) {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 10),
       child: Padding(
@@ -43,14 +47,14 @@ class _SettingsState extends State<Settings> {
                 setState(() {
                   if (count.isNotEmpty) {
                     setState(() {
-                      settingsManager.setqadaaEveryDay(count);
+                      settingsController.setqadaaEveryDay(count);
                     });
                   }
                 });
               },
             ),
             Text(
-              prayersSettings.getEndDateText(),
+              prayersController.getEndDateText(),
               style: TextStyle(
                   fontWeight: FontWeight.bold, color: Colors.blue.shade200),
               textAlign: TextAlign.center,
@@ -63,51 +67,54 @@ class _SettingsState extends State<Settings> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        title: const Text("الإعدادات"),
-        //backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      ),
-      body: ListView(
-        children: [
-          const Title(title: "عام"),
-          count(),
-          const Divider(),
-          MyTile(
-            title: 'صفحة البدء',
-            icon: Icons.palette_outlined,
-            onTap: () {
-              setState(() {
-                settingsManager.toggleSplashBackground();
-              });
-            },
-            trailing: settingsManager.getSplashBackground(),
-          ),
-          MyTile(
-            title: 'إعادة ضبط كل شيء',
-            icon: Icons.delete_forever,
-            trailing: "",
-            onTap: () {
-              showModalBottomSheet(
-                  isScrollControlled: true,
-                  backgroundColor: Colors.transparent,
-                  context: context,
-                  builder: (BuildContext context) {
-                    return YesOrNoDialog(
-                      onYes: () {
-                        prayersSettings.reset();
-                        settingsManager.resetqadaaEveryDay();
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (context) => const Dashboard()));
-                      },
-                    );
-                  });
-            },
-          )
-        ],
-      ),
-    );
+    return GetBuilder<PrayersController>(builder: (controller) {
+      return Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          title: const Text("الإعدادات"),
+          //backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        ),
+        body: ListView(
+          children: [
+            const Title(title: "عام"),
+            count(controller),
+            const Divider(),
+            MyTile(
+              title: 'صفحة البدء',
+              icon: Icons.palette_outlined,
+              onTap: () {
+                setState(() {
+                  settingsController.toggleSplashBackground();
+                });
+              },
+              trailing: settingsController.getSplashBackground(),
+            ),
+            MyTile(
+              title: 'إعادة ضبط كل شيء',
+              icon: Icons.delete_forever,
+              trailing: "",
+              onTap: () {
+                showModalBottomSheet(
+                    isScrollControlled: true,
+                    backgroundColor: Colors.transparent,
+                    context: context,
+                    builder: (BuildContext context) {
+                      return YesOrNoDialog(
+                        onYes: () {
+                          controller.reset();
+                          settingsController.resetqadaaEveryDay();
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => const Dashboard()));
+                        },
+                      );
+                    });
+              },
+            )
+          ],
+        ),
+      );
+    });
   }
 }
 

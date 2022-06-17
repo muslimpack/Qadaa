@@ -56,9 +56,9 @@ class _MyAppState extends State<MyApp> {
             } else {
               return const Dashboard();
             }
-          } else
-            // ignore: curly_braces_in_flow_control_structures
+          } else {
             return const Scaffold();
+          }
         },
       ),
     );

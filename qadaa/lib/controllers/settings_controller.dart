@@ -1,8 +1,12 @@
+import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 
-SettingsManager settingsManager = SettingsManager();
+class SettingsController extends GetxController {
+  /* *************** Variables *************** */
 
-class SettingsManager {
+  /* *************** Controller life cycle *************** */
+
+  /* *************** Functions *************** */
   // First Screen
   toggleSplashBackground() {
     String value;
@@ -31,9 +35,11 @@ class SettingsManager {
 
   setqadaaEveryDay(String? count) {
     Hive.box("Prayers").put("qadaaEveryDay", count ?? 1);
+    update();
   }
 
   resetqadaaEveryDay() {
     Hive.box("Prayers").put("qadaaEveryDay", 1);
+    update();
   }
 }
