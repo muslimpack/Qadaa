@@ -2,26 +2,32 @@
 
 <img src="https://user-images.githubusercontent.com/50374022/151571263-02d7d411-b9cb-4057-8dfb-d3bd42f96915.png" alt='Qadaa logo' width="200"/>
 
-
 # تطبيق قضاء
-  
-[![version](https://img.shields.io/badge/version-1.0.0-yellow.svg)](https://github.com/HasanEltantawy/Qadaa)
+
+[![version](https://img.shields.io/badge/version-1.1.0-pink.svg)](https://github.com/HasanEltantawy/Qadaa)
 ![GitHub all releases](https://img.shields.io/github/downloads/HasanEltantawy/Qadaa/total?color=green&label=Total%20Downloads)
 
-Keep tracking your prayers.
-  
+تطبيق يعينك على قضاء ما فاتك من صلوات
+
 [<img src="https://user-images.githubusercontent.com/50374022/152713461-d367ec7a-687b-40ca-a881-30e49d69821c.png"
       alt='Get it on Google Play'
       height="80">](https://play.google.com/store/apps/details?id=com.hassaneltantawy.qadaa)
 [<img src="https://user-images.githubusercontent.com/50374022/152713265-c54cec69-9583-4ecd-bc7c-35b227c4a8cf.png"
       alt='Get it on AppGallery'
       height="80">](https://appgallery.huawei.com/app/C105464965)
-  
 
 <div align="right">
 
- # مميزات التطبيق
-  
+# مميزات التطبيق
+
+## v1.1.0
+
+- إضافة كلمة مرور للتطبيق
+- إضافة مؤثرات صوتية وبصرية عند قضاء صلاة أو يوم
+- إصلاح بعض المشاكل المتعلقة بالأداء
+- State managment: Getx
+- Partially apply MVC pattern
+
 ## v1.0.0
 
 - سهولة وبساطة الواجهة.

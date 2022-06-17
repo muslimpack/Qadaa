@@ -29,7 +29,7 @@ class AppDashboardController extends GetxController {
     if (Hive.box("Prayers").get("is_app_locked", defaultValue: false)) {
       screenLock(
         context: Get.context!,
-        title: const Text("أدخل كلمة السر"),
+        title: const Text("أدخل كلمة المرور"),
         screenLockConfig: const ScreenLockConfig(
             backgroundColor: Color.fromARGB(255, 16, 35, 56)),
         correctString:

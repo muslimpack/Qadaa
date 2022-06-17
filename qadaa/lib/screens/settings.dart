@@ -3,6 +3,7 @@ import 'package:flutter_screen_lock/flutter_screen_lock.dart';
 import 'package:get/get.dart';
 import 'package:qadaa/Shared/Widgets/Tile.dart';
 import 'package:qadaa/controllers/settings_controller.dart';
+import 'package:qadaa/shared/constants.dart';
 import 'package:qadaa/shared/dialogs/yes__no_popup.dart';
 import 'package:qadaa/shared/functions/show_toast.dart';
 import 'package:qadaa/shared/widgets/scroll_glow_remover.dart';
@@ -119,7 +120,20 @@ class Settings extends StatelessWidget {
                             );
                           });
                     },
-                  )
+                  ),
+                  const Divider(),
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 7),
+                    padding: const EdgeInsets.only(bottom: 5),
+                    child: const Card(
+                      child: ListTile(
+                        title: Text(
+                          'تطبيق قضاء الإصدار $appVersion',
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
