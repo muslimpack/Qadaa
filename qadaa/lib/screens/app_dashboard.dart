@@ -6,6 +6,7 @@ import 'package:qadaa/manager/constant.dart';
 import 'package:qadaa/pages/second_screen_dashboard.dart';
 import 'package:qadaa/pages/splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:qadaa/shared/widgets/scroll_glow_remover.dart';
 
 class AppDashboard extends StatelessWidget {
   const AppDashboard({Key? key}) : super(key: key);
@@ -19,43 +20,45 @@ class AppDashboard extends StatelessWidget {
               ? const SizedBox()
               : Stack(
                   children: [
-                    Scaffold(
-                      body: ScrollConfiguration(
-                        behavior: const ScrollBehavior(),
-                        child: GlowingOverscrollIndicator(
-                          axisDirection: AxisDirection.down,
-                          color: AppConstant.scrollColor,
-                          child: PageView(
-                            physics: const ClampingScrollPhysics(),
-                            controller: controller.pageController,
-                            scrollDirection: Axis.vertical,
-                            children: const [
-                              SplashScreen(),
-                              SecondScreenDashboard(),
-                            ],
-                            onPageChanged: (value) {
-                              controller.currentPageIndex = value;
-                            },
+                    ScrollGlowRemover(
+                      child: Scaffold(
+                        body: ScrollConfiguration(
+                          behavior: const ScrollBehavior(),
+                          child: GlowingOverscrollIndicator(
+                            axisDirection: AxisDirection.down,
+                            color: AppConstant.scrollColor,
+                            child: PageView(
+                              physics: const ClampingScrollPhysics(),
+                              controller: controller.pageController,
+                              scrollDirection: Axis.vertical,
+                              children: const [
+                                SplashScreen(),
+                                SecondScreenDashboard(),
+                              ],
+                              onPageChanged: (value) {
+                                controller.currentPageIndex = value;
+                              },
+                            ),
                           ),
                         ),
-                      ),
-                      floatingActionButton: controller.currentPageIndex == 0
-                          ? null
-                          : FloatingActionButton(
-                              mini: true,
-                              backgroundColor: AppConstant.mainColor,
-                              onPressed: () {
-                                controller.pageController.animateTo(0.0,
-                                    duration: const Duration(seconds: 1),
-                                    curve: Curves.linear);
-                                // _controller.jumpToPage(0);
-                              },
-                              tooltip: 'Increment',
-                              child: const Icon(
-                                Icons.arrow_upward,
-                                color: Colors.white,
+                        floatingActionButton: controller.currentPageIndex == 0
+                            ? null
+                            : FloatingActionButton(
+                                mini: true,
+                                backgroundColor: AppConstant.mainColor,
+                                onPressed: () {
+                                  controller.pageController.animateTo(0.0,
+                                      duration: const Duration(seconds: 1),
+                                      curve: Curves.linear);
+                                  // _controller.jumpToPage(0);
+                                },
+                                tooltip: 'Increment',
+                                child: const Icon(
+                                  Icons.arrow_upward,
+                                  color: Colors.white,
+                                ),
                               ),
-                            ),
+                      ),
                     ),
                     GetBuilder<EffectManager>(
                         init: EffectManager(),
