@@ -30,6 +30,7 @@ class SettingsController extends GetxController {
       value = "صورة";
     }
     Hive.box("Prayers").put("SplashBackground", value);
+    update();
   }
 
   String getSplashBackground() {
