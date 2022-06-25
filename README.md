@@ -9,12 +9,15 @@
 
 تطبيق يعينك على قضاء ما فاتك من صلوات
 
-[<img src="https://user-images.githubusercontent.com/50374022/152713461-d367ec7a-687b-40ca-a881-30e49d69821c.png"
+[<img src="https://user-images.githubusercontent.com/15004217/36810046-fa306856-1cc9-11e8-808e-6eb8a81783c7.png"
       alt='Get it on Google Play'
       height="80">](https://play.google.com/store/apps/details?id=com.hassaneltantawy.qadaa)
 [<img src="https://user-images.githubusercontent.com/50374022/152713265-c54cec69-9583-4ecd-bc7c-35b227c4a8cf.png"
       alt='Get it on AppGallery'
       height="80">](https://appgallery.huawei.com/app/C105464965)
+[<img src="https://user-images.githubusercontent.com/108153032/175767758-fa4fa6f2-f679-4481-84bc-ba4736c1a2fd.png"
+      alt='Get it on IzzyOnDroid'
+      height="80">](https://apt.izzysoft.de/fdroid/index/apk/com.hassaneltantawy.qadaa)
 
 <div align="right">
 
