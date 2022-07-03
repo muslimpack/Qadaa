@@ -17,7 +17,7 @@ class Done extends StatelessWidget {
     return GetBuilder<PrayersController>(builder: (controller) {
       return Scaffold(
           body: Scrollbar(
-        isAlwaysShown: false,
+        thumbVisibility: false,
         child: ListView(
           children: [
             const SizedBox(height: 10),
