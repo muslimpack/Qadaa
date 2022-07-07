@@ -24,6 +24,7 @@ dependencies:
   get: ^4.6.5
   confetti: ^0.6.0
   audioplayers: ^0.20.1
+  flutter_native_splash: ^2.1.6
 
 dev_dependencies:
   flutter_test:
@@ -32,6 +33,12 @@ dev_dependencies:
     sdk: flutter
 
   flutter_lints: ^1.0.4
+
+flutter_native_splash:
+  android: true
+  ios: true
+  web: true
+  color: "#303030"
 
 flutter:
   uses-material-design: true
