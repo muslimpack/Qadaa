@@ -1,0 +1,16 @@
+IssueTracker: https://github.com/muslimpack/Qadaa/issues
+Changelog: https://github.com/muslimpack/Qadaa/releases
+
+AutoName: حصن المسلم
+
+RepoType: git
+Repo: https://github.com/muslimpack/Qadaa.git
+
+Builds:
+  - versionName: 1.1.0
+    versionCode: 2
+    commit: v1.1.0-Fdroid
+    subdir: qadaa
+    output: build/app/outputs/flutter-apk/app-release.apk
+    srclibs:
+      - flutter@3.3.8
