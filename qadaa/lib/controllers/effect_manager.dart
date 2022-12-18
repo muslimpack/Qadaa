@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:audioplayers/audioplayers.dart';
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +10,7 @@ class EffectManager extends GetxController {
   late ConfettiController confettiController;
   AlignmentGeometry confettiAlignment = Alignment.topCenter;
   double gravity = 0.2;
-  final player = AudioCache();
+  final player = AudioPlayer();
   List<Color>? colors = const [
     Color.fromARGB(255, 233, 30, 99),
     Color.fromARGB(255, 41, 110, 180),
@@ -68,11 +67,11 @@ class EffectManager extends GetxController {
 
     switch (soundType) {
       case SoundType.big:
-        player.play("sounds/big_finish.mp3");
+        await player.play(AssetSource("sounds/big_finish.mp3"));
         gravity = 0.9;
         break;
       case SoundType.small:
-        player.play("sounds/small_finish.mp3");
+        await player.play(AssetSource("sounds/small_finish.mp3"));
         gravity = 0.2;
         break;
       default:

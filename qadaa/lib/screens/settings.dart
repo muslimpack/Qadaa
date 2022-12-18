@@ -5,6 +5,7 @@ import 'package:qadaa/Shared/Widgets/Tile.dart';
 import 'package:qadaa/controllers/settings_controller.dart';
 import 'package:qadaa/shared/constants.dart';
 import 'package:qadaa/shared/dialogs/yes__no_popup.dart';
+import 'package:qadaa/shared/functions/print.dart';
 import 'package:qadaa/shared/functions/show_toast.dart';
 import 'package:qadaa/shared/widgets/scroll_glow_remover.dart';
 import 'package:qadaa/shared/widgets/user_text_field.dart';
@@ -56,26 +57,25 @@ class Settings extends StatelessWidget {
                                   const Text("كلمة المرور الافتراضية: 0000"),
                               onTap: () {
                                 screenLock(
-                                  title: const HeadingTitle(
-                                      text: 'أدخل كلمة المرور القديمة'),
+                                  title: const Text('أدخل كلمة المرور القديمة'),
                                   context: context,
                                   correctString: controller.passCode,
-                                  didUnlocked: () {
+                                  onOpened: () {
                                     Navigator.pop(context);
                                     screenLock(
-                                      title: const HeadingTitle(
-                                          text: 'أدخل كلمة المرور الجديدة'),
-                                      confirmTitle: const HeadingTitle(
-                                          text: 'أعد إدخال كلمة المرور'),
+                                      title: const Text(
+                                          'أدخل كلمة المرور الجديدة'),
+                                      // confirmTitle:
+                                      //     const Text('أعد إدخال كلمة المرور'),
                                       context: context,
                                       correctString: controller.passCode,
-                                      confirmation: true,
-                                      didConfirmed: (matchedText) {
-                                        // ignore: avoid_print
-                                        print(matchedText);
+                                      // confirmation: true,
+                                      onValidate: (matchedText) async {
+                                        qadaaPrint(matchedText);
                                         controller.setPasscode(matchedText);
                                         Navigator.pop(context);
                                         showToast("تم إعادة تعيين كلمة المرور");
+                                        return true;
                                       },
                                     );
                                   },

@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:qadaa/screens/app_dashboard.dart';
+import 'package:qadaa/shared/constants.dart';
 import 'package:qadaa/shared/widgets/bouncy_page.dart';
 import '../shared/widgets/empty.dart';
 
@@ -12,7 +13,6 @@ class OnBoardingController extends GetxController {
   PageController pageController = PageController(initialPage: 0);
   //
   bool get isFinalPage => currentPageIndex + 1 == pageList.length;
-  //TODO show skip button
   bool get showSkipBtn => false;
   //
   int currentPageIndex = 0;
@@ -21,7 +21,7 @@ class OnBoardingController extends GetxController {
   //
   final pageList = [
     const Empty(
-      title: "قضاء الإصدار 1.1.0",
+      title: "قضاء الإصدار $appVersion",
       description: '''
 أهلا بك أيها الموفق في هذا الإصدار الجديد من قضاء 
 قم بتقليب الصفحات لرؤية الميزات الجديدة 
@@ -102,7 +102,7 @@ class OnBoardingController extends GetxController {
   /// and set app fisrt open to false
   goToDashboard() {
     final Box box = Hive.box("Prayers");
-    box.put("is_v1.1_first_open", false);
+    box.put("is_${appVersion}_first_open", false);
     transitionAnimation.fromBottom2Top(
         context: Get.context!, goToPage: const AppDashboard());
   }
