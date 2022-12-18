@@ -60,7 +60,7 @@ class Settings extends StatelessWidget {
                                   title: const Text('أدخل كلمة المرور القديمة'),
                                   context: context,
                                   correctString: controller.passCode,
-                                  onOpened: () {
+                                  onUnlocked: () {
                                     Navigator.pop(context);
                                     screenLock(
                                       title: const Text(
@@ -73,7 +73,7 @@ class Settings extends StatelessWidget {
                                       onValidate: (matchedText) async {
                                         qadaaPrint(matchedText);
                                         controller.setPasscode(matchedText);
-                                        Navigator.pop(context);
+                                        // Navigator.pop(context);
                                         showToast("تم إعادة تعيين كلمة المرور");
                                         return true;
                                       },
