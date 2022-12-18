@@ -47,10 +47,10 @@ class SplashScreen extends StatelessWidget {
                           title: "الأيام المتبقية",
                           initialValue: controller.prayersController.getDays(),
                           max: controller.prayersController.getDaysMax(),
-                          onTap: () {
+                          onTap: () async {
                             controller.prayersController.addDay(value: -1);
 
-                            controller.effectManager.playConfetti(
+                            await controller.effectManager.playConfetti(
                                 milliseconds: 1000,
                                 alignment: Alignment.topCenter,
                                 soundType: SoundType.big);
@@ -68,57 +68,33 @@ class SplashScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Expanded(
-                            flex: 1,
-                            child: CircleIndicator(
-                              title: "الفجر",
-                              initialValue:
-                                  controller.prayersController.getFajr(),
-                              max: controller.prayersController.getMaxFajr(),
-                              onTap: () {
-                                controller.prayersController
-                                    .addPrayer(fajr: -1);
-
-                                controller.effectManager.playConfetti(
-                                    milliseconds: 1000,
-                                    alignment: Alignment.center,
-                                    soundType: SoundType.small);
-                                controller.update();
-                              },
-                              size: size.width * .3,
-                              tFontSize: 15,
-                              vFontSize: 15,
-                              onLongTap: () {
-                                controller.prayersController.addPrayer(fajr: 1);
-                                controller.update();
-                              },
-                            ),
+                          SinglePrayCircleIndicator(
+                            size: size,
+                            controller: controller,
+                            title: "الفجر",
+                            initialValue:
+                                controller.prayersController.getFajr(),
+                            max: controller.prayersController.getMaxFajr(),
+                            onTap: () {
+                              controller.prayersController.addPrayer(fajr: -1);
+                            },
+                            onLongTap: () {
+                              controller.prayersController.addPrayer(fajr: 1);
+                            },
                           ),
-                          Expanded(
-                            flex: 1,
-                            child: CircleIndicator(
-                                title: "الظهر",
-                                initialValue:
-                                    controller.prayersController.getDhuhr(),
-                                max: controller.prayersController.getMaxDhuhr(),
-                                onTap: () {
-                                  controller.prayersController
-                                      .addPrayer(dhuhr: -1);
-
-                                  controller.effectManager.playConfetti(
-                                      milliseconds: 1000,
-                                      alignment: Alignment.center,
-                                      soundType: SoundType.small);
-                                  controller.update();
-                                },
-                                onLongTap: () {
-                                  controller.prayersController
-                                      .addPrayer(dhuhr: 1);
-                                  controller.update();
-                                },
-                                size: size.width * .3,
-                                tFontSize: 15,
-                                vFontSize: 15),
+                          SinglePrayCircleIndicator(
+                            size: size,
+                            controller: controller,
+                            title: "الظهر",
+                            initialValue:
+                                controller.prayersController.getDhuhr(),
+                            max: controller.prayersController.getMaxDhuhr(),
+                            onTap: () {
+                              controller.prayersController.addPrayer(dhuhr: -1);
+                            },
+                            onLongTap: () {
+                              controller.prayersController.addPrayer(dhuhr: 1);
+                            },
                           ),
                         ],
                       ),
@@ -126,84 +102,48 @@ class SplashScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Expanded(
-                            flex: 1,
-                            child: CircleIndicator(
-                                title: "العصر",
-                                initialValue:
-                                    controller.prayersController.getAsr(),
-                                max: controller.prayersController.getMaxAsr(),
-                                onTap: () {
-                                  controller.prayersController
-                                      .addPrayer(asr: -1);
-
-                                  controller.effectManager.playConfetti(
-                                      milliseconds: 1000,
-                                      alignment: Alignment.center,
-                                      soundType: SoundType.small);
-                                  controller.update();
-                                },
-                                onLongTap: () {
-                                  controller.prayersController
-                                      .addPrayer(asr: 1);
-                                  controller.update();
-                                },
-                                size: size.width * .25,
-                                tFontSize: 15,
-                                vFontSize: 15),
+                          SinglePrayCircleIndicator(
+                            size: size,
+                            controller: controller,
+                            title: "العصر",
+                            initialValue: controller.prayersController.getAsr(),
+                            max: controller.prayersController.getMaxAsr(),
+                            onTap: () {
+                              controller.prayersController.addPrayer(asr: -1);
+                            },
+                            onLongTap: () {
+                              controller.prayersController.addPrayer(asr: 1);
+                            },
                           ),
-                          Expanded(
-                            flex: 1,
-                            child: CircleIndicator(
-                                title: "المغرب",
-                                initialValue:
-                                    controller.prayersController.getMaghrib(),
-                                max: controller.prayersController
-                                    .getMaxMaghrib(),
-                                onTap: () {
-                                  controller.prayersController
-                                      .addPrayer(maghrib: -1);
-
-                                  controller.effectManager.playConfetti(
-                                      milliseconds: 1000,
-                                      alignment: Alignment.center,
-                                      soundType: SoundType.small);
-                                  controller.update();
-                                },
-                                onLongTap: () {
-                                  controller.prayersController
-                                      .addPrayer(maghrib: 1);
-                                  controller.update();
-                                },
-                                size: size.width * .25,
-                                tFontSize: 15,
-                                vFontSize: 15),
+                          SinglePrayCircleIndicator(
+                            size: size,
+                            controller: controller,
+                            title: "المغرب",
+                            initialValue:
+                                controller.prayersController.getMaghrib(),
+                            max: controller.prayersController.getMaxMaghrib(),
+                            onTap: () {
+                              controller.prayersController
+                                  .addPrayer(maghrib: -1);
+                            },
+                            onLongTap: () {
+                              controller.prayersController
+                                  .addPrayer(maghrib: 1);
+                            },
                           ),
-                          Expanded(
-                            flex: 1,
-                            child: CircleIndicator(
-                                title: "العشاء",
-                                initialValue:
-                                    controller.prayersController.getIsha(),
-                                max: controller.prayersController.getMaxIsha(),
-                                onTap: () {
-                                  controller.prayersController
-                                      .addPrayer(isha: -1);
-
-                                  controller.effectManager.playConfetti(
-                                      milliseconds: 1000,
-                                      alignment: Alignment.center,
-                                      soundType: SoundType.small);
-                                  controller.update();
-                                },
-                                onLongTap: () {
-                                  controller.prayersController
-                                      .addPrayer(isha: 1);
-                                  controller.update();
-                                },
-                                size: size.width * .25,
-                                tFontSize: 15,
-                                vFontSize: 15),
+                          SinglePrayCircleIndicator(
+                            size: size,
+                            controller: controller,
+                            title: "العشاء",
+                            initialValue:
+                                controller.prayersController.getIsha(),
+                            max: controller.prayersController.getMaxIsha(),
+                            onTap: () {
+                              controller.prayersController.addPrayer(isha: -1);
+                            },
+                            onLongTap: () {
+                              controller.prayersController.addPrayer(isha: 1);
+                            },
                           ),
                         ],
                       ),
@@ -230,5 +170,56 @@ class SplashScreen extends StatelessWidget {
             ),
           );
         });
+  }
+}
+
+class SinglePrayCircleIndicator extends StatelessWidget {
+  final Size size;
+  final double sizeFactor;
+  final String title;
+  final int initialValue;
+  final int max;
+  final Function onTap;
+  final Function onLongTap;
+  final SplashController controller;
+  const SinglePrayCircleIndicator({
+    Key? key,
+    required this.size,
+    this.sizeFactor = .3,
+    required this.title,
+    required this.initialValue,
+    required this.max,
+    required this.onTap,
+    required this.onLongTap,
+    required this.controller,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      flex: 1,
+      child: CircleIndicator(
+        title: title,
+        initialValue: initialValue,
+        max: max,
+        onTap: () async {
+          onTap();
+
+          await controller.effectManager.playConfetti(
+            milliseconds: 1000,
+            alignment: Alignment.center,
+            soundType: SoundType.small,
+          );
+          controller.update();
+        },
+        size: size.width * .3,
+        tFontSize: 15,
+        vFontSize: 15,
+        onLongTap: () {
+          onLongTap();
+          controller.update();
+        },
+      ),
+    );
   }
 }

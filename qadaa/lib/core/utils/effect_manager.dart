@@ -58,13 +58,20 @@ class EffectManager extends GetxController {
     return path;
   }
 
-  playConfetti(
-      {int milliseconds = 1000,
-      AlignmentGeometry alignment = Alignment.topCenter,
-      SoundType soundType = SoundType.big}) async {
+  Future<void> playConfetti({
+    int milliseconds = 1000,
+    AlignmentGeometry alignment = Alignment.topCenter,
+    SoundType soundType = SoundType.big,
+  }) async {
     confettiAlignment = alignment;
     confettiController.duration = Duration(milliseconds: milliseconds);
 
+    await playSoundEffect(soundType: soundType);
+    update();
+    confettiController.play();
+  }
+
+  playSoundEffect({SoundType soundType = SoundType.big}) async {
     switch (soundType) {
       case SoundType.big:
         await player.play(AssetSource("sounds/big_finish.mp3"));
@@ -76,7 +83,5 @@ class EffectManager extends GetxController {
         break;
       default:
     }
-    update();
-    confettiController.play();
   }
 }

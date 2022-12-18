@@ -25,11 +25,11 @@ class Done extends StatelessWidget {
               title: "قضيت يومًا",
               icon: Icons.done,
               trailing: controller.getDays().toInt().toString(),
-              onTap: () {
+              onTap: () async {
                 if (controller.getDays() > 0) {
                   controller.addDay(value: -1);
                   showRandomNotification();
-                  effectManager.playConfetti(
+                  await effectManager.playConfetti(
                       milliseconds: 5000, alignment: Alignment.topCenter);
                 }
               },
@@ -45,8 +45,8 @@ class Done extends StatelessWidget {
                     context: context,
                     builder: (BuildContext context) {
                       return const DeleteDaysDialog();
-                    }).then((value) {
-                  effectManager.playConfetti(
+                    }).then((value) async {
+                  await effectManager.playConfetti(
                       milliseconds: 5000, alignment: Alignment.topCenter);
                 });
               },
@@ -56,10 +56,10 @@ class Done extends StatelessWidget {
               title: "قضيت صلاة فجر",
               icon: Icons.done,
               trailing: controller.getFajr().toInt().toString(),
-              onTap: () {
+              onTap: () async {
                 controller.addPrayer(fajr: -1);
 
-                effectManager.playConfetti(
+                await effectManager.playConfetti(
                     milliseconds: 1000,
                     alignment: Alignment.center,
                     soundType: SoundType.small);
@@ -69,10 +69,10 @@ class Done extends StatelessWidget {
               title: "قضيت صلاة ظهر",
               icon: Icons.done,
               trailing: controller.getDhuhr().toInt().toString(),
-              onTap: () {
+              onTap: () async {
                 controller.addPrayer(dhuhr: -1);
 
-                effectManager.playConfetti(
+                await effectManager.playConfetti(
                     milliseconds: 1000,
                     alignment: Alignment.center,
                     soundType: SoundType.small);
@@ -82,10 +82,10 @@ class Done extends StatelessWidget {
               title: "قضيت صلاة عصر",
               icon: Icons.done,
               trailing: controller.getAsr().toInt().toString(),
-              onTap: () {
+              onTap: () async {
                 controller.addPrayer(asr: -1);
 
-                effectManager.playConfetti(
+                await effectManager.playConfetti(
                     milliseconds: 1000,
                     alignment: Alignment.center,
                     soundType: SoundType.small);
@@ -95,10 +95,10 @@ class Done extends StatelessWidget {
               title: "قضيت صلاة مغرب",
               icon: Icons.done,
               trailing: controller.getMaghrib().toInt().toString(),
-              onTap: () {
+              onTap: () async {
                 controller.addPrayer(maghrib: -1);
 
-                effectManager.playConfetti(
+                await effectManager.playConfetti(
                     milliseconds: 1000,
                     alignment: Alignment.center,
                     soundType: SoundType.small);
@@ -108,10 +108,10 @@ class Done extends StatelessWidget {
               title: "قضيت صلاة عشاء",
               icon: Icons.done,
               trailing: controller.getIsha().toInt().toString(),
-              onTap: () {
+              onTap: () async {
                 controller.addPrayer(isha: -1);
 
-                effectManager.playConfetti(
+                await effectManager.playConfetti(
                     milliseconds: 1000,
                     alignment: Alignment.center,
                     soundType: SoundType.small);
@@ -128,11 +128,12 @@ class Done extends StatelessWidget {
                     context: context,
                     builder: (BuildContext context) {
                       return const DeletePrayersDialog();
-                    }).then((value) {
-                  effectManager.playConfetti(
-                      milliseconds: 1000,
-                      alignment: Alignment.topCenter,
-                      soundType: SoundType.big);
+                    }).then((value) async {
+                  await effectManager.playConfetti(
+                    milliseconds: 1000,
+                    alignment: Alignment.topCenter,
+                    soundType: SoundType.big,
+                  );
                 });
               },
             ),
