@@ -90,6 +90,7 @@ class SplashScreen extends StatelessWidget {
                               vFontSize: 15,
                               onLongTap: () {
                                 controller.prayersController.addPrayer(fajr: 1);
+                                controller.update();
                               },
                             ),
                           ),
