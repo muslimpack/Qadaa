@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:qadaa/app.dart';
-import 'package:qadaa/services.dart';
+import 'package:qadaa/app/app.dart';
+import 'package:qadaa/app/services.dart';
 
 void main() async {
   //Make sure all stuff are initialized
