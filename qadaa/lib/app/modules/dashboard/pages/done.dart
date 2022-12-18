@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
-import 'package:qadaa/Shared/Widgets/Tile.dart';
 import 'package:qadaa/app/shared/dialogs/delete_days_dialog.dart';
 import 'package:qadaa/app/shared/dialogs/delete_prayers_dialog.dart';
 import 'package:qadaa/app/shared/enum/sound_type.dart';
 import 'package:qadaa/app/shared/functions/random_notification.dart';
+import 'package:qadaa/app/shared/widgets/tile.dart';
 import 'package:qadaa/core/utils/effect_manager.dart';
 import 'package:qadaa/core/utils/prayer_controller.dart';
 import 'package:flutter/material.dart';

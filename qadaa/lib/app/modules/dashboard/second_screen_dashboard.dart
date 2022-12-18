@@ -1,4 +1,4 @@
-import 'package:qadaa/Screens/Settings.dart';
+import 'package:qadaa/app/modules/settings/settings.dart';
 import 'package:qadaa/app/shared/widgets/bouncy_page.dart';
 import 'package:qadaa/core/values/constant.dart';
 import 'package:flutter/material.dart';
