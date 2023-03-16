@@ -4,7 +4,7 @@
 
 # تطبيق قضاء
 
-[![version](https://img.shields.io/badge/version-1.1.0-pink.svg)](https://github.com/HasanEltantawy/Qadaa)
+![Badge](https://img.shields.io/github/v/release/muslimpack/Qadaa)
 ![GitHub all releases](https://img.shields.io/github/downloads/HasanEltantawy/Qadaa/total?color=green&label=Total%20Downloads)
 
 تطبيق يعينك على قضاء ما فاتك من صلوات
