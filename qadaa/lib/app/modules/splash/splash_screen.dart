@@ -34,7 +34,7 @@ class SplashScreen extends StatelessWidget {
                   filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
                   child: Container(
                     alignment: Alignment.center,
-                    color: Colors.grey.withOpacity(0.1),
+                    // color: Colors.grey.withOpacity(0.1),
                     child: const Text(""),
                   ),
                 ),
