@@ -36,6 +36,12 @@ class SecondScreenDashboard extends StatelessWidget {
             indicatorColor: AppConstant.mainColor,
             labelColor: AppConstant.mainColor,
             unselectedLabelColor: Colors.white,
+            unselectedLabelStyle:  const TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+            labelStyle: const TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
             tabs: const <Widget>[
               Tab(
                 text: "تم قضاءها",
