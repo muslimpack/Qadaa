@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:qadaa/app/modules/dashboard/app_dashboard.dart';
-import 'package:qadaa/app/shared/widgets/bouncy_page.dart';
 import 'package:qadaa/app/shared/widgets/empty.dart';
 import 'package:qadaa/core/values/constant.dart';
 
@@ -103,7 +102,10 @@ class OnBoardingController extends GetxController {
   goToDashboard() {
     final Box box = Hive.box("Prayers");
     box.put("is_${AppConstant.appVersion}_first_open", false);
-    transitionAnimation.fromBottom2Top(
-        context: Get.context!, goToPage: const AppDashboard());
+    Navigator.of(Get.context!).pushReplacement(MaterialPageRoute(
+      builder: (context) {
+        return const AppDashboard();
+      },
+    ));
   }
 }
