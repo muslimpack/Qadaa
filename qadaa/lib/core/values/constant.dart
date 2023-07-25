@@ -8,7 +8,7 @@ class AppConstant {
   static Color scrollColor = Colors.black;
 
   //TODO edit every release
-  static String appVersion = "1.1.0";
+  static String appVersion = "1.2.0";
 
   static List<String> notificationBody = [
     "قم وأري الله من نفسك خيرا",
