@@ -5,12 +5,17 @@ import 'package:qadaa/core/utils/prayer_controller.dart';
 import 'package:qadaa/core/values/constant.dart';
 import 'package:flutter/material.dart';
 
-class DeleteDaysDialog extends StatelessWidget {
+class DeleteDaysDialog extends StatefulWidget {
   const DeleteDaysDialog({Key? key}) : super(key: key);
 
   @override
+  State<DeleteDaysDialog> createState() => _DeleteDaysDialogState();
+}
+
+class _DeleteDaysDialogState extends State<DeleteDaysDialog> {
+  final TextEditingController daysController = TextEditingController();
+  @override
   Widget build(BuildContext context) {
-    TextEditingController daysController = TextEditingController();
     return GetBuilder<PrayersController>(builder: (controller) {
       return Padding(
         padding: MediaQuery.of(context).viewInsets,

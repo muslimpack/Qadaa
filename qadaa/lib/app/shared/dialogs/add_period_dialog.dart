@@ -4,14 +4,20 @@ import 'package:qadaa/core/utils/prayer_controller.dart';
 import 'package:qadaa/core/values/constant.dart';
 import 'package:flutter/material.dart';
 
-class AddPeriodDialog extends StatelessWidget {
+class AddPeriodDialog extends StatefulWidget {
   const AddPeriodDialog({Key? key}) : super(key: key);
 
   @override
+  State<AddPeriodDialog> createState() => _AddPeriodDialogState();
+}
+
+class _AddPeriodDialogState extends State<AddPeriodDialog> {
+  final TextEditingController yearsController = TextEditingController();
+  final TextEditingController monthsController = TextEditingController();
+  final TextEditingController daysController = TextEditingController();
+
+  @override
   Widget build(BuildContext context) {
-    TextEditingController yearsController = TextEditingController();
-    TextEditingController monthsController = TextEditingController();
-    TextEditingController daysController = TextEditingController();
     return GetBuilder<PrayersController>(builder: (controller) {
       return Padding(
         padding: MediaQuery.of(context).viewInsets,

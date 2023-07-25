@@ -4,16 +4,21 @@ import 'package:qadaa/core/utils/prayer_controller.dart';
 import 'package:qadaa/core/values/constant.dart';
 import 'package:flutter/material.dart';
 
-class AddPrayersDialog extends StatelessWidget {
+class AddPrayersDialog extends StatefulWidget {
   const AddPrayersDialog({Key? key}) : super(key: key);
 
   @override
+  State<AddPrayersDialog> createState() => _AddPrayersDialogState();
+}
+
+class _AddPrayersDialogState extends State<AddPrayersDialog> {
+  final TextEditingController fajrController = TextEditingController();
+  final TextEditingController dhuhrController = TextEditingController();
+  final TextEditingController asrController = TextEditingController();
+  final TextEditingController maghribController = TextEditingController();
+  final TextEditingController ishaController = TextEditingController();
+  @override
   Widget build(BuildContext context) {
-    TextEditingController fajrController = TextEditingController();
-    TextEditingController dhuhrController = TextEditingController();
-    TextEditingController asrController = TextEditingController();
-    TextEditingController maghribController = TextEditingController();
-    TextEditingController ishaController = TextEditingController();
     return GetBuilder<PrayersController>(builder: (controller) {
       return Padding(
         padding: MediaQuery.of(context).viewInsets,
