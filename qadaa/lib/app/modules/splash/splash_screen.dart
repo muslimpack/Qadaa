@@ -151,6 +151,9 @@ class SplashScreen extends StatelessWidget {
                         child: Text(
                           "عَنْ عَائِشَةَ أَنَّ رَسُولَ اللَّهِ صَلَّى اللَّهم عَلَيْهِ وَسَلَّمَ قَال\nَ سَدِّدُوا وَقَارِبُوا وَاعْلَمُوا أَنْ لَنْ يُدْخِلَ أَحَدَكُمْ عَمَلُهُ الْجَنَّةَ \nوَأَنَّ أَحَبَّ الْأَعْمَالِ إِلَى اللَّهِ أَدْوَمُهَا وَإِنْ قَلَّ ",
                           textAlign: TextAlign.center,
+                          style: TextStyle(
+                            height: 2,
+                          ),
                         ),
                       ),
                       const SizedBox(height: 30),
