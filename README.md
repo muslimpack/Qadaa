@@ -6,6 +6,7 @@
 
 ![Badge](https://img.shields.io/github/v/release/muslimpack/Qadaa)
 ![GitHub all releases](https://img.shields.io/github/downloads/HasanEltantawy/Qadaa/total?color=green&label=Total%20Downloads)
+[![Downloads](https://PlayBadges.pavi2410.me/badge/downloads?id=com.hassaneltantawy.qadaa)](https://play.google.com/store/apps/details?id=com.hassaneltantawy.qadaa)
 
 تطبيق يعينك على قضاء ما فاتك من صلوات
 
