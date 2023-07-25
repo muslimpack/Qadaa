@@ -42,6 +42,7 @@ class _MyAppState extends State<MyApp> {
               useMaterial3: true,
               brightness: Brightness.dark,
               colorSchemeSeed: Colors.pink,
+              fontFamily: "Cairo",
             ),
             home: () {
               final Box box = Hive.box("Prayers");
