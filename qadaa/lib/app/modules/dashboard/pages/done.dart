@@ -15,10 +15,12 @@ class Done extends StatelessWidget {
   Widget build(BuildContext context) {
     final effectManager = Get.put(EffectManager());
     return GetBuilder<PrayersController>(builder: (controller) {
-      return Scaffold(
-          body: Scrollbar(
+      return Scrollbar(
         thumbVisibility: false,
-        child: ListView(
+        child: Scaffold(
+            body: ListView(
+          physics: const ClampingScrollPhysics(),
+          padding: const EdgeInsets.only(bottom: 70),
           children: [
             const SizedBox(height: 10),
             MyTile(
@@ -138,8 +140,8 @@ class Done extends StatelessWidget {
               },
             ),
           ],
-        ),
-      ));
+        )),
+      );
     });
   }
 }

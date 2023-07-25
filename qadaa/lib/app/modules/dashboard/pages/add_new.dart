@@ -15,6 +15,8 @@ class AddNew extends StatelessWidget {
         body: Scrollbar(
           thumbVisibility: false,
           child: ListView(
+            physics: const ClampingScrollPhysics(),
+            padding: const EdgeInsets.only(bottom: 70),
             children: [
               const SizedBox(height: 10),
               MyTile(
