@@ -29,26 +29,7 @@ class OnBoardingController extends GetxController {
     const Empty(
       isImage: false,
       icon: Icons.lock,
-      title: "إضافة قفل للتطبيق",
-      description: """
-يمكنك الآن إضافة قفل للتطبيق لمنع الأطفال من الولوج إلى التطبيق والعبث في إعداداتك
-""",
-    ),
-    const Empty(
-      isImage: false,
-      icon: Icons.speaker,
-      title: "إضافة  مؤثرات صوتية",
-      description: """
-مؤثرات صوتية عند اتمام صلاة أو يوم
-""",
-    ),
-    const Empty(
-      isImage: false,
-      icon: Icons.fire_hydrant,
-      title: "إضافة مؤثرات بصرية",
-      description: """
-مؤثرات بصرية عند اتمام صلاة أو يوم
-""",
+      title: "تحسينات في الواجهة",
     ),
     const Empty(
       isImage: false,
