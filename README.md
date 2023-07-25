@@ -8,17 +8,27 @@
 ![GitHub all releases](https://img.shields.io/github/downloads/HasanEltantawy/Qadaa/total?color=green&label=Total%20Downloads)
 [![Downloads](https://PlayBadges.pavi2410.me/badge/downloads?id=com.hassaneltantawy.qadaa)](https://play.google.com/store/apps/details?id=com.hassaneltantawy.qadaa)
 
+
+
+
 تطبيق يعينك على قضاء ما فاتك من صلوات
 
-[<img src="https://user-images.githubusercontent.com/15004217/36810046-fa306856-1cc9-11e8-808e-6eb8a81783c7.png"
-      alt='Get it on Google Play'
-      height="80">](https://play.google.com/store/apps/details?id=com.hassaneltantawy.qadaa)
-[<img src="https://user-images.githubusercontent.com/50374022/152713265-c54cec69-9583-4ecd-bc7c-35b227c4a8cf.png"
-      alt='Get it on AppGallery'
-      height="80">](https://appgallery.huawei.com/app/C105464965)
+
 [<img src="https://user-images.githubusercontent.com/108153032/175767758-fa4fa6f2-f679-4481-84bc-ba4736c1a2fd.png"
       alt='Get it on IzzyOnDroid'
       height="80">](https://apt.izzysoft.de/fdroid/index/apk/com.hassaneltantawy.qadaa)
+[<img src="https://user-images.githubusercontent.com/15004217/36810046-fa306856-1cc9-11e8-808e-6eb8a81783c7.png"
+      alt='Get it on Google Play'
+      height="80">](https://play.google.com/store/apps/details?id=com.hassaneltantawy.qadaa)
+<a href="https://f-droid.org/packages/com.hassaneltantawy.qadaa">
+    <img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
+    alt="Get it on F-Droid"
+    height="80">
+</a>
+
+[<img src="https://user-images.githubusercontent.com/50374022/152713265-c54cec69-9583-4ecd-bc7c-35b227c4a8cf.png"
+      alt='Get it on AppGallery'
+      height="60">](https://appgallery.huawei.com/app/C105464965)
 
 <div align="right">
 
