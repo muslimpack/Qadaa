@@ -18,8 +18,9 @@ class AppDashboardController extends GetxController {
       screenLock(
         context: Get.context!,
         title: const Text("أدخل كلمة المرور"),
-        config: const ScreenLockConfig(
-            backgroundColor: Color.fromARGB(255, 16, 35, 56)),
+        config: ScreenLockConfig(
+          backgroundColor: Theme.of(Get.context!).scaffoldBackgroundColor,
+        ),
         correctString:
             Hive.box("Prayers").get("passcode", defaultValue: "0000"),
         canCancel: false,
