@@ -38,7 +38,11 @@ class _MyAppState extends State<MyApp> {
             locale: const Locale('ar'),
             debugShowCheckedModeBanner: false,
             title: 'فوائت',
-            theme: ThemeData.dark(),
+            theme: ThemeData(
+              useMaterial3: true,
+              brightness: Brightness.dark,
+              colorSchemeSeed: Colors.pink,
+            ),
             home: () {
               final Box box = Hive.box("Prayers");
               return box.get("is_${AppConstant.appVersion}_first_open",
