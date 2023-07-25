@@ -48,7 +48,8 @@ class AppDashboard extends StatelessWidget {
                                 backgroundColor: AppConstant.mainColor,
                                 onPressed: () {
                                   controller.pageController.animateTo(0.0,
-                                      duration: const Duration(seconds: 1),
+                                      duration:
+                                          const Duration(milliseconds: 500),
                                       curve: Curves.linear);
                                   // _controller.jumpToPage(0);
                                 },

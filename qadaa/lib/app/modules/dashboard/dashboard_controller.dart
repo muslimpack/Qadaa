@@ -26,6 +26,11 @@ class AppDashboardController extends GetxController {
         canCancel: false,
       );
     }
+
+    pageController.addListener(() {
+      currentPageIndex = (pageController.page ?? 0).toInt();
+      update();
+    });
   }
 
   @override
