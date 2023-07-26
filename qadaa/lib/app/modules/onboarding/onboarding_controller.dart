@@ -18,7 +18,7 @@ class OnBoardingController extends GetxController {
   int currentPageIndex = 0;
   //
   static const _volumeBtnChannel = MethodChannel("volume_button_channel");
-  //
+  //TODO edit every release
   final pageList = [
     Empty(
       title: "قضاء الإصدار ${AppConstant.appVersion}",
