@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:qadaa/app/modules/dashboard/app_dashboard.dart';
+import 'package:qadaa/app/shared/functions/open_url.dart';
 import 'package:qadaa/app/shared/widgets/empty.dart';
 import 'package:qadaa/core/values/constant.dart';
 
@@ -28,7 +29,7 @@ class OnBoardingController extends GetxController {
     ),
     const Empty(
       isImage: false,
-      icon: Icons.lock,
+      icon: Icons.palette,
       title: "تحسينات في الواجهة",
     ),
     const Empty(
@@ -38,6 +39,25 @@ class OnBoardingController extends GetxController {
       description: """
 إصلاح بعض المشاكل المتعلقة بالأداء
 """,
+    ),
+    Empty(
+      imagePath: "assets/images/rukia.png",
+      title: "تطبيق رقية",
+      description: """
+الرقية الشرعية من القرآن الكريم والسنة النبوية للدكتور خالد بن عبدالرحمن الجريسي
+
+محتويات التطبيق
+-آداب وإرشادات عامة تراعى عند الرقية
+-الرقية المختصرة  -الرقية المتوسطة  -الرقية المطولة
+
+- من إصداراتنا -
+""",
+      onButtonCLick: () => {
+        openURL(
+          "https://play.google.com/store/apps/details?id=com.hassaneltantawy.ruqayyah",
+        )
+      },
+      buttonText: "افتح متجر بلاي",
     ),
   ];
 
