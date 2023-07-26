@@ -9,7 +9,12 @@ class AppConstant {
 
   //TODO edit every release
   static String get appVersion => appVersions.first;
-  static List<String> appVersions = ["1.2.0", "1.1.0", "1.0.0"];
+  static List<String> appVersions = [
+    "1.3.0",
+    "1.2.0",
+    "1.1.0",
+    "1.0.0",
+  ];
 
   static List<String> notificationBody = [
     "قم وأري الله من نفسك خيرا",
