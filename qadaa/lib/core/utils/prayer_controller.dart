@@ -16,12 +16,13 @@ class PrayersController extends GetxController {
     update();
   }
 
-  addPrayer(
-      {int fajr = 0,
-      int dhuhr = 0,
-      int asr = 0,
-      int maghrib = 0,
-      int isha = 0}) {
+  addPrayer({
+    int fajr = 0,
+    int dhuhr = 0,
+    int asr = 0,
+    int maghrib = 0,
+    int isha = 0,
+  }) {
     storageRepo.addPrayer(
       fajr: fajr,
       dhuhr: dhuhr,
@@ -33,29 +34,17 @@ class PrayersController extends GetxController {
   }
 
   addDay({required int? value}) {
-    if (value != null) {
-      addPrayer(
-        fajr: value,
-        dhuhr: value,
-        asr: value,
-        maghrib: value,
-        isha: value,
-      );
-    }
+    storageRepo.addDay(value: value);
     update();
   }
 
   addWeek({required int? value}) {
-    if (value != null) {
-      addDay(value: value * 7);
-    }
+    storageRepo.addWeek(value: value);
     update();
   }
 
   addMonth({required int? value}) {
-    if (value != null) {
-      addDay(value: value * 30);
-    }
+    storageRepo.addMonth(value: value);
     update();
   }
 
@@ -67,32 +56,11 @@ class PrayersController extends GetxController {
   }
 
   int getDays() {
-    List<int> prayerTimesForEach = [
-      getFajr().toInt(),
-      getDhuhr().toInt(),
-      getAsr().toInt(),
-      getMaghrib().toInt(),
-      getIsha().toInt()
-    ];
-    prayerTimesForEach.sort();
-
-    return prayerTimesForEach.first;
+    return storageRepo.getDays();
   }
 
   int getDaysMax() {
-    List<int> prayerTimesForEach = [
-      getMaxFajr(),
-      getMaxDhuhr(),
-      getMaxAsr(),
-      getMaxMaghrib(),
-      getMaxIsha()
-    ];
-    prayerTimesForEach.sort();
-    if (prayerTimesForEach.last == 0) {
-      return 1;
-    } else {
-      return prayerTimesForEach.last;
-    }
+    return storageRepo.getDaysMax();
   }
 
   int getFajr() {
