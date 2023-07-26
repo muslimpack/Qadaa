@@ -72,7 +72,7 @@ class Settings extends StatelessWidget {
                                       // confirmation: true,
                                       onValidate: (matchedText) async {
                                         qadaaPrint(matchedText);
-                                        controller.setPasscode(matchedText);
+                                        controller.setPassCode(matchedText);
                                         // Navigator.pop(context);
                                         showToast("تم إعادة تعيين كلمة المرور");
                                         return true;
@@ -110,9 +110,9 @@ class Settings extends StatelessWidget {
                               onYes: () {
                                 controller.prayersController.reset();
                                 controller.prayersController
-                                    .resetqadaaEveryDay();
+                                    .resetQadaaEveryDay();
                                 controller.prayersController.update();
-                                controller.setPasscode("0000");
+                                controller.setPassCode("0000");
                                 controller.qadaaController =
                                     TextEditingController(text: "1");
                                 controller.update();
@@ -168,7 +168,7 @@ class ChangePrayersCard extends StatelessWidget {
               hintText: "عدد صلوات القضاء اليومية ",
               onChange: (count) {
                 if (count.isNotEmpty) {
-                  settingsController.prayersController.setqadaaEveryDay(count);
+                  settingsController.prayersController.setQadaaEveryDay(count);
                   settingsController.update();
                 }
               },

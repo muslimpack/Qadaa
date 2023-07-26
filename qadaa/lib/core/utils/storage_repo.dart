@@ -190,18 +190,18 @@ class StorageRepo {
   /// ******************************
 
   // qadaa every day
-  String getqadaaEveryDay() {
+  String getQadaaEveryDay() {
     String? data =
         Hive.box("Prayers").get("qadaaEveryDay", defaultValue: "1").toString();
 
     return data == "0" ? "1" : data;
   }
 
-  setqadaaEveryDay(String? count) {
+  setQadaaEveryDay(String? count) {
     Hive.box("Prayers").put("qadaaEveryDay", count ?? 1);
   }
 
-  resetqadaaEveryDay() {
+  resetQadaaEveryDay() {
     Hive.box("Prayers").put("qadaaEveryDay", 1);
   }
 }

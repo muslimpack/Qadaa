@@ -140,22 +140,22 @@ class PrayersController extends GetxController {
   }
 
   DateTime updateEndDateOfQadaa() {
-    DateTime? endDayOfQdaa = DateTime.now();
-    int? prayesPerDay = 1;
-    prayesPerDay = int.parse(getqadaaEveryDay());
+    DateTime? endDayOfQadaa = DateTime.now();
+    int? prayersPerDay = 1;
+    prayersPerDay = int.parse(getQadaaEveryDay());
 
-    endDayOfQdaa = DateTime.now()
-        .add(Duration(days: getAllRemainingPrayer() ~/ prayesPerDay));
+    endDayOfQadaa = DateTime.now()
+        .add(Duration(days: getAllRemainingPrayer() ~/ prayersPerDay));
 
-    return endDayOfQdaa;
+    return endDayOfQadaa;
   }
 
   String getEndDateText() {
     if (getAllRemainingPrayer() == 0) {
       return "لا يوجد قضاء عليك";
     } else {
-      Duration diffrence = updateEndDateOfQadaa().difference(DateTime.now());
-      if ((diffrence.inHours / 24).round() == 0) {
+      Duration difference = updateEndDateOfQadaa().difference(DateTime.now());
+      if ((difference.inHours / 24).round() == 0) {
         return "موعد انتهاء القضاء:\n اليوم إن شاء الله";
       } else {
         return 'موعد انتهاء القضاء:\n ${updateEndDateOfQadaa().day} / ${updateEndDateOfQadaa().month} / ${updateEndDateOfQadaa().year}';
@@ -164,17 +164,17 @@ class PrayersController extends GetxController {
   }
 
   // qadaa every day
-  String getqadaaEveryDay() {
-    return storageRepo.getqadaaEveryDay();
+  String getQadaaEveryDay() {
+    return storageRepo.getQadaaEveryDay();
   }
 
-  setqadaaEveryDay(String? count) {
-    storageRepo.setqadaaEveryDay(count);
+  setQadaaEveryDay(String? count) {
+    storageRepo.setQadaaEveryDay(count);
     update();
   }
 
-  resetqadaaEveryDay() {
-    storageRepo.resetqadaaEveryDay();
+  resetQadaaEveryDay() {
+    storageRepo.resetQadaaEveryDay();
     update();
   }
 }

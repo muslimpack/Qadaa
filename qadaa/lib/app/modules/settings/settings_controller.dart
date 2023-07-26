@@ -7,16 +7,13 @@ class SettingsController extends GetxController {
   /* *************** Variables *************** */
   late TextEditingController qadaaController;
   final PrayersController prayersController = Get.put(PrayersController());
-  bool get isLockEnabled =>
-      Hive.box("Prayers").get("is_app_locked", defaultValue: false);
-  String get passCode =>
-      Hive.box("Prayers").get("passcode", defaultValue: "0000");
+
   /* *************** Controller life cycle *************** */
   @override
   void onInit() {
     super.onInit();
     qadaaController =
-        TextEditingController(text: prayersController.getqadaaEveryDay());
+        TextEditingController(text: prayersController.getQadaaEveryDay());
   }
 
   /* *************** Functions *************** */
@@ -39,13 +36,19 @@ class SettingsController extends GetxController {
         .toString();
   }
 
+  bool get isLockEnabled =>
+      Hive.box("Prayers").get("is_app_locked", defaultValue: false);
+
+  String get passCode =>
+      Hive.box("Prayers").get("passcode", defaultValue: "0000");
+
   setIsLockEnabled(bool value) {
     Hive.box("Prayers").put("is_app_locked", value);
     update();
   }
 
-  setPasscode(String passcode) {
-    Hive.box("Prayers").put("passcode", passcode);
+  setPassCode(String passCode) {
+    Hive.box("Prayers").put("passcode", passCode);
     update();
   }
 }
