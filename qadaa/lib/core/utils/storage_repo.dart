@@ -43,7 +43,7 @@ class StorageRepo {
       prayerBox.put("MaxIsha", newRecordIsha);
     }
 
-    // Reset max if its praye = 0
+    // Reset max if its pray = 0
     if (newRecordFajr == 0) {
       prayerBox.put("MaxFajr", 1);
     }
