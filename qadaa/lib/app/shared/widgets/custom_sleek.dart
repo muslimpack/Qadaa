@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:qadaa/app/shared/functions/print.dart';
 import 'package:qadaa/core/values/constant.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
@@ -27,9 +26,6 @@ class CircleIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    qadaaPrint(
-      "$title Actual:${initialValue.toDouble()}  Max:${max.toDouble()}",
-    );
     return GestureDetector(
       onLongPress: () => onLongTap(),
       onTap: () => onTap(),

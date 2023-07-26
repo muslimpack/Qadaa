@@ -33,6 +33,6 @@ Future<void> initServices() async {
       DeviceOrientation.portraitDown,
     ]);
   } catch (e) {
-    qadaaPrint(e.toString());
+    qadaaPrint(e);
   }
 }

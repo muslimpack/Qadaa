@@ -3,7 +3,6 @@ import 'package:flutter_screen_lock/flutter_screen_lock.dart';
 import 'package:get/get.dart';
 import 'package:qadaa/app/modules/settings/settings_controller.dart';
 import 'package:qadaa/app/shared/dialogs/yes__no_popup.dart';
-import 'package:qadaa/app/shared/functions/print.dart';
 import 'package:qadaa/app/shared/functions/show_toast.dart';
 import 'package:qadaa/app/shared/widgets/scroll_glow_remover.dart';
 import 'package:qadaa/app/shared/widgets/tile.dart';
@@ -70,7 +69,6 @@ class Settings extends StatelessWidget {
                                 correctString: controller.passCode,
                                 // confirmation: true,
                                 onValidate: (matchedText) async {
-                                  qadaaPrint(matchedText);
                                   controller.setPassCode(matchedText);
                                   // Navigator.pop(context);
                                   showToast("تم إعادة تعيين كلمة المرور");

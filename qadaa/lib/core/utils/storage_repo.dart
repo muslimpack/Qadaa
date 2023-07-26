@@ -1,5 +1,4 @@
 import 'package:hive/hive.dart';
-import 'package:qadaa/app/shared/functions/print.dart';
 
 final StorageRepo storageRepo = StorageRepo();
 
@@ -152,12 +151,7 @@ class StorageRepo {
 
   int getMaxPray(String pray) {
     final int pray0 = prayerBox.get(pray, defaultValue: 1) as int;
-
-    final int result =
-        (pray0.isNaN || pray0.isInfinite || pray0 < 1) ? 1 : pray0;
-
-    qadaaPrint("getMaxPray $pray Max:$result");
-    return result;
+    return (pray0.isNaN || pray0.isInfinite || pray0 < 1) ? 1 : pray0;
   }
 
   int getMaxFajr() => getMaxPray("MaxFajr");
