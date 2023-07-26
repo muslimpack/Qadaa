@@ -18,7 +18,7 @@ class SettingsController extends GetxController {
 
   /* *************** Functions *************** */
   // First Screen
-  toggleSplashBackground() {
+  void toggleSplashBackground() {
     String value;
     if (Hive.box("Prayers").get("SplashBackground", defaultValue: "صورة") ==
         "صورة") {
@@ -37,17 +37,17 @@ class SettingsController extends GetxController {
   }
 
   bool get isLockEnabled =>
-      Hive.box("Prayers").get("is_app_locked", defaultValue: false);
+      Hive.box("Prayers").get("is_app_locked", defaultValue: false) as bool;
 
   String get passCode =>
-      Hive.box("Prayers").get("passcode", defaultValue: "0000");
+      Hive.box("Prayers").get("passcode", defaultValue: "0000") as String;
 
-  setIsLockEnabled(bool value) {
+  void setIsLockEnabled(bool value) {
     Hive.box("Prayers").put("is_app_locked", value);
     update();
   }
 
-  setPassCode(String passCode) {
+  void setPassCode(String passCode) {
     Hive.box("Prayers").put("passcode", passCode);
     update();
   }

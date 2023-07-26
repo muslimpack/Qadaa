@@ -11,12 +11,12 @@ class PrayersController extends GetxController {
     update();
   }
 
-  reset() {
+  void reset() {
     storageRepo.reset();
     update();
   }
 
-  addPrayer({
+  void addPrayer({
     int fajr = 0,
     int dhuhr = 0,
     int asr = 0,
@@ -33,22 +33,22 @@ class PrayersController extends GetxController {
     update();
   }
 
-  addDay({required int? value}) {
+  void addDay({required int? value}) {
     storageRepo.addDay(value: value);
     update();
   }
 
-  addWeek({required int? value}) {
+  void addWeek({required int? value}) {
     storageRepo.addWeek(value: value);
     update();
   }
 
-  addMonth({required int? value}) {
+  void addMonth({required int? value}) {
     storageRepo.addMonth(value: value);
     update();
   }
 
-  addYear({required int? value}) {
+  void addYear({required int? value}) {
     if (value != null) {
       addDay(value: value * 365);
     }
@@ -92,7 +92,7 @@ class PrayersController extends GetxController {
   }
 
   int getMaxAsr() {
-    return storageRepo.getAsr();
+    return storageRepo.getMaxAsr();
   }
 
   int getMaxMaghrib() {
@@ -108,21 +108,19 @@ class PrayersController extends GetxController {
   }
 
   DateTime updateEndDateOfQadaa() {
-    DateTime? endDayOfQadaa = DateTime.now();
-    int? prayersPerDay = 1;
+    int prayersPerDay = 1;
     prayersPerDay = int.parse(getQadaaEveryDay());
 
-    endDayOfQadaa = DateTime.now()
+    return DateTime.now()
         .add(Duration(days: getAllRemainingPrayer() ~/ prayersPerDay));
-
-    return endDayOfQadaa;
   }
 
   String getEndDateText() {
     if (getAllRemainingPrayer() == 0) {
       return "لا يوجد قضاء عليك";
     } else {
-      Duration difference = updateEndDateOfQadaa().difference(DateTime.now());
+      final Duration difference =
+          updateEndDateOfQadaa().difference(DateTime.now());
       if ((difference.inHours / 24).round() == 0) {
         return "موعد انتهاء القضاء:\n اليوم إن شاء الله";
       } else {
@@ -136,12 +134,12 @@ class PrayersController extends GetxController {
     return storageRepo.getQadaaEveryDay();
   }
 
-  setQadaaEveryDay(String? count) {
+  void setQadaaEveryDay(String? count) {
     storageRepo.setQadaaEveryDay(count);
     update();
   }
 
-  resetQadaaEveryDay() {
+  void resetQadaaEveryDay() {
     storageRepo.resetQadaaEveryDay();
     update();
   }

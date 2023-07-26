@@ -1,11 +1,12 @@
 import 'package:hive/hive.dart';
+import 'package:qadaa/app/shared/functions/print.dart';
 
 final StorageRepo storageRepo = StorageRepo();
 
 class StorageRepo {
   static late Box prayerBox;
 
-  static initialStorage() {
+  static void initialStorage() {
     prayerBox = Hive.box("Prayers");
   }
 
@@ -13,18 +14,18 @@ class StorageRepo {
   /// Add Zone
   /// ******************************
 
-  addPrayer({
+  void addPrayer({
     int fajr = 0,
     int dhuhr = 0,
     int asr = 0,
     int maghrib = 0,
     int isha = 0,
   }) {
-    int newRecordFajr = prayerBox.get("Fajr", defaultValue: 0) + fajr;
-    int newRecordDhuhr = prayerBox.get("Dhuhr", defaultValue: 0) + dhuhr;
-    int newRecordAsr = prayerBox.get("Asr", defaultValue: 0) + asr;
-    int newRecordMaghrib = prayerBox.get("Maghrib", defaultValue: 0) + maghrib;
-    int newRecordIsha = prayerBox.get("Isha", defaultValue: 0) + isha;
+    final int newRecordFajr = getFajr() + fajr;
+    final int newRecordDhuhr = getDhuhr() + dhuhr;
+    final int newRecordAsr = getAsr() + asr;
+    final int newRecordMaghrib = getMaghrib() + maghrib;
+    final int newRecordIsha = getIsha() + isha;
 
     // Catch new max
     if (newRecordFajr > getMaxFajr()) {
@@ -67,7 +68,7 @@ class StorageRepo {
     prayerBox.put("Isha", newRecordIsha < 0 ? 0 : newRecordIsha);
   }
 
-  addDay({required int? value}) {
+  void addDay({required int? value}) {
     if (value != null) {
       addPrayer(
         fajr: value,
@@ -79,31 +80,31 @@ class StorageRepo {
     }
   }
 
-  addWeek({required int? value}) {
+  void addWeek({required int? value}) {
     if (value != null) {
       addDay(value: value * 7);
     }
   }
 
-  addMonth({required int? value}) {
+  void addMonth({required int? value}) {
     if (value != null) {
       addDay(value: value * 30);
     }
   }
 
-  addYear({required int? value}) {
+  void addYear({required int? value}) {
     if (value != null) {
       addDay(value: value * 365);
     }
   }
 
   int getDays() {
-    List<int> prayerTimesForEach = [
-      getFajr().toInt(),
-      getDhuhr().toInt(),
-      getAsr().toInt(),
-      getMaghrib().toInt(),
-      getIsha().toInt()
+    final List<int> prayerTimesForEach = [
+      getFajr(),
+      getDhuhr(),
+      getAsr(),
+      getMaghrib(),
+      getIsha()
     ];
     prayerTimesForEach.sort();
 
@@ -111,7 +112,7 @@ class StorageRepo {
   }
 
   int getDaysMax() {
-    List<int> prayerTimesForEach = [
+    final List<int> prayerTimesForEach = [
       getMaxFajr(),
       getMaxDhuhr(),
       getMaxAsr(),
@@ -131,8 +132,8 @@ class StorageRepo {
   /// ******************************
 
   int _getPray(String pray) {
-    int pray0 = prayerBox.get(pray, defaultValue: 0);
-    return pray0.isNaN ? 0 : pray0;
+    final int pray0 = prayerBox.get(pray, defaultValue: 0) as int;
+    return (pray0.isNaN || pray0.isInfinite) ? 0 : pray0;
   }
 
   int getFajr() => _getPray("Fajr");
@@ -150,8 +151,13 @@ class StorageRepo {
   /// ******************************
 
   int getMaxPray(String pray) {
-    int pray0 = prayerBox.get(pray, defaultValue: 1);
-    return pray0;
+    final int pray0 = prayerBox.get(pray, defaultValue: 1) as int;
+
+    final int result =
+        (pray0.isNaN || pray0.isInfinite || pray0 < 1) ? 1 : pray0;
+
+    qadaaPrint("getMaxPray $pray Max:$result");
+    return result;
   }
 
   int getMaxFajr() => getMaxPray("MaxFajr");
@@ -172,7 +178,7 @@ class StorageRepo {
     return getFajr() + getDhuhr() + getAsr() + getMaghrib() + getIsha();
   }
 
-  reset() {
+  void reset() {
     prayerBox.put("Fajr", 0);
     prayerBox.put("Dhuhr", 0);
     prayerBox.put("Asr", 0);
@@ -191,17 +197,17 @@ class StorageRepo {
 
   // qadaa every day
   String getQadaaEveryDay() {
-    String? data =
+    final String data =
         Hive.box("Prayers").get("qadaaEveryDay", defaultValue: "1").toString();
 
     return data == "0" ? "1" : data;
   }
 
-  setQadaaEveryDay(String? count) {
+  void setQadaaEveryDay(String? count) {
     Hive.box("Prayers").put("qadaaEveryDay", count ?? 1);
   }
 
-  resetQadaaEveryDay() {
+  void resetQadaaEveryDay() {
     Hive.box("Prayers").put("qadaaEveryDay", 1);
   }
 }

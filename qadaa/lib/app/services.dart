@@ -23,7 +23,8 @@ Future<void> initServices() async {
 
     // Make Phone StatusBar Transparent
     SystemChrome.setSystemUIOverlayStyle(
-        const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+      const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
+    );
 
     /// Keep app in portrait mode and
     /// make it static when phone rotation change

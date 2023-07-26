@@ -14,7 +14,9 @@ class AppDashboardController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    if (Hive.box("Prayers").get("is_app_locked", defaultValue: false)) {
+    final bool isAppLocked =
+        Hive.box("Prayers").get("is_app_locked", defaultValue: false) as bool;
+    if (isAppLocked) {
       screenLock(
         context: Get.context!,
         title: const Text("أدخل كلمة المرور"),
@@ -22,7 +24,7 @@ class AppDashboardController extends GetxController {
           backgroundColor: Theme.of(Get.context!).scaffoldBackgroundColor,
         ),
         correctString:
-            Hive.box("Prayers").get("passcode", defaultValue: "0000"),
+            Hive.box("Prayers").get("passcode", defaultValue: "0000") as String,
         canCancel: false,
       );
     }
@@ -34,9 +36,9 @@ class AppDashboardController extends GetxController {
   }
 
   @override
-  void onInit() async {
+  Future<void> onInit() async {
     super.onInit();
-    pageController = PageController(initialPage: 0);
+    pageController = PageController();
     isLoading = false;
     update();
   }

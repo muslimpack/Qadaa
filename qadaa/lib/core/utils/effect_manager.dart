@@ -22,7 +22,7 @@ class EffectManager extends GetxController {
   ];
   /* *************** Controller life cycle *************** */
   @override
-  void onInit() async {
+  Future<void> onInit() async {
     super.onInit();
 
     //
@@ -49,10 +49,14 @@ class EffectManager extends GetxController {
     path.moveTo(size.width, halfWidth);
 
     for (double step = 0; step < fullAngle; step += degreesPerStep) {
-      path.lineTo(halfWidth + externalRadius * cos(step),
-          halfWidth + externalRadius * sin(step));
-      path.lineTo(halfWidth + internalRadius * cos(step + halfDegreesPerStep),
-          halfWidth + internalRadius * sin(step + halfDegreesPerStep));
+      path.lineTo(
+        halfWidth + externalRadius * cos(step),
+        halfWidth + externalRadius * sin(step),
+      );
+      path.lineTo(
+        halfWidth + internalRadius * cos(step + halfDegreesPerStep),
+        halfWidth + internalRadius * sin(step + halfDegreesPerStep),
+      );
     }
     path.close();
     return path;
@@ -71,16 +75,14 @@ class EffectManager extends GetxController {
     confettiController.play();
   }
 
-  playSoundEffect({SoundType soundType = SoundType.big}) async {
+  Future playSoundEffect({SoundType soundType = SoundType.big}) async {
     switch (soundType) {
       case SoundType.big:
         await player.play(AssetSource("sounds/big_finish.mp3"));
         gravity = 0.9;
-        break;
       case SoundType.small:
         await player.play(AssetSource("sounds/small_finish.mp3"));
         gravity = 0.2;
-        break;
       default:
     }
   }

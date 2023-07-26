@@ -9,7 +9,7 @@ import 'package:qadaa/core/values/constant.dart';
 class OnBoardingController extends GetxController {
   /* *************** Variables *************** */
   //
-  PageController pageController = PageController(initialPage: 0);
+  PageController pageController = PageController();
   //
   bool get isFinalPage => currentPageIndex + 1 == pageList.length;
   bool get showSkipBtn => false;
@@ -44,7 +44,7 @@ class OnBoardingController extends GetxController {
   /* *************** Controller life cycle *************** */
   //
   @override
-  void onInit() async {
+  Future<void> onInit() async {
     super.onInit();
     //
     _volumeBtnChannel.setMethodCallHandler((call) {
@@ -63,7 +63,7 @@ class OnBoardingController extends GetxController {
         }
       }
 
-      return Future.value(null);
+      return Future.value();
     });
   }
 
@@ -79,14 +79,16 @@ class OnBoardingController extends GetxController {
 
   /* *************** Functions *************** */
   /// Go to dashboard
-  /// and set app fisrt open to false
-  goToDashboard() {
+  /// and set app first open to false
+  void goToDashboard() {
     final Box box = Hive.box("Prayers");
     box.put("is_${AppConstant.appVersion}_first_open", false);
-    Navigator.of(Get.context!).pushReplacement(MaterialPageRoute(
-      builder: (context) {
-        return const AppDashboard();
-      },
-    ));
+    Navigator.of(Get.context!).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) {
+          return const AppDashboard();
+        },
+      ),
+    );
   }
 }

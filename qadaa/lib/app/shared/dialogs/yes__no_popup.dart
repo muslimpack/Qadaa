@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:qadaa/core/values/constant.dart';
 
 class YesOrNoDialog extends StatelessWidget {
-  final Function onYes;
+  final Function() onYes;
 
-  const YesOrNoDialog({Key? key, required this.onYes}) : super(key: key);
+  const YesOrNoDialog({super.key, required this.onYes});
 
   @override
   Widget build(BuildContext context) {
@@ -14,15 +14,17 @@ class YesOrNoDialog extends StatelessWidget {
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(20.0)),
         ),
-        margin: const EdgeInsets.all(0.0),
+        margin: EdgeInsets.zero,
         color: Theme.of(context).scaffoldBackgroundColor,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
               padding: const EdgeInsets.all(10.0),
-              child: Text("تنويه",
-                  style: TextStyle(fontSize: 25, color: AppConstant.mainColor)),
+              child: Text(
+                "تنويه",
+                style: TextStyle(fontSize: 25, color: AppConstant.mainColor),
+              ),
             ),
             const Divider(),
             const Text(
@@ -46,17 +48,18 @@ class YesOrNoDialog extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                    child: ListTile(
-                  title: Text(
-                    "لا",
-                    textAlign: TextAlign.center,
-                    style:
-                        TextStyle(fontSize: 20, color: AppConstant.mainColor),
+                  child: ListTile(
+                    title: Text(
+                      "لا",
+                      textAlign: TextAlign.center,
+                      style:
+                          TextStyle(fontSize: 20, color: AppConstant.mainColor),
+                    ),
+                    onTap: () {
+                      Navigator.pop<bool>(context, false);
+                    },
                   ),
-                  onTap: () {
-                    Navigator.pop<bool>(context, false);
-                  },
-                )),
+                ),
               ],
             ),
           ],

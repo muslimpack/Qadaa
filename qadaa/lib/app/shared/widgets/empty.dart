@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 
-import 'scroll_glow_remover.dart';
+import 'package:qadaa/app/shared/widgets/scroll_glow_remover.dart';
 
 class Empty extends StatelessWidget {
-  final String imagePath, title, description, buttonText;
+  final String imagePath;
+  final String title;
+  final String description;
+  final String buttonText;
   final bool isImage;
   final IconData icon;
   final double iconSize;
   final Function()? onButtonCLick;
   const Empty({
-    Key? key,
+    super.key,
     this.imagePath = "assets/images/app_icon.png",
     this.title = "",
     this.description = "",
@@ -18,7 +21,7 @@ class Empty extends StatelessWidget {
     this.iconSize = 90,
     this.onButtonCLick,
     this.buttonText = "اضغط هنا",
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,49 +32,53 @@ class Empty extends StatelessWidget {
           // mainAxisSize: MainAxisSize.min,
           // mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            imagePath == ""
-                ? const SizedBox()
-                : isImage
-                    ? Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Image.asset(
-                          imagePath,
-                          width: 50,
-                        ),
-                      )
-                    : Icon(
-                        icon,
-                        size: iconSize,
+            if (imagePath == "")
+              const SizedBox()
+            else
+              isImage
+                  ? Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Image.asset(
+                        imagePath,
+                        width: 50,
                       ),
-            title == ""
-                ? const SizedBox()
-                : Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Text(
-                      title,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    )
+                  : Icon(
+                      icon,
+                      size: iconSize,
                     ),
+            if (title == "")
+              const SizedBox()
+            else
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: Text(
+                  title,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
                   ),
-            description == ""
-                ? const SizedBox()
-                : Padding(
-                    padding: const EdgeInsets.all(15),
-                    child: Text(
-                      description,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 15,
-                        wordSpacing: 7,
-                      ),
-                    ),
+                ),
+              ),
+            if (description == "")
+              const SizedBox()
+            else
+              Padding(
+                padding: const EdgeInsets.all(15),
+                child: Text(
+                  description,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 15,
+                    wordSpacing: 7,
                   ),
-            onButtonCLick != null
-                ? TextButton(onPressed: onButtonCLick!, child: Text(buttonText))
-                : const SizedBox()
+                ),
+              ),
+            if (onButtonCLick != null)
+              TextButton(onPressed: onButtonCLick, child: Text(buttonText))
+            else
+              const SizedBox()
           ],
         ),
       ),

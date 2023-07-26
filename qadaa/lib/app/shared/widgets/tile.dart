@@ -5,15 +5,15 @@ class MyTile extends StatelessWidget {
   final IconData icon;
   final String title;
   final String? trailing;
-  final Function onTap;
+  final Function() onTap;
 
-  const MyTile(
-      {Key? key,
-      required this.icon,
-      required this.title,
-      required this.onTap,
-      this.trailing = ""})
-      : super(key: key);
+  const MyTile({
+    super.key,
+    required this.icon,
+    required this.title,
+    required this.onTap,
+    this.trailing = "",
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,9 @@ class MyTile extends StatelessWidget {
           trailing: Text(
             trailing ?? "",
             style: TextStyle(
-                fontWeight: FontWeight.bold, color: AppConstant.mainColorLight),
+              fontWeight: FontWeight.bold,
+              color: AppConstant.mainColorLight,
+            ),
           ),
           onTap: () => onTap(),
         ),

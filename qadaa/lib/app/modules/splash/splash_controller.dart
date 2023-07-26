@@ -12,13 +12,13 @@ class SplashController extends GetxController {
   final PrayersController prayersController = Get.put(PrayersController());
   String? splash = "";
   static final _random = Random();
-  var today = DateTime.now();
+  DateTime today = DateTime.now();
   int? rImage = 0;
   /* *************** Controller life cycle *************** */
   @override
-  void onInit() async {
+  Future<void> onInit() async {
     super.onInit();
-    rImage = _random.nextInt(4).toInt();
+    rImage = _random.nextInt(4);
 
     splash = settingsController.getSplashBackground();
 
@@ -33,5 +33,4 @@ class SplashController extends GetxController {
   }
 
   /* *************** Functions *************** */
-
 }

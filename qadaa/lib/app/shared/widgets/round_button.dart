@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 
 class RoundButton extends StatelessWidget {
   final Widget text;
-  final Function onTap;
+  final Function() onTap;
   final double radius;
   final bool isTransparent;
-  const RoundButton(
-      {Key? key,
-      required this.text,
-      required this.onTap,
-      this.radius = 5.0,
-      this.isTransparent = false})
-      : super(key: key);
+  const RoundButton({
+    super.key,
+    required this.text,
+    required this.onTap,
+    this.radius = 5.0,
+    this.isTransparent = false,
+  });
 
   @override
   Widget build(BuildContext context) {

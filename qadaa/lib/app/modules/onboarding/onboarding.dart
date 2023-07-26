@@ -5,7 +5,7 @@ import 'package:qadaa/app/shared/widgets/round_button.dart';
 import 'package:qadaa/app/shared/widgets/scroll_glow_custom.dart';
 
 class OnBoardingPage extends StatelessWidget {
-  const OnBoardingPage({Key? key}) : super(key: key);
+  const OnBoardingPage({super.key});
 
   static Container buildDot(int index, int currentPageIndex) {
     return Container(
@@ -22,73 +22,77 @@ class OnBoardingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<OnBoardingController>(
-        init: OnBoardingController(),
-        builder: (controller) {
-          return Scaffold(
-            body: ScrollGlowCustom(
-              axisDirection: AxisDirection.left,
-              child: PageView.builder(
-                controller: controller.pageController,
-                itemCount: controller.pageList.length,
-                itemBuilder: (context, index) {
-                  return controller.pageList[index];
-                },
-                onPageChanged: (index) {
-                  controller.currentPageIndex = index;
-                  controller.update();
-                },
-              ),
+      init: OnBoardingController(),
+      builder: (controller) {
+        return Scaffold(
+          body: ScrollGlowCustom(
+            axisDirection: AxisDirection.left,
+            child: PageView.builder(
+              controller: controller.pageController,
+              itemCount: controller.pageList.length,
+              itemBuilder: (context, index) {
+                return controller.pageList[index];
+              },
+              onPageChanged: (index) {
+                controller.currentPageIndex = index;
+                controller.update();
+              },
             ),
-            bottomNavigationBar: BottomAppBar(
-              color: Theme.of(context).scaffoldBackgroundColor,
-              child: SizedBox(
-                height: 50,
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex: 3,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: List.generate(
-                          controller.pageList.length,
-                          (index) => buildDot(
-                            index,
-                            controller.currentPageIndex,
-                          ),
+          ),
+          bottomNavigationBar: BottomAppBar(
+            color: Theme.of(context).scaffoldBackgroundColor,
+            child: SizedBox(
+              height: 50,
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 3,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(
+                        controller.pageList.length,
+                        (index) => buildDot(
+                          index,
+                          controller.currentPageIndex,
                         ),
                       ),
                     ),
-                    controller.isFinalPage
-                        ? Expanded(
+                  ),
+                  if (controller.isFinalPage)
+                    Expanded(
+                      child: RoundButton(
+                        radius: 10,
+                        text: const Text(
+                          "بدء",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        onTap: () {
+                          controller.goToDashboard();
+                        },
+                      ),
+                    )
+                  else
+                    !controller.showSkipBtn
+                        ? const SizedBox()
+                        : Expanded(
                             child: RoundButton(
-                            radius: 10,
-                            text: const Text(
-                              "بدء",
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                              radius: 10,
+                              isTransparent: true,
+                              text: const Text(
+                                "تخط",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              onTap: () {
+                                controller.goToDashboard();
+                              },
                             ),
-                            onTap: () {
-                              controller.goToDashboard();
-                            },
-                          ))
-                        : !controller.showSkipBtn
-                            ? const SizedBox()
-                            : Expanded(
-                                child: RoundButton(
-                                radius: 10,
-                                isTransparent: true,
-                                text: const Text(
-                                  "تخط",
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                                onTap: () {
-                                  controller.goToDashboard();
-                                },
-                              )),
-                  ],
-                ),
+                          ),
+                ],
               ),
             ),
-          );
-        });
+          ),
+        );
+      },
+    );
   }
 }

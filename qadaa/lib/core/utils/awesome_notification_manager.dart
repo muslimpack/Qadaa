@@ -18,11 +18,13 @@ class AwesomeNotificationManager {
               context: context,
               builder: (context) => AlertDialog(
                 shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(20))),
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                ),
                 title: Text("Allow app to send notifications?".tr),
                 content: Text(
-                    "Hisn ELmoslem need notification permission to send zikr reminders."
-                        .tr),
+                  "Hisn ELmoslem need notification permission to send zikr reminders."
+                      .tr,
+                ),
                 actions: [
                   TextButton(
                     onPressed: () {
@@ -105,11 +107,12 @@ class AwesomeNotificationManager {
   }
 
   Future<void> onActionReceivedMethod(ReceivedAction receivedAction) async {
-    List<String?> payloadsList = receivedAction.payload!.values.toList();
-    String? payload = payloadsList[0];
+    final List<String?> payloadsList = receivedAction.payload!.values.toList();
+    final String? payload = payloadsList[0];
     qadaaPrint("actionStream: $payload");
-    bool channelCheck = receivedAction.channelKey == 'in_app_notification' ||
-        receivedAction.channelKey == 'scheduled_channel';
+    final bool channelCheck =
+        receivedAction.channelKey == 'in_app_notification' ||
+            receivedAction.channelKey == 'scheduled_channel';
     if (channelCheck && Platform.isIOS) {
       await AwesomeNotifications().getGlobalBadgeCounter().then(
         (value) async {
@@ -164,7 +167,7 @@ class AwesomeNotificationManager {
 
   /// Show Notification
   Future<void> appOpenNotification() async {
-    var scheduleNotificationDateTime =
+    final scheduleNotificationDateTime =
         DateTime.now().add(const Duration(days: 3));
     // int id = createUniqueId();c
     await AwesomeNotifications().createNotification(
@@ -288,7 +291,7 @@ class AwesomeNotificationManager {
   }
 
   ///
-  onNotificationClick(String payload) {}
+  void onNotificationClick(String payload) {}
 
   void dispose() {
     // AwesomeNotifications().actionSink.close();

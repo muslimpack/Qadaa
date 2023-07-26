@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
+import 'package:qadaa/app/modules/dashboard/app_dashboard.dart';
 import 'package:qadaa/app/modules/onboarding/onboarding.dart';
 import 'package:qadaa/app/shared/functions/print.dart';
 import 'package:qadaa/app/shared/widgets/loading.dart';
 import 'package:qadaa/core/values/constant.dart';
-import 'modules/dashboard/app_dashboard.dart';
 
 class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -32,7 +32,7 @@ class _MyAppState extends State<MyApp> {
       isFirstOpen = box.get(
         "is_${AppConstant.appVersion}_first_open",
         defaultValue: true,
-      );
+      ) as bool;
     } catch (e) {
       qadaaPrint(e);
     }
