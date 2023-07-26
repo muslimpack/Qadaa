@@ -23,12 +23,12 @@ dependencies:
   rxdart: ^0.27.7
   hive: ^2.2.3
   hive_flutter: ^1.1.0
-  path_provider: ^2.0.11
+  path_provider: ^2.0.15
   wakelock: ^0.6.2
   flutter_screen_lock: ^9.0.0+1
   get: ^4.6.5
   confetti: ^0.7.0
-  audioplayers: ^1.1.1
+  audioplayers: ^5.0.0
   flutter_native_splash: ^2.2.16
 
 dev_dependencies:
