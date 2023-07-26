@@ -9,25 +9,17 @@ class StorageRepo {
     prayerBox = Hive.box("Prayers");
   }
 
-  reset() {
-    prayerBox.put("Fajr", 0);
-    prayerBox.put("Dhuhr", 0);
-    prayerBox.put("Asr", 0);
-    prayerBox.put("Maghrib", 0);
-    prayerBox.put("Isha", 0);
-    prayerBox.put("MaxFajr", 1);
-    prayerBox.put("MaxDhuhr", 1);
-    prayerBox.put("MaxAsr", 1);
-    prayerBox.put("MaxMaghrib", 1);
-    prayerBox.put("MaxIsha", 1);
-  }
+  /// ******************************
+  /// Add Zone
+  /// ******************************
 
-  addPrayer(
-      {int fajr = 0,
-      int dhuhr = 0,
-      int asr = 0,
-      int maghrib = 0,
-      int isha = 0}) {
+  addPrayer({
+    int fajr = 0,
+    int dhuhr = 0,
+    int asr = 0,
+    int maghrib = 0,
+    int isha = 0,
+  }) {
     int newRecordFajr = prayerBox.get("Fajr", defaultValue: 0) + fajr;
     int newRecordDhuhr = prayerBox.get("Dhuhr", defaultValue: 0) + dhuhr;
     int newRecordAsr = prayerBox.get("Asr", defaultValue: 0) + asr;
@@ -134,59 +126,68 @@ class StorageRepo {
     }
   }
 
-  int getFajr() {
-    int fajr = prayerBox.get("Fajr", defaultValue: 0);
-    return fajr.isNaN ? 0 : fajr;
+  /// ******************************
+  /// Get Current Zone
+  /// ******************************
+
+  int _getPray(String pray) {
+    int pray0 = prayerBox.get(pray, defaultValue: 0);
+    return pray0.isNaN ? 0 : pray0;
   }
 
-  int getDhuhr() {
-    int dhuhr = prayerBox.get("Dhuhr", defaultValue: 0);
-    return dhuhr.isNaN ? 0 : dhuhr;
+  int getFajr() => _getPray("Fajr");
+
+  int getDhuhr() => _getPray("Dhuhr");
+
+  int getAsr() => _getPray("Asr");
+
+  int getMaghrib() => _getPray("Maghrib");
+
+  int getIsha() => _getPray("Isha");
+
+  /// ******************************
+  /// Get Max Zone
+  /// ******************************
+
+  int getMaxPray(String pray) {
+    int pray0 = prayerBox.get(pray, defaultValue: 1);
+    return pray0;
   }
 
-  int getAsr() {
-    int asr = prayerBox.get("Asr", defaultValue: 0);
-    return asr.isNaN ? 0 : asr;
-  }
+  int getMaxFajr() => getMaxPray("MaxFajr");
 
-  int getMaghrib() {
-    int maghrib = prayerBox.get("Maghrib", defaultValue: 0);
-    return maghrib.isNaN ? 0 : maghrib;
-  }
+  int getMaxDhuhr() => getMaxPray("MaxDhuhr");
 
-  int getIsha() {
-    int isha = prayerBox.get("Isha", defaultValue: 0);
-    return isha.isNaN ? 0 : isha;
-  }
+  int getMaxAsr() => getMaxPray("MaxAsr");
 
-  int getMaxFajr() {
-    int fajr = prayerBox.get("MaxFajr", defaultValue: 1);
-    return fajr;
-  }
+  int getMaxMaghrib() => getMaxPray("MaxMaghrib");
 
-  int getMaxDhuhr() {
-    int dhuhr = prayerBox.get("MaxDhuhr", defaultValue: 1);
-    return dhuhr;
-  }
+  int getMaxIsha() => getMaxPray("MaxIsha");
 
-  int getMaxAsr() {
-    int asr = prayerBox.get("MaxAsr", defaultValue: 1);
-    return asr;
-  }
-
-  int getMaxMaghrib() {
-    int maghrib = prayerBox.get("MaxMaghrib", defaultValue: 1);
-    return maghrib;
-  }
-
-  int getMaxIsha() {
-    int isha = prayerBox.get("MaxIsha", defaultValue: 1);
-    return isha;
-  }
+  /// ******************************
+  /// Settings
+  /// ******************************
 
   int getAllRemainingPrayer() {
     return getFajr() + getDhuhr() + getAsr() + getMaghrib() + getIsha();
   }
+
+  reset() {
+    prayerBox.put("Fajr", 0);
+    prayerBox.put("Dhuhr", 0);
+    prayerBox.put("Asr", 0);
+    prayerBox.put("Maghrib", 0);
+    prayerBox.put("Isha", 0);
+    prayerBox.put("MaxFajr", 1);
+    prayerBox.put("MaxDhuhr", 1);
+    prayerBox.put("MaxAsr", 1);
+    prayerBox.put("MaxMaghrib", 1);
+    prayerBox.put("MaxIsha", 1);
+  }
+
+  /// ******************************
+  /// Misc
+  /// ******************************
 
   // qadaa every day
   String getqadaaEveryDay() {
