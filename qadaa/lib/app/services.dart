@@ -4,6 +4,7 @@ import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:qadaa/app/shared/functions/print.dart';
 import 'package:qadaa/core/utils/awesome_notification_manager.dart';
+import 'package:qadaa/core/utils/storage_repo.dart';
 
 Future<void> initServices() async {
   try {
@@ -17,6 +18,8 @@ Future<void> initServices() async {
     Hive.init(appDocumentDirectory.path);
 
     await Hive.openBox("Prayers");
+
+    StorageRepo.initialStorage();
 
     // Make Phone StatusBar Transparent
     SystemChrome.setSystemUIOverlayStyle(
