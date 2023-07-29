@@ -10,6 +10,7 @@ class AppConstant {
   //TODO edit every release
   static String get appVersion => appVersions.first;
   static List<String> appVersions = [
+    "1.4.0",
     "1.3.0",
     "1.2.0",
     "1.1.0",

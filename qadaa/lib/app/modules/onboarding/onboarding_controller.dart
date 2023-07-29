@@ -29,16 +29,18 @@ class OnBoardingController extends GetxController {
     ),
     const Empty(
       isImage: false,
-      icon: Icons.palette,
-      title: "تحسينات في الواجهة",
+      icon: Icons.done_all_outlined,
+      title: "إضافة قضاء للصوم",
     ),
     const Empty(
       isImage: false,
-      icon: Icons.bug_report_sharp,
-      title: "إصلاح بعض المشاكل",
-      description: """
-إصلاح بعض المشاكل المتعلقة بالأداء
-""",
+      icon: Icons.image_outlined,
+      title: "إمكانية تحديد صورة ثابتة للشاشة الرئيسية",
+    ),
+    const Empty(
+      isImage: false,
+      icon: Icons.brush_outlined,
+      title: "بعض التحسينات",
     ),
     Empty(
       imagePath: "assets/images/rukia.png",
