@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:qadaa/app/modules/dashboard/pages/add_new.dart';
 import 'package:qadaa/app/modules/dashboard/pages/done.dart';
+import 'package:qadaa/app/modules/dashboard/pages/fasting.dart';
 import 'package:qadaa/app/modules/settings/settings.dart';
 import 'package:qadaa/app/shared/widgets/bouncy_page.dart';
 import 'package:qadaa/core/values/constant.dart';
@@ -11,7 +12,7 @@ class SecondScreenDashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Scaffold(
         appBar: AppBar(
           title: const Text("قضاء"),
@@ -50,6 +51,9 @@ class SecondScreenDashboard extends StatelessWidget {
               ),
               Tab(
                 text: "فروض جديدة",
+              ),
+              Tab(
+                text: "صوم",
               )
             ],
           ),
@@ -65,6 +69,7 @@ class SecondScreenDashboard extends StatelessWidget {
               children: [
                 Done(),
                 AddNew(),
+                FastingPage(),
               ],
             ),
           ),

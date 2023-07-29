@@ -1,12 +1,16 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'package:qadaa/app/modules/splash/gradient_linear_progress_indicator.dart';
 import 'package:qadaa/app/modules/splash/splash_controller.dart';
 import 'package:qadaa/app/shared/enum/sound_type.dart';
 import 'package:qadaa/app/shared/functions/print.dart';
 import 'package:qadaa/app/shared/widgets/custom_sleek.dart';
+import 'package:qadaa/core/utils/effect_manager.dart';
+import 'package:qadaa/core/utils/prayer_controller.dart';
 import 'package:qadaa/core/values/constant.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -48,77 +52,8 @@ class SplashScreen extends StatelessWidget {
                   shrinkWrap: true,
                   // mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    GestureDetector(
-                      onTap: () async {
-                        controller.prayersController.addFasting(days: -1);
-                        qadaaPrint("GestureDetector");
-                        await controller.effectManager.playConfetti();
-                        controller.update();
-                      },
-                      onLongPress: () {
-                        controller.prayersController.addFasting(days: 1);
-                        controller.update();
-                      },
-                      child: Card(
-                        child: Padding(
-                          padding: const EdgeInsets.all(20.0),
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const Text(
-                                    "الصوم:",
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      color: Colors.white,
-                                      height: 2,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    "${controller.prayersController.fastingDifference().inDays} أيام",
-                                    style: const TextStyle(
-                                      fontSize: 15,
-                                      color: Colors.white,
-                                      height: 2,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Text(
-                                controller.prayersController
-                                    .getFastingEndDateText(),
-                                style: const TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.white,
-                                  height: 2,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              const SizedBox(height: 20),
-                              GradientLinearProgressIndicator(
-                                progressValue:
-                                    controller.prayersController.getFasting() /
-                                        controller.prayersController
-                                            .getMaxFasting(),
-                                height: 10,
-                                trackHeight: 5,
-                                backgroundColor: Colors.blue.shade100,
-                                borderRadius: BorderRadius.circular(10),
-                                gradient: LinearGradient(
-                                  colors: [
-                                    Colors.blue,
-                                    AppConstant.mainColor,
-                                  ], // Replace with your desired gradient colors.
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                    FastingCard(
+                      onUpdate: () => controller.update(),
                     ),
                     const SizedBox(height: 20),
                     CircleIndicator(
@@ -243,6 +178,88 @@ class SplashScreen extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+class FastingCard extends StatelessWidget {
+  final Function() onUpdate;
+  const FastingCard({
+    super.key,
+    required this.onUpdate,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final EffectManager effectManager = Get.put(EffectManager());
+    final PrayersController prayersController = Get.put(PrayersController());
+    return GestureDetector(
+      onTap: () async {
+        prayersController.addFasting(days: -1);
+        qadaaPrint("GestureDetector");
+        await effectManager.playConfetti();
+        onUpdate.call();
+      },
+      onLongPress: () {
+        prayersController.addFasting(days: 1);
+        onUpdate.call();
+      },
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    "الصوم:",
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.white,
+                      height: 2,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    "${prayersController.fastingDifference().inDays} أيام",
+                    style: const TextStyle(
+                      fontSize: 15,
+                      color: Colors.white,
+                      height: 2,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+              Text(
+                prayersController.getFastingEndDateText(),
+                style: const TextStyle(
+                  fontSize: 15,
+                  color: Colors.white,
+                  height: 2,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 20),
+              GradientLinearProgressIndicator(
+                progressValue: prayersController.getFasting() /
+                    prayersController.getMaxFasting(),
+                height: 10,
+                trackHeight: 5,
+                backgroundColor: Colors.blue.shade100,
+                borderRadius: BorderRadius.circular(10),
+                gradient: LinearGradient(
+                  colors: [
+                    Colors.blue,
+                    AppConstant.mainColor,
+                  ], // Replace with your desired gradient colors.
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

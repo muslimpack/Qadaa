@@ -8,9 +8,11 @@ import 'package:qadaa/core/values/constant.dart';
 
 class DeleteDaysDialog extends StatefulWidget {
   final ValueChanged<int> onConfirm;
+  final String title;
   const DeleteDaysDialog({
     super.key,
     required this.onConfirm,
+    this.title = "قضيت أياما",
   });
 
   @override
@@ -37,7 +39,7 @@ class _DeleteDaysDialogState extends State<DeleteDaysDialog> {
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Text(
-                    "قضيت أياما",
+                    widget.title,
                     style:
                         TextStyle(fontSize: 25, color: AppConstant.mainColor),
                   ),
