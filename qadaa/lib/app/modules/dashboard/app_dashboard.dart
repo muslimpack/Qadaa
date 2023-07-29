@@ -41,25 +41,22 @@ class AppDashboard extends StatelessWidget {
                           ),
                         ),
                       ),
-                      floatingActionButton: controller.currentPageIndex == 0
-                          ? null
-                          : FloatingActionButton(
-                              mini: true,
-                              backgroundColor: AppConstant.mainColor,
-                              onPressed: () {
-                                controller.pageController.animateTo(
-                                  0.0,
-                                  duration: const Duration(milliseconds: 500),
-                                  curve: Curves.linear,
-                                );
-                                // _controller.jumpToPage(0);
-                              },
-                              tooltip: 'Increment',
-                              child: const Icon(
-                                Icons.arrow_upward,
-                                color: Colors.white,
-                              ),
-                            ),
+                      floatingActionButton: FloatingActionButton(
+                        mini: true,
+                        backgroundColor: AppConstant.mainColor,
+                        onPressed: () {
+                          controller.currentPageIndex == 0
+                              ? controller.goDown()
+                              : controller.goUp();
+                        },
+                        tooltip: 'Increment',
+                        child: Icon(
+                          controller.currentPageIndex == 1
+                              ? Icons.arrow_upward
+                              : Icons.arrow_downward,
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                   ),
                   GetBuilder<EffectManager>(

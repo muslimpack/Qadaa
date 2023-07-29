@@ -35,6 +35,22 @@ class AppDashboardController extends GetxController {
     });
   }
 
+  void goUp() {
+    pageController.animateToPage(
+      0,
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.linear,
+    );
+  }
+
+  void goDown() {
+    pageController.animateToPage(
+      1,
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.linear,
+    );
+  }
+
   @override
   Future<void> onInit() async {
     super.onInit();
