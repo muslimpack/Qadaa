@@ -1,4 +1,6 @@
 import 'package:hive/hive.dart';
+import 'package:qadaa/app/shared/enum/enum.dart';
+import 'package:qadaa/app/shared/enum/splash_background.dart';
 import 'package:qadaa/core/values/constant.dart';
 
 final StorageRepo storageRepo = StorageRepo();
@@ -206,5 +208,55 @@ class StorageRepo {
 
   void setFirstOpen(bool val) {
     prayerBox.put("is_${AppConstant.appVersion}_first_open", val);
+  }
+
+  /// ******************************
+  /// Settings
+  /// ******************************
+
+  void toggleSplashBackground() {
+    prayerBox.put(
+      "SplashBackground",
+      enumToMap(getSplashBackground().toggle()),
+    );
+  }
+
+  SplashBackGroundEnum getSplashBackground() {
+    final str = prayerBox
+        .get(
+          "SplashBackground",
+          defaultValue: enumToMap(SplashBackGroundEnum.staticImage),
+        )
+        .toString();
+
+    return enumFromMap(
+      str,
+      SplashBackGroundEnum.values,
+      SplashBackGroundEnum.staticImage,
+    );
+  }
+
+  int getSplashBackgroundIndex() {
+    final int index =
+        prayerBox.get("SplashBackgroundIndex", defaultValue: 0) as int;
+    return (index.isNaN || index.isInfinite) ? 0 : index;
+  }
+
+  void setSplashBackgroundIndex(int index) {
+    prayerBox.put("SplashBackgroundIndex", index);
+  }
+
+  bool get isLockEnabled =>
+      prayerBox.get("is_app_locked", defaultValue: false) as bool;
+
+  String get passCode =>
+      prayerBox.get("passcode", defaultValue: "0000") as String;
+
+  void setIsLockEnabled(bool value) {
+    prayerBox.put("is_app_locked", value);
+  }
+
+  void setPassCode(String passCode) {
+    prayerBox.put("passcode", passCode);
   }
 }
