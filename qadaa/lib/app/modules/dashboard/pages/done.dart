@@ -48,13 +48,24 @@ class Done extends StatelessWidget {
                       backgroundColor: Colors.transparent,
                       context: context,
                       builder: (BuildContext context) {
-                        return const DeleteDaysDialog();
+                        return DeleteDaysDialog(
+                          onConfirm: (value) async {
+                            if (value <= 0) return;
+
+                            if (controller.getDays() > 0) {
+                              controller.addDay(
+                                value: -value,
+                              );
+                              showRandomNotification();
+                            }
+
+                            await effectManager.playConfetti(
+                              milliseconds: 5000,
+                            );
+                          },
+                        );
                       },
-                    ).then((value) async {
-                      await effectManager.playConfetti(
-                        milliseconds: 5000,
-                      );
-                    });
+                    );
                   },
                 ),
                 const Divider(),

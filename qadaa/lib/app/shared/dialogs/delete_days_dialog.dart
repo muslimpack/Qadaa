@@ -1,12 +1,17 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:qadaa/app/shared/functions/random_notification.dart';
+
 import 'package:qadaa/app/shared/widgets/user_text_field.dart';
 import 'package:qadaa/core/utils/prayer_controller.dart';
 import 'package:qadaa/core/values/constant.dart';
 
 class DeleteDaysDialog extends StatefulWidget {
-  const DeleteDaysDialog({super.key});
+  final ValueChanged<int> onConfirm;
+  const DeleteDaysDialog({
+    super.key,
+    required this.onConfirm,
+  });
 
   @override
   State<DeleteDaysDialog> createState() => _DeleteDaysDialogState();
@@ -52,12 +57,7 @@ class _DeleteDaysDialogState extends State<DeleteDaysDialog> {
                   ),
                   onTap: () {
                     if (daysController.text.isNotEmpty) {
-                      if (controller.getDays() > 0) {
-                        controller.addDay(
-                          value: -int.parse(daysController.text),
-                        );
-                        showRandomNotification();
-                      }
+                      widget.onConfirm.call(int.parse(daysController.text));
                     }
 
                     Navigator.pop(context, false);
