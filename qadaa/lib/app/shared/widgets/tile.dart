@@ -21,6 +21,7 @@ class MyTile extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 10),
       padding: const EdgeInsets.symmetric(vertical: 2),
       child: Card(
+        clipBehavior: Clip.hardEdge,
         child: ListTile(
           title: Text(title),
           leading: Icon(icon),
