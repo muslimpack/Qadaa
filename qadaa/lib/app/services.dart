@@ -9,20 +9,6 @@ import 'package:qadaa/core/utils/storage_repo.dart';
 
 Future<void> initServices() async {
   try {
-    await AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
-      if (!isAllowed) {
-        AwesomeNotifications().requestPermissionToSendNotifications();
-      }
-    });
-
-    //U Doesn't open app notification
-    await awesomeNotificationManager.init();
-    await awesomeNotificationManager.appOpenNotification();
-  } catch (e) {
-    qadaaPrint(e);
-  }
-
-  try {
     //Hive Initialize
     final appDocumentDirectory =
         await path_provider.getApplicationDocumentsDirectory();
@@ -43,6 +29,20 @@ Future<void> initServices() async {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
+  } catch (e) {
+    qadaaPrint(e);
+  }
+
+  try {
+    await AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
+      if (!isAllowed && storageRepo.isFirstOpen()) {
+        AwesomeNotifications().requestPermissionToSendNotifications();
+      }
+    });
+
+    //U Doesn't open app notification
+    await awesomeNotificationManager.init();
+    await awesomeNotificationManager.appOpenNotification();
   } catch (e) {
     qadaaPrint(e);
   }

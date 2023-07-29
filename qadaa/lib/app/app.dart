@@ -5,7 +5,7 @@ import 'package:qadaa/app/modules/dashboard/app_dashboard.dart';
 import 'package:qadaa/app/modules/onboarding/onboarding.dart';
 import 'package:qadaa/app/shared/functions/print.dart';
 import 'package:qadaa/app/shared/widgets/loading.dart';
-import 'package:qadaa/core/values/constant.dart';
+import 'package:qadaa/core/utils/storage_repo.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -28,11 +28,7 @@ class _MyAppState extends State<MyApp> {
 
   void checkIfFirstOpen() {
     try {
-      final Box box = Hive.box("Prayers");
-      isFirstOpen = box.get(
-        "is_${AppConstant.appVersion}_first_open",
-        defaultValue: true,
-      ) as bool;
+      isFirstOpen = storageRepo.isFirstOpen();
     } catch (e) {
       qadaaPrint(e);
     }

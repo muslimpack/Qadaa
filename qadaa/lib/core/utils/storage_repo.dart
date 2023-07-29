@@ -1,4 +1,5 @@
 import 'package:hive/hive.dart';
+import 'package:qadaa/core/values/constant.dart';
 
 final StorageRepo storageRepo = StorageRepo();
 
@@ -173,6 +174,7 @@ class StorageRepo {
   }
 
   void reset() {
+    // Prayer
     prayerBox.put("Fajr", 0);
     prayerBox.put("Dhuhr", 0);
     prayerBox.put("Asr", 0);
@@ -183,6 +185,9 @@ class StorageRepo {
     prayerBox.put("MaxAsr", 1);
     prayerBox.put("MaxMaghrib", 1);
     prayerBox.put("MaxIsha", 1);
+    // Fasting
+    prayerBox.put("Fasting", 0);
+    prayerBox.put("MaxFasting", 1);
   }
 
   /// ******************************
@@ -192,16 +197,31 @@ class StorageRepo {
   // qadaa every day
   String getQadaaEveryDay() {
     final String data =
-        Hive.box("Prayers").get("qadaaEveryDay", defaultValue: "1").toString();
+        prayerBox.get("qadaaEveryDay", defaultValue: "1").toString();
 
     return data == "0" ? "1" : data;
   }
 
   void setQadaaEveryDay(String? count) {
-    Hive.box("Prayers").put("qadaaEveryDay", count ?? 1);
+    prayerBox.put("qadaaEveryDay", count ?? 1);
   }
 
   void resetQadaaEveryDay() {
-    Hive.box("Prayers").put("qadaaEveryDay", 1);
+    prayerBox.put("qadaaEveryDay", 1);
+  }
+
+  /// ******************************
+  /// First Open
+  /// ******************************
+
+  bool isFirstOpen() {
+    return prayerBox.get(
+      "is_${AppConstant.appVersion}_first_open",
+      defaultValue: true,
+    ) as bool;
+  }
+
+  void setFirstOpen(bool val) {
+    prayerBox.put("is_${AppConstant.appVersion}_first_open", val);
   }
 }
