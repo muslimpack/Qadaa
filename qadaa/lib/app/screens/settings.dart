@@ -171,7 +171,7 @@ class ChangePrayersCard extends StatelessWidget {
               },
             ),
             Text(
-              settingsController.prayersController.getEndDateText(),
+              settingsController.prayersController.getPrayerEndDateText(),
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Colors.blue.shade200,

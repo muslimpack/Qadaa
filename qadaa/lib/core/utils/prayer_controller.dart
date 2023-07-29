@@ -123,7 +123,7 @@ class PrayersController extends GetxController {
         .add(Duration(days: getAllRemainingPrayer() ~/ prayersPerDay));
   }
 
-  String getEndDateText() {
+  String getPrayerEndDateText() {
     if (getAllRemainingPrayer() == 0) {
       return "لا يوجد قضاء عليك";
     } else {

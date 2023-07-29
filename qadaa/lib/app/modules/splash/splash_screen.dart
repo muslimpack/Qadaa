@@ -184,7 +184,7 @@ class SplashScreen extends StatelessWidget {
                     const SizedBox(height: 30),
                     Center(
                       child: Text(
-                        controller.prayersController.getEndDateText(),
+                        controller.prayersController.getPrayerEndDateText(),
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.blue.shade200,
