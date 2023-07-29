@@ -17,7 +17,10 @@ class AddNew extends StatelessWidget {
             thumbVisibility: false,
             child: ListView(
               physics: const ClampingScrollPhysics(),
-              padding: const EdgeInsets.only(bottom: 70),
+              padding: const EdgeInsets.only(bottom: 70).copyWith(
+                left: 10,
+                right: 10,
+              ),
               children: [
                 const SizedBox(height: 10),
                 MyTile(

@@ -18,7 +18,6 @@ class MyTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 10),
       padding: const EdgeInsets.symmetric(vertical: 2),
       child: Card(
         clipBehavior: Clip.hardEdge,

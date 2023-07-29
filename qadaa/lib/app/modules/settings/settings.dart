@@ -27,6 +27,10 @@ class Settings extends StatelessWidget {
               title: const Text("الإعدادات"),
             ),
             body: ListView(
+              padding: const EdgeInsets.only(bottom: 70).copyWith(
+                left: 10,
+                right: 10,
+              ),
               children: [
                 const CustomTitle(title: "قفل التطبيق"),
                 Container(
