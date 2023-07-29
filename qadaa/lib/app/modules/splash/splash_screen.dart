@@ -38,7 +38,7 @@ class SplashScreen extends StatelessWidget {
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage(
-                        AppConstant.splashImages[controller.rImage!],
+                        AppConstant.splashImages[controller.rImage],
                       ),
                       fit: BoxFit.cover,
                     ),
@@ -158,12 +158,15 @@ class SplashScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const Center(
-                      child: Text(
-                        "عَنْ عَائِشَةَ أَنَّ رَسُولَ اللَّهِ صَلَّى اللَّهم عَلَيْهِ وَسَلَّمَ قَال\nَ سَدِّدُوا وَقَارِبُوا وَاعْلَمُوا أَنْ لَنْ يُدْخِلَ أَحَدَكُمْ عَمَلُهُ الْجَنَّةَ \nوَأَنَّ أَحَبَّ الْأَعْمَالِ إِلَى اللَّهِ أَدْوَمُهَا وَإِنْ قَلَّ ",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          height: 2,
+                    Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Text(
+                          AppConstant.splashMsg[controller.rMsg],
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            height: 2,
+                          ),
                         ),
                       ),
                     ),
