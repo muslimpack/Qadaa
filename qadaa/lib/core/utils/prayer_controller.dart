@@ -34,24 +34,32 @@ class PrayersController extends GetxController {
   }
 
   void addDay({required int? value}) {
+    if (value == null) return;
     storageRepo.addDay(value: value);
     update();
   }
 
   void addWeek({required int? value}) {
+    if (value == null) return;
     storageRepo.addWeek(value: value);
     update();
   }
 
   void addMonth({required int? value}) {
+    if (value == null) return;
     storageRepo.addMonth(value: value);
     update();
   }
 
   void addYear({required int? value}) {
-    if (value != null) {
-      addDay(value: value * 365);
-    }
+    if (value == null) return;
+    addDay(value: value * 365);
+    update();
+  }
+
+  void addFasting({required int? days}) {
+    if (days == null) return;
+    storageRepo.addFasting(days: days);
     update();
   }
 

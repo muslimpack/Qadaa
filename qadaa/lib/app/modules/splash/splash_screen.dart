@@ -2,9 +2,11 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:qadaa/app/modules/splash/gradient_linear_progress_indicator.dart';
 import 'package:qadaa/app/modules/splash/splash_controller.dart';
 import 'package:qadaa/app/shared/enum/sound_type.dart';
 import 'package:qadaa/app/shared/widgets/custom_sleek.dart';
+import 'package:qadaa/core/utils/storage_repo.dart';
 import 'package:qadaa/core/values/constant.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -41,9 +43,40 @@ class SplashScreen extends StatelessWidget {
                 ),
               ),
               Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                child: ListView(
+                  physics: const ClampingScrollPhysics(),
+                  shrinkWrap: true,
+                  // mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Text(
+                            "صيام",
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    GradientLinearProgressIndicator(
+                      progressValue: storageRepo.getFasting() /
+                          storageRepo.getMaxFasting(),
+                      height: 10,
+                      trackHeight: 5,
+                      backgroundColor: Colors.blue.shade100,
+                      gradient: LinearGradient(
+                        colors: [
+                          Colors.blue,
+                          AppConstant.mainColor,
+                        ], // Replace with your desired gradient colors.
+                      ),
+                    ),
+                    const SizedBox(height: 20),
                     CircleIndicator(
                       title: "الأيام المتبقية",
                       initialValue: controller.prayersController.getDays(),

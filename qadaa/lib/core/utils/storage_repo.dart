@@ -13,6 +13,11 @@ class StorageRepo {
   /// ******************************
   /// Add Zone
   /// ******************************
+  void addFasting({
+    required int days,
+  }) {
+    _addSingle(valToAdd: days, key: "Fasting", maxKey: "MaxFasting");
+  }
 
   void addPrayer({
     int fajr = 0,
@@ -21,81 +26,55 @@ class StorageRepo {
     int maghrib = 0,
     int isha = 0,
   }) {
-    final int newRecordFajr = getFajr() + fajr;
-    final int newRecordDhuhr = getDhuhr() + dhuhr;
-    final int newRecordAsr = getAsr() + asr;
-    final int newRecordMaghrib = getMaghrib() + maghrib;
-    final int newRecordIsha = getIsha() + isha;
+    _addSingle(valToAdd: fajr, key: "Fajr", maxKey: "MaxFajr");
+    _addSingle(valToAdd: dhuhr, key: "Dhuhr", maxKey: "MaxDhuhr");
+    _addSingle(valToAdd: asr, key: "Asr", maxKey: "MaxAsr");
+    _addSingle(valToAdd: maghrib, key: "Maghrib", maxKey: "MaxMaghrib");
+    _addSingle(valToAdd: isha, key: "Isha", maxKey: "MaxIsha");
+  }
 
-    // Catch new max
-    if (newRecordFajr > getMaxFajr()) {
-      prayerBox.put("MaxFajr", newRecordFajr);
-    }
-    if (newRecordDhuhr > getMaxDhuhr()) {
-      prayerBox.put("MaxDhuhr", newRecordDhuhr);
-    }
-    if (newRecordAsr > getMaxAsr()) {
-      prayerBox.put("MaxAsr", newRecordAsr);
-    }
-    if (newRecordMaghrib > getMaxMaghrib()) {
-      prayerBox.put("MaxMaghrib", newRecordMaghrib);
-    }
-    if (newRecordIsha > getMaxIsha()) {
-      prayerBox.put("MaxIsha", newRecordIsha);
+  void _addSingle({
+    required int valToAdd,
+    required String key,
+    required String maxKey,
+  }) {
+    final int newVal = _getNumber(key) + valToAdd;
+
+    if (newVal > _getMax(maxKey)) {
+      prayerBox.put(maxKey, newVal);
     }
 
-    // Reset max if its pray = 0
-    if (newRecordFajr == 0) {
-      prayerBox.put("MaxFajr", 1);
+    if (newVal == 0) {
+      prayerBox.put(maxKey, 1);
     }
-    if (newRecordDhuhr == 0) {
-      prayerBox.put("MaxDhuhr", 1);
-    }
-    if (newRecordAsr == 0) {
-      prayerBox.put("MaxAsr", 1);
-    }
-    if (newRecordMaghrib == 0) {
-      prayerBox.put("MaxMaghrib", 1);
-    }
-    if (newRecordIsha == 0) {
-      prayerBox.put("MaxIsha", 1);
-    }
-    //
-    prayerBox.put("Fajr", newRecordFajr < 0 ? 0 : newRecordFajr);
-    prayerBox.put("Dhuhr", newRecordDhuhr < 0 ? 0 : newRecordDhuhr);
-    prayerBox.put("Asr", newRecordAsr < 0 ? 0 : newRecordAsr);
-    prayerBox.put("Maghrib", newRecordMaghrib < 0 ? 0 : newRecordMaghrib);
-    prayerBox.put("Isha", newRecordIsha < 0 ? 0 : newRecordIsha);
+
+    prayerBox.put(key, newVal < 0 ? 0 : newVal);
   }
 
   void addDay({required int? value}) {
-    if (value != null) {
-      addPrayer(
-        fajr: value,
-        dhuhr: value,
-        asr: value,
-        maghrib: value,
-        isha: value,
-      );
-    }
+    if (value == null) return;
+    addPrayer(
+      fajr: value,
+      dhuhr: value,
+      asr: value,
+      maghrib: value,
+      isha: value,
+    );
   }
 
   void addWeek({required int? value}) {
-    if (value != null) {
-      addDay(value: value * 7);
-    }
+    if (value == null) return;
+    addDay(value: value * 7);
   }
 
   void addMonth({required int? value}) {
-    if (value != null) {
-      addDay(value: value * 30);
-    }
+    if (value == null) return;
+    addDay(value: value * 30);
   }
 
   void addYear({required int? value}) {
-    if (value != null) {
-      addDay(value: value * 365);
-    }
+    if (value == null) return;
+    addDay(value: value * 365);
   }
 
   int getDays() {
@@ -131,39 +110,43 @@ class StorageRepo {
   /// Get Current Zone
   /// ******************************
 
-  int _getPray(String pray) {
+  int _getNumber(String pray) {
     final int pray0 = prayerBox.get(pray, defaultValue: 0) as int;
     return (pray0.isNaN || pray0.isInfinite) ? 0 : pray0;
   }
 
-  int getFajr() => _getPray("Fajr");
+  int getFajr() => _getNumber("Fajr");
 
-  int getDhuhr() => _getPray("Dhuhr");
+  int getDhuhr() => _getNumber("Dhuhr");
 
-  int getAsr() => _getPray("Asr");
+  int getAsr() => _getNumber("Asr");
 
-  int getMaghrib() => _getPray("Maghrib");
+  int getMaghrib() => _getNumber("Maghrib");
 
-  int getIsha() => _getPray("Isha");
+  int getIsha() => _getNumber("Isha");
+
+  int getFasting() => _getNumber("Fasting");
 
   /// ******************************
   /// Get Max Zone
   /// ******************************
 
-  int getMaxPray(String pray) {
+  int _getMax(String pray) {
     final int pray0 = prayerBox.get(pray, defaultValue: 1) as int;
     return (pray0.isNaN || pray0.isInfinite || pray0 < 1) ? 1 : pray0;
   }
 
-  int getMaxFajr() => getMaxPray("MaxFajr");
+  int getMaxFajr() => _getMax("MaxFajr");
 
-  int getMaxDhuhr() => getMaxPray("MaxDhuhr");
+  int getMaxDhuhr() => _getMax("MaxDhuhr");
 
-  int getMaxAsr() => getMaxPray("MaxAsr");
+  int getMaxAsr() => _getMax("MaxAsr");
 
-  int getMaxMaghrib() => getMaxPray("MaxMaghrib");
+  int getMaxMaghrib() => _getMax("MaxMaghrib");
 
-  int getMaxIsha() => getMaxPray("MaxIsha");
+  int getMaxIsha() => _getMax("MaxIsha");
+
+  int getMaxFasting() => _getMax("MaxFasting");
 
   /// ******************************
   /// Settings
