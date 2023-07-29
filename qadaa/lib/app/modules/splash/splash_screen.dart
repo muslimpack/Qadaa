@@ -56,6 +56,7 @@ class SplashScreen extends StatelessWidget {
               Center(
                 child: ListView(
                   physics: const ClampingScrollPhysics(),
+                  padding: const EdgeInsets.symmetric(vertical: 20),
                   shrinkWrap: true,
                   // mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -78,9 +79,9 @@ class SplashScreen extends StatelessWidget {
                         controller.prayersController.addDay(value: 1);
                         controller.update();
                       },
-                      size: size.width * .7,
-                      tFontSize: 35,
-                      vFontSize: 70,
+                      size: size.width * .5,
+                      tFontSize: 30,
+                      vFontSize: 60,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
