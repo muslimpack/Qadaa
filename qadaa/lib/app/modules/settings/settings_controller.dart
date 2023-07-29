@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
+import 'package:qadaa/app/shared/enum/splash_background.dart';
 import 'package:qadaa/core/utils/prayer_controller.dart';
+import 'package:qadaa/core/utils/storage_repo.dart';
 
 class SettingsController extends GetxController {
   /* *************** Variables *************** */
   late TextEditingController qadaaController;
   final PrayersController prayersController = Get.put(PrayersController());
+
+  final prayerBox = Hive.box("Prayers");
 
   /* *************** Controller life cycle *************** */
   @override
@@ -19,36 +23,34 @@ class SettingsController extends GetxController {
   /* *************** Functions *************** */
   // First Screen
   void toggleSplashBackground() {
-    String value;
-    if (Hive.box("Prayers").get("SplashBackground", defaultValue: "صورة") ==
-        "صورة") {
-      value = "لون ثابت";
-    } else {
-      value = "صورة";
-    }
-    Hive.box("Prayers").put("SplashBackground", value);
+    storageRepo.toggleSplashBackground();
     update();
   }
 
-  String getSplashBackground() {
-    return Hive.box("Prayers")
-        .get("SplashBackground", defaultValue: "صورة")
-        .toString();
+  SplashBackGroundEnum getSplashBackground() {
+    return storageRepo.getSplashBackground();
   }
 
-  bool get isLockEnabled =>
-      Hive.box("Prayers").get("is_app_locked", defaultValue: false) as bool;
+  int getSplashBackgroundIndex() {
+    return storageRepo.getSplashBackgroundIndex();
+  }
 
-  String get passCode =>
-      Hive.box("Prayers").get("passcode", defaultValue: "0000") as String;
+  void setSplashBackgroundIndex(int index) {
+    storageRepo.setSplashBackgroundIndex(index);
+    update();
+  }
+
+  bool get isLockEnabled => storageRepo.isLockEnabled;
+
+  String get passCode => storageRepo.passCode;
 
   void setIsLockEnabled(bool value) {
-    Hive.box("Prayers").put("is_app_locked", value);
+    storageRepo.setIsLockEnabled(value);
     update();
   }
 
   void setPassCode(String passCode) {
-    Hive.box("Prayers").put("passcode", passCode);
+    storageRepo.setPassCode(passCode);
     update();
   }
 }

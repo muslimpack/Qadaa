@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screen_lock/flutter_screen_lock.dart';
 import 'package:get/get.dart';
 import 'package:qadaa/app/modules/settings/settings_controller.dart';
+import 'package:qadaa/app/modules/settings/widgets/change_prayer_card.dart';
+import 'package:qadaa/app/modules/settings/widgets/custom_title.dart';
+import 'package:qadaa/app/modules/settings/widgets/splash_background_gallery.dart';
 import 'package:qadaa/app/shared/dialogs/yes__no_popup.dart';
+import 'package:qadaa/app/shared/enum/splash_background.dart';
 import 'package:qadaa/app/shared/functions/show_toast.dart';
 import 'package:qadaa/app/shared/widgets/scroll_glow_remover.dart';
 import 'package:qadaa/app/shared/widgets/tile.dart';
-import 'package:qadaa/app/shared/widgets/user_text_field.dart';
 import 'package:qadaa/core/values/constant.dart';
 
 class Settings extends StatelessWidget {
@@ -25,7 +28,7 @@ class Settings extends StatelessWidget {
             ),
             body: ListView(
               children: [
-                const Title(title: "عام"),
+                const CustomTitle(title: "قفل التطبيق"),
                 Container(
                   margin: const EdgeInsets.symmetric(horizontal: 7),
                   child: Card(
@@ -81,17 +84,49 @@ class Settings extends StatelessWidget {
                       ),
                     ),
                   ),
+                const CustomTitle(title: "إعدادات الصلاة"),
                 ChangePrayersCard(
                   settingsController: controller,
                 ),
-                const Divider(),
+                const CustomTitle(title: "الواجهة"),
                 MyTile(
                   title: 'صفحة البدء',
                   icon: Icons.palette_outlined,
                   onTap: () {
                     controller.toggleSplashBackground();
                   },
-                  trailing: controller.getSplashBackground(),
+                  trailing: controller.getSplashBackground().toArabic(),
+                ),
+                if (controller.getSplashBackground() ==
+                    SplashBackGroundEnum.staticImage)
+                  Card(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 15),
+                      child: Column(
+                        children: [
+                          SplashBackgroundGallery(
+                            selectedIndex:
+                                controller.getSplashBackgroundIndex(),
+                            onSelect: (index) {
+                              controller.setSplashBackgroundIndex(index);
+                            },
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                const CustomTitle(title: "أخرى"),
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 7),
+                  padding: const EdgeInsets.only(bottom: 5),
+                  child: Card(
+                    child: ListTile(
+                      title: Text(
+                        'تطبيق قضاء الإصدار ${AppConstant.appVersion}',
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
                 ),
                 MyTile(
                   title: 'إعادة ضبط كل شيء',
@@ -117,88 +152,11 @@ class Settings extends StatelessWidget {
                     );
                   },
                 ),
-                const Divider(),
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 7),
-                  padding: const EdgeInsets.only(bottom: 5),
-                  child: Card(
-                    child: ListTile(
-                      title: Text(
-                        'تطبيق قضاء الإصدار ${AppConstant.appVersion}',
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),
-                ),
               ],
             ),
           ),
         );
       },
-    );
-  }
-}
-
-class ChangePrayersCard extends StatelessWidget {
-  final SettingsController settingsController;
-  const ChangePrayersCard({
-    super.key,
-    required this.settingsController,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 10),
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-          children: [
-            const SizedBox(
-              child: Text(
-                "عدد صلوات القضاء اليومية",
-                textAlign: TextAlign.center,
-              ),
-            ),
-            UserTextFieldChanged(
-              controller: settingsController.qadaaController,
-              hintText: "عدد صلوات القضاء اليومية ",
-              onChange: (count) {
-                if (count.isNotEmpty) {
-                  settingsController.prayersController.setQadaaEveryDay(count);
-                  settingsController.update();
-                }
-              },
-            ),
-            Text(
-              settingsController.prayersController.getPrayerEndDateText(),
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.blue.shade200,
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class Title extends StatelessWidget {
-  final String title;
-
-  const Title({super.key, required this.title});
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      // leading: Icon(Icons.bookmark_border),
-
-      title: Text(
-        title,
-        style: const TextStyle(fontSize: 20, color: Colors.pink),
-      ),
     );
   }
 }

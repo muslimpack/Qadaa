@@ -7,10 +7,12 @@ import 'package:get/get.dart';
 import 'package:qadaa/app/modules/splash/gradient_linear_progress_indicator.dart';
 import 'package:qadaa/app/modules/splash/splash_controller.dart';
 import 'package:qadaa/app/shared/enum/sound_type.dart';
+import 'package:qadaa/app/shared/enum/splash_background.dart';
 import 'package:qadaa/app/shared/functions/print.dart';
 import 'package:qadaa/app/shared/widgets/custom_sleek.dart';
 import 'package:qadaa/core/utils/effect_manager.dart';
 import 'package:qadaa/core/utils/prayer_controller.dart';
+import 'package:qadaa/core/utils/storage_repo.dart';
 import 'package:qadaa/core/values/constant.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -25,10 +27,14 @@ class SplashScreen extends StatelessWidget {
         return Scaffold(
           body: Stack(
             children: [
-              if (controller.splash == "لون ثابت")
-                const SizedBox()
-              else
-                Container(
+              () {
+                final SplashBackGroundEnum back =
+                    storageRepo.getSplashBackground();
+                if (back == SplashBackGroundEnum.staticColor) {
+                  return const SizedBox();
+                }
+
+                return Container(
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage(
@@ -37,7 +43,8 @@ class SplashScreen extends StatelessWidget {
                       fit: BoxFit.cover,
                     ),
                   ),
-                ),
+                );
+              }(),
               BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
                 child: Container(
