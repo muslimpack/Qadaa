@@ -120,18 +120,6 @@ class Settings extends StatelessWidget {
                     ),
                   ),
                 const CustomTitle(title: "أخرى"),
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 7),
-                  padding: const EdgeInsets.only(bottom: 5),
-                  child: Card(
-                    child: ListTile(
-                      title: Text(
-                        'تطبيق قضاء الإصدار ${AppConstant.appVersion}',
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),
-                ),
                 MyTile(
                   title: 'إعادة ضبط كل شيء',
                   icon: Icons.delete_forever,
@@ -155,6 +143,18 @@ class Settings extends StatelessWidget {
                       },
                     );
                   },
+                ),
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 7),
+                  padding: const EdgeInsets.only(bottom: 5),
+                  child: Card(
+                    child: ListTile(
+                      title: Text(
+                        'تطبيق قضاء الإصدار ${AppConstant.appVersion}',
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),
