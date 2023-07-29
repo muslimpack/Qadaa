@@ -49,7 +49,6 @@ class AppDashboard extends StatelessWidget {
                               ? controller.goDown()
                               : controller.goUp();
                         },
-                        tooltip: 'Increment',
                         child: Icon(
                           controller.currentPageIndex == 1
                               ? Icons.arrow_upward
