@@ -38,7 +38,10 @@ class _GradientLinearProgressIndicatorState
             child: Container(
               width: size.width,
               height: widget.trackHeight,
-              color: widget.backgroundColor,
+              decoration: BoxDecoration(
+                color: widget.backgroundColor,
+                borderRadius: widget.borderRadius,
+              ),
             ),
           ),
           Align(
