@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 import 'package:qadaa/app/modules/splash/gradient_linear_progress_indicator.dart';
 import 'package:qadaa/app/modules/splash/splash_controller.dart';
 import 'package:qadaa/app/shared/enum/sound_type.dart';
+import 'package:qadaa/app/shared/functions/print.dart';
 import 'package:qadaa/app/shared/widgets/custom_sleek.dart';
-import 'package:qadaa/core/utils/storage_repo.dart';
 import 'package:qadaa/core/values/constant.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -48,32 +48,55 @@ class SplashScreen extends StatelessWidget {
                   shrinkWrap: true,
                   // mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          Text(
-                            "صيام",
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    GradientLinearProgressIndicator(
-                      progressValue: storageRepo.getFasting() /
-                          storageRepo.getMaxFasting(),
-                      height: 10,
-                      trackHeight: 5,
-                      backgroundColor: Colors.blue.shade100,
-                      gradient: LinearGradient(
-                        colors: [
-                          Colors.blue,
-                          AppConstant.mainColor,
-                        ], // Replace with your desired gradient colors.
+                    GestureDetector(
+                      onTap: () async {
+                        controller.prayersController.addFasting(days: -1);
+                        qadaaPrint("GestureDetector");
+                        await controller.effectManager.playConfetti();
+                        controller.update();
+                      },
+                      onLongPress: () {
+                        controller.prayersController.addFasting(days: 1);
+                        controller.update();
+                      },
+                      child: Card(
+                        child: Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    "الصوم: باقي ${controller.prayersController.fastingDifference().inDays} أيام \n${controller.prayersController.getFastingEndDateText()}",
+                                    style: const TextStyle(
+                                      fontSize: 15,
+                                      color: Colors.white,
+                                      height: 2,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  )
+                                ],
+                              ),
+                              const SizedBox(height: 20),
+                              GradientLinearProgressIndicator(
+                                progressValue:
+                                    controller.prayersController.getFasting() /
+                                        controller.prayersController
+                                            .getMaxFasting(),
+                                height: 10,
+                                trackHeight: 5,
+                                backgroundColor: Colors.blue.shade100,
+                                borderRadius: BorderRadius.circular(10),
+                                gradient: LinearGradient(
+                                  colors: [
+                                    Colors.blue,
+                                    AppConstant.mainColor,
+                                  ], // Replace with your desired gradient colors.
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     ),
                     const SizedBox(height: 20),

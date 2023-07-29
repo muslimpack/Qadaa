@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:qadaa/app/shared/functions/print.dart';
 import 'package:qadaa/core/utils/storage_repo.dart';
 
 class PrayersController extends GetxController {
@@ -111,6 +112,14 @@ class PrayersController extends GetxController {
     return storageRepo.getMaxIsha();
   }
 
+  int getMaxFasting() {
+    return storageRepo.getMaxFasting();
+  }
+
+  int getFasting() {
+    return storageRepo.getFasting();
+  }
+
   int getAllRemainingPrayer() {
     return storageRepo.getAllRemainingPrayer();
   }
@@ -124,17 +133,51 @@ class PrayersController extends GetxController {
   }
 
   String getPrayerEndDateText() {
+    final DateTime dueDate = updateEndDateOfQadaa();
+    final Duration difference = dueDate.difference(DateTime.now());
+
     if (getAllRemainingPrayer() == 0) {
-      return "لا يوجد قضاء عليك";
+      return "لا قضاء عليك";
     } else {
-      final Duration difference =
-          updateEndDateOfQadaa().difference(DateTime.now());
       if ((difference.inHours / 24).round() == 0) {
         return "موعد انتهاء القضاء:\n اليوم إن شاء الله";
       } else {
-        return 'موعد انتهاء القضاء:\n ${updateEndDateOfQadaa().day} / ${updateEndDateOfQadaa().month} / ${updateEndDateOfQadaa().year}';
+        return 'موعد انتهاء القضاء:\n ${dueDate.day} / ${dueDate.month} / ${dueDate.year}';
       }
     }
+  }
+
+  String getFastingEndDateText() {
+    final DateTime now = DateTime.now();
+    final DateTime toDay = DateTime(
+      now.year,
+      now.month,
+      now.day,
+    );
+    final DateTime dueDate =
+        toDay.add(Duration(days: storageRepo.getFasting()));
+
+    final Duration difference = dueDate.difference(toDay);
+    qadaaPrint(difference);
+    if (difference.inDays == 0) {
+      return "لا قضاء عليك";
+    } else {
+      return 'موعد انتهاء القضاء: ${dueDate.day} / ${dueDate.month} / ${dueDate.year}';
+    }
+  }
+
+  Duration fastingDifference() {
+    final DateTime now = DateTime.now();
+    final DateTime toDay = DateTime(
+      now.year,
+      now.month,
+      now.day,
+    );
+    final DateTime dueDate =
+        toDay.add(Duration(days: storageRepo.getFasting()));
+
+    final Duration difference = dueDate.difference(toDay);
+    return difference;
   }
 
   // qadaa every day
