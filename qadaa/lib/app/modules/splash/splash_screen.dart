@@ -65,17 +65,38 @@ class SplashScreen extends StatelessWidget {
                           child: Column(
                             children: [
                               Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
+                                  const Text(
+                                    "الصوم:",
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      color: Colors.white,
+                                      height: 2,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
                                   Text(
-                                    "الصوم: باقي ${controller.prayersController.fastingDifference().inDays} أيام \n${controller.prayersController.getFastingEndDateText()}",
+                                    "${controller.prayersController.fastingDifference().inDays} أيام",
                                     style: const TextStyle(
                                       fontSize: 15,
                                       color: Colors.white,
                                       height: 2,
                                       fontWeight: FontWeight.bold,
                                     ),
-                                  )
+                                  ),
                                 ],
+                              ),
+                              Text(
+                                controller.prayersController
+                                    .getFastingEndDateText(),
+                                style: const TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.white,
+                                  height: 2,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                               const SizedBox(height: 20),
                               GradientLinearProgressIndicator(
