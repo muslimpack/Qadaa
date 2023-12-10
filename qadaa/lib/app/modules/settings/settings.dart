@@ -114,7 +114,7 @@ class Settings extends StatelessWidget {
                             onSelect: (index) {
                               controller.setSplashBackgroundIndex(index);
                             },
-                          )
+                          ),
                         ],
                       ),
                     ),

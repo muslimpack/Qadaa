@@ -64,7 +64,7 @@ class SplashBackgroundGallery extends StatelessWidget {
                 ),
               );
             },
-          )
+          ),
         ],
       ),
     );

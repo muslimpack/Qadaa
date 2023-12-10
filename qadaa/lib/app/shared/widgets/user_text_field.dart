@@ -22,7 +22,7 @@ class UserTextField extends StatelessWidget {
         // autofocus: true,
         keyboardType: TextInputType.number,
         inputFormatters: <TextInputFormatter>[
-          FilteringTextInputFormatter.digitsOnly
+          FilteringTextInputFormatter.digitsOnly,
         ],
         // onChanged: (value) {
         //   controller.text = value;
@@ -76,7 +76,7 @@ class UserTextFieldChanged extends StatelessWidget {
         // autofocus: true,
         keyboardType: TextInputType.number,
         inputFormatters: <TextInputFormatter>[
-          FilteringTextInputFormatter.digitsOnly
+          FilteringTextInputFormatter.digitsOnly,
         ],
         onChanged: onChange,
         decoration: InputDecoration(

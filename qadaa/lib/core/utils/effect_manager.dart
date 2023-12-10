@@ -13,7 +13,7 @@ class EffectManager extends GetxController {
   List<Color>? colors = const [
     Color.fromARGB(255, 233, 30, 99),
     Color.fromARGB(255, 41, 110, 180),
-    Colors.orange
+    Colors.orange,
     // Colors.blue,
     // Colors.pink,
     // Colors.orange,

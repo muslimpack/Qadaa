@@ -209,7 +209,6 @@ class AwesomeNotificationManager {
       ),
       schedule: NotificationCalendar(
         timeZone: await AwesomeNotifications().getLocalTimeZoneIdentifier(),
-        preciseAlarm: true,
         allowWhileIdle: true,
         repeats: true,
         weekday: weekday,
@@ -260,7 +259,6 @@ class AwesomeNotificationManager {
       ),
       schedule: NotificationCalendar(
         timeZone: await AwesomeNotifications().getLocalTimeZoneIdentifier(),
-        preciseAlarm: true,
         allowWhileIdle: true,
         hour: time.hour,
         minute: time.minute,

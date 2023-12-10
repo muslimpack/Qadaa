@@ -26,7 +26,7 @@ dependencies:
   get: ^4.6.5
   hive: ^2.2.3
   hive_flutter: ^1.1.0
-  path_provider: ^2.0.15
+  path_provider: ^2.1.1
   rxdart: ^0.27.7
   sleek_circular_slider: ^2.0.1
   url_launcher: ^6.1.7
@@ -38,7 +38,7 @@ dev_dependencies:
     sdk: flutter
   flutter_test:
     sdk: flutter
-  lint: ^2.1.2
+  lint: ^2.2.0
 
 flutter_native_splash:
   android: true

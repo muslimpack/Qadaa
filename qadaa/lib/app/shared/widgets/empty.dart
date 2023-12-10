@@ -78,7 +78,7 @@ class Empty extends StatelessWidget {
             if (onButtonCLick != null)
               TextButton(onPressed: onButtonCLick, child: Text(buttonText))
             else
-              const SizedBox()
+              const SizedBox(),
           ],
         ),
       ),

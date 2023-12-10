@@ -54,7 +54,7 @@ class SecondScreenDashboard extends StatelessWidget {
               ),
               Tab(
                 text: "صوم",
-              )
+              ),
             ],
           ),
         ),

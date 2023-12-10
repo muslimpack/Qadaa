@@ -85,7 +85,7 @@ class StorageRepo {
       getDhuhr(),
       getAsr(),
       getMaghrib(),
-      getIsha()
+      getIsha(),
     ];
     prayerTimesForEach.sort();
 
@@ -98,7 +98,7 @@ class StorageRepo {
       getMaxDhuhr(),
       getMaxAsr(),
       getMaxMaghrib(),
-      getMaxIsha()
+      getMaxIsha(),
     ];
     prayerTimesForEach.sort();
     if (prayerTimesForEach.last == 0) {
