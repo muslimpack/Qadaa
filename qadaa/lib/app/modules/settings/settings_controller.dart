@@ -5,6 +5,8 @@ import 'package:qadaa/app/shared/enum/splash_background.dart';
 import 'package:qadaa/core/utils/prayer_controller.dart';
 import 'package:qadaa/core/utils/storage_repo.dart';
 
+SettingsController settingsController = SettingsController();
+
 class SettingsController extends GetxController {
   /* *************** Variables *************** */
   late TextEditingController qadaaController;
@@ -52,5 +54,12 @@ class SettingsController extends GetxController {
   void setPassCode(String passCode) {
     storageRepo.setPassCode(passCode);
     update();
+  }
+
+  Locale? get locale => storageRepo.locale;
+
+  Future changeThemeLocale(Locale locale) async {
+    await storageRepo.localeChange(locale);
+    Get.updateLocale(locale);
   }
 }

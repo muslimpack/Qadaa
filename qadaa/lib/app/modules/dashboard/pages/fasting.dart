@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:qadaa/app/modules/splash/splash_screen.dart';
+import 'package:qadaa/app/modules/splash/widgets/fasting_card.dart';
 import 'package:qadaa/app/shared/dialogs/delete_days_dialog.dart';
 import 'package:qadaa/app/shared/widgets/tile.dart';
 import 'package:qadaa/core/utils/effect_manager.dart';
 import 'package:qadaa/core/utils/prayer_controller.dart';
+import 'package:qadaa/generated/l10n.dart';
 
 class FastingPage extends StatelessWidget {
   const FastingPage({super.key});
@@ -30,7 +31,7 @@ class FastingPage extends StatelessWidget {
                 ),
                 const Divider(),
                 MyTile(
-                  title: "قضيت يومًا",
+                  title: S.of(context).done_day,
                   icon: Icons.done,
                   trailing: controller.getFasting().toString(),
                   onTap: () async {
@@ -40,7 +41,7 @@ class FastingPage extends StatelessWidget {
                   },
                 ),
                 MyTile(
-                  title: "قضيت أيامًا",
+                  title: S.of(context).done_days,
                   icon: Icons.done,
                   trailing: controller.getFasting().toString(),
                   onTap: () {
@@ -50,6 +51,7 @@ class FastingPage extends StatelessWidget {
                       context: context,
                       builder: (BuildContext context) {
                         return DeleteDaysDialog(
+                          title: S.of(context).done_days,
                           onConfirm: (value) async {
                             if (value <= 0) return;
 
@@ -64,7 +66,7 @@ class FastingPage extends StatelessWidget {
                 ),
                 const Divider(),
                 MyTile(
-                  title: "أضف يوما",
+                  title: S.of(context).add_day,
                   icon: Icons.done,
                   trailing: controller.getFasting().toString(),
                   onTap: () async {
@@ -72,7 +74,7 @@ class FastingPage extends StatelessWidget {
                   },
                 ),
                 MyTile(
-                  title: "أضف أيامًا",
+                  title: S.of(context).add_days,
                   icon: Icons.done,
                   trailing: controller.getFasting().toString(),
                   onTap: () async {
@@ -82,7 +84,7 @@ class FastingPage extends StatelessWidget {
                       context: context,
                       builder: (BuildContext context) {
                         return DeleteDaysDialog(
-                          title: "أضف أيامًا",
+                          title: S.of(context).add_days,
                           onConfirm: (value) async {
                             if (value <= 0) return;
 

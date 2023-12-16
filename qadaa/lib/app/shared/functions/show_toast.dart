@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:qadaa/generated/l10n.dart';
 
 void showToast(String message) {
   Get.snackbar(
-    "قضاء",
+    S.current.qadaa,
     message,
     icon: Padding(
       padding: const EdgeInsets.only(right: 5),

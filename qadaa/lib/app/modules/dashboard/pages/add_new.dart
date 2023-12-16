@@ -1,9 +1,13 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:qadaa/app/modules/dashboard/widgets/my_divider.dart';
+
 import 'package:qadaa/app/shared/dialogs/add_period_dialog.dart';
 import 'package:qadaa/app/shared/dialogs/add_prayers_dialog.dart';
 import 'package:qadaa/app/shared/widgets/tile.dart';
 import 'package:qadaa/core/utils/prayer_controller.dart';
+import 'package:qadaa/generated/l10n.dart';
 
 class AddNew extends StatelessWidget {
   const AddNew({super.key});
@@ -23,8 +27,9 @@ class AddNew extends StatelessWidget {
               ),
               children: [
                 const SizedBox(height: 10),
+                MyDivider(title: S.of(context).periods_title),
                 MyTile(
-                  title: "أضف مدة",
+                  title: S.of(context).custom_add_period,
                   icon: Icons.add,
                   onTap: () {
                     showModalBottomSheet(
@@ -38,7 +43,7 @@ class AddNew extends StatelessWidget {
                   },
                 ),
                 MyTile(
-                  title: "أضف يومًا",
+                  title: S.of(context).day,
                   icon: Icons.add,
                   trailing: controller.getDays().toString(),
                   onTap: () {
@@ -46,7 +51,7 @@ class AddNew extends StatelessWidget {
                   },
                 ),
                 MyTile(
-                  title: "أضف أسبوعًا",
+                  title: S.of(context).week,
                   icon: Icons.add,
                   trailing: (controller.getDays() ~/ 7).toString(),
                   onTap: () {
@@ -54,7 +59,7 @@ class AddNew extends StatelessWidget {
                   },
                 ),
                 MyTile(
-                  title: "أضف شهرًا",
+                  title: S.of(context).month,
                   icon: Icons.add,
                   trailing: (controller.getDays() ~/ 30).toString(),
                   onTap: () {
@@ -62,59 +67,16 @@ class AddNew extends StatelessWidget {
                   },
                 ),
                 MyTile(
-                  title: "أضف عامًا",
+                  title: S.of(context).year,
                   icon: Icons.add,
                   trailing: (controller.getDays() ~/ 365).toString(),
                   onTap: () {
                     controller.addYear(value: 1);
                   },
                 ),
-
-                const Divider(),
-                ////
-
+                MyDivider(title: S.of(context).prayers_title),
                 MyTile(
-                  title: "أضف صلاة فجر",
-                  icon: Icons.add,
-                  trailing: controller.getFajr().toString(),
-                  onTap: () {
-                    controller.addPrayer(fajr: 1);
-                  },
-                ),
-                MyTile(
-                  title: "أضف صلاة ظهر",
-                  icon: Icons.add,
-                  trailing: controller.getDhuhr().toString(),
-                  onTap: () {
-                    controller.addPrayer(dhuhr: 1);
-                  },
-                ),
-                MyTile(
-                  title: "أضف صلاة عصر",
-                  icon: Icons.add,
-                  trailing: controller.getAsr().toString(),
-                  onTap: () {
-                    controller.addPrayer(asr: 1);
-                  },
-                ),
-                MyTile(
-                  title: "أضف صلاة مغرب",
-                  icon: Icons.add,
-                  trailing: controller.getMaghrib().toString(),
-                  onTap: () {
-                    controller.addPrayer(maghrib: 1);
-                  },
-                ),
-                MyTile(
-                  title: "أضف صلاة عشاء",
-                  icon: Icons.add,
-                  trailing: controller.getIsha().toString(),
-                  onTap: () {
-                    controller.addPrayer(isha: 1);
-                  },
-                ),
-                MyTile(
-                  title: "أضف صلوات",
+                  title: S.of(context).custom_add_prayers,
                   icon: Icons.add,
                   trailing: controller.getAllRemainingPrayer().toString(),
                   onTap: () {
@@ -126,6 +88,46 @@ class AddNew extends StatelessWidget {
                         return const AddPrayersDialog();
                       },
                     ).then((value) {});
+                  },
+                ),
+                MyTile(
+                  title: S.of(context).fajr,
+                  icon: Icons.add,
+                  trailing: controller.getFajr().toString(),
+                  onTap: () {
+                    controller.addPrayer(fajr: 1);
+                  },
+                ),
+                MyTile(
+                  title: S.of(context).zuhr,
+                  icon: Icons.add,
+                  trailing: controller.getDhuhr().toString(),
+                  onTap: () {
+                    controller.addPrayer(dhuhr: 1);
+                  },
+                ),
+                MyTile(
+                  title: S.of(context).asr,
+                  icon: Icons.add,
+                  trailing: controller.getAsr().toString(),
+                  onTap: () {
+                    controller.addPrayer(asr: 1);
+                  },
+                ),
+                MyTile(
+                  title: S.of(context).maghrib,
+                  icon: Icons.add,
+                  trailing: controller.getMaghrib().toString(),
+                  onTap: () {
+                    controller.addPrayer(maghrib: 1);
+                  },
+                ),
+                MyTile(
+                  title: S.of(context).isha,
+                  icon: Icons.add,
+                  trailing: controller.getIsha().toString(),
+                  onTap: () {
+                    controller.addPrayer(isha: 1);
                   },
                 ),
               ],

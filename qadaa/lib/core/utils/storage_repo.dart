@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:qadaa/app/shared/enum/enum.dart';
 import 'package:qadaa/app/shared/enum/splash_background.dart';
@@ -258,5 +259,16 @@ class StorageRepo {
 
   void setPassCode(String passCode) {
     prayerBox.put("passcode", passCode);
+  }
+
+  static const String _localeKey = "locale";
+  Locale? get locale {
+    final value = prayerBox.get(_localeKey) as String?;
+    if (value == null) return null;
+    return Locale(value);
+  }
+
+  Future localeChange(Locale locale) async {
+    return prayerBox.put(_localeKey, locale.languageCode);
   }
 }

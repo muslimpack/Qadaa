@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qadaa/core/values/constant.dart';
+import 'package:qadaa/generated/l10n.dart';
 
 class YesOrNoDialog extends StatelessWidget {
   final Function() onYes;
@@ -22,13 +23,13 @@ class YesOrNoDialog extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Text(
-                "تنويه",
+                S.of(context).alert,
                 style: TextStyle(fontSize: 25, color: AppConstant.mainColor),
               ),
             ),
             const Divider(),
-            const Text(
-              "هل أنت متأكد من رغبتك بإعادة ضبط كل شئ؟",
+            Text(
+              S.of(context).sure_to_reset_everything_msg,
             ),
             const Divider(),
             Row(
@@ -36,7 +37,7 @@ class YesOrNoDialog extends StatelessWidget {
                 Expanded(
                   child: ListTile(
                     title: Text(
-                      "نعم",
+                      S.of(context).yes,
                       textAlign: TextAlign.center,
                       style:
                           TextStyle(fontSize: 20, color: AppConstant.mainColor),
@@ -50,7 +51,7 @@ class YesOrNoDialog extends StatelessWidget {
                 Expanded(
                   child: ListTile(
                     title: Text(
-                      "لا",
+                      S.of(context).no,
                       textAlign: TextAlign.center,
                       style:
                           TextStyle(fontSize: 20, color: AppConstant.mainColor),

@@ -5,6 +5,7 @@ import 'package:qadaa/app/modules/dashboard/pages/fasting.dart';
 import 'package:qadaa/app/modules/settings/settings.dart';
 import 'package:qadaa/app/shared/widgets/bouncy_page.dart';
 import 'package:qadaa/core/values/constant.dart';
+import 'package:qadaa/generated/l10n.dart';
 
 class SecondScreenDashboard extends StatelessWidget {
   const SecondScreenDashboard({super.key});
@@ -15,7 +16,7 @@ class SecondScreenDashboard extends StatelessWidget {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("قضاء"),
+          title: Text(S.of(context).qadaa),
           centerTitle: true,
           actions: [
             GestureDetector(
@@ -45,15 +46,15 @@ class SecondScreenDashboard extends StatelessWidget {
             labelStyle: const TextStyle(
               fontWeight: FontWeight.bold,
             ),
-            tabs: const <Widget>[
+            tabs: <Widget>[
               Tab(
-                text: "تم قضاءها",
+                text: S.of(context).done_prayer,
               ),
               Tab(
-                text: "فروض جديدة",
+                text: S.of(context).missed_prayer,
               ),
               Tab(
-                text: "صوم",
+                text: S.of(context).fasting,
               ),
             ],
           ),

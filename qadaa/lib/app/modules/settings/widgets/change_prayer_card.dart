@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:qadaa/app/modules/settings/settings_controller.dart';
 import 'package:qadaa/app/shared/widgets/user_text_field.dart';
+import 'package:qadaa/generated/l10n.dart';
 
 class ChangePrayersCard extends StatelessWidget {
   final SettingsController settingsController;
@@ -17,15 +18,13 @@ class ChangePrayersCard extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
-            const SizedBox(
-              child: Text(
-                "عدد صلوات القضاء اليومية",
-                textAlign: TextAlign.center,
-              ),
+            Text(
+              S.of(context).prayers_to_do_per_day,
+              textAlign: TextAlign.center,
             ),
             UserTextFieldChanged(
               controller: settingsController.qadaaController,
-              hintText: "عدد صلوات القضاء اليومية ",
+              hintText: S.of(context).prayers_to_do_per_day,
               onChange: (count) {
                 if (count.isNotEmpty) {
                   settingsController.prayersController.setQadaaEveryDay(count);

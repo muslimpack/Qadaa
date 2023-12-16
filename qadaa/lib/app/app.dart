@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:qadaa/app/modules/dashboard/app_dashboard.dart';
@@ -6,6 +7,7 @@ import 'package:qadaa/app/modules/onboarding/onboarding.dart';
 import 'package:qadaa/app/shared/functions/print.dart';
 import 'package:qadaa/app/shared/widgets/loading.dart';
 import 'package:qadaa/core/utils/storage_repo.dart';
+import 'package:qadaa/generated/l10n.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -45,15 +47,22 @@ class _MyAppState extends State<MyApp> {
     return isLoading
         ? const Loading()
         : GetMaterialApp(
-            locale: const Locale('ar'),
             debugShowCheckedModeBanner: false,
-            title: 'فوائت',
+            onGenerateTitle: (BuildContext context) => S.of(context).qadaa,
             theme: ThemeData(
               useMaterial3: true,
               brightness: Brightness.dark,
               colorSchemeSeed: Colors.pink,
               fontFamily: "Cairo",
             ),
+            localizationsDelegates: const [
+              S.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            locale: storageRepo.locale,
+            supportedLocales: S.delegate.supportedLocales,
             home: () {
               return isFirstOpen
                   ? const OnBoardingPage()

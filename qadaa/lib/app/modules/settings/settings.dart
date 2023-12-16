@@ -11,6 +11,7 @@ import 'package:qadaa/app/shared/functions/show_toast.dart';
 import 'package:qadaa/app/shared/widgets/scroll_glow_remover.dart';
 import 'package:qadaa/app/shared/widgets/tile.dart';
 import 'package:qadaa/core/values/constant.dart';
+import 'package:qadaa/generated/l10n.dart';
 
 class Settings extends StatelessWidget {
   const Settings({super.key});
@@ -18,13 +19,13 @@ class Settings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SettingsController>(
-      init: SettingsController(),
+      init: settingsController,
       builder: (controller) {
         return ScrollGlowRemover(
           child: Scaffold(
             appBar: AppBar(
               elevation: 0,
-              title: const Text("الإعدادات"),
+              title: Text(S.of(context).settings),
             ),
             body: ListView(
               padding: const EdgeInsets.only(bottom: 70).copyWith(
@@ -32,15 +33,39 @@ class Settings extends StatelessWidget {
                 right: 10,
               ),
               children: [
-                const CustomTitle(title: "قفل التطبيق"),
+                CustomTitle(title: S.of(context).app_lang),
+                ListTile(
+                  leading: const Icon(Icons.language),
+                  title: Text(S.of(context).app_lang),
+                  subtitle: Padding(
+                    padding: const EdgeInsets.only(top: 15),
+                    child: Wrap(
+                      spacing: 8.0, // Spacing between chips
+                      runSpacing: 4.0, // Spacing between rows of chips
+                      children: S.delegate.supportedLocales
+                          .map(
+                            (locale) => ChoiceChip(
+                              selected: controller.locale?.languageCode ==
+                                  locale.languageCode,
+                              label: Text(locale.languageCode),
+                              onSelected: (value) {
+                                controller.changeThemeLocale(locale);
+                              },
+                            ),
+                          )
+                          .toList(),
+                    ),
+                  ),
+                ),
+                CustomTitle(title: S.of(context).app_lock),
                 Container(
                   margin: const EdgeInsets.symmetric(horizontal: 7),
                   child: Card(
                     child: SwitchListTile(
-                      title: const ListTile(
+                      title: ListTile(
                         contentPadding: EdgeInsets.zero,
-                        leading: Icon(Icons.lock),
-                        title: Text("تفعيل قفل التطبيق"),
+                        leading: const Icon(Icons.lock),
+                        title: Text(S.of(context).activate_app_lock),
                       ),
                       activeColor: Colors.pink,
                       value: controller.isLockEnabled,
@@ -59,17 +84,22 @@ class Settings extends StatelessWidget {
                     child: Card(
                       child: ListTile(
                         leading: const Icon(Icons.password),
-                        title: const Text("اضغط لتعيين كلمة المرور"),
-                        subtitle: const Text("كلمة المرور الافتراضية: 0000"),
+                        title: Text(S.of(context).app_lock_reset_password),
+                        subtitle: Text(
+                          "${S.of(context).app_lock_default_password}: 0000",
+                        ),
                         onTap: () {
                           screenLock(
-                            title: const Text('أدخل كلمة المرور القديمة'),
+                            title:
+                                Text(S.of(context).app_lock_enter_old_password),
                             context: context,
                             correctString: controller.passCode,
                             onUnlocked: () {
                               Navigator.pop(context);
                               screenLock(
-                                title: const Text('أدخل كلمة المرور الجديدة'),
+                                title: Text(
+                                  S.of(context).app_lock_enter_new_password,
+                                ),
                                 // confirmTitle:
                                 //     const Text('أعد إدخال كلمة المرور'),
                                 context: context,
@@ -78,7 +108,9 @@ class Settings extends StatelessWidget {
                                 onValidate: (matchedText) async {
                                   controller.setPassCode(matchedText);
                                   // Navigator.pop(context);
-                                  showToast("تم إعادة تعيين كلمة المرور");
+                                  showToast(
+                                    S.of(context).app_lock_password_reset_done,
+                                  );
                                   return true;
                                 },
                               );
@@ -88,13 +120,13 @@ class Settings extends StatelessWidget {
                       ),
                     ),
                   ),
-                const CustomTitle(title: "إعدادات الصلاة"),
+                CustomTitle(title: S.of(context).prayer_Settings),
                 ChangePrayersCard(
                   settingsController: controller,
                 ),
-                const CustomTitle(title: "الواجهة"),
+                CustomTitle(title: S.of(context).ui),
                 MyTile(
-                  title: 'صفحة البدء',
+                  title: S.of(context).splash_background,
                   icon: Icons.palette_outlined,
                   onTap: () {
                     controller.toggleSplashBackground();
@@ -119,9 +151,9 @@ class Settings extends StatelessWidget {
                       ),
                     ),
                   ),
-                const CustomTitle(title: "أخرى"),
+                CustomTitle(title: S.of(context).other_settings),
                 MyTile(
-                  title: 'إعادة ضبط كل شيء',
+                  title: S.of(context).reset_everything,
                   icon: Icons.delete_forever,
                   onTap: () {
                     showModalBottomSheet(
@@ -144,16 +176,10 @@ class Settings extends StatelessWidget {
                     );
                   },
                 ),
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 7),
-                  padding: const EdgeInsets.only(bottom: 5),
-                  child: Card(
-                    child: ListTile(
-                      title: Text(
-                        'تطبيق قضاء الإصدار ${AppConstant.appVersion}',
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
+                ListTile(
+                  title: Text(
+                    '${S.of(context).version} ${AppConstant.appVersion}',
+                    textAlign: TextAlign.center,
                   ),
                 ),
               ],

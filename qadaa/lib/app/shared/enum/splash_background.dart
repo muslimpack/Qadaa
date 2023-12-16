@@ -1,4 +1,5 @@
 import 'package:qadaa/app/shared/enum/enum.dart';
+import 'package:qadaa/generated/l10n.dart';
 
 enum SplashBackGroundEnum {
   randomImage,
@@ -25,11 +26,11 @@ extension SplashBackGroundExt on SplashBackGroundEnum {
   String toArabic() {
     switch (this) {
       case SplashBackGroundEnum.randomImage:
-        return "صورة عشوائية";
+        return S.current.splash_random_image;
       case SplashBackGroundEnum.staticColor:
-        return "لون ثابت";
+        return S.current.splash_static_color;
       case SplashBackGroundEnum.staticImage:
-        return "صورة ثابتة";
+        return S.current.splash_static_image;
     }
   }
 }

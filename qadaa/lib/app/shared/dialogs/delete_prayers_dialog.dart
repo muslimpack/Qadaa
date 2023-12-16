@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:qadaa/app/shared/widgets/user_text_field.dart';
 import 'package:qadaa/core/utils/prayer_controller.dart';
 import 'package:qadaa/core/values/constant.dart';
+import 'package:qadaa/generated/l10n.dart';
 
 class DeletePrayersDialog extends StatefulWidget {
   const DeletePrayersDialog({super.key});
@@ -35,7 +36,7 @@ class _DeletePrayersDialogState extends State<DeletePrayersDialog> {
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Text(
-                    "قضيت صلوات",
+                    S.of(context).make_up_missed_prayers,
                     style:
                         TextStyle(fontSize: 25, color: AppConstant.mainColor),
                   ),
@@ -43,28 +44,28 @@ class _DeletePrayersDialogState extends State<DeletePrayersDialog> {
                 const Divider(),
                 UserTextField(
                   controller: fajrController,
-                  hintText: "صلوات الفجر",
+                  hintText: S.of(context).fajr,
                 ),
                 UserTextField(
                   controller: dhuhrController,
-                  hintText: "صلوات الظهر",
+                  hintText: S.of(context).zuhr,
                 ),
                 UserTextField(
                   controller: asrController,
-                  hintText: "صلوات العصر",
+                  hintText: S.of(context).asr,
                 ),
                 UserTextField(
                   controller: maghribController,
-                  hintText: "صلوات المغرب",
+                  hintText: S.of(context).maghrib,
                 ),
                 UserTextField(
                   controller: ishaController,
-                  hintText: "صلوات العشاء",
+                  hintText: S.of(context).isha,
                 ),
                 const Divider(),
                 ListTile(
                   title: Text(
-                    "تم",
+                    S.of(context).done,
                     textAlign: TextAlign.center,
                     style:
                         TextStyle(fontSize: 20, color: AppConstant.mainColor),

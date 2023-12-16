@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:qadaa/app/modules/dashboard/widgets/my_divider.dart';
 import 'package:qadaa/app/shared/dialogs/delete_days_dialog.dart';
 import 'package:qadaa/app/shared/dialogs/delete_prayers_dialog.dart';
 import 'package:qadaa/app/shared/enum/sound_type.dart';
@@ -7,6 +8,7 @@ import 'package:qadaa/app/shared/functions/random_notification.dart';
 import 'package:qadaa/app/shared/widgets/tile.dart';
 import 'package:qadaa/core/utils/effect_manager.dart';
 import 'package:qadaa/core/utils/prayer_controller.dart';
+import 'package:qadaa/generated/l10n.dart';
 
 class Done extends StatelessWidget {
   const Done({super.key});
@@ -27,8 +29,9 @@ class Done extends StatelessWidget {
               ),
               children: [
                 const SizedBox(height: 10),
+                MyDivider(title: S.of(context).periods_done_title),
                 MyTile(
-                  title: "قضيت يومًا",
+                  title: S.of(context).day,
                   icon: Icons.done,
                   trailing: controller.getDays().toString(),
                   onTap: () async {
@@ -42,7 +45,7 @@ class Done extends StatelessWidget {
                   },
                 ),
                 MyTile(
-                  title: "قضيت أيامًا",
+                  title: S.of(context).days,
                   icon: Icons.done,
                   trailing: controller.getDays().toString(),
                   onTap: () {
@@ -52,6 +55,7 @@ class Done extends StatelessWidget {
                       context: context,
                       builder: (BuildContext context) {
                         return DeleteDaysDialog(
+                          title: S.of(context).done_days,
                           onConfirm: (value) async {
                             if (value <= 0) return;
 
@@ -71,9 +75,9 @@ class Done extends StatelessWidget {
                     );
                   },
                 ),
-                const Divider(),
+                MyDivider(title: S.of(context).prayers_done_title),
                 MyTile(
-                  title: "قضيت صلاة فجر",
+                  title: S.of(context).fajr,
                   icon: Icons.done,
                   trailing: controller.getFajr().toString(),
                   onTap: () async {
@@ -86,7 +90,7 @@ class Done extends StatelessWidget {
                   },
                 ),
                 MyTile(
-                  title: "قضيت صلاة ظهر",
+                  title: S.of(context).zuhr,
                   icon: Icons.done,
                   trailing: controller.getDhuhr().toString(),
                   onTap: () async {
@@ -99,7 +103,7 @@ class Done extends StatelessWidget {
                   },
                 ),
                 MyTile(
-                  title: "قضيت صلاة عصر",
+                  title: S.of(context).asr,
                   icon: Icons.done,
                   trailing: controller.getAsr().toString(),
                   onTap: () async {
@@ -112,7 +116,7 @@ class Done extends StatelessWidget {
                   },
                 ),
                 MyTile(
-                  title: "قضيت صلاة مغرب",
+                  title: S.of(context).maghrib,
                   icon: Icons.done,
                   trailing: controller.getMaghrib().toString(),
                   onTap: () async {
@@ -125,7 +129,7 @@ class Done extends StatelessWidget {
                   },
                 ),
                 MyTile(
-                  title: "قضيت صلاة عشاء",
+                  title: S.of(context).isha,
                   icon: Icons.done,
                   trailing: controller.getIsha().toString(),
                   onTap: () async {
@@ -138,7 +142,7 @@ class Done extends StatelessWidget {
                   },
                 ),
                 MyTile(
-                  title: "قضيت صلوات",
+                  title: S.of(context).custom_done_prayers,
                   icon: Icons.done,
                   trailing: controller.getAllRemainingPrayer().toString(),
                   onTap: () {

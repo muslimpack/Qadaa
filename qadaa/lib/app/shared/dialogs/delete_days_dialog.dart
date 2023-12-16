@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:qadaa/app/shared/widgets/user_text_field.dart';
 import 'package:qadaa/core/utils/prayer_controller.dart';
 import 'package:qadaa/core/values/constant.dart';
+import 'package:qadaa/generated/l10n.dart';
 
 class DeleteDaysDialog extends StatefulWidget {
   final ValueChanged<int> onConfirm;
@@ -12,7 +13,7 @@ class DeleteDaysDialog extends StatefulWidget {
   const DeleteDaysDialog({
     super.key,
     required this.onConfirm,
-    this.title = "قضيت أياما",
+    required this.title,
   });
 
   @override
@@ -47,12 +48,12 @@ class _DeleteDaysDialogState extends State<DeleteDaysDialog> {
                 const Divider(),
                 UserTextField(
                   controller: daysController,
-                  hintText: "عدد الأيام",
+                  hintText: S.of(context).days,
                 ),
                 const Divider(),
                 ListTile(
                   title: Text(
-                    "تم",
+                    S.of(context).done,
                     textAlign: TextAlign.center,
                     style:
                         TextStyle(fontSize: 20, color: AppConstant.mainColor),

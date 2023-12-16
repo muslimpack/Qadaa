@@ -6,6 +6,7 @@ import 'package:qadaa/app/shared/functions/open_url.dart';
 import 'package:qadaa/app/shared/widgets/empty.dart';
 import 'package:qadaa/core/utils/storage_repo.dart';
 import 'package:qadaa/core/values/constant.dart';
+import 'package:qadaa/generated/l10n.dart';
 
 class OnBoardingController extends GetxController {
   /* *************** Variables *************** */
@@ -21,26 +22,16 @@ class OnBoardingController extends GetxController {
   //TODO edit every release
   final pageList = [
     Empty(
-      title: "قضاء الإصدار ${AppConstant.appVersion}",
+      title: "${S.current.qadaa} ${AppConstant.appVersion}",
       description: '''
 أهلا بك أيها الموفق في هذا الإصدار الجديد من قضاء 
 قم بتقليب الصفحات لرؤية الميزات الجديدة 
 ''',
     ),
-    const Empty(
+    Empty(
       isImage: false,
-      icon: Icons.done_all_outlined,
-      title: "إضافة قضاء للصوم",
-    ),
-    const Empty(
-      isImage: false,
-      icon: Icons.image_outlined,
-      title: "إمكانية تحديد صورة ثابتة للشاشة الرئيسية",
-    ),
-    const Empty(
-      isImage: false,
-      icon: Icons.brush_outlined,
-      title: "بعض التحسينات",
+      icon: Icons.translate,
+      title: S.current.app_lang,
     ),
     Empty(
       imagePath: "assets/images/rukia.png",
@@ -59,7 +50,7 @@ class OnBoardingController extends GetxController {
           "https://play.google.com/store/apps/details?id=com.hassaneltantawy.ruqayyah",
         ),
       },
-      buttonText: "افتح متجر بلاي",
+      buttonText: S.current.open_in_google_play,
     ),
   ];
 

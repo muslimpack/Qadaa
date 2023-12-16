@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:qadaa/app/shared/functions/print.dart';
 import 'package:qadaa/core/utils/storage_repo.dart';
+import 'package:qadaa/generated/l10n.dart';
 
 class PrayersController extends GetxController {
   bool isLoading = true;
@@ -137,12 +138,12 @@ class PrayersController extends GetxController {
     final Duration difference = dueDate.difference(DateTime.now());
 
     if (getAllRemainingPrayer() == 0) {
-      return "لا قضاء عليك";
+      return S.current.no_missed_prayer;
     } else {
       if ((difference.inHours / 24).round() == 0) {
-        return "موعد انتهاء القضاء:\n اليوم إن شاء الله";
+        return "${S.current.completion_date}:\n ${S.current.today}";
       } else {
-        return 'موعد انتهاء القضاء:\n ${dueDate.day} / ${dueDate.month} / ${dueDate.year}';
+        return '${S.current.completion_date}:\n ${dueDate.day} / ${dueDate.month} / ${dueDate.year}';
       }
     }
   }
@@ -160,9 +161,9 @@ class PrayersController extends GetxController {
     final Duration difference = dueDate.difference(toDay);
     qadaaPrint(difference);
     if (difference.inDays == 0) {
-      return "لا قضاء عليك";
+      return S.current.no_missed_prayer;
     } else {
-      return 'موعد انتهاء القضاء: ${dueDate.day} / ${dueDate.month} / ${dueDate.year}';
+      return '${S.current.completion_date}: ${dueDate.day} / ${dueDate.month} / ${dueDate.year}';
     }
   }
 

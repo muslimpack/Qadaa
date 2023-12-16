@@ -1,19 +1,17 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:qadaa/app/modules/splash/gradient_linear_progress_indicator.dart';
 import 'package:qadaa/app/modules/splash/splash_controller.dart';
-import 'package:qadaa/app/shared/enum/sound_type.dart';
+import 'package:qadaa/app/modules/splash/widgets/fasting_card.dart';
+import 'package:qadaa/app/modules/splash/widgets/single_prayer_circle_indicator.dart';
+
 import 'package:qadaa/app/shared/enum/splash_background.dart';
-import 'package:qadaa/app/shared/functions/print.dart';
 import 'package:qadaa/app/shared/widgets/custom_sleek.dart';
-import 'package:qadaa/core/utils/effect_manager.dart';
-import 'package:qadaa/core/utils/prayer_controller.dart';
 import 'package:qadaa/core/utils/storage_repo.dart';
 import 'package:qadaa/core/values/constant.dart';
+import 'package:qadaa/generated/l10n.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -65,7 +63,7 @@ class SplashScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 20),
                     CircleIndicator(
-                      title: "الأيام المتبقية",
+                      title: S.of(context).remaining_days,
                       initialValue: controller.prayersController.getDays(),
                       max: controller.prayersController.getDaysMax(),
                       onTap: () async {
@@ -89,7 +87,7 @@ class SplashScreen extends StatelessWidget {
                         SinglePrayCircleIndicator(
                           size: size,
                           controller: controller,
-                          title: "الفجر",
+                          title: S.of(context).fajr,
                           initialValue: controller.prayersController.getFajr(),
                           max: controller.prayersController.getMaxFajr(),
                           onTap: () {
@@ -102,7 +100,7 @@ class SplashScreen extends StatelessWidget {
                         SinglePrayCircleIndicator(
                           size: size,
                           controller: controller,
-                          title: "الظهر",
+                          title: S.of(context).zuhr,
                           initialValue: controller.prayersController.getDhuhr(),
                           max: controller.prayersController.getMaxDhuhr(),
                           onTap: () {
@@ -120,7 +118,7 @@ class SplashScreen extends StatelessWidget {
                         SinglePrayCircleIndicator(
                           size: size,
                           controller: controller,
-                          title: "العصر",
+                          title: S.of(context).asr,
                           initialValue: controller.prayersController.getAsr(),
                           max: controller.prayersController.getMaxAsr(),
                           onTap: () {
@@ -133,7 +131,7 @@ class SplashScreen extends StatelessWidget {
                         SinglePrayCircleIndicator(
                           size: size,
                           controller: controller,
-                          title: "المغرب",
+                          title: S.of(context).maghrib,
                           initialValue:
                               controller.prayersController.getMaghrib(),
                           max: controller.prayersController.getMaxMaghrib(),
@@ -147,7 +145,7 @@ class SplashScreen extends StatelessWidget {
                         SinglePrayCircleIndicator(
                           size: size,
                           controller: controller,
-                          title: "العشاء",
+                          title: S.of(context).isha,
                           initialValue: controller.prayersController.getIsha(),
                           max: controller.prayersController.getMaxIsha(),
                           onTap: () {
@@ -189,137 +187,6 @@ class SplashScreen extends StatelessWidget {
           ),
         );
       },
-    );
-  }
-}
-
-class FastingCard extends StatelessWidget {
-  final Function() onUpdate;
-  const FastingCard({
-    super.key,
-    required this.onUpdate,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final EffectManager effectManager = Get.put(EffectManager());
-    final PrayersController prayersController = Get.put(PrayersController());
-    return GestureDetector(
-      onTap: () async {
-        prayersController.addFasting(days: -1);
-        qadaaPrint("GestureDetector");
-        await effectManager.playConfetti();
-        onUpdate.call();
-      },
-      onLongPress: () {
-        prayersController.addFasting(days: 1);
-        onUpdate.call();
-      },
-      child: Card(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    "الصوم:",
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.white,
-                      height: 2,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    "${prayersController.fastingDifference().inDays} أيام",
-                    style: const TextStyle(
-                      fontSize: 15,
-                      color: Colors.white,
-                      height: 2,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-              Text(
-                prayersController.getFastingEndDateText(),
-                style: const TextStyle(
-                  fontSize: 15,
-                  color: Colors.white,
-                  height: 2,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 20),
-              GradientLinearProgressIndicator(
-                progressValue: prayersController.getFasting() /
-                    prayersController.getMaxFasting(),
-                height: 10,
-                trackHeight: 5,
-                backgroundColor: Colors.blue.shade100,
-                borderRadius: BorderRadius.circular(10),
-                gradient: LinearGradient(
-                  colors: [
-                    Colors.blue,
-                    AppConstant.mainColor,
-                  ], // Replace with your desired gradient colors.
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class SinglePrayCircleIndicator extends StatelessWidget {
-  final Size size;
-  final double sizeFactor;
-  final String title;
-  final int initialValue;
-  final int max;
-  final Function() onTap;
-  final Function() onLongTap;
-  final SplashController controller;
-  const SinglePrayCircleIndicator({
-    super.key,
-    required this.size,
-    this.sizeFactor = .3,
-    required this.title,
-    required this.initialValue,
-    required this.max,
-    required this.onTap,
-    required this.onLongTap,
-    required this.controller,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: CircleIndicator(
-        title: title,
-        initialValue: initialValue,
-        max: max,
-        onTap: () async {
-          onTap();
-
-          await controller.effectManager.playConfetti(
-            alignment: Alignment.center,
-            soundType: SoundType.small,
-          );
-          controller.update();
-        },
-        size: size.width * .3,
-        tFontSize: 15,
-        vFontSize: 15,
-        onLongTap: () {
-          onLongTap();
-          controller.update();
-        },
-      ),
     );
   }
 }

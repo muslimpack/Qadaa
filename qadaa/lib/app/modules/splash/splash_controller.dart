@@ -11,7 +11,7 @@ import 'package:wakelock/wakelock.dart';
 class SplashController extends GetxController {
   /* *************** Variables *************** */
   final EffectManager effectManager = Get.put(EffectManager());
-  final SettingsController settingsController = Get.put(SettingsController());
+  final SettingsController mySettingsController = Get.put(settingsController);
   final PrayersController prayersController = Get.put(PrayersController());
   SplashBackGroundEnum? splashBackGroundEnum;
   static final _random = Random();
@@ -31,7 +31,7 @@ class SplashController extends GetxController {
 
     rMsg = _random.nextInt(AppConstant.splashMsg.length);
 
-    splashBackGroundEnum = settingsController.getSplashBackground();
+    splashBackGroundEnum = mySettingsController.getSplashBackground();
 
     Wakelock.enable();
     update();

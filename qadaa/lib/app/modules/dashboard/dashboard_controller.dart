@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screen_lock/flutter_screen_lock.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
+import 'package:qadaa/generated/l10n.dart';
 
 class AppDashboardController extends GetxController {
   /* *************** Variables *************** */
@@ -19,7 +20,7 @@ class AppDashboardController extends GetxController {
     if (isAppLocked) {
       screenLock(
         context: Get.context!,
-        title: const Text("أدخل كلمة المرور"),
+        title: Text(S.current.enter_password),
         config: ScreenLockConfig(
           backgroundColor: Theme.of(Get.context!).scaffoldBackgroundColor,
         ),

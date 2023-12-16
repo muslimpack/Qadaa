@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:qadaa/app/modules/onboarding/onboarding_controller.dart';
 import 'package:qadaa/app/shared/widgets/round_button.dart';
 import 'package:qadaa/app/shared/widgets/scroll_glow_custom.dart';
+import 'package:qadaa/generated/l10n.dart';
 
 class OnBoardingPage extends StatelessWidget {
   const OnBoardingPage({super.key});
@@ -62,9 +63,9 @@ class OnBoardingPage extends StatelessWidget {
                     Expanded(
                       child: RoundButton(
                         radius: 10,
-                        text: const Text(
-                          "بدء",
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                        text: Text(
+                          S.of(context).start,
+                          style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                         onTap: () {
                           controller.goToDashboard();
@@ -78,9 +79,11 @@ class OnBoardingPage extends StatelessWidget {
                             child: RoundButton(
                               radius: 10,
                               isTransparent: true,
-                              text: const Text(
-                                "تخط",
-                                style: TextStyle(fontWeight: FontWeight.bold),
+                              text: Text(
+                                S.of(context).skip,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                               onTap: () {
                                 controller.goToDashboard();

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:qadaa/app/shared/widgets/user_text_field.dart';
 import 'package:qadaa/core/utils/prayer_controller.dart';
 import 'package:qadaa/core/values/constant.dart';
+import 'package:qadaa/generated/l10n.dart';
 
 class AddPeriodDialog extends StatefulWidget {
   const AddPeriodDialog({super.key});
@@ -34,7 +35,7 @@ class _AddPeriodDialogState extends State<AddPeriodDialog> {
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Text(
-                    "أضف مدة",
+                    S.of(context).custom_add_period,
                     style:
                         TextStyle(fontSize: 25, color: AppConstant.mainColor),
                   ),
@@ -42,20 +43,20 @@ class _AddPeriodDialogState extends State<AddPeriodDialog> {
                 const Divider(),
                 UserTextField(
                   controller: yearsController,
-                  hintText: "عدد الأعوام",
+                  hintText: S.of(context).year,
                 ),
                 UserTextField(
                   controller: monthsController,
-                  hintText: "عدد الشهور",
+                  hintText: S.of(context).month,
                 ),
                 UserTextField(
                   controller: daysController,
-                  hintText: "عدد الأيام",
+                  hintText: S.of(context).day,
                 ),
                 const Divider(),
                 ListTile(
                   title: Text(
-                    "أضف",
+                    S.of(context).add,
                     textAlign: TextAlign.center,
                     style:
                         TextStyle(fontSize: 20, color: AppConstant.mainColor),
