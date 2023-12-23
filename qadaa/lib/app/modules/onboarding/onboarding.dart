@@ -47,7 +47,6 @@ class OnBoardingPage extends StatelessWidget {
               child: Row(
                 children: [
                   Expanded(
-                    flex: 3,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: List.generate(
@@ -60,35 +59,31 @@ class OnBoardingPage extends StatelessWidget {
                     ),
                   ),
                   if (controller.isFinalPage)
-                    Expanded(
-                      child: RoundButton(
-                        radius: 10,
-                        text: Text(
-                          S.of(context).start,
-                          style: const TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        onTap: () {
-                          controller.goToDashboard();
-                        },
+                    RoundButton(
+                      radius: 10,
+                      text: Text(
+                        S.of(context).start,
+                        style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
+                      onTap: () {
+                        controller.goToDashboard();
+                      },
                     )
                   else
                     !controller.showSkipBtn
                         ? const SizedBox()
-                        : Expanded(
-                            child: RoundButton(
-                              radius: 10,
-                              isTransparent: true,
-                              text: Text(
-                                S.of(context).skip,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
+                        : RoundButton(
+                            radius: 10,
+                            isTransparent: true,
+                            text: Text(
+                              S.of(context).skip,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
                               ),
-                              onTap: () {
-                                controller.goToDashboard();
-                              },
                             ),
+                            onTap: () {
+                              controller.goToDashboard();
+                            },
                           ),
                 ],
               ),
