@@ -100,7 +100,7 @@ class SplashScreen extends StatelessWidget {
                         SinglePrayCircleIndicator(
                           size: size,
                           controller: controller,
-                          title: S.of(context).zuhr,
+                          title: S.of(context).dhuhr,
                           initialValue: controller.prayersController.getDhuhr(),
                           max: controller.prayersController.getMaxDhuhr(),
                           onTap: () {
@@ -145,7 +145,7 @@ class SplashScreen extends StatelessWidget {
                         SinglePrayCircleIndicator(
                           size: size,
                           controller: controller,
-                          title: S.of(context).isha,
+                          title: S.of(context).ishaa,
                           initialValue: controller.prayersController.getIsha(),
                           max: controller.prayersController.getMaxIsha(),
                           onTap: () {

@@ -90,7 +90,7 @@ class Done extends StatelessWidget {
                   },
                 ),
                 MyTile(
-                  title: S.of(context).zuhr,
+                  title: S.of(context).dhuhr,
                   icon: Icons.done,
                   trailing: controller.getDhuhr().toString(),
                   onTap: () async {
@@ -129,7 +129,7 @@ class Done extends StatelessWidget {
                   },
                 ),
                 MyTile(
-                  title: S.of(context).isha,
+                  title: S.of(context).ishaa,
                   icon: Icons.done,
                   trailing: controller.getIsha().toString(),
                   onTap: () async {

@@ -54,7 +54,7 @@ class SecondScreenDashboard extends StatelessWidget {
                 text: S.of(context).missed_prayer,
               ),
               Tab(
-                text: S.of(context).fasting,
+                text: S.of(context).fast,
               ),
             ],
           ),

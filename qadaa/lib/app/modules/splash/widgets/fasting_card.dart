@@ -39,7 +39,7 @@ class FastingCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    S.of(context).fasting,
+                    S.of(context).fast,
                     style: const TextStyle(
                       fontSize: 15,
                       color: Colors.white,

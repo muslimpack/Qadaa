@@ -80,11 +80,11 @@ class S {
     );
   }
 
-  /// `Zuhr`
-  String get zuhr {
+  /// `Dhuhr`
+  String get dhuhr {
     return Intl.message(
-      'Zuhr',
-      name: 'zuhr',
+      'Dhuhr',
+      name: 'dhuhr',
       desc: '',
       args: [],
     );
@@ -110,21 +110,21 @@ class S {
     );
   }
 
-  /// `Isha`
-  String get isha {
+  /// `Ishaa`
+  String get ishaa {
     return Intl.message(
-      'Isha',
-      name: 'isha',
+      'Ishaa',
+      name: 'ishaa',
       desc: '',
       args: [],
     );
   }
 
-  /// `Fasting`
-  String get fasting {
+  /// `Fast`
+  String get fast {
     return Intl.message(
-      'Fasting',
-      name: 'fasting',
+      'Fast',
+      name: 'fast',
       desc: '',
       args: [],
     );
@@ -210,20 +210,20 @@ class S {
     );
   }
 
-  /// `Add Periods`
+  /// `Add Time`
   String get periods_title {
     return Intl.message(
-      'Add Periods',
+      'Add Time',
       name: 'periods_title',
       desc: '',
       args: [],
     );
   }
 
-  /// `Periods`
+  /// `Time`
   String get periods_done_title {
     return Intl.message(
-      'Periods',
+      'Time',
       name: 'periods_done_title',
       desc: '',
       args: [],

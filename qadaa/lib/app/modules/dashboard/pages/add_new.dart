@@ -99,7 +99,7 @@ class AddNew extends StatelessWidget {
                   },
                 ),
                 MyTile(
-                  title: S.of(context).zuhr,
+                  title: S.of(context).dhuhr,
                   icon: Icons.add,
                   trailing: controller.getDhuhr().toString(),
                   onTap: () {
@@ -123,7 +123,7 @@ class AddNew extends StatelessWidget {
                   },
                 ),
                 MyTile(
-                  title: S.of(context).isha,
+                  title: S.of(context).ishaa,
                   icon: Icons.add,
                   trailing: controller.getIsha().toString(),
                   onTap: () {

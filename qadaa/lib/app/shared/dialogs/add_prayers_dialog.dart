@@ -48,7 +48,7 @@ class _AddPrayersDialogState extends State<AddPrayersDialog> {
                 ),
                 UserTextField(
                   controller: dhuhrController,
-                  hintText: S.of(context).zuhr,
+                  hintText: S.of(context).dhuhr,
                 ),
                 UserTextField(
                   controller: asrController,
@@ -60,7 +60,7 @@ class _AddPrayersDialogState extends State<AddPrayersDialog> {
                 ),
                 UserTextField(
                   controller: ishaController,
-                  hintText: S.of(context).isha,
+                  hintText: S.of(context).ishaa,
                 ),
                 const Divider(),
                 ListTile(

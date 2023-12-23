@@ -53,6 +53,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Custom Done Prayers"),
         "day": MessageLookupByLibrary.simpleMessage("Day"),
         "days": MessageLookupByLibrary.simpleMessage("Days"),
+        "dhuhr": MessageLookupByLibrary.simpleMessage("Dhuhr"),
         "done": MessageLookupByLibrary.simpleMessage("Done"),
         "done_day": MessageLookupByLibrary.simpleMessage("Done Day"),
         "done_days": MessageLookupByLibrary.simpleMessage("Done Days"),
@@ -60,8 +61,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "enter_password":
             MessageLookupByLibrary.simpleMessage("Enter Password"),
         "fajr": MessageLookupByLibrary.simpleMessage("Fajr"),
-        "fasting": MessageLookupByLibrary.simpleMessage("Fasting"),
-        "isha": MessageLookupByLibrary.simpleMessage("Isha"),
+        "fast": MessageLookupByLibrary.simpleMessage("Fast"),
+        "ishaa": MessageLookupByLibrary.simpleMessage("Ishaa"),
         "maghrib": MessageLookupByLibrary.simpleMessage("Maghrib"),
         "make_up_missed_prayers":
             MessageLookupByLibrary.simpleMessage("Make up Missed Prayers"),
@@ -74,8 +75,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "open_in_google_play":
             MessageLookupByLibrary.simpleMessage("Open in Google Play"),
         "other_settings": MessageLookupByLibrary.simpleMessage("others"),
-        "periods_done_title": MessageLookupByLibrary.simpleMessage("Periods"),
-        "periods_title": MessageLookupByLibrary.simpleMessage("Add Periods"),
+        "periods_done_title": MessageLookupByLibrary.simpleMessage("Time"),
+        "periods_title": MessageLookupByLibrary.simpleMessage("Add Time"),
         "prayer_Settings":
             MessageLookupByLibrary.simpleMessage("Prayer Settings"),
         "prayers_done_title": MessageLookupByLibrary.simpleMessage("Prayers"),
@@ -105,7 +106,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "version": MessageLookupByLibrary.simpleMessage("Version"),
         "week": MessageLookupByLibrary.simpleMessage("Week"),
         "year": MessageLookupByLibrary.simpleMessage("Year"),
-        "yes": MessageLookupByLibrary.simpleMessage("Yes"),
-        "zuhr": MessageLookupByLibrary.simpleMessage("Zuhr")
+        "yes": MessageLookupByLibrary.simpleMessage("Yes")
       };
 }

@@ -49,6 +49,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("قضيت صلوات"),
         "day": MessageLookupByLibrary.simpleMessage("يوم"),
         "days": MessageLookupByLibrary.simpleMessage("أيام"),
+        "dhuhr": MessageLookupByLibrary.simpleMessage("ظهر"),
         "done": MessageLookupByLibrary.simpleMessage("قضاء"),
         "done_day": MessageLookupByLibrary.simpleMessage("قضيت يوما"),
         "done_days": MessageLookupByLibrary.simpleMessage("قضيت أياما"),
@@ -56,8 +57,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "enter_password":
             MessageLookupByLibrary.simpleMessage("أدخل كلمة السر"),
         "fajr": MessageLookupByLibrary.simpleMessage("فجر"),
-        "fasting": MessageLookupByLibrary.simpleMessage("الصوم"),
-        "isha": MessageLookupByLibrary.simpleMessage("عشاء"),
+        "fast": MessageLookupByLibrary.simpleMessage("الصوم"),
+        "ishaa": MessageLookupByLibrary.simpleMessage("عشاء"),
         "maghrib": MessageLookupByLibrary.simpleMessage("مغرب"),
         "make_up_missed_prayers":
             MessageLookupByLibrary.simpleMessage("قضاء الصلوات الفائتة"),
@@ -100,7 +101,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "version": MessageLookupByLibrary.simpleMessage("إصدار"),
         "week": MessageLookupByLibrary.simpleMessage("أسبوع"),
         "year": MessageLookupByLibrary.simpleMessage("سنة"),
-        "yes": MessageLookupByLibrary.simpleMessage("نعم"),
-        "zuhr": MessageLookupByLibrary.simpleMessage("ظهر")
+        "yes": MessageLookupByLibrary.simpleMessage("نعم")
       };
 }
