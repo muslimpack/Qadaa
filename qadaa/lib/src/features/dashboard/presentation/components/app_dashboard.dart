@@ -1,8 +1,8 @@
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:qadaa/core/utils/effect_manager.dart';
 import 'package:qadaa/src/core/constants/constant.dart';
+import 'package:qadaa/src/core/managers/effect_manager.dart';
 import 'package:qadaa/src/core/shared/scroll_glow_remover.dart';
 import 'package:qadaa/src/features/dashboard/presentation/components/dashboard_controller.dart';
 import 'package:qadaa/src/features/dashboard/presentation/components/second_screen_dashboard.dart';

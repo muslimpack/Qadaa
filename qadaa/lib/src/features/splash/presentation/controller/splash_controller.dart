@@ -1,11 +1,11 @@
 import 'dart:math';
 
 import 'package:get/get.dart';
-import 'package:qadaa/app/shared/enum/splash_background.dart';
-import 'package:qadaa/core/utils/effect_manager.dart';
-import 'package:qadaa/core/utils/prayer_controller.dart';
-import 'package:qadaa/core/utils/storage_repo.dart';
 import 'package:qadaa/src/core/constants/constant.dart';
+import 'package:qadaa/src/core/enum/splash_background.dart';
+import 'package:qadaa/src/core/managers/effect_manager.dart';
+import 'package:qadaa/src/core/managers/prayer_controller.dart';
+import 'package:qadaa/src/core/managers/storage_repo.dart';
 import 'package:qadaa/src/features/settings/presentation/controller/settings_controller.dart';
 import 'package:wakelock/wakelock.dart';
 

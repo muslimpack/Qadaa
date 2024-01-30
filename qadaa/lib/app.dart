@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
-import 'package:qadaa/app/shared/functions/print.dart';
-import 'package:qadaa/core/utils/storage_repo.dart';
 import 'package:qadaa/generated/l10n.dart';
+import 'package:qadaa/src/core/managers/storage_repo.dart';
 import 'package:qadaa/src/core/shared/loading.dart';
+import 'package:qadaa/src/core/utils/print.dart';
 import 'package:qadaa/src/features/dashboard/presentation/components/app_dashboard.dart';
 import 'package:qadaa/src/features/onboarding/presentation/screens/onboarding.dart';
 

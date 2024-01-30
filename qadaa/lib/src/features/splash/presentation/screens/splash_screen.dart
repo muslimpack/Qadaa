@@ -2,10 +2,10 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:qadaa/app/shared/enum/splash_background.dart';
-import 'package:qadaa/core/utils/storage_repo.dart';
 import 'package:qadaa/generated/l10n.dart';
 import 'package:qadaa/src/core/constants/constant.dart';
+import 'package:qadaa/src/core/enum/splash_background.dart';
+import 'package:qadaa/src/core/managers/storage_repo.dart';
 import 'package:qadaa/src/core/shared/custom_sleek.dart';
 import 'package:qadaa/src/features/splash/presentation/components/fasting_card.dart';
 import 'package:qadaa/src/features/splash/presentation/components/single_prayer_circle_indicator.dart';

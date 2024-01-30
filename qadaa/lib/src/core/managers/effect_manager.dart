@@ -3,7 +3,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:qadaa/app/shared/enum/sound_type.dart';
+import 'package:qadaa/src/core/enum/sound_type.dart';
 
 class EffectManager extends GetxController {
   /* *************** Variables *************** */

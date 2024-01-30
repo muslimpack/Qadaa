@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
-import 'package:qadaa/app/shared/functions/print.dart';
-import 'package:qadaa/core/utils/awesome_notification_manager.dart';
-import 'package:qadaa/core/utils/storage_repo.dart';
+import 'package:qadaa/src/core/managers/awesome_notification_manager.dart';
+import 'package:qadaa/src/core/managers/storage_repo.dart';
+import 'package:qadaa/src/core/utils/print.dart';
 
 Future<void> initServices() async {
   //Make sure all stuff are initialized
   WidgetsFlutterBinding.ensureInitialized();
 
   try {
-    //Hive Initialize
+    //Hive Initializes
     final appDocumentDirectory =
         await path_provider.getApplicationDocumentsDirectory();
     Hive.init(appDocumentDirectory.path);

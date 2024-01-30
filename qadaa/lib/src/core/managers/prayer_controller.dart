@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import 'package:qadaa/app/shared/functions/print.dart';
-import 'package:qadaa/core/utils/storage_repo.dart';
 import 'package:qadaa/generated/l10n.dart';
+import 'package:qadaa/src/core/managers/storage_repo.dart';
+import 'package:qadaa/src/core/utils/print.dart';
 
 class PrayersController extends GetxController {
   bool isLoading = true;

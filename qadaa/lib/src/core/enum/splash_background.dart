@@ -1,5 +1,5 @@
-import 'package:qadaa/app/shared/enum/enum.dart';
 import 'package:qadaa/generated/l10n.dart';
+import 'package:qadaa/src/core/enum/enum.dart';
 
 enum SplashBackGroundEnum {
   randomImage,

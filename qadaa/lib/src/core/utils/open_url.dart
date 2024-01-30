@@ -1,4 +1,4 @@
-import 'package:qadaa/app/shared/functions/print.dart';
+import 'package:qadaa/src/core/utils/print.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 Future<void> openURL(String url) async {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qadaa/app.dart';
-import 'package:qadaa/app/services.dart';
+import 'package:qadaa/services.dart';
 
 void main() async {
   await initServices();
