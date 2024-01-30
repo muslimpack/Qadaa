@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screen_lock/flutter_screen_lock.dart';
 import 'package:get/get.dart';
-import 'package:qadaa/app/modules/settings/settings_controller.dart';
-import 'package:qadaa/app/modules/settings/widgets/change_prayer_card.dart';
-import 'package:qadaa/app/modules/settings/widgets/custom_title.dart';
-import 'package:qadaa/app/modules/settings/widgets/splash_background_gallery.dart';
 import 'package:qadaa/app/shared/dialogs/yes__no_popup.dart';
 import 'package:qadaa/app/shared/enum/splash_background.dart';
 import 'package:qadaa/app/shared/functions/show_toast.dart';
@@ -12,6 +8,10 @@ import 'package:qadaa/app/shared/widgets/scroll_glow_remover.dart';
 import 'package:qadaa/app/shared/widgets/tile.dart';
 import 'package:qadaa/core/values/constant.dart';
 import 'package:qadaa/generated/l10n.dart';
+import 'package:qadaa/src/features/settings/presentation/components/change_prayer_card.dart';
+import 'package:qadaa/src/features/settings/presentation/components/custom_title.dart';
+import 'package:qadaa/src/features/settings/presentation/components/splash_background_gallery.dart';
+import 'package:qadaa/src/features/settings/presentation/controller/settings_controller.dart';
 
 class Settings extends StatelessWidget {
   const Settings({super.key});
