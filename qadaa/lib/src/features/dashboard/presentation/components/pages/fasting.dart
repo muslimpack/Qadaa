@@ -19,7 +19,7 @@ class FastingPage extends StatelessWidget {
           thumbVisibility: false,
           child: Scaffold(
             body: ListView(
-              physics: const ClampingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               padding: const EdgeInsets.only(bottom: 70).copyWith(
                 left: 10,
                 right: 10,

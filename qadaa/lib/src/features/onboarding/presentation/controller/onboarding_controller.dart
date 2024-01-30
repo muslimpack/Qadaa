@@ -6,7 +6,7 @@ import 'package:qadaa/src/core/constants/constant.dart';
 import 'package:qadaa/src/core/managers/storage_repo.dart';
 import 'package:qadaa/src/core/shared/empty.dart';
 import 'package:qadaa/src/core/utils/open_url.dart';
-import 'package:qadaa/src/features/dashboard/presentation/components/app_dashboard.dart';
+import 'package:qadaa/src/features/dashboard/presentation/screens/app_dashboard.dart';
 
 class OnBoardingController extends GetxController {
   /* *************** Variables *************** */

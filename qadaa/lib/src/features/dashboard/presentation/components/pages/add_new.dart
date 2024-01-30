@@ -17,9 +17,8 @@ class AddNew extends StatelessWidget {
       builder: (controller) {
         return Scaffold(
           body: Scrollbar(
-            thumbVisibility: false,
             child: ListView(
-              physics: const ClampingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               padding: const EdgeInsets.only(bottom: 70).copyWith(
                 left: 10,
                 right: 10,

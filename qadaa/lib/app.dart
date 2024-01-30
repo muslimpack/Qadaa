@@ -6,7 +6,7 @@ import 'package:qadaa/generated/l10n.dart';
 import 'package:qadaa/src/core/managers/storage_repo.dart';
 import 'package:qadaa/src/core/shared/loading.dart';
 import 'package:qadaa/src/core/utils/print.dart';
-import 'package:qadaa/src/features/dashboard/presentation/components/app_dashboard.dart';
+import 'package:qadaa/src/features/dashboard/presentation/screens/app_dashboard.dart';
 import 'package:qadaa/src/features/onboarding/presentation/screens/onboarding.dart';
 
 class MyApp extends StatefulWidget {

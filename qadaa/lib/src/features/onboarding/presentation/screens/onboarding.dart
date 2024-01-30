@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qadaa/generated/l10n.dart';
 import 'package:qadaa/src/core/shared/round_button.dart';
-import 'package:qadaa/src/core/shared/scroll_glow_custom.dart';
 import 'package:qadaa/src/features/onboarding/presentation/controller/onboarding_controller.dart';
 
 class OnBoardingPage extends StatelessWidget {
@@ -26,19 +25,17 @@ class OnBoardingPage extends StatelessWidget {
       init: OnBoardingController(),
       builder: (controller) {
         return Scaffold(
-          body: ScrollGlowCustom(
-            axisDirection: AxisDirection.left,
-            child: PageView.builder(
-              controller: controller.pageController,
-              itemCount: controller.pageList.length,
-              itemBuilder: (context, index) {
-                return controller.pageList[index];
-              },
-              onPageChanged: (index) {
-                controller.currentPageIndex = index;
-                controller.update();
-              },
-            ),
+          body: PageView.builder(
+            physics: const BouncingScrollPhysics(),
+            controller: controller.pageController,
+            itemCount: controller.pageList.length,
+            itemBuilder: (context, index) {
+              return controller.pageList[index];
+            },
+            onPageChanged: (index) {
+              controller.currentPageIndex = index;
+              controller.update();
+            },
           ),
           bottomNavigationBar: BottomAppBar(
             color: Theme.of(context).scaffoldBackgroundColor,
