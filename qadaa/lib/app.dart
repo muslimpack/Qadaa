@@ -30,7 +30,7 @@ class _MyAppState extends State<MyApp> {
 
   void checkIfFirstOpen() {
     try {
-      isFirstOpen = true;
+      isFirstOpen = storageRepo.isFirstOpen();
     } catch (e) {
       qadaaPrint(e);
     }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Empty extends StatelessWidget {
+class OnboardingItem extends StatelessWidget {
   final String imagePath;
   final String title;
   final String description;
@@ -9,7 +9,7 @@ class Empty extends StatelessWidget {
   final IconData icon;
   final double iconSize;
   final Function()? onButtonCLick;
-  const Empty({
+  const OnboardingItem({
     super.key,
     this.imagePath = "assets/images/app_icon.png",
     this.title = "",
@@ -45,9 +45,7 @@ class Empty extends StatelessWidget {
                     icon,
                     size: iconSize,
                   ),
-          if (title == "")
-            const SizedBox()
-          else
+          if (title != "")
             Padding(
               padding: const EdgeInsets.all(10),
               child: Text(
@@ -59,9 +57,7 @@ class Empty extends StatelessWidget {
                 ),
               ),
             ),
-          if (description == "")
-            const SizedBox()
-          else
+          if (description != "")
             Padding(
               padding: const EdgeInsets.all(15),
               child: Text(
@@ -69,14 +65,12 @@ class Empty extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 15,
-                  wordSpacing: 7,
+                  height: 2,
                 ),
               ),
             ),
           if (onButtonCLick != null)
-            TextButton(onPressed: onButtonCLick, child: Text(buttonText))
-          else
-            const SizedBox(),
+            TextButton(onPressed: onButtonCLick, child: Text(buttonText)),
         ],
       ),
     );

@@ -4,9 +4,9 @@ import 'package:get/get.dart';
 import 'package:qadaa/generated/l10n.dart';
 import 'package:qadaa/src/core/constants/constant.dart';
 import 'package:qadaa/src/core/managers/storage_repo.dart';
-import 'package:qadaa/src/core/shared/empty.dart';
 import 'package:qadaa/src/core/utils/open_url.dart';
 import 'package:qadaa/src/features/dashboard/presentation/screens/app_dashboard.dart';
+import 'package:qadaa/src/features/onboarding/presentation/components/onboarding_item.dart';
 
 class OnBoardingController extends GetxController {
   /* *************** Variables *************** */
@@ -21,19 +21,19 @@ class OnBoardingController extends GetxController {
   static const _volumeBtnChannel = MethodChannel("volume_button_channel");
   //TODO edit every release
   final pageList = [
-    Empty(
+    OnboardingItem(
       title: "${S.current.qadaa} ${AppConstant.appVersion}",
       description: '''
 أهلا بك أيها الموفق في هذا الإصدار الجديد من قضاء 
 قم بتقليب الصفحات لرؤية الميزات الجديدة 
 ''',
     ),
-    Empty(
+    OnboardingItem(
       isImage: false,
       icon: Icons.translate,
       title: S.current.app_lang,
     ),
-    Empty(
+    OnboardingItem(
       imagePath: "assets/images/rukia.png",
       title: "تطبيق رقية",
       description: """
