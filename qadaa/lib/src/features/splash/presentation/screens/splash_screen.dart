@@ -49,7 +49,7 @@ class SplashScreen extends StatelessWidget {
                   child: const Text(""),
                 ),
               ),
-              Center(
+              SafeArea(
                 child: ListView(
                   physics: const ClampingScrollPhysics(),
                   padding: const EdgeInsets.symmetric(vertical: 20),
@@ -155,20 +155,18 @@ class SplashScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Text(
-                          AppConstant.splashMsg[controller.rMsg],
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            height: 2,
-                          ),
+                    Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Text(
+                        AppConstant.splashMsg[controller.rMsg],
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          height: 2,
                         ),
                       ),
                     ),
-                    const SizedBox(height: 30),
-                    Center(
+                    Padding(
+                      padding: const EdgeInsets.all(10),
                       child: Text(
                         controller.prayersController.getPrayerEndDateText(),
                         style: TextStyle(
