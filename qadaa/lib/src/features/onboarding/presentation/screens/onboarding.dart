@@ -1,23 +1,13 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qadaa/generated/l10n.dart';
 import 'package:qadaa/src/core/shared/round_button.dart';
+import 'package:qadaa/src/features/onboarding/presentation/components/dots.dart';
 import 'package:qadaa/src/features/onboarding/presentation/controller/onboarding_controller.dart';
 
 class OnBoardingPage extends StatelessWidget {
   const OnBoardingPage({super.key});
-
-  static Container buildDot(int index, int currentPageIndex) {
-    return Container(
-      height: 10,
-      width: currentPageIndex == index ? 25 : 10,
-      margin: const EdgeInsets.all(5),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: Colors.pink,
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,15 +34,9 @@ class OnBoardingPage extends StatelessWidget {
               child: Row(
                 children: [
                   Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: List.generate(
-                        controller.pageList.length,
-                        (index) => buildDot(
-                          index,
-                          controller.currentPageIndex,
-                        ),
-                      ),
+                    child: Dots(
+                      length: controller.pageList.length,
+                      activeIndex: controller.currentPageIndex,
                     ),
                   ),
                   if (controller.isFinalPage)
