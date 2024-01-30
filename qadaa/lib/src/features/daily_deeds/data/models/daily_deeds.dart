@@ -39,8 +39,8 @@ class DailyDeeds {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'additionalPrayers': additionalPrayers.toMap(),
-      'obligatoryPrayers': obligatoryPrayers.toMap(),
+      ...additionalPrayers.toMap(),
+      ...obligatoryPrayers.toMap(),
       'fasting': fasting,
       'date': date.millisecondsSinceEpoch,
     };
@@ -49,10 +49,10 @@ class DailyDeeds {
   factory DailyDeeds.fromMap(Map<String, dynamic> map) {
     return DailyDeeds(
       additionalPrayers: DailyAdditionalPrayers.fromMap(
-        map['additionalPrayers'] as Map<String, dynamic>,
+        map,
       ),
       obligatoryPrayers: DailyObligatoryPrayers.fromMap(
-        map['obligatoryPrayers'] as Map<String, dynamic>,
+        map,
       ),
       fasting: map['fasting'] as bool,
       date: DateTime.fromMillisecondsSinceEpoch(map['date'] as int),
