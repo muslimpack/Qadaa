@@ -1,0 +1,61 @@
+import 'dart:convert';
+
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+class DailyObligatoryPrayers {
+  final bool fajr;
+  final bool dhuhr;
+  final bool asr;
+  final bool maghrib;
+  final bool ishaa;
+
+  DailyObligatoryPrayers({
+    required this.fajr,
+    required this.dhuhr,
+    required this.asr,
+    required this.maghrib,
+    required this.ishaa,
+  });
+
+  DailyObligatoryPrayers copyWith({
+    bool? fajr,
+    bool? dhuhr,
+    bool? asr,
+    bool? maghrib,
+    bool? ishaa,
+  }) {
+    return DailyObligatoryPrayers(
+      fajr: fajr ?? this.fajr,
+      dhuhr: dhuhr ?? this.dhuhr,
+      asr: asr ?? this.asr,
+      maghrib: maghrib ?? this.maghrib,
+      ishaa: ishaa ?? this.ishaa,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'fajr': fajr,
+      'dhuhr': dhuhr,
+      'asr': asr,
+      'maghrib': maghrib,
+      'ishaa': ishaa,
+    };
+  }
+
+  factory DailyObligatoryPrayers.fromMap(Map<String, dynamic> map) {
+    return DailyObligatoryPrayers(
+      fajr: map['fajr'] as bool,
+      dhuhr: map['dhuhr'] as bool,
+      asr: map['asr'] as bool,
+      maghrib: map['maghrib'] as bool,
+      ishaa: map['ishaa'] as bool,
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory DailyObligatoryPrayers.fromJson(String source) =>
+      DailyObligatoryPrayers.fromMap(
+        json.decode(source) as Map<String, dynamic>,
+      );
+}
