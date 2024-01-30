@@ -5,7 +5,7 @@ import 'package:qadaa/generated/l10n.dart';
 import 'package:qadaa/src/core/constants/constant.dart';
 import 'package:qadaa/src/core/managers/storage_repo.dart';
 import 'package:qadaa/src/core/utils/open_url.dart';
-import 'package:qadaa/src/features/dashboard/presentation/screens/app_dashboard.dart';
+import 'package:qadaa/src/features/dashboard/presentation/screens/app_main_screen.dart';
 import 'package:qadaa/src/features/onboarding/presentation/components/onboarding_item.dart';
 
 class OnBoardingController extends GetxController {
@@ -99,7 +99,7 @@ class OnBoardingController extends GetxController {
     Navigator.of(Get.context!).pushReplacement(
       MaterialPageRoute(
         builder: (context) {
-          return const AppDashboard();
+          return const AppMainScreen();
         },
       ),
     );

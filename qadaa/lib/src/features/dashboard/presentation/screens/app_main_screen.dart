@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qadaa/src/core/constants/constant.dart';
 import 'package:qadaa/src/core/managers/effect_manager.dart';
-import 'package:qadaa/src/features/dashboard/presentation/components/second_screen_dashboard.dart';
 import 'package:qadaa/src/features/dashboard/presentation/controller/dashboard_controller.dart';
+import 'package:qadaa/src/features/dashboard/presentation/screens/dashboard_screen.dart';
 import 'package:qadaa/src/features/splash/presentation/screens/splash_screen.dart';
 
-class AppDashboard extends StatelessWidget {
-  const AppDashboard({super.key});
+class AppMainScreen extends StatelessWidget {
+  const AppMainScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class AppDashboard extends StatelessWidget {
                       scrollDirection: Axis.vertical,
                       children: const [
                         SplashScreen(),
-                        SecondScreenDashboard(),
+                        DashboardScreen(),
                       ],
                       onPageChanged: (value) {
                         controller.currentPageIndex = value;

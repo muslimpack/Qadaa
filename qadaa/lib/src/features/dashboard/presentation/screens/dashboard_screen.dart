@@ -2,18 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:qadaa/generated/l10n.dart';
 import 'package:qadaa/src/core/constants/constant.dart';
 import 'package:qadaa/src/core/managers/transition_animation.dart';
+import 'package:qadaa/src/features/daily_prayers/presentation/screens/daily_prayers.dart';
 import 'package:qadaa/src/features/dashboard/presentation/components/pages/add_new.dart';
 import 'package:qadaa/src/features/dashboard/presentation/components/pages/done.dart';
 import 'package:qadaa/src/features/dashboard/presentation/components/pages/fasting.dart';
 import 'package:qadaa/src/features/settings/presentation/screens/settings.dart';
 
-class SecondScreenDashboard extends StatelessWidget {
-  const SecondScreenDashboard({super.key});
+class DashboardScreen extends StatelessWidget {
+  const DashboardScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 4,
       child: Scaffold(
         appBar: AppBar(
           title: Text(S.of(context).qadaa),
@@ -37,6 +38,8 @@ class SecondScreenDashboard extends StatelessWidget {
             ),
           ],
           bottom: TabBar(
+            tabAlignment: TabAlignment.center,
+            isScrollable: true,
             indicatorColor: AppConstant.mainColor,
             labelColor: AppConstant.mainColor,
             unselectedLabelColor: Colors.white,
@@ -53,27 +56,24 @@ class SecondScreenDashboard extends StatelessWidget {
               Tab(
                 text: S.of(context).missed_prayer,
               ),
+              const Tab(
+                text: "المتابعة اليومية",
+              ),
               Tab(
                 text: S.of(context).fast,
               ),
             ],
           ),
         ),
-        body: ScrollConfiguration(
-          behavior: const ScrollBehavior(),
-          child: GlowingOverscrollIndicator(
-            axisDirection: AxisDirection.left,
-            color: AppConstant.scrollColor,
-            child: const TabBarView(
-              //controller: tabController,
-              physics: ClampingScrollPhysics(),
-              children: [
-                Done(),
-                AddNew(),
-                FastingPage(),
-              ],
-            ),
-          ),
+        body: const TabBarView(
+          //controller: tabController,
+          physics: ClampingScrollPhysics(),
+          children: [
+            Done(),
+            AddNew(),
+            DailyPrayers(),
+            FastingPage(),
+          ],
         ),
       ),
     );
