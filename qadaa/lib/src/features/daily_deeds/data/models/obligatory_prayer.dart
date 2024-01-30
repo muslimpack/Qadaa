@@ -15,6 +15,13 @@ class DailyObligatoryPrayers {
     required this.maghrib,
     required this.ishaa,
   });
+  DailyObligatoryPrayers.empty({
+    this.fajr = false,
+    this.dhuhr = false,
+    this.asr = false,
+    this.maghrib = false,
+    this.ishaa = false,
+  });
 
   DailyObligatoryPrayers copyWith({
     bool? fajr,

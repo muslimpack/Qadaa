@@ -25,6 +25,18 @@ class DailyAdditionalPrayers {
     required this.doha,
     required this.nightPrayer,
   });
+  DailyAdditionalPrayers.empty({
+    this.fajrPre = false,
+    this.dhuhrPre = false,
+    this.dhuhrAfter = false,
+    this.asrPre = false,
+    this.maghribPre = false,
+    this.maghribAfter = false,
+    this.ishaaPre = false,
+    this.ishaaAfter = false,
+    this.doha = false,
+    this.nightPrayer = false,
+  });
 
   DailyAdditionalPrayers copyWith({
     bool? fajrPre,

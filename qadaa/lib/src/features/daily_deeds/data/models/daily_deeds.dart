@@ -17,6 +17,12 @@ class DailyDeeds {
     required this.date,
   });
 
+  DailyDeeds.empty({
+    this.fasting = false,
+    required this.date,
+  })  : additionalPrayers = DailyAdditionalPrayers.empty(),
+        obligatoryPrayers = DailyObligatoryPrayers.empty();
+
   DailyDeeds copyWith({
     DailyAdditionalPrayers? additionalPrayers,
     DailyObligatoryPrayers? obligatoryPrayers,

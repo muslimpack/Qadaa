@@ -1,7 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:qadaa/generated/l10n.dart';
+import 'package:qadaa/src/core/utils/print.dart';
+import 'package:qadaa/src/features/daily_deeds/data/models/daily_deeds.dart';
 import 'package:qadaa/src/features/daily_deeds/data/models/meeting.dart';
+import 'package:qadaa/src/features/daily_deeds/presentation/components/daily_deeds_editor.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class DailyDeedsScreen extends StatelessWidget {
@@ -18,7 +21,7 @@ class DailyDeedsScreen extends StatelessWidget {
         // allowViewNavigation: true,
         firstDayOfWeek: DateTime.saturday,
         view: CalendarView.month,
-        dataSource: MeetingDataSource(_getDataSource()),
+        dataSource: DailyDeedsDataSource(_getDataSource()),
         initialSelectedDate: DateTime.now(),
         maxDate: DateTime.now(),
         allowedViews: const <CalendarView>[
@@ -85,25 +88,22 @@ class DailyDeedsScreen extends StatelessWidget {
             ),
           );
         },
-        onTap: (calendarTapDetails) {
-          showDialog(
+        onTap: (calendarTapDetails) async {
+          final result = await showDialog(
             context: context,
             builder: (BuildContext context) {
-              return AlertDialog(
-                title: const Text('Tapped Date'),
-                content:
-                    Text('You tapped on ${calendarTapDetails.appointments}.'),
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Text('OK'),
-                  ),
-                ],
+              return DailyDeedsEditor(
+                dailyDeeds: DailyDeeds.empty(
+                  date: calendarTapDetails.date ?? DateTime.now(),
+                ),
               );
             },
           );
+
+          if (result != null) {
+            // Handle the edited instance
+            qadaaPrint('Edited Prayers: $result');
+          }
         },
       ),
     );
@@ -165,10 +165,10 @@ class DailyDeedsScreen extends StatelessWidget {
 /// An object to set the appointment collection data source to calendar, which
 /// used to map the custom appointment data to the calendar appointment, and
 /// allows to add, remove or reset the appointment collection.
-class MeetingDataSource extends CalendarDataSource {
+class DailyDeedsDataSource extends CalendarDataSource {
   /// Creates a meeting data source, which used to set the appointment
   /// collection to the calendar
-  MeetingDataSource(List<Meeting> source) {
+  DailyDeedsDataSource(List<Meeting> source) {
     appointments = source;
   }
 
