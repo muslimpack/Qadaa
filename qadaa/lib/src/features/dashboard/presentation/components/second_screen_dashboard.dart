@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:qadaa/generated/l10n.dart';
 import 'package:qadaa/src/core/constants/constant.dart';
-import 'package:qadaa/src/core/shared/bouncy_page.dart';
+import 'package:qadaa/src/core/managers/transition_animation.dart';
 import 'package:qadaa/src/features/dashboard/presentation/components/pages/add_new.dart';
 import 'package:qadaa/src/features/dashboard/presentation/components/pages/done.dart';
 import 'package:qadaa/src/features/dashboard/presentation/components/pages/fasting.dart';
