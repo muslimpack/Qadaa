@@ -16,7 +16,6 @@ dependencies:
   audioplayers: ^1.1.1
   awesome_notifications: ^0.7.4+1
   confetti: ^0.7.0
-
   cupertino_icons: ^1.0.5
   flutter:
     sdk: flutter
@@ -29,9 +28,11 @@ dependencies:
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   intl: ^0.18.1
+  path: ^1.8.3
   path_provider: ^2.1.1
   rxdart: ^0.27.7
   sleek_circular_slider: ^2.0.1
+  sqflite: ^2.3.2
   syncfusion_flutter_calendar: ^24.1.47
   url_launcher: ^6.1.7
   wakelock: ^0.6.2
