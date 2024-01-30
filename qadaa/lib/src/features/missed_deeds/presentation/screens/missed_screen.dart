@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:qadaa/generated/l10n.dart';
 import 'package:qadaa/src/core/constants/constant.dart';
 import 'package:qadaa/src/core/managers/transition_animation.dart';
-import 'package:qadaa/src/features/daily_prayers/presentation/screens/daily_prayers.dart';
-import 'package:qadaa/src/features/dashboard/presentation/components/pages/add_new.dart';
-import 'package:qadaa/src/features/dashboard/presentation/components/pages/done.dart';
-import 'package:qadaa/src/features/dashboard/presentation/components/pages/fasting.dart';
+import 'package:qadaa/src/features/daily_deeds/presentation/screens/daily_prayers.dart';
+import 'package:qadaa/src/features/missed_deeds/presentation/components/pages/add_new.dart';
+import 'package:qadaa/src/features/missed_deeds/presentation/components/pages/done.dart';
+import 'package:qadaa/src/features/missed_deeds/presentation/components/pages/fasting.dart';
 import 'package:qadaa/src/features/settings/presentation/screens/settings.dart';
 
-class DashboardScreen extends StatelessWidget {
-  const DashboardScreen({super.key});
+class MissedScreen extends StatelessWidget {
+  const MissedScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
