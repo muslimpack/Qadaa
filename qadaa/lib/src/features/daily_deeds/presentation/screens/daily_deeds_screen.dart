@@ -16,7 +16,7 @@ class DailyDeedsScreen extends StatelessWidget {
       body: SfCalendar(
         showNavigationArrow: true,
         showTodayButton: true,
-        showWeekNumber: true,
+        // showWeekNumber: true,
         showDatePickerButton: true,
         // allowViewNavigation: true,
         firstDayOfWeek: DateTime.saturday,
@@ -26,11 +26,11 @@ class DailyDeedsScreen extends StatelessWidget {
         maxDate: DateTime.now(),
         allowedViews: const <CalendarView>[
           CalendarView.day,
-          CalendarView.workWeek,
           CalendarView.week,
           CalendarView.month,
           CalendarView.schedule,
         ],
+
         monthViewSettings: const MonthViewSettings(
           appointmentDisplayMode: MonthAppointmentDisplayMode.none,
         ),
@@ -122,6 +122,7 @@ class DailyDeedsScreen extends StatelessWidget {
         false,
       ),
     );
+
     meetings.add(
       Meeting(
         S.current.dhuhr,
