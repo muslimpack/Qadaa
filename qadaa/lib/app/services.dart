@@ -8,6 +8,9 @@ import 'package:qadaa/core/utils/awesome_notification_manager.dart';
 import 'package:qadaa/core/utils/storage_repo.dart';
 
 Future<void> initServices() async {
+  //Make sure all stuff are initialized
+  WidgetsFlutterBinding.ensureInitialized();
+
   try {
     //Hive Initialize
     final appDocumentDirectory =

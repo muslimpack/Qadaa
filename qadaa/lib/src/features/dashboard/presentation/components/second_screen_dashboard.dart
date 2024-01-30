@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:qadaa/app/modules/dashboard/pages/add_new.dart';
-import 'package:qadaa/app/modules/dashboard/pages/done.dart';
-import 'package:qadaa/app/modules/dashboard/pages/fasting.dart';
 import 'package:qadaa/app/modules/settings/settings.dart';
 import 'package:qadaa/app/shared/widgets/bouncy_page.dart';
 import 'package:qadaa/core/values/constant.dart';
 import 'package:qadaa/generated/l10n.dart';
+import 'package:qadaa/src/features/dashboard/presentation/components/pages/add_new.dart';
+import 'package:qadaa/src/features/dashboard/presentation/components/pages/done.dart';
+import 'package:qadaa/src/features/dashboard/presentation/components/pages/fasting.dart';
 
 class SecondScreenDashboard extends StatelessWidget {
   const SecondScreenDashboard({super.key});

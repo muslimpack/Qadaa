@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:qadaa/app/modules/dashboard/widgets/my_divider.dart';
 import 'package:qadaa/app/shared/dialogs/delete_days_dialog.dart';
 import 'package:qadaa/app/shared/dialogs/delete_prayers_dialog.dart';
 import 'package:qadaa/app/shared/enum/sound_type.dart';
@@ -9,6 +8,7 @@ import 'package:qadaa/app/shared/widgets/tile.dart';
 import 'package:qadaa/core/utils/effect_manager.dart';
 import 'package:qadaa/core/utils/prayer_controller.dart';
 import 'package:qadaa/generated/l10n.dart';
+import 'package:qadaa/src/core/shared/my_divider.dart';
 
 class Done extends StatelessWidget {
   const Done({super.key});

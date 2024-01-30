@@ -1,12 +1,12 @@
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:qadaa/app/modules/dashboard/dashboard_controller.dart';
-import 'package:qadaa/app/modules/dashboard/second_screen_dashboard.dart';
 import 'package:qadaa/app/modules/splash/splash_screen.dart';
 import 'package:qadaa/app/shared/widgets/scroll_glow_remover.dart';
 import 'package:qadaa/core/utils/effect_manager.dart';
 import 'package:qadaa/core/values/constant.dart';
+import 'package:qadaa/src/features/dashboard/presentation/components/dashboard_controller.dart';
+import 'package:qadaa/src/features/dashboard/presentation/components/second_screen_dashboard.dart';
 
 class AppDashboard extends StatelessWidget {
   const AppDashboard({super.key});
