@@ -4,8 +4,8 @@ import 'package:qadaa/generated/l10n.dart';
 import 'package:qadaa/src/features/daily_deeds/data/models/meeting.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
-class DailyPrayers extends StatelessWidget {
-  const DailyPrayers({super.key});
+class DailyDeedsScreen extends StatelessWidget {
+  const DailyDeedsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

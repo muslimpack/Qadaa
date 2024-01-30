@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qadaa/src/core/constants/constant.dart';
 import 'package:qadaa/src/core/managers/effect_manager.dart';
+import 'package:qadaa/src/features/dashboard/presentation/screens/dashboard_screen.dart';
 import 'package:qadaa/src/features/missed_deeds/presentation/controller/dashboard_controller.dart';
-import 'package:qadaa/src/features/missed_deeds/presentation/screens/missed_screen.dart';
 import 'package:qadaa/src/features/splash/presentation/screens/splash_screen.dart';
 
 class AppMainScreen extends StatelessWidget {
@@ -26,7 +26,7 @@ class AppMainScreen extends StatelessWidget {
                       scrollDirection: Axis.vertical,
                       children: const [
                         SplashScreen(),
-                        MissedScreen(),
+                        DashboardScreen(),
                       ],
                       onPageChanged: (value) {
                         controller.currentPageIndex = value;
