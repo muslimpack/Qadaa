@@ -306,6 +306,7 @@ class _DailyDeedsEditorState extends State<DailyDeedsEditor> {
                     ],
                   ),
                 ),
+                const Divider(),
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
