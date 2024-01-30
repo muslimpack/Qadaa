@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:qadaa/app/shared/functions/print.dart';
 import 'package:qadaa/core/utils/effect_manager.dart';
 import 'package:qadaa/core/utils/prayer_controller.dart';
-import 'package:qadaa/core/values/constant.dart';
 import 'package:qadaa/generated/l10n.dart';
+import 'package:qadaa/src/core/constants/constant.dart';
 import 'package:qadaa/src/core/shared/gradient_linear_progress_indicator.dart';
 
 class FastingCard extends StatelessWidget {

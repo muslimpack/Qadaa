@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:qadaa/app/shared/widgets/round_button.dart';
-import 'package:qadaa/app/shared/widgets/scroll_glow_custom.dart';
 import 'package:qadaa/generated/l10n.dart';
+import 'package:qadaa/src/core/shared/round_button.dart';
+import 'package:qadaa/src/core/shared/scroll_glow_custom.dart';
 import 'package:qadaa/src/features/onboarding/presentation/controller/onboarding_controller.dart';
 
 class OnBoardingPage extends StatelessWidget {

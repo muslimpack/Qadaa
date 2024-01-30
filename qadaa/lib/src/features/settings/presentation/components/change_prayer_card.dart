@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:qadaa/app/shared/widgets/user_text_field.dart';
 import 'package:qadaa/generated/l10n.dart';
+import 'package:qadaa/src/core/shared/user_text_field.dart';
 import 'package:qadaa/src/features/settings/presentation/controller/settings_controller.dart';
 
 class ChangePrayersCard extends StatelessWidget {

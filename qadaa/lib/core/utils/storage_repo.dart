@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:qadaa/app/shared/enum/enum.dart';
 import 'package:qadaa/app/shared/enum/splash_background.dart';
-import 'package:qadaa/core/values/constant.dart';
+import 'package:qadaa/src/core/constants/constant.dart';
 
 final StorageRepo storageRepo = StorageRepo();
 

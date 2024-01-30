@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:qadaa/app/shared/widgets/scroll_glow_remover.dart';
+import 'package:qadaa/src/core/shared/scroll_glow_remover.dart';
 
 class Empty extends StatelessWidget {
   final String imagePath;

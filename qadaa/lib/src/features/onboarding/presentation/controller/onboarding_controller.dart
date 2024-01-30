@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:qadaa/app/shared/functions/open_url.dart';
-import 'package:qadaa/app/shared/widgets/empty.dart';
 import 'package:qadaa/core/utils/storage_repo.dart';
-import 'package:qadaa/core/values/constant.dart';
 import 'package:qadaa/generated/l10n.dart';
+import 'package:qadaa/src/core/constants/constant.dart';
+import 'package:qadaa/src/core/shared/empty.dart';
 import 'package:qadaa/src/features/dashboard/presentation/components/app_dashboard.dart';
 
 class OnBoardingController extends GetxController {

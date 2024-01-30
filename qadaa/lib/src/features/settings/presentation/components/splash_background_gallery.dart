@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:qadaa/core/values/constant.dart';
+import 'package:qadaa/src/core/constants/constant.dart';
 
 class SplashBackgroundGallery extends StatelessWidget {
   final int selectedIndex;

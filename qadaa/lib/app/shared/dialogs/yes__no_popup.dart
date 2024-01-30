@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:qadaa/core/values/constant.dart';
 import 'package:qadaa/generated/l10n.dart';
+import 'package:qadaa/src/core/constants/constant.dart';
 
 class YesOrNoDialog extends StatelessWidget {
   final Function() onYes;

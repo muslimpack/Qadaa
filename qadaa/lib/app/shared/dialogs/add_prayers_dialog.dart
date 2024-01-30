@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:qadaa/app/shared/widgets/user_text_field.dart';
 import 'package:qadaa/core/utils/prayer_controller.dart';
-import 'package:qadaa/core/values/constant.dart';
 import 'package:qadaa/generated/l10n.dart';
+import 'package:qadaa/src/core/constants/constant.dart';
+import 'package:qadaa/src/core/shared/user_text_field.dart';
 
 class AddPrayersDialog extends StatefulWidget {
   const AddPrayersDialog({super.key});

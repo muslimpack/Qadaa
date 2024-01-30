@@ -1,6 +1,6 @@
 import 'dart:math';
 import 'package:qadaa/core/utils/awesome_notification_manager.dart';
-import 'package:qadaa/core/values/constant.dart';
+import 'package:qadaa/src/core/constants/constant.dart';
 
 Future<void> showRandomNotification() async {
   final Random randomNumberGenerator = Random();

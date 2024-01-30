@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qadaa/core/values/constant.dart';
+import 'package:qadaa/src/core/constants/constant.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
 class CircleIndicator extends StatelessWidget {
