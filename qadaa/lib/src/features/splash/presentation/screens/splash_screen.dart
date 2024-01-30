@@ -2,16 +2,14 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'package:qadaa/app/modules/splash/splash_controller.dart';
-import 'package:qadaa/app/modules/splash/widgets/fasting_card.dart';
-import 'package:qadaa/app/modules/splash/widgets/single_prayer_circle_indicator.dart';
-
 import 'package:qadaa/app/shared/enum/splash_background.dart';
 import 'package:qadaa/app/shared/widgets/custom_sleek.dart';
 import 'package:qadaa/core/utils/storage_repo.dart';
 import 'package:qadaa/core/values/constant.dart';
 import 'package:qadaa/generated/l10n.dart';
+import 'package:qadaa/src/features/splash/presentation/components/fasting_card.dart';
+import 'package:qadaa/src/features/splash/presentation/components/single_prayer_circle_indicator.dart';
+import 'package:qadaa/src/features/splash/presentation/controller/splash_controller.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
