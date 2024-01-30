@@ -46,8 +46,7 @@ class CircleIndicator extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
             modifier: (double value) {
-              final circval = value.ceil().toString();
-              return circval;
+              return value.ceil().toString();
             },
           ),
           customColors: CustomSliderColors(

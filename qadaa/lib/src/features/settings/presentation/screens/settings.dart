@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screen_lock/flutter_screen_lock.dart';
 import 'package:get/get.dart';
-import 'package:qadaa/app/shared/dialogs/yes__no_popup.dart';
 import 'package:qadaa/generated/l10n.dart';
 import 'package:qadaa/src/core/constants/constant.dart';
 import 'package:qadaa/src/core/enum/splash_background.dart';
+import 'package:qadaa/src/core/shared/dialogs/yes__no_popup.dart';
 import 'package:qadaa/src/core/shared/scroll_glow_remover.dart';
 import 'package:qadaa/src/core/shared/tile.dart';
 import 'package:qadaa/src/core/utils/show_toast.dart';

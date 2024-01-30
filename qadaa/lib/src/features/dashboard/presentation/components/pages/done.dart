@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:qadaa/app/shared/dialogs/delete_days_dialog.dart';
-import 'package:qadaa/app/shared/dialogs/delete_prayers_dialog.dart';
 import 'package:qadaa/generated/l10n.dart';
 import 'package:qadaa/src/core/enum/sound_type.dart';
 import 'package:qadaa/src/core/managers/effect_manager.dart';
 import 'package:qadaa/src/core/managers/prayer_controller.dart';
+import 'package:qadaa/src/core/shared/dialogs/delete_days_dialog.dart';
+import 'package:qadaa/src/core/shared/dialogs/delete_prayers_dialog.dart';
 import 'package:qadaa/src/core/shared/my_divider.dart';
 import 'package:qadaa/src/core/shared/tile.dart';
 import 'package:qadaa/src/core/utils/random_notification.dart';
