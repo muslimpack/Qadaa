@@ -66,9 +66,13 @@ class SlotsDataSourceLoadMore extends SlotsDataSource {
 
     final deedsToAdd = loadedDeeds.fold(
       <DailyDeeds>[],
-      (previousValue, element) => !dataCollection.containsKey(element.date)
-          ? (previousValue..add(element))
-          : previousValue,
+      (previousValue, element) {
+        if (!dataCollection.containsKey(element.date)) {
+          return (previousValue..add(element));
+        } else {
+          return previousValue;
+        }
+      },
     );
 
     final List<Slot> slots = deedsToAdd.convertToSlot();

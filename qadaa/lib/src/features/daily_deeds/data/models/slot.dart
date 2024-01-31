@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 class Slot extends Equatable {
   final int order;
+  final DateTime id;
   final String title;
   final DateTime from;
   final DateTime to;
@@ -12,6 +13,7 @@ class Slot extends Equatable {
 
   const Slot({
     required this.order,
+    required this.id,
     required this.title,
     required this.from,
     required this.to,

@@ -37,6 +37,9 @@ class DailyDeedsController extends GetxController {
   }
 
   Future loadData() async {
+    dataCollection.clear();
+    slots.clear();
+
     await dailyDeedsRepo.addMissingDays();
     final loadedDeeds = await dailyDeedsRepo.getDailyDeedsByDateRange(
       DateTime.now().subtract(
@@ -93,21 +96,28 @@ class DailyDeedsController extends GetxController {
   }
 
   Future<void> _edit(CalendarTouchDetails details) async {
-    if (details.date == null) return;
-    qadaaPrint(details.date);
+    final DateTime? dateTimeToEdit;
+    if (details.targetElement == CalendarElement.appointment) {
+      dateTimeToEdit = (details.appointments?.first as Slot).id;
+    } else {
+      dateTimeToEdit = details.date;
+    }
+
+    if (dateTimeToEdit == null) return;
+    qadaaPrint(dateTimeToEdit);
 
     final DailyDeeds? result = await showDialog(
       context: Get.context!,
       builder: (BuildContext context) {
         return DailyDeedsEditor.byDateTime(
-          dateTime: details.date!,
+          dateTime: dateTimeToEdit!,
         );
       },
     );
 
     if (result != null) {
-      qadaaPrint('Edited Prayers: $result');
       await dailyDeedsRepo.insertDailyDeeds(result);
+      await loadData();
       update();
     }
   }
