@@ -36,9 +36,8 @@ extension DailyDeedsExtension on DailyDeeds {
       Slot(
         order: 5,
         title: S.current.fajr,
-        from: setDateTimeTime(today, prayerTime.fajr),
-        to: setDateTimeTime(
-          today,
+        from: today.setTime(prayerTime.fajr),
+        to: today.setTime(
           prayerTime.fajr.add(prayerTime.fajrDuration),
         ),
         background: getColor(obligatoryPrayers.fajr),
@@ -49,9 +48,8 @@ extension DailyDeedsExtension on DailyDeeds {
       Slot(
         order: 10,
         title: S.current.dhuhr,
-        from: setDateTimeTime(today, prayerTime.dhuhr),
-        to: setDateTimeTime(
-          today,
+        from: today.setTime(prayerTime.dhuhr),
+        to: today.setTime(
           prayerTime.dhuhr.add(prayerTime.dhuhrDuration),
         ),
         background: getColor(obligatoryPrayers.dhuhr),
@@ -61,9 +59,8 @@ extension DailyDeedsExtension on DailyDeeds {
       Slot(
         order: 15,
         title: S.current.asr,
-        from: setDateTimeTime(today, prayerTime.asr),
-        to: setDateTimeTime(
-          today,
+        from: today.setTime(prayerTime.asr),
+        to: today.setTime(
           prayerTime.asr.add(prayerTime.asrDuration),
         ),
         background: getColor(obligatoryPrayers.asr),
@@ -73,9 +70,8 @@ extension DailyDeedsExtension on DailyDeeds {
       Slot(
         order: 20,
         title: S.current.maghrib,
-        from: setDateTimeTime(today, prayerTime.maghrib),
-        to: setDateTimeTime(
-          today,
+        from: today.setTime(prayerTime.maghrib),
+        to: today.setTime(
           prayerTime.maghrib.add(prayerTime.maghribDuration),
         ),
         background: getColor(obligatoryPrayers.maghrib),
@@ -85,9 +81,8 @@ extension DailyDeedsExtension on DailyDeeds {
       Slot(
         order: 25,
         title: S.current.ishaa,
-        from: setDateTimeTime(today, prayerTime.isha),
-        to: setDateTimeTime(
-          today,
+        from: today.setTime(prayerTime.isha),
+        to: today.setTime(
           prayerTime.isha.add(prayerTime.ishaDuration),
         ),
         background: getColor(obligatoryPrayers.ishaa),
@@ -106,9 +101,8 @@ extension DailyDeedsExtension on DailyDeeds {
       Slot(
         order: 4,
         title: "ركعتا الفجر",
-        from: setDateTimeTime(today, prayerTime.fajr),
-        to: setDateTimeTime(
-          today,
+        from: today.setTime(prayerTime.fajr),
+        to: today.setTime(
           prayerTime.fajr.add(prayerTime.fajrDuration),
         ),
         background: getColorByInt(additionalPrayers.fajrPre),
@@ -119,9 +113,8 @@ extension DailyDeedsExtension on DailyDeeds {
       Slot(
         order: 6,
         title: "الضحى",
-        from: setDateTimeTime(today, prayerTime.doha),
-        to: setDateTimeTime(
-          today,
+        from: today.setTime(prayerTime.doha),
+        to: today.setTime(
           prayerTime.doha.add(prayerTime.dohaDuration),
         ),
         background: getColorByInt(additionalPrayers.doha),
@@ -132,9 +125,8 @@ extension DailyDeedsExtension on DailyDeeds {
       Slot(
         order: 9,
         title: "الظهر قبليه",
-        from: setDateTimeTime(today, prayerTime.dhuhr),
-        to: setDateTimeTime(
-          today,
+        from: today.setTime(prayerTime.dhuhr),
+        to: today.setTime(
           prayerTime.dhuhr.add(prayerTime.dhuhrDuration),
         ),
         background: getColorByInt(additionalPrayers.dhuhrPre),
@@ -145,9 +137,8 @@ extension DailyDeedsExtension on DailyDeeds {
       Slot(
         order: 11,
         title: "الظهر بعديه",
-        from: setDateTimeTime(today, prayerTime.dhuhr),
-        to: setDateTimeTime(
-          today,
+        from: today.setTime(prayerTime.dhuhr),
+        to: today.setTime(
           prayerTime.dhuhr.add(prayerTime.dhuhrDuration),
         ),
         background: getColorByInt(additionalPrayers.dhuhrAfter),
@@ -158,9 +149,8 @@ extension DailyDeedsExtension on DailyDeeds {
       Slot(
         order: 14,
         title: "العصر قبليه",
-        from: setDateTimeTime(today, prayerTime.asr),
-        to: setDateTimeTime(
-          today,
+        from: today.setTime(prayerTime.asr),
+        to: today.setTime(
           prayerTime.asr.add(prayerTime.asrDuration),
         ),
         background: getColorByInt(additionalPrayers.asrPre),
@@ -171,9 +161,8 @@ extension DailyDeedsExtension on DailyDeeds {
       Slot(
         order: 19,
         title: "المغرب قبليه",
-        from: setDateTimeTime(today, prayerTime.maghrib),
-        to: setDateTimeTime(
-          today,
+        from: today.setTime(prayerTime.maghrib),
+        to: today.setTime(
           prayerTime.maghrib.add(prayerTime.maghribDuration),
         ),
         background: getColorByInt(additionalPrayers.maghribPre),
@@ -184,9 +173,8 @@ extension DailyDeedsExtension on DailyDeeds {
       Slot(
         order: 21,
         title: "المغرب بعديه",
-        from: setDateTimeTime(today, prayerTime.maghrib),
-        to: setDateTimeTime(
-          today,
+        from: today.setTime(prayerTime.maghrib),
+        to: today.setTime(
           prayerTime.maghrib.add(prayerTime.maghribDuration),
         ),
         background: getColorByInt(additionalPrayers.maghribAfter),
@@ -197,11 +185,8 @@ extension DailyDeedsExtension on DailyDeeds {
       Slot(
         order: 24,
         title: "العشاء قبليه",
-        from: setDateTimeTime(today, prayerTime.isha),
-        to: setDateTimeTime(
-          today,
-          prayerTime.isha.add(prayerTime.ishaDuration),
-        ),
+        from: today.setTime(prayerTime.isha),
+        to: today.setTime(prayerTime.isha.add(prayerTime.ishaDuration)),
         background: getColorByInt(additionalPrayers.ishaaPre),
       ),
     );
@@ -210,11 +195,8 @@ extension DailyDeedsExtension on DailyDeeds {
       Slot(
         order: 26,
         title: "العشاء بعديه",
-        from: setDateTimeTime(today, prayerTime.isha),
-        to: setDateTimeTime(
-          today,
-          prayerTime.isha.add(prayerTime.ishaDuration),
-        ),
+        from: today.setTime(prayerTime.isha),
+        to: today.setTime(prayerTime.isha.add(prayerTime.ishaDuration)),
         background: getColorByInt(additionalPrayers.ishaaAfter),
       ),
     );
@@ -223,11 +205,8 @@ extension DailyDeedsExtension on DailyDeeds {
       Slot(
         order: 27,
         title: "قيام الليل",
-        from: setDateTimeTime(today, prayerTime.midnight),
-        to: setDateTimeTime(
-          today.add(const Duration(days: 1)),
-          prayerTime.fajr,
-        ),
+        from: today.setTime(prayerTime.midnight),
+        to: today.add(const Duration(days: 1)).setTime(prayerTime.fajr),
         background: getColorByInt(additionalPrayers.ishaaAfter),
       ),
     );
@@ -242,8 +221,4 @@ extension DailyDeedsExtension on DailyDeeds {
   Color getColorByInt(int value) {
     return getColor(value != 0);
   }
-}
-
-DateTime setDateTimeTime(DateTime dateTime, DateTime time) {
-  return dateTime.setTime(time);
 }
