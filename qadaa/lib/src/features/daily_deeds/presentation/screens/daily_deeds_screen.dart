@@ -37,7 +37,7 @@ class _DailyDeedsScreenState extends State<DailyDeedsScreen> {
         showNavigationArrow: true,
         showTodayButton: true,
         // showWeekNumber: true,
-        // allowViewNavigation: true,
+        allowViewNavigation: true,
 
         showDatePickerButton: true,
         firstDayOfWeek: DateTime.saturday,
