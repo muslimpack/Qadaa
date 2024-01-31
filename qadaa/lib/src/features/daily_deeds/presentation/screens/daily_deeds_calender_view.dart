@@ -5,14 +5,14 @@ import 'package:qadaa/src/core/shared/loading.dart';
 import 'package:qadaa/src/features/daily_deeds/presentation/controller/daily_deeds_controller.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
-class DailyDeedsScreen extends StatefulWidget {
-  const DailyDeedsScreen({super.key});
+class DailyDeedsCalenderView extends StatefulWidget {
+  const DailyDeedsCalenderView({super.key});
 
   @override
-  State<DailyDeedsScreen> createState() => _DailyDeedsScreenState();
+  State<DailyDeedsCalenderView> createState() => _DailyDeedsCalenderViewState();
 }
 
-class _DailyDeedsScreenState extends State<DailyDeedsScreen> {
+class _DailyDeedsCalenderViewState extends State<DailyDeedsCalenderView> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder(
