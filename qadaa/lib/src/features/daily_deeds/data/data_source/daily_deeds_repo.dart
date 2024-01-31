@@ -253,6 +253,46 @@ class DailyDeedsRepo {
     );
   }
 
+  Future<int> sumColumn(String columnName) async {
+    final Database db = await database;
+    final List<Map<String, dynamic>> result = await db.rawQuery('''
+      SELECT SUM($columnName) as total FROM your_table
+    ''');
+
+    final int total = result.first['total'] as int? ?? 0;
+    return total;
+  }
+
+  Future<int> countColumn(String columnName) async {
+    final Database db = await database;
+    final List<Map<String, dynamic>> result = await db.rawQuery('''
+      SELECT SUM($columnName) as total FROM $tableName
+    ''');
+
+    final int total = result.first['total'] as int? ?? 0;
+    return total;
+  }
+
+  Future<int> countNonZeroValues(String columnName) async {
+    final Database db = await database;
+    final List<Map<String, dynamic>> result = await db.rawQuery('''
+      SELECT COUNT($columnName) as count FROM $tableName WHERE $columnName != 0
+    ''');
+
+    final int count = Sqflite.firstIntValue(result) ?? 0;
+    return count;
+  }
+
+  Future<int> daysCount() async {
+    final Database db = await database;
+    final List<Map<String, dynamic>> result = await db.rawQuery('''
+      SELECT COUNT(*) as count FROM $tableName
+    ''');
+
+    final int count = Sqflite.firstIntValue(result) ?? 0;
+    return count;
+  }
+
   Future close() async {
     final db = await database;
     db.close();
