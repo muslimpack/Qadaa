@@ -1,5 +1,5 @@
 extension DateTimeExtension on DateTime {
-  DateTime dateOnly() {
+  DateTime get dateOnly {
     return DateTime(year, month, day);
   }
 

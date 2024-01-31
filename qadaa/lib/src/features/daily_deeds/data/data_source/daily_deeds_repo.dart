@@ -155,8 +155,8 @@ class DailyDeedsRepo {
       tableName,
       where: 'date >= ? AND date <= ?',
       whereArgs: [
-        startDate.dateOnly().millisecondsSinceEpoch,
-        endDate.dateOnly().millisecondsSinceEpoch,
+        startDate.dateOnly.millisecondsSinceEpoch,
+        endDate.dateOnly.millisecondsSinceEpoch,
       ],
     );
 
@@ -179,7 +179,7 @@ class DailyDeedsRepo {
     final List<Map<String, dynamic>> maps = await db.query(
       tableName,
       where: 'date = ?',
-      whereArgs: [date..dateOnly().millisecondsSinceEpoch],
+      whereArgs: [date..dateOnly.millisecondsSinceEpoch],
     );
 
     if (maps.isEmpty) {

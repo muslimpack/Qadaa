@@ -179,7 +179,7 @@ class _DailyDeedsScreenState extends State<DailyDeedsScreen> {
             builder: (BuildContext context) {
               return DailyDeedsEditor(
                 dailyDeeds: DailyDeeds.empty(
-                  date: calendarTapDetails.date!.dateOnly(),
+                  date: calendarTapDetails.date!.dateOnly,
                 ),
               );
             },

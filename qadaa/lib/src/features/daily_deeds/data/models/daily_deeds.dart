@@ -43,7 +43,7 @@ class DailyDeeds {
       ...additionalPrayers.toMap(),
       ...obligatoryPrayers.toMap(),
       'fasting': fasting,
-      'date': date.dateOnly().millisecondsSinceEpoch,
+      'date': date.dateOnly.millisecondsSinceEpoch,
     };
   }
 
