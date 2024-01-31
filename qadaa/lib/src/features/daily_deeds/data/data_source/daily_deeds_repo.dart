@@ -120,9 +120,13 @@ class DailyDeedsRepo {
     final Database db = await database;
     final List<Map<String, dynamic>> maps = await db.query(tableName);
 
-    return List.generate(maps.length, (i) {
+    final deeds = List.generate(maps.length, (i) {
       return DailyDeeds.fromMap(maps[i]);
     });
+
+    qadaaPrint("getAllDailyDeeds  ${deeds.length}");
+
+    return deeds;
   }
 
   Future<List<DailyDeeds>> getAllDailyDeedsSortedByDate() async {
@@ -132,9 +136,13 @@ class DailyDeedsRepo {
       orderBy: 'date ASC',
     );
 
-    return List.generate(maps.length, (i) {
+    final deeds = List.generate(maps.length, (i) {
       return DailyDeeds.fromMap(maps[i]);
     });
+
+    qadaaPrint("getAllDailyDeedsSortedByDate  ${deeds.length}");
+
+    return deeds;
   }
 
   Future<List<DailyDeeds>> getDailyDeedsByDateRange(
@@ -151,9 +159,13 @@ class DailyDeedsRepo {
       ],
     );
 
-    return List.generate(maps.length, (i) {
+    final deeds = List.generate(maps.length, (i) {
       return DailyDeeds.fromMap(maps[i]);
     });
+
+    qadaaPrint("getDailyDeedsByDateRange  ${deeds.length}");
+
+    return deeds;
   }
 
   Future close() async {
