@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:qadaa/src/core/extensions/date_time.dart';
 import 'package:qadaa/src/core/shared/loading.dart';
 import 'package:qadaa/src/core/utils/print.dart';
 import 'package:qadaa/src/features/daily_deeds/data/data_source/daily_deeds_repo.dart';
@@ -16,16 +15,15 @@ class DailyDeedsScreen extends StatefulWidget {
   State<DailyDeedsScreen> createState() => _DailyDeedsScreenState();
 }
 
-late Map<DateTime, List<Slot>> _dataCollection;
+final Map<DateTime, List<Slot>> _dataCollection = {};
 
 class _DailyDeedsScreenState extends State<DailyDeedsScreen> {
   bool isLoading = true;
-  late final List<Slot> slots;
+  late final List<Slot> slots = [];
   late final CalendarController _controller;
   late CalendarDataSource _dataSource;
   @override
   void initState() {
-    _dataCollection = {};
     _controller = CalendarController();
     loadData();
 
@@ -33,7 +31,7 @@ class _DailyDeedsScreenState extends State<DailyDeedsScreen> {
   }
 
   Future loadData() async {
-    await addDates();
+    await dailyDeedsRepo.addMissingDays();
     final loadedDeeds = await dailyDeedsRepo.getDailyDeedsByDateRange(
       DateTime.now().subtract(
         const Duration(
@@ -50,28 +48,12 @@ class _DailyDeedsScreenState extends State<DailyDeedsScreen> {
     final map = {for (final e in loadedDeeds) e.date: <Slot>[]};
     _dataCollection.addAll(map);
 
-    slots = loadedDeeds.convertToSlot();
+    slots.addAll(loadedDeeds.convertToSlot());
 
     _dataSource = SlotsDataSourceLoadMore(slots);
     setState(() {
       isLoading = false;
     });
-  }
-
-  Future addDates() async {
-    final DateTime lastAdded = DateTime.now();
-    final List<DateTime> dates = [];
-
-    dates.add(lastAdded);
-    while (dates.last.isBefore(DateTime.now().dateOnly)) {
-      dates.add(dates.last.add(const Duration(days: 1)));
-    }
-    if (lastAdded.dateOnly != DateTime.now().dateOnly) {
-      dates.add(DateTime.now());
-    }
-
-    await dailyDeedsRepo
-        .insertList(dates.map((e) => DailyDeeds.empty(date: e)).toList());
   }
 
   @override
@@ -131,7 +113,7 @@ class _DailyDeedsScreenState extends State<DailyDeedsScreen> {
   Future<void> _onTap(CalendarTapDetails calendarTapDetails) async {
     final List<CalendarElement> allowToTouch = [
       CalendarElement.appointment,
-      // CalendarElement.calendarCell,
+      CalendarElement.calendarCell,
     ];
 
     if (!allowToTouch.contains(calendarTapDetails.targetElement)) {
@@ -172,7 +154,7 @@ class _DailyDeedsScreenState extends State<DailyDeedsScreen> {
     if (result != null) {
       qadaaPrint('Edited Prayers: $result');
       await dailyDeedsRepo.insertDailyDeeds(result);
-      // setState(() {});
+      setState(() {});
     }
   }
 
