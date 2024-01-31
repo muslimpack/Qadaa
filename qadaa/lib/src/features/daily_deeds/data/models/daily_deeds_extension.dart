@@ -5,6 +5,17 @@ import 'package:qadaa/src/features/daily_deeds/data/data_source/prayer_time.dart
 import 'package:qadaa/src/features/daily_deeds/data/models/daily_deeds.dart';
 import 'package:qadaa/src/features/daily_deeds/data/models/slot.dart';
 
+extension DailyDeedsListExtension on List<DailyDeeds> {
+  List<Slot> convertToSlot() {
+    return map(
+      (e) => e.allSlots(),
+    ).fold(
+      <Slot>[],
+      (previousValue, element) => previousValue..addAll(element),
+    );
+  }
+}
+
 extension DailyDeedsExtension on DailyDeeds {
   List<Slot> allSlots() {
     return [
