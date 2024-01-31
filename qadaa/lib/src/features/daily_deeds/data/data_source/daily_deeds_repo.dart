@@ -105,6 +105,22 @@ class DailyDeedsRepo {
     );
   }
 
+  Future<void> insertList(List<DailyDeeds> list) async {
+    final Database db = await database;
+
+    final Batch batch = db.batch();
+
+    for (final DailyDeeds dailyDeeds in list) {
+      batch.insert(
+        tableName,
+        dailyDeeds.toMap(),
+        conflictAlgorithm: ConflictAlgorithm.replace,
+      );
+    }
+
+    await batch.commit(noResult: true);
+  }
+
   Future<void> updateDailyDeeds(DailyDeeds dailyDeeds) async {
     final Database db = await database;
 
