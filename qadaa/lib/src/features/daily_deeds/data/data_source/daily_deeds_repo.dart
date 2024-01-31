@@ -193,12 +193,15 @@ class DailyDeedsRepo {
     final Database db = await database;
 
     // Use the aggregate function MAX to get the maximum date from the 'daily_deeds' table
-    final result =
+    final maps =
         await db.rawQuery('SELECT MAX(date) as maxDate FROM $tableName');
 
-    if (result.isNotEmpty) {
+    qadaaPrint(maps);
+
+    if (maps.isNotEmpty) {
       // The result will contain a single row with the maximum date
-      final maxDateMilliseconds = result.first['maxDate']! as int;
+      final maxDateMilliseconds = maps.first['maxDate'] as int?;
+      if (maxDateMilliseconds == null) return null;
       return DateTime.fromMillisecondsSinceEpoch(maxDateMilliseconds);
     }
 
