@@ -1,8 +1,7 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:liquid_progress_indicator_v2/liquid_progress_indicator.dart';
 import 'package:qadaa/generated/l10n.dart';
-import 'package:qadaa/src/core/constants/constant.dart';
+import 'package:qadaa/src/features/daily_deeds/presentation/components/liquid_circular_progress.dart';
+import 'package:qadaa/src/features/daily_deeds/presentation/components/liquid_linear_progress.dart';
 
 class DailyDeedsStatisticsView extends StatelessWidget {
   const DailyDeedsStatisticsView({super.key});
@@ -11,70 +10,64 @@ class DailyDeedsStatisticsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
+        padding: const EdgeInsets.all(15),
         children: [
           Row(
             children: [
               Expanded(
-                child: LiquidProgress(
-                  value: .25,
+                child: CircularLiquidProgress(
+                  value: 1,
                   child: S.of(context).fajr,
                 ),
               ),
-              const Expanded(
-                child: LiquidProgress(value: .25),
+              Expanded(
+                child: CircularLiquidProgress(
+                  value: .5,
+                  child: S.of(context).dhuhr,
+                ),
+              ),
+              Expanded(
+                child: CircularLiquidProgress(
+                  value: .75,
+                  child: S.of(context).asr,
+                ),
+              ),
+              Expanded(
+                child: CircularLiquidProgress(
+                  value: .8,
+                  child: S.of(context).maghrib,
+                ),
+              ),
+              Expanded(
+                child: CircularLiquidProgress(
+                  value: .1,
+                  child: S.of(context).ishaa,
+                ),
               ),
             ],
           ),
-          const Row(
-            children: [
-              Expanded(
-                child: LiquidProgress(value: .25),
-              ),
-              Expanded(
-                child: LiquidProgress(value: .25),
-              ),
-              Expanded(
-                child: LiquidProgress(value: .25),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class LiquidProgress extends StatelessWidget {
-  final double value;
-  final String? child;
-  const LiquidProgress({
-    super.key,
-    required this.value,
-    this.child,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 1,
-      child: Container(
-        padding: const EdgeInsets.all(10),
-        child: LiquidCircularProgressIndicator(
-          value: value,
-          valueColor: AlwaysStoppedAnimation(
-            AppConstant.mainColor,
-          ),
-          // backgroundColor: Colors.grey[800],
-          borderColor: AppConstant.mainColor,
-          borderWidth: 0.0,
-          center: Text(
-            child ?? "",
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              // color: Colors.amber,
+          const Card(
+            child: Column(
+              children: [
+                ListTile(
+                  title: Text("ركعتا الفجر"),
+                ),
+                ListTile(title: Text("الضحى")),
+                ListTile(title: Text("الظهر القبيله")),
+                ListTile(title: Text("الظهر البعديه")),
+                ListTile(title: Text("العصر القبليه")),
+                ListTile(title: Text("المغرب القبليه")),
+                ListTile(title: Text("المغرب البعديه")),
+                ListTile(title: Text("العشاء القبليه")),
+                ListTile(title: Text("العشاء البعديه")),
+                ListTile(title: Text("صلاة الليل")),
+              ],
             ),
           ),
-        ),
+          const LinearLiquidProgress(
+            value: .25,
+          ),
+        ],
       ),
     );
   }
