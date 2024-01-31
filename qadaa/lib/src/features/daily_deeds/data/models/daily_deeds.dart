@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:qadaa/src/core/extensions/date_time.dart';
 import 'package:qadaa/src/features/daily_deeds/data/models/additional_prayers.dart';
 import 'package:qadaa/src/features/daily_deeds/data/models/obligatory_prayer.dart';
 
@@ -42,7 +43,7 @@ class DailyDeeds {
       ...additionalPrayers.toMap(),
       ...obligatoryPrayers.toMap(),
       'fasting': fasting,
-      'date': date.millisecondsSinceEpoch,
+      'date': date.dateOnly().millisecondsSinceEpoch,
     };
   }
 
@@ -54,7 +55,7 @@ class DailyDeeds {
       obligatoryPrayers: DailyObligatoryPrayers.fromMap(
         map,
       ),
-      fasting: map['fasting'] as bool,
+      fasting: map['fasting'] == 1,
       date: DateTime.fromMillisecondsSinceEpoch(map['date'] as int),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qadaa/generated/l10n.dart';
+import 'package:qadaa/src/core/extensions/date_time.dart';
 import 'package:qadaa/src/features/daily_deeds/data/data_source/prayer_time.dart';
 import 'package:qadaa/src/features/daily_deeds/data/models/daily_deeds.dart';
 import 'package:qadaa/src/features/daily_deeds/data/models/slot.dart';
@@ -244,11 +245,5 @@ extension DailyDeedsExtension on DailyDeeds {
 }
 
 DateTime setDateTimeTime(DateTime dateTime, DateTime time) {
-  return dateTime.copyWith(
-    hour: time.hour,
-    minute: time.minute,
-    second: time.second,
-    microsecond: time.microsecond,
-    millisecond: time.millisecond,
-  );
+  return dateTime.setTime(time);
 }

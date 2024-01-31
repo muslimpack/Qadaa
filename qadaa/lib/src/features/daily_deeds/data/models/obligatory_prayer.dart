@@ -51,11 +51,11 @@ class DailyObligatoryPrayers {
 
   factory DailyObligatoryPrayers.fromMap(Map<String, dynamic> map) {
     return DailyObligatoryPrayers(
-      fajr: map['fajr'] as bool,
-      dhuhr: map['dhuhr'] as bool,
-      asr: map['asr'] as bool,
-      maghrib: map['maghrib'] as bool,
-      ishaa: map['ishaa'] as bool,
+      fajr: map['fajr'] == 1,
+      dhuhr: map['dhuhr'] == 1,
+      asr: map['asr'] == 1,
+      maghrib: map['maghrib'] == 1,
+      ishaa: map['ishaa'] == 1,
     );
   }
 

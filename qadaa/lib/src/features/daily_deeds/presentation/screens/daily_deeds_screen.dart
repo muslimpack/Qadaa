@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:qadaa/src/core/extensions/date_time.dart';
 import 'package:qadaa/src/core/utils/print.dart';
 import 'package:qadaa/src/features/daily_deeds/data/data_source/daily_deeds_repo.dart';
 import 'package:qadaa/src/features/daily_deeds/data/models/daily_deeds.dart';
@@ -19,6 +20,8 @@ class _DailyDeedsScreenState extends State<DailyDeedsScreen> {
   @override
   void initState() {
     _controller = CalendarController();
+
+    dailyDeedsRepo.getAllDailyDeeds();
     super.initState();
   }
 
@@ -39,30 +42,23 @@ class _DailyDeedsScreenState extends State<DailyDeedsScreen> {
         showDatePickerButton: true,
         firstDayOfWeek: DateTime.saturday,
         view: CalendarView.month,
-        dataSource: DailyDeedsDataSourceLoadMore([
-          ...DailyDeeds.empty(
-            date: DateTime.now().subtract(const Duration(days: 5)),
-          ).allSlots(),
-          ...DailyDeeds.empty(
-            date: DateTime.now().subtract(const Duration(days: 4)),
-          ).allSlots(),
-          ...DailyDeeds.empty(
-            date: DateTime.now().subtract(const Duration(days: 3)),
-          ).allSlots(),
-          ...DailyDeeds.empty(
-            date: DateTime.now().subtract(const Duration(days: 2)),
-          ).allSlots(),
-          ...DailyDeeds.empty(
-            date: DateTime.now().subtract(const Duration(days: 1)),
-          ).allSlots(),
-          ...DailyDeeds.empty(date: DateTime.now()).allSlots(),
-        ]),
+        loadMoreWidgetBuilder:
+            (BuildContext context, LoadMoreCallback loadMoreAppointments) {
+          return FutureBuilder<void>(
+            future: loadMoreAppointments(),
+            builder: (context, snapShot) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            },
+          );
+        },
+        dataSource: DailyDeedsDataSourceLoadMore([]),
 
         allowedViews: const <CalendarView>[
           CalendarView.day,
           CalendarView.week,
           CalendarView.month,
-          CalendarView.schedule,
         ],
 
         monthViewSettings: const MonthViewSettings(
@@ -105,30 +101,45 @@ class _DailyDeedsScreenState extends State<DailyDeedsScreen> {
           if (details.appointments.isEmpty &&
               details.date.isBefore(DateTime.now())) {
             return Container(
-              margin: const EdgeInsets.all(5),
-              color: Colors.yellow.withOpacity(.1),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.grey.withOpacity(.2),
+                ),
+              ),
+              padding: const EdgeInsets.all(5),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.yellow.withOpacity(.1),
+                ),
+                child: Text(
+                  details.date.day.toString(),
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
             );
           }
 
           final List<Widget> slots =
               details.appointments.fold([], (previousValue, e) {
-            final meeting = e as Slot;
+            if (e is! Slot) return previousValue;
+            final meeting = e;
 
             if (meeting.order % 5 != 0) return previousValue;
 
             final slot = Expanded(
-              child: ColoredBox(
+              child: Container(
                 color: meeting.background,
-                child: Padding(
-                  padding: const EdgeInsets.all(2.0),
-                  child: FittedBox(
-                    child: Text(
-                      meeting.title,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
+                padding: const EdgeInsets.all(2.0),
+                child: FittedBox(
+                  child: Text(
+                    meeting.title,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
@@ -138,22 +149,37 @@ class _DailyDeedsScreenState extends State<DailyDeedsScreen> {
             return previousValue..add(slot);
           });
 
-          return Padding(
-            padding: const EdgeInsets.all(2),
+          return Container(
+            padding: const EdgeInsets.all(5),
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Colors.grey.withOpacity(.2),
+              ),
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: slots,
+              children: [
+                Text(
+                  details.date.day.toString(),
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                ...slots,
+              ],
             ),
           );
         },
 
         onLongPress: (calendarTapDetails) async {
+          if (calendarTapDetails.date == null) return;
           final DailyDeeds? result = await showDialog(
             context: context,
             builder: (BuildContext context) {
               return DailyDeedsEditor(
                 dailyDeeds: DailyDeeds.empty(
-                  date: calendarTapDetails.date ?? DateTime.now(),
+                  date: calendarTapDetails.date!.dateOnly(),
                 ),
               );
             },
@@ -161,8 +187,8 @@ class _DailyDeedsScreenState extends State<DailyDeedsScreen> {
 
           if (result != null) {
             qadaaPrint('Edited Prayers: $result');
-
             await dailyDeedsRepo.insertDailyDeeds(result);
+            setState(() {});
           }
         },
       ),
@@ -216,12 +242,9 @@ class DailyDeedsDataSourceLoadMore extends DailyDeedsDataSource {
 
   @override
   Future<void> handleLoadMore(DateTime startDate, DateTime endDate) async {
-    qadaaPrint("DailyDeedsDataSourceLoadMore");
-
+    qadaaPrint("$startDate || $endDate");
     final loadedDeeds =
         await dailyDeedsRepo.getDailyDeedsByDateRange(startDate, endDate);
-
-    qadaaPrint("DailyDeedsDataSourceLoadMore ${loadedDeeds.length}");
 
     final List<Slot> slots = loadedDeeds
         .map(
@@ -232,8 +255,9 @@ class DailyDeedsDataSourceLoadMore extends DailyDeedsDataSource {
       (previousValue, element) => previousValue..addAll(element),
     );
 
-    appointments!.addAll(slots);
+    qadaaPrint(slots.length);
+
     appointments = slots;
-    notifyListeners(CalendarDataSourceAction.add, slots);
+    notifyListeners(CalendarDataSourceAction.reset, slots);
   }
 }

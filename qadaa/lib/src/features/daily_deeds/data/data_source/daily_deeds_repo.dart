@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:qadaa/src/core/extensions/date_time.dart';
 import 'package:qadaa/src/core/utils/print.dart';
 import 'package:qadaa/src/features/daily_deeds/data/models/daily_deeds.dart';
 import 'package:sqflite/sqflite.dart';
@@ -152,10 +153,10 @@ class DailyDeedsRepo {
     final Database db = await database;
     final List<Map<String, dynamic>> maps = await db.query(
       tableName,
-      where: 'date BETWEEN ? AND ?',
+      where: 'date >= ? AND date <= ?',
       whereArgs: [
-        startDate.millisecondsSinceEpoch,
-        endDate.millisecondsSinceEpoch,
+        startDate.dateOnly().millisecondsSinceEpoch,
+        endDate.dateOnly().millisecondsSinceEpoch,
       ],
     );
 
@@ -163,9 +164,29 @@ class DailyDeedsRepo {
       return DailyDeeds.fromMap(maps[i]);
     });
 
-    qadaaPrint("getDailyDeedsByDateRange  ${deeds.length}");
+    qadaaPrint("getDailyDeedsByDateRange ${deeds.length}");
 
     return deeds;
+  }
+
+  Future<void> deleteAllDailyDeeds() async {
+    final Database db = await database;
+    await db.delete(tableName);
+  }
+
+  Future<DailyDeeds?> getDailyDeedsByDate(DateTime date) async {
+    final Database db = await database;
+    final List<Map<String, dynamic>> maps = await db.query(
+      tableName,
+      where: 'date = ?',
+      whereArgs: [date..dateOnly().millisecondsSinceEpoch],
+    );
+
+    if (maps.isEmpty) {
+      return null; // Return null if no record is found for the given date
+    }
+
+    return DailyDeeds.fromMap(maps.first);
   }
 
   Future close() async {
