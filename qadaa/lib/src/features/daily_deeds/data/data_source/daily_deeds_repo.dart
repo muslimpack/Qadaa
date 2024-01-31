@@ -224,6 +224,35 @@ class DailyDeedsRepo {
     return null; // Return null if the table is empty
   }
 
+  Future addMissingDays() async {
+    final DateTime? dbLastAdded = await getLastAddedDate();
+
+    final DateTime now = DateTime.now().dateOnly;
+
+    if (dbLastAdded != null && dbLastAdded == now) return;
+
+    final DateTime lastAdded =
+        dbLastAdded ?? now.subtract(const Duration(days: 55));
+
+    final List<DateTime> dates = [];
+
+    dates.add(lastAdded);
+    while (dates.last.isBefore(now)) {
+      dates.add(dates.last.add(const Duration(days: 1)));
+    }
+    if (lastAdded.dateOnly != now && dates.last != now) {
+      dates.add(DateTime.now());
+    }
+
+    qadaaPrint("Missing Days: ${dates.length}");
+
+    await insertList(
+      dates.map((e) {
+        return DailyDeeds.empty(date: e.dateOnly);
+      }).toList(),
+    );
+  }
+
   Future close() async {
     final db = await database;
     db.close();
