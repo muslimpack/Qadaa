@@ -16,18 +16,43 @@ class DailyDeedsScreen extends StatefulWidget {
   State<DailyDeedsScreen> createState() => _DailyDeedsScreenState();
 }
 
+late Map<DateTime, List<Slot>> _dataCollection;
+
 class _DailyDeedsScreenState extends State<DailyDeedsScreen> {
   bool isLoading = true;
+  late final List<Slot> slots;
   late final CalendarController _controller;
+  late CalendarDataSource _dataSource;
   @override
   void initState() {
+    _dataCollection = {};
     _controller = CalendarController();
     loadData();
+
     super.initState();
   }
 
   Future loadData() async {
     await addDates();
+    final loadedDeeds = await dailyDeedsRepo.getDailyDeedsByDateRange(
+      DateTime.now().subtract(
+        const Duration(
+          days: 30,
+        ),
+      ),
+      DateTime.now().add(
+        const Duration(
+          days: 30,
+        ),
+      ),
+    );
+
+    final map = {for (final e in loadedDeeds) e.date: <Slot>[]};
+    _dataCollection.addAll(map);
+
+    slots = loadedDeeds.convertToSlot();
+
+    _dataSource = SlotsDataSourceLoadMore(slots);
     setState(() {
       isLoading = false;
     });
@@ -53,6 +78,10 @@ class _DailyDeedsScreenState extends State<DailyDeedsScreen> {
   void dispose() {
     _controller.dispose();
     super.dispose();
+  }
+
+  Map<DateTime, List<Appointment>> getAppointments() {
+    return {};
   }
 
   @override
@@ -88,7 +117,7 @@ class _DailyDeedsScreenState extends State<DailyDeedsScreen> {
                 showTrailingAndLeadingDates: false,
               ),
 
-              dataSource: DailyDeedsDataSourceLoadMore([]),
+              dataSource: _dataSource,
               appointmentBuilder: _appointmentBuilder,
               monthCellBuilder: _monthCellBuilder,
               loadMoreWidgetBuilder: _loadMoreBuilder,
@@ -267,8 +296,8 @@ class _DailyDeedsScreenState extends State<DailyDeedsScreen> {
   }
 }
 
-class DailyDeedsDataSource extends CalendarDataSource {
-  DailyDeedsDataSource(List<Slot> source) {
+class SlotsDataSource extends CalendarDataSource {
+  SlotsDataSource(List<Slot> source) {
     appointments = source;
   }
 
@@ -308,8 +337,8 @@ class DailyDeedsDataSource extends CalendarDataSource {
   }
 }
 
-class DailyDeedsDataSourceLoadMore extends DailyDeedsDataSource {
-  DailyDeedsDataSourceLoadMore(super.source);
+class SlotsDataSourceLoadMore extends SlotsDataSource {
+  SlotsDataSourceLoadMore(super.source);
 
   @override
   Future<void> handleLoadMore(DateTime startDate, DateTime endDate) async {
@@ -318,18 +347,21 @@ class DailyDeedsDataSourceLoadMore extends DailyDeedsDataSource {
       endDate.add(const Duration(days: 2)),
     );
 
-    final List<Slot> slots = loadedDeeds
-        .map(
-      (e) => e.allSlots(),
-    )
-        .fold(
-      <Slot>[],
-      (previousValue, element) => previousValue..addAll(element),
+    final map = {for (final e in loadedDeeds) e.date: <Slot>[]};
+    _dataCollection.addAll(map);
+
+    final deedsToAdd = loadedDeeds.fold(
+      <DailyDeeds>[],
+      (previousValue, element) => !_dataCollection.containsKey(element.date)
+          ? (previousValue..add(element))
+          : previousValue,
     );
 
-    appointments = slots;
+    final List<Slot> slots = deedsToAdd.convertToSlot();
+
+    appointments!.addAll(slots);
     notifyListeners(
-      CalendarDataSourceAction.reset,
+      CalendarDataSourceAction.add,
       slots,
     );
   }
