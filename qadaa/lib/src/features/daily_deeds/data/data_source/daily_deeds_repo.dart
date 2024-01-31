@@ -189,6 +189,22 @@ class DailyDeedsRepo {
     return DailyDeeds.fromMap(maps.first);
   }
 
+  Future<DateTime?> getLastAddedDate() async {
+    final Database db = await database;
+
+    // Use the aggregate function MAX to get the maximum date from the 'daily_deeds' table
+    final result =
+        await db.rawQuery('SELECT MAX(date) as maxDate FROM $tableName');
+
+    if (result.isNotEmpty) {
+      // The result will contain a single row with the maximum date
+      final maxDateMilliseconds = result.first['maxDate']! as int;
+      return DateTime.fromMillisecondsSinceEpoch(maxDateMilliseconds);
+    }
+
+    return null; // Return null if the table is empty
+  }
+
   Future close() async {
     final db = await database;
     db.close();
