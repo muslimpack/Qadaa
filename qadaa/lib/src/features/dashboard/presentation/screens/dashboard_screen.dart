@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:qadaa/generated/l10n.dart';
 import 'package:qadaa/src/core/managers/transition_animation.dart';
-import 'package:qadaa/src/features/daily_deeds/presentation/screens/daily_deeds_calender_view.dart';
+import 'package:qadaa/src/features/daily_deeds/presentation/screens/daily_deeds_dashboard.dart';
 import 'package:qadaa/src/features/missed_deeds/presentation/screens/missed_deeds_screen.dart';
 import 'package:qadaa/src/features/settings/presentation/screens/settings.dart';
 
@@ -52,7 +52,7 @@ class _DashboardScreenState extends State<DashboardScreen>
         controller: tabController,
         children: const [
           MissedDeedsScreen(),
-          DailyDeedsCalenderView(),
+          DailyDeedsDashBoard(),
         ],
       ),
       bottomNavigationBar: NavigationBar(
