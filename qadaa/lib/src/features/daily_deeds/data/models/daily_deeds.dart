@@ -56,7 +56,7 @@ class DailyDeeds {
         map,
       ),
       fasting: map['fasting'] == 1,
-      date: DateTime.fromMillisecondsSinceEpoch(map['date'] as int),
+      date: DateTime.fromMillisecondsSinceEpoch(map['date'] as int).dateOnly,
     );
   }
 
