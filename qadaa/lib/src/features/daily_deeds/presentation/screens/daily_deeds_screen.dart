@@ -26,10 +26,17 @@ class _DailyDeedsScreenState extends State<DailyDeedsScreen> {
   }
 
   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SfCalendar(
         controller: _controller,
+        initialDisplayDate: DateTime.now(),
         initialSelectedDate: DateTime.now(),
         maxDate: DateTime.now().add(const Duration(days: 1)),
         minDate: DateTime(1900),
@@ -38,22 +45,9 @@ class _DailyDeedsScreenState extends State<DailyDeedsScreen> {
         showTodayButton: true,
         // showWeekNumber: true,
         allowViewNavigation: true,
-
         showDatePickerButton: true,
         firstDayOfWeek: DateTime.saturday,
         view: CalendarView.month,
-        loadMoreWidgetBuilder:
-            (BuildContext context, LoadMoreCallback loadMoreAppointments) {
-          return FutureBuilder<void>(
-            future: loadMoreAppointments(),
-            builder: (context, snapShot) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            },
-          );
-        },
-        dataSource: DailyDeedsDataSourceLoadMore([]),
 
         allowedViews: const <CalendarView>[
           CalendarView.day,
@@ -68,130 +62,182 @@ class _DailyDeedsScreenState extends State<DailyDeedsScreen> {
           showTrailingAndLeadingDates: false,
         ),
 
-        appointmentBuilder: (context, calendarAppointmentDetails) {
-          final Slot meeting =
-              calendarAppointmentDetails.appointments.first as Slot;
+        dataSource: DailyDeedsDataSourceLoadMore([]),
+        appointmentBuilder: _appointmentBuilder,
+        monthCellBuilder: _monthCellBuilder,
+        loadMoreWidgetBuilder: _loadMoreBuilder,
 
-          return ColoredBox(
-            color: meeting.background,
-            child: Center(
-              child: FittedBox(
-                child: Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: RotatedBox(
-                    quarterTurns:
-                        _controller.view?.index == CalendarView.week.index
-                            ? 3
-                            : 4,
-                    child: Text(
-                      meeting.title,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          );
-        },
-        monthCellBuilder: (context, details) {
-          if (details.appointments.isEmpty &&
-              details.date.isBefore(DateTime.now())) {
-            return Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.grey.withOpacity(.2),
-                ),
-              ),
-              padding: const EdgeInsets.all(5),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.yellow.withOpacity(.1),
-                ),
-                child: Text(
-                  details.date.day.toString(),
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            );
-          }
-
-          final List<Widget> slots =
-              details.appointments.fold([], (previousValue, e) {
-            if (e is! Slot) return previousValue;
-            final meeting = e;
-
-            if (meeting.order % 5 != 0) return previousValue;
-
-            final slot = Expanded(
-              child: Container(
-                color: meeting.background,
-                padding: const EdgeInsets.all(2.0),
-                child: FittedBox(
-                  child: Text(
-                    meeting.title,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-            );
-
-            return previousValue..add(slot);
-          });
-
-          return Container(
-            padding: const EdgeInsets.all(5),
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.grey.withOpacity(.2),
-              ),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Text(
-                  details.date.day.toString(),
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                ...slots,
-              ],
-            ),
-          );
-        },
-
-        onLongPress: (calendarTapDetails) async {
-          if (calendarTapDetails.date == null) return;
-          final DailyDeeds? result = await showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return DailyDeedsEditor(
-                dailyDeeds: DailyDeeds.empty(
-                  date: calendarTapDetails.date!.dateOnly,
-                ),
-              );
-            },
-          );
-
-          if (result != null) {
-            qadaaPrint('Edited Prayers: $result');
-            await dailyDeedsRepo.insertDailyDeeds(result);
-            setState(() {});
-          }
-        },
+        onTap: _onTap,
+        onLongPress: _onLongPress,
       ),
+    );
+  }
+
+  Future<void> _onTap(CalendarTapDetails calendarTapDetails) async {
+    final List<CalendarElement> allowToTouch = [
+      CalendarElement.appointment,
+      // CalendarElement.calendarCell,
+    ];
+
+    if (!allowToTouch.contains(calendarTapDetails.targetElement)) {
+      return;
+    }
+
+    return _edit(calendarTapDetails);
+  }
+
+  Future<void> _onLongPress(
+    CalendarLongPressDetails calendarLongPressDetails,
+  ) async {
+    final List<CalendarElement> allowToTouch = [
+      // CalendarElement.appointment,
+      CalendarElement.calendarCell,
+    ];
+
+    if (!allowToTouch.contains(calendarLongPressDetails.targetElement)) {
+      return;
+    }
+
+    return _edit(calendarLongPressDetails);
+  }
+
+  Future<void> _edit(CalendarTouchDetails calendarTapDetails) async {
+    if (calendarTapDetails.date == null) return;
+    final DailyDeeds? result = await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return DailyDeedsEditor(
+          dailyDeeds: DailyDeeds.empty(
+            date: calendarTapDetails.date!.dateOnly,
+          ),
+        );
+      },
+    );
+
+    if (result != null) {
+      qadaaPrint('Edited Prayers: $result');
+      await dailyDeedsRepo.insertDailyDeeds(result);
+      setState(() {});
+    }
+  }
+
+  Widget _monthCellBuilder(BuildContext context, MonthCellDetails details) {
+    if (details.appointments.isEmpty && details.date.isBefore(DateTime.now())) {
+      return Container(
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: Colors.grey.withOpacity(.2),
+            width: .5,
+          ),
+        ),
+        padding: const EdgeInsets.all(5),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.yellow.withOpacity(.1),
+          ),
+          child: Text(
+            details.date.day.toString(),
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      );
+    }
+
+    final List<Widget> slots =
+        details.appointments.fold([], (previousValue, e) {
+      if (e is! Slot) return previousValue;
+      final meeting = e;
+
+      if (meeting.order % 5 != 0) return previousValue;
+
+      final slot = Expanded(
+        child: Container(
+          color: meeting.background,
+          padding: const EdgeInsets.all(2.0),
+          child: FittedBox(
+            child: Text(
+              meeting.title,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ),
+      );
+
+      return previousValue..add(slot);
+    });
+
+    return Container(
+      padding: const EdgeInsets.all(5),
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: Colors.grey.withOpacity(.2),
+          width: .5,
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
+            details.date.day.toString(),
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          ...slots,
+        ],
+      ),
+    );
+  }
+
+  Widget _appointmentBuilder(
+    BuildContext context,
+    CalendarAppointmentDetails calendarAppointmentDetails,
+  ) {
+    final Slot meeting = calendarAppointmentDetails.appointments.first as Slot;
+
+    return ColoredBox(
+      color: meeting.background,
+      child: Center(
+        child: FittedBox(
+          child: Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: RotatedBox(
+              quarterTurns:
+                  _controller.view?.index == CalendarView.week.index ? 3 : 4,
+              child: Text(
+                meeting.title,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _loadMoreBuilder(
+    BuildContext context,
+    LoadMoreCallback loadMoreAppointments,
+  ) {
+    return FutureBuilder<void>(
+      future: loadMoreAppointments(),
+      builder: (context, snapShot) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
     );
   }
 }
@@ -243,8 +289,10 @@ class DailyDeedsDataSourceLoadMore extends DailyDeedsDataSource {
   @override
   Future<void> handleLoadMore(DateTime startDate, DateTime endDate) async {
     qadaaPrint("$startDate || $endDate");
-    final loadedDeeds =
-        await dailyDeedsRepo.getDailyDeedsByDateRange(startDate, endDate);
+    final loadedDeeds = await dailyDeedsRepo.getDailyDeedsByDateRange(
+      startDate.subtract(const Duration(days: 2)),
+      endDate.add(const Duration(days: 2)),
+    );
 
     final List<Slot> slots = loadedDeeds
         .map(
@@ -257,7 +305,7 @@ class DailyDeedsDataSourceLoadMore extends DailyDeedsDataSource {
 
     qadaaPrint(slots.length);
 
-    appointments = slots;
-    notifyListeners(CalendarDataSourceAction.reset, slots);
+    appointments = slots.toSet().toList();
+    notifyListeners(CalendarDataSourceAction.add, slots);
   }
 }
