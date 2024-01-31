@@ -6,6 +6,7 @@ import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:qadaa/src/core/managers/awesome_notification_manager.dart';
 import 'package:qadaa/src/core/managers/storage_repo.dart';
 import 'package:qadaa/src/core/utils/print.dart';
+import 'package:qadaa/src/features/daily_deeds/data/data_source/daily_deeds_repo.dart';
 
 Future<void> initServices() async {
   //Make sure all stuff are initialized
@@ -20,6 +21,8 @@ Future<void> initServices() async {
     await Hive.openBox("Prayers");
 
     StorageRepo.initialStorage();
+
+    await dailyDeedsRepo.addMissingDays();
 
     // Make Phone StatusBar Transparent
     SystemChrome.setSystemUIOverlayStyle(
