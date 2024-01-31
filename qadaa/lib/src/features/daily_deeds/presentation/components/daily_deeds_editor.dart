@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:qadaa/generated/l10n.dart';
 import 'package:qadaa/src/core/constants/constant.dart';
 import 'package:qadaa/src/features/daily_deeds/data/models/daily_deeds.dart';
+import 'package:qadaa/src/features/daily_deeds/presentation/components/count_selecteor.dart';
 
 class DailyDeedsEditor extends StatefulWidget {
   final DailyDeeds dailyDeeds;
@@ -171,7 +172,8 @@ class _DailyDeedsEditorState extends State<DailyDeedsEditor> {
                       ListView(
                         physics: const BouncingScrollPhysics(),
                         children: [
-                          SwitchListTile(
+                          PrayerCountSelector(
+                            numbers: const [0, 2],
                             value: dailyDeeds.additionalPrayers.fajrPre,
                             title: const Text("ركعتا الفجر"),
                             onChanged: (value) {
@@ -184,7 +186,8 @@ class _DailyDeedsEditorState extends State<DailyDeedsEditor> {
                               });
                             },
                           ),
-                          SwitchListTile(
+                          PrayerCountSelector(
+                            numbers: const [0, 2, 4, 6, 8],
                             value: dailyDeeds.additionalPrayers.doha,
                             title: const Text("الضحى"),
                             onChanged: (value) {
@@ -197,7 +200,8 @@ class _DailyDeedsEditorState extends State<DailyDeedsEditor> {
                               });
                             },
                           ),
-                          SwitchListTile(
+                          PrayerCountSelector(
+                            numbers: const [0, 4],
                             value: dailyDeeds.additionalPrayers.dhuhrPre,
                             title: const Text("الظهر القبلية"),
                             onChanged: (value) {
@@ -210,7 +214,8 @@ class _DailyDeedsEditorState extends State<DailyDeedsEditor> {
                               });
                             },
                           ),
-                          SwitchListTile(
+                          PrayerCountSelector(
+                            numbers: const [0, 2, 4],
                             value: dailyDeeds.additionalPrayers.dhuhrAfter,
                             title: const Text("الظهر البعدية"),
                             onChanged: (value) {
@@ -223,7 +228,8 @@ class _DailyDeedsEditorState extends State<DailyDeedsEditor> {
                               });
                             },
                           ),
-                          SwitchListTile(
+                          PrayerCountSelector(
+                            numbers: const [0, 4],
                             value: dailyDeeds.additionalPrayers.asrPre,
                             title: const Text("العصر القبلية"),
                             onChanged: (value) {
@@ -236,7 +242,8 @@ class _DailyDeedsEditorState extends State<DailyDeedsEditor> {
                               });
                             },
                           ),
-                          SwitchListTile(
+                          PrayerCountSelector(
+                            numbers: const [0, 2],
                             value: dailyDeeds.additionalPrayers.maghribPre,
                             title: const Text("المغرب القبلية"),
                             onChanged: (value) {
@@ -249,7 +256,8 @@ class _DailyDeedsEditorState extends State<DailyDeedsEditor> {
                               });
                             },
                           ),
-                          SwitchListTile(
+                          PrayerCountSelector(
+                            numbers: const [0, 2],
                             value: dailyDeeds.additionalPrayers.maghribAfter,
                             title: const Text("المغرب البعدية"),
                             onChanged: (value) {
@@ -262,7 +270,8 @@ class _DailyDeedsEditorState extends State<DailyDeedsEditor> {
                               });
                             },
                           ),
-                          SwitchListTile(
+                          PrayerCountSelector(
+                            numbers: const [0, 2],
                             value: dailyDeeds.additionalPrayers.ishaaPre,
                             title: const Text("العشاء القبلية"),
                             onChanged: (value) {
@@ -275,7 +284,8 @@ class _DailyDeedsEditorState extends State<DailyDeedsEditor> {
                               });
                             },
                           ),
-                          SwitchListTile(
+                          PrayerCountSelector(
+                            numbers: const [0, 2],
                             value: dailyDeeds.additionalPrayers.ishaaAfter,
                             title: const Text("العشاء البعدية"),
                             onChanged: (value) {
@@ -288,7 +298,21 @@ class _DailyDeedsEditorState extends State<DailyDeedsEditor> {
                               });
                             },
                           ),
-                          SwitchListTile(
+                          PrayerCountSelector(
+                            numbers: const [
+                              0,
+                              1,
+                              3,
+                              5,
+                              7,
+                              9,
+                              11,
+                              13,
+                              15,
+                              17,
+                              19,
+                              21,
+                            ],
                             value: dailyDeeds.additionalPrayers.nightPrayer,
                             title: const Text("صلاة الليل"),
                             onChanged: (value) {

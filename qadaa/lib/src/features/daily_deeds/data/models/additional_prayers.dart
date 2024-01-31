@@ -2,16 +2,16 @@ import 'dart:convert';
 
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 class DailyAdditionalPrayers {
-  final bool fajrPre;
-  final bool dhuhrPre;
-  final bool dhuhrAfter;
-  final bool asrPre;
-  final bool maghribPre;
-  final bool maghribAfter;
-  final bool ishaaPre;
-  final bool ishaaAfter;
-  final bool doha;
-  final bool nightPrayer;
+  final int fajrPre;
+  final int dhuhrPre;
+  final int dhuhrAfter;
+  final int asrPre;
+  final int maghribPre;
+  final int maghribAfter;
+  final int ishaaPre;
+  final int ishaaAfter;
+  final int doha;
+  final int nightPrayer;
 
   DailyAdditionalPrayers({
     required this.fajrPre,
@@ -26,29 +26,29 @@ class DailyAdditionalPrayers {
     required this.nightPrayer,
   });
   DailyAdditionalPrayers.empty({
-    this.fajrPre = false,
-    this.dhuhrPre = false,
-    this.dhuhrAfter = false,
-    this.asrPre = false,
-    this.maghribPre = false,
-    this.maghribAfter = false,
-    this.ishaaPre = false,
-    this.ishaaAfter = false,
-    this.doha = false,
-    this.nightPrayer = false,
+    this.fajrPre = 0,
+    this.dhuhrPre = 0,
+    this.dhuhrAfter = 0,
+    this.asrPre = 0,
+    this.maghribPre = 0,
+    this.maghribAfter = 0,
+    this.ishaaPre = 0,
+    this.ishaaAfter = 0,
+    this.doha = 0,
+    this.nightPrayer = 0,
   });
 
   DailyAdditionalPrayers copyWith({
-    bool? fajrPre,
-    bool? dhuhrPre,
-    bool? dhuhrAfter,
-    bool? asrPre,
-    bool? maghribPre,
-    bool? maghribAfter,
-    bool? ishaaPre,
-    bool? ishaaAfter,
-    bool? doha,
-    bool? nightPrayer,
+    int? fajrPre,
+    int? dhuhrPre,
+    int? dhuhrAfter,
+    int? asrPre,
+    int? maghribPre,
+    int? maghribAfter,
+    int? ishaaPre,
+    int? ishaaAfter,
+    int? doha,
+    int? nightPrayer,
   }) {
     return DailyAdditionalPrayers(
       fajrPre: fajrPre ?? this.fajrPre,
@@ -81,16 +81,16 @@ class DailyAdditionalPrayers {
 
   factory DailyAdditionalPrayers.fromMap(Map<String, dynamic> map) {
     return DailyAdditionalPrayers(
-      fajrPre: map['fajrPre'] as bool,
-      dhuhrPre: map['dhuhrPre'] as bool,
-      dhuhrAfter: map['dhuhrAfter'] as bool,
-      asrPre: map['asrPre'] as bool,
-      maghribPre: map['maghribPre'] as bool,
-      maghribAfter: map['maghribAfter'] as bool,
-      ishaaPre: map['ishaaPre'] as bool,
-      ishaaAfter: map['ishaaAfter'] as bool,
-      doha: map['doha'] as bool,
-      nightPrayer: map['nightPrayer'] as bool,
+      fajrPre: map['fajrPre'] as int,
+      dhuhrPre: map['dhuhrPre'] as int,
+      dhuhrAfter: map['dhuhrAfter'] as int,
+      asrPre: map['asrPre'] as int,
+      maghribPre: map['maghribPre'] as int,
+      maghribAfter: map['maghribAfter'] as int,
+      ishaaPre: map['ishaaPre'] as int,
+      ishaaAfter: map['ishaaAfter'] as int,
+      doha: map['doha'] as int,
+      nightPrayer: map['nightPrayer'] as int,
     );
   }
 
