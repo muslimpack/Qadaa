@@ -17,6 +17,7 @@ dependencies:
   awesome_notifications: ^0.7.4+1
   confetti: ^0.7.0
   cupertino_icons: ^1.0.5
+  equatable: ^2.0.5
   flutter:
     sdk: flutter
   flutter_local_notifications: ^12.0.4

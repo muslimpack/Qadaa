@@ -1,8 +1,16 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
-class Slot {
-  Slot({
+class Slot extends Equatable {
+  final int order;
+  final String title;
+  final DateTime from;
+  final DateTime to;
+  final Color background;
+  final bool isAllDay;
+
+  const Slot({
     required this.order,
     required this.title,
     required this.from,
@@ -11,20 +19,15 @@ class Slot {
     this.isAllDay = false,
   });
 
-  final int order;
-
-  final String title;
-
-  final DateTime from;
-
-  final DateTime to;
-
-  final Color background;
-
-  final bool isAllDay;
-
   @override
-  String toString() {
-    return 'Slot(order: $order, title: $title, from: $from, to: $to, background: $background, isAllDay: $isAllDay)';
+  List<Object> get props {
+    return [
+      order,
+      title,
+      from,
+      to,
+      background,
+      isAllDay,
+    ];
   }
 }
