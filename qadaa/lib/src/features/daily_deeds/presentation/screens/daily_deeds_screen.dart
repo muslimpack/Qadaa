@@ -1,29 +1,63 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:qadaa/generated/l10n.dart';
 import 'package:qadaa/src/core/utils/print.dart';
+import 'package:qadaa/src/features/daily_deeds/data/data_source/daily_deeds_repo.dart';
 import 'package:qadaa/src/features/daily_deeds/data/models/daily_deeds.dart';
-import 'package:qadaa/src/features/daily_deeds/data/models/meeting.dart';
+import 'package:qadaa/src/features/daily_deeds/data/models/daily_deeds_extension.dart';
+import 'package:qadaa/src/features/daily_deeds/data/models/slot.dart';
 import 'package:qadaa/src/features/daily_deeds/presentation/components/daily_deeds_editor.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
-class DailyDeedsScreen extends StatelessWidget {
+class DailyDeedsScreen extends StatefulWidget {
   const DailyDeedsScreen({super.key});
+
+  @override
+  State<DailyDeedsScreen> createState() => _DailyDeedsScreenState();
+}
+
+class _DailyDeedsScreenState extends State<DailyDeedsScreen> {
+  late final CalendarController _controller;
+  @override
+  void initState() {
+    _controller = CalendarController();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SfCalendar(
+        controller: _controller,
+        initialSelectedDate: DateTime.now(),
+        maxDate: DateTime.now().add(const Duration(days: 1)),
+        minDate: DateTime(1900),
+
         showNavigationArrow: true,
         showTodayButton: true,
         // showWeekNumber: true,
-        showDatePickerButton: true,
         // allowViewNavigation: true,
+
+        showDatePickerButton: true,
         firstDayOfWeek: DateTime.saturday,
         view: CalendarView.month,
-        dataSource: DailyDeedsDataSource(_getDataSource()),
-        initialSelectedDate: DateTime.now(),
-        maxDate: DateTime.now(),
+        dataSource: DailyDeedsDataSourceLoadMore([
+          ...DailyDeeds.empty(
+            date: DateTime.now().subtract(const Duration(days: 5)),
+          ).allSlots(),
+          ...DailyDeeds.empty(
+            date: DateTime.now().subtract(const Duration(days: 4)),
+          ).allSlots(),
+          ...DailyDeeds.empty(
+            date: DateTime.now().subtract(const Duration(days: 3)),
+          ).allSlots(),
+          ...DailyDeeds.empty(
+            date: DateTime.now().subtract(const Duration(days: 2)),
+          ).allSlots(),
+          ...DailyDeeds.empty(
+            date: DateTime.now().subtract(const Duration(days: 1)),
+          ).allSlots(),
+          ...DailyDeeds.empty(date: DateTime.now()).allSlots(),
+        ]),
+
         allowedViews: const <CalendarView>[
           CalendarView.day,
           CalendarView.week,
@@ -33,18 +67,35 @@ class DailyDeedsScreen extends StatelessWidget {
 
         monthViewSettings: const MonthViewSettings(
           appointmentDisplayMode: MonthAppointmentDisplayMode.none,
+          // appointmentDisplayCount: 5,
+          // showAgenda: true,
+          showTrailingAndLeadingDates: false,
         ),
+
         appointmentBuilder: (context, calendarAppointmentDetails) {
-          final Meeting meeting =
-              calendarAppointmentDetails.appointments.first as Meeting;
-          return Card(
+          final Slot meeting =
+              calendarAppointmentDetails.appointments.first as Slot;
+
+          return ColoredBox(
             color: meeting.background,
             child: Center(
-              child: Text(
-                meeting.eventName,
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
+              child: FittedBox(
+                child: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: RotatedBox(
+                    quarterTurns:
+                        _controller.view?.index == CalendarView.week.index
+                            ? 3
+                            : 4,
+                    child: Text(
+                      meeting.title,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -59,37 +110,45 @@ class DailyDeedsScreen extends StatelessWidget {
             );
           }
 
-          return Padding(
-            padding: const EdgeInsets.all(5),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: details.appointments.map(
-                (e) {
-                  final meeting = e as Meeting;
-                  return Expanded(
-                    child: ColoredBox(
-                      color: meeting.background,
-                      child: Padding(
-                        padding: const EdgeInsets.all(2.0),
-                        child: FittedBox(
-                          child: Text(
-                            meeting.eventName,
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
+          final List<Widget> slots =
+              details.appointments.fold([], (previousValue, e) {
+            final meeting = e as Slot;
+
+            if (meeting.order % 5 != 0) return previousValue;
+
+            final slot = Expanded(
+              child: ColoredBox(
+                color: meeting.background,
+                child: Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: FittedBox(
+                    child: Text(
+                      meeting.title,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                  );
-                },
-              ).toList(),
+                  ),
+                ),
+              ),
+            );
+
+            return previousValue..add(slot);
+          });
+
+          return Padding(
+            padding: const EdgeInsets.all(2),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: slots,
             ),
           );
         },
-        onTap: (calendarTapDetails) async {
-          final result = await showDialog(
+
+        onLongPress: (calendarTapDetails) async {
+          final DailyDeeds? result = await showDialog(
             context: context,
             builder: (BuildContext context) {
               return DailyDeedsEditor(
@@ -101,75 +160,18 @@ class DailyDeedsScreen extends StatelessWidget {
           );
 
           if (result != null) {
-            // Handle the edited instance
             qadaaPrint('Edited Prayers: $result');
+
+            await dailyDeedsRepo.insertDailyDeeds(result);
           }
         },
       ),
     );
   }
-
-  List<Meeting> _getDataSource() {
-    final List<Meeting> meetings = <Meeting>[];
-    final DateTime today = DateTime.now().subtract(const Duration(days: 2));
-
-    meetings.add(
-      Meeting(
-        S.current.fajr,
-        today.copyWith(hour: 5),
-        today.copyWith(hour: 6),
-        Colors.greenAccent,
-        false,
-      ),
-    );
-
-    meetings.add(
-      Meeting(
-        S.current.dhuhr,
-        today.copyWith(hour: 12),
-        today.copyWith(hour: 15),
-        Colors.pink,
-        false,
-      ),
-    );
-    meetings.add(
-      Meeting(
-        S.current.asr,
-        today.copyWith(hour: 15),
-        today.copyWith(hour: 17),
-        Colors.greenAccent,
-        false,
-      ),
-    );
-    meetings.add(
-      Meeting(
-        S.current.maghrib,
-        today.copyWith(hour: 17),
-        today.copyWith(hour: 19),
-        Colors.pink,
-        false,
-      ),
-    );
-    meetings.add(
-      Meeting(
-        S.current.ishaa,
-        today.copyWith(hour: 19),
-        today.copyWith(hour: 23, minute: 59, second: 59),
-        Colors.greenAccent,
-        false,
-      ),
-    );
-    return meetings;
-  }
 }
 
-/// An object to set the appointment collection data source to calendar, which
-/// used to map the custom appointment data to the calendar appointment, and
-/// allows to add, remove or reset the appointment collection.
 class DailyDeedsDataSource extends CalendarDataSource {
-  /// Creates a meeting data source, which used to set the appointment
-  /// collection to the calendar
-  DailyDeedsDataSource(List<Meeting> source) {
+  DailyDeedsDataSource(List<Slot> source) {
     appointments = source;
   }
 
@@ -185,7 +187,7 @@ class DailyDeedsDataSource extends CalendarDataSource {
 
   @override
   String getSubject(int index) {
-    return _getMeetingData(index).eventName;
+    return _getMeetingData(index).title;
   }
 
   @override
@@ -198,18 +200,40 @@ class DailyDeedsDataSource extends CalendarDataSource {
     return _getMeetingData(index).isAllDay;
   }
 
-  @override
-  String? getNotes(int index) {
-    return "";
-  }
-
-  Meeting _getMeetingData(int index) {
+  Slot _getMeetingData(int index) {
     final dynamic meeting = appointments![index];
-    late final Meeting meetingData;
-    if (meeting is Meeting) {
+    late final Slot meetingData;
+    if (meeting is Slot) {
       meetingData = meeting;
     }
 
     return meetingData;
+  }
+}
+
+class DailyDeedsDataSourceLoadMore extends DailyDeedsDataSource {
+  DailyDeedsDataSourceLoadMore(super.source);
+
+  @override
+  Future<void> handleLoadMore(DateTime startDate, DateTime endDate) async {
+    qadaaPrint("DailyDeedsDataSourceLoadMore");
+
+    final loadedDeeds =
+        await dailyDeedsRepo.getDailyDeedsByDateRange(startDate, endDate);
+
+    qadaaPrint("DailyDeedsDataSourceLoadMore ${loadedDeeds.length}");
+
+    final List<Slot> slots = loadedDeeds
+        .map(
+      (e) => e.allSlots(),
+    )
+        .fold(
+      <Slot>[],
+      (previousValue, element) => previousValue..addAll(element),
+    );
+
+    appointments!.addAll(slots);
+    appointments = slots;
+    notifyListeners(CalendarDataSourceAction.add, slots);
   }
 }

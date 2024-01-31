@@ -203,7 +203,7 @@ class _DailyDeedsEditorState extends State<DailyDeedsEditor> {
                           PrayerCountSelector(
                             numbers: const [0, 4],
                             value: dailyDeeds.additionalPrayers.dhuhrPre,
-                            title: const Text("الظهر القبلية"),
+                            title: const Text("الظهر القبليه"),
                             onChanged: (value) {
                               setState(() {
                                 dailyDeeds = dailyDeeds.copyWith(
@@ -217,7 +217,7 @@ class _DailyDeedsEditorState extends State<DailyDeedsEditor> {
                           PrayerCountSelector(
                             numbers: const [0, 2, 4],
                             value: dailyDeeds.additionalPrayers.dhuhrAfter,
-                            title: const Text("الظهر البعدية"),
+                            title: const Text("الظهر البعديه"),
                             onChanged: (value) {
                               setState(() {
                                 dailyDeeds = dailyDeeds.copyWith(
@@ -231,7 +231,7 @@ class _DailyDeedsEditorState extends State<DailyDeedsEditor> {
                           PrayerCountSelector(
                             numbers: const [0, 4],
                             value: dailyDeeds.additionalPrayers.asrPre,
-                            title: const Text("العصر القبلية"),
+                            title: const Text("العصر القبليه"),
                             onChanged: (value) {
                               setState(() {
                                 dailyDeeds = dailyDeeds.copyWith(
@@ -245,7 +245,7 @@ class _DailyDeedsEditorState extends State<DailyDeedsEditor> {
                           PrayerCountSelector(
                             numbers: const [0, 2],
                             value: dailyDeeds.additionalPrayers.maghribPre,
-                            title: const Text("المغرب القبلية"),
+                            title: const Text("المغرب القبليه"),
                             onChanged: (value) {
                               setState(() {
                                 dailyDeeds = dailyDeeds.copyWith(
@@ -259,7 +259,7 @@ class _DailyDeedsEditorState extends State<DailyDeedsEditor> {
                           PrayerCountSelector(
                             numbers: const [0, 2],
                             value: dailyDeeds.additionalPrayers.maghribAfter,
-                            title: const Text("المغرب البعدية"),
+                            title: const Text("المغرب البعديه"),
                             onChanged: (value) {
                               setState(() {
                                 dailyDeeds = dailyDeeds.copyWith(
@@ -273,7 +273,7 @@ class _DailyDeedsEditorState extends State<DailyDeedsEditor> {
                           PrayerCountSelector(
                             numbers: const [0, 2],
                             value: dailyDeeds.additionalPrayers.ishaaPre,
-                            title: const Text("العشاء القبلية"),
+                            title: const Text("العشاء القبليه"),
                             onChanged: (value) {
                               setState(() {
                                 dailyDeeds = dailyDeeds.copyWith(
@@ -287,7 +287,7 @@ class _DailyDeedsEditorState extends State<DailyDeedsEditor> {
                           PrayerCountSelector(
                             numbers: const [0, 2],
                             value: dailyDeeds.additionalPrayers.ishaaAfter,
-                            title: const Text("العشاء البعدية"),
+                            title: const Text("العشاء البعديه"),
                             onChanged: (value) {
                               setState(() {
                                 dailyDeeds = dailyDeeds.copyWith(
