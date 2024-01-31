@@ -61,9 +61,6 @@ class SlotsDataSourceLoadMore extends SlotsDataSource {
       endDate.add(const Duration(days: 2)),
     );
 
-    final map = {for (final e in loadedDeeds) e.date: true};
-    dataCollection.addAll(map);
-
     final deedsToAdd = loadedDeeds.fold(
       <DailyDeeds>[],
       (previousValue, element) {
@@ -74,6 +71,9 @@ class SlotsDataSourceLoadMore extends SlotsDataSource {
         }
       },
     );
+
+    final map = {for (final e in loadedDeeds) e.date: true};
+    dataCollection.addAll(map);
 
     final List<Slot> slots = deedsToAdd.convertToSlot();
 
