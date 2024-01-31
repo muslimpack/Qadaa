@@ -49,7 +49,7 @@ class DailyDeedsController extends GetxController {
       ),
       DateTime.now().add(
         const Duration(
-          days: 30,
+          days: 1,
         ),
       ),
     );
