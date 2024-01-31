@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:qadaa/generated/l10n.dart';
 import 'package:qadaa/src/core/constants/constant.dart';
 import 'package:qadaa/src/features/daily_deeds/data/models/daily_deeds.dart';
-import 'package:qadaa/src/features/daily_deeds/presentation/components/count_selecteor.dart';
+import 'package:qadaa/src/features/daily_deeds/presentation/components/count_selector.dart';
 
 class DailyDeedsEditor extends StatefulWidget {
   final DailyDeeds dailyDeeds;
