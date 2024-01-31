@@ -56,11 +56,13 @@ class SlotsDataSourceLoadMore extends SlotsDataSource {
 
   @override
   Future<void> handleLoadMore(DateTime startDate, DateTime endDate) async {
+    /// Get Deeds for that dateTime range
     final loadedDeeds = await dailyDeedsRepo.getDailyDeedsByDateRange(
       startDate.subtract(const Duration(days: 2)),
       endDate.add(const Duration(days: 2)),
     );
 
+    /// Get unique deeds
     final deedsToAdd = loadedDeeds.fold(
       <DailyDeeds>[],
       (previousValue, element) {
@@ -72,11 +74,14 @@ class SlotsDataSourceLoadMore extends SlotsDataSource {
       },
     );
 
+    /// Add deeds to collection
     final map = {for (final e in loadedDeeds) e.date: true};
     dataCollection.addAll(map);
 
+    /// Create Slots of Deeds
     final List<Slot> slots = deedsToAdd.convertToSlot();
 
+    /// Add to sfCalender
     appointments!.addAll(slots);
     notifyListeners(
       CalendarDataSourceAction.add,

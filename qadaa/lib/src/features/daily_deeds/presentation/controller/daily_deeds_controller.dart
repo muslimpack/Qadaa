@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qadaa/src/core/shared/loading.dart';
-import 'package:qadaa/src/core/utils/print.dart';
 import 'package:qadaa/src/features/daily_deeds/data/data_source/daily_deeds_repo.dart';
 import 'package:qadaa/src/features/daily_deeds/data/data_source/sf_data_source.dart';
 import 'package:qadaa/src/features/daily_deeds/data/models/daily_deeds.dart';
@@ -17,6 +16,7 @@ class DailyDeedsController extends GetxController {
   late final List<Slot> slots = [];
   late final CalendarController controller;
   late CalendarDataSource dataSource;
+  Key sfCalendarKey = GlobalKey();
 
   @override
   void onInit() {
@@ -37,9 +37,6 @@ class DailyDeedsController extends GetxController {
   }
 
   Future loadData() async {
-    dataCollection.clear();
-    slots.clear();
-
     await dailyDeedsRepo.addMissingDays();
     final loadedDeeds = await dailyDeedsRepo.getDailyDeedsByDateRange(
       DateTime.now().subtract(
@@ -104,7 +101,6 @@ class DailyDeedsController extends GetxController {
     }
 
     if (dateTimeToEdit == null) return;
-    qadaaPrint(dateTimeToEdit);
 
     final DailyDeeds? result = await showDialog(
       context: Get.context!,
@@ -117,7 +113,10 @@ class DailyDeedsController extends GetxController {
 
     if (result != null) {
       await dailyDeedsRepo.insertDailyDeeds(result);
-      await loadData();
+
+      slots.removeWhere((slot) => slot.id == dateTimeToEdit);
+      slots.addAll(result.allSlots());
+      dataSource = SlotsDataSourceLoadMore(slots, dataCollection);
       update();
     }
   }

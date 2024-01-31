@@ -23,6 +23,7 @@ class _DailyDeedsScreenState extends State<DailyDeedsScreen> {
             ? const Loading()
             : Scaffold(
                 body: SfCalendar(
+                  key: controller.sfCalendarKey,
                   controller: controller.controller,
                   initialDisplayDate: now,
                   initialSelectedDate: now,
