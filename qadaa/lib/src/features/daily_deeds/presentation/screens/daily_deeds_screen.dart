@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:qadaa/src/core/shared/loading.dart';
 import 'package:qadaa/src/core/utils/print.dart';
@@ -15,10 +16,9 @@ class DailyDeedsScreen extends StatefulWidget {
   State<DailyDeedsScreen> createState() => _DailyDeedsScreenState();
 }
 
-final Map<DateTime, List<Slot>> _dataCollection = {};
-
 class _DailyDeedsScreenState extends State<DailyDeedsScreen> {
   bool isLoading = true;
+  final Map<DateTime, List<Slot>> _dataCollection = {};
   late final List<Slot> slots = [];
   late final CalendarController _controller;
   late CalendarDataSource _dataSource;
@@ -50,7 +50,7 @@ class _DailyDeedsScreenState extends State<DailyDeedsScreen> {
 
     slots.addAll(loadedDeeds.convertToSlot());
 
-    _dataSource = SlotsDataSourceLoadMore(slots);
+    _dataSource = SlotsDataSourceLoadMore(slots, _dataCollection);
     setState(() {
       isLoading = false;
     });
@@ -320,7 +320,11 @@ class SlotsDataSource extends CalendarDataSource {
 }
 
 class SlotsDataSourceLoadMore extends SlotsDataSource {
-  SlotsDataSourceLoadMore(super.source);
+  final Map<DateTime, List<Slot>> dataCollection;
+  SlotsDataSourceLoadMore(
+    super.source,
+    this.dataCollection,
+  );
 
   @override
   Future<void> handleLoadMore(DateTime startDate, DateTime endDate) async {
@@ -330,11 +334,11 @@ class SlotsDataSourceLoadMore extends SlotsDataSource {
     );
 
     final map = {for (final e in loadedDeeds) e.date: <Slot>[]};
-    _dataCollection.addAll(map);
+    dataCollection.addAll(map);
 
     final deedsToAdd = loadedDeeds.fold(
       <DailyDeeds>[],
-      (previousValue, element) => !_dataCollection.containsKey(element.date)
+      (previousValue, element) => !dataCollection.containsKey(element.date)
           ? (previousValue..add(element))
           : previousValue,
     );
