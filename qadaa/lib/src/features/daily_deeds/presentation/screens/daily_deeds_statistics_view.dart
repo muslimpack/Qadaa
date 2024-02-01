@@ -81,16 +81,16 @@ class DailyDeedsStatisticsView extends StatelessWidget {
               ),
             ),
           ),
-          Card(
-            child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: StatsTile(
-                label: S.of(context).fast,
-                count: 50,
-                value: .5,
-              ),
-            ),
-          ),
+          // Card(
+          //   child: Padding(
+          //     padding: const EdgeInsets.all(10),
+          //     child: StatsTile(
+          //       label: S.of(context).fast,
+          //       count: 50,
+          //       value: .5,
+          //     ),
+          //   ),
+          // ),
           const Card(
             child: Padding(
               padding: EdgeInsets.all(10),
@@ -181,8 +181,11 @@ class StatsTile extends StatelessWidget {
           Expanded(child: LinearLiquidProgress(value: value)),
           const SizedBox(width: 10),
           ConstrainedBox(
-            constraints: const BoxConstraints(minWidth: 25),
-            child: Text("$count"),
+            constraints: const BoxConstraints(minWidth: 50),
+            child: Text(
+              "$count",
+              textAlign: TextAlign.center,
+            ),
           ),
         ],
       ),
