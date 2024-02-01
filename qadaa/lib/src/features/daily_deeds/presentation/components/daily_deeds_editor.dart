@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:qadaa/generated/l10n.dart';
@@ -63,7 +62,7 @@ class _DailyDeedsEditorState extends State<DailyDeedsEditor> {
                 child: Scaffold(
                   appBar: AppBar(
                     leading: const SizedBox(),
-                    title: const Text("أعمال اليوم"),
+                    title: Text(S.of(context).dailyDeeds),
                     centerTitle: true,
                     bottom: PreferredSize(
                       preferredSize: const Size.fromHeight(50),
@@ -80,15 +79,15 @@ class _DailyDeedsEditorState extends State<DailyDeedsEditor> {
                         labelStyle: const TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
-                        tabs: const <Widget>[
+                        tabs: <Widget>[
                           Tab(
-                            text: "عام",
+                            text: S.of(context).general,
                           ),
                           Tab(
-                            text: "الفروض",
+                            text: S.of(context).obligatoryPrayers,
                           ),
                           Tab(
-                            text: "النوافل",
+                            text: S.of(context).additionalPrayers,
                           ),
                         ],
                       ),
@@ -202,7 +201,7 @@ class _DailyDeedsEditorState extends State<DailyDeedsEditor> {
                                 PrayerCountSelector(
                                   numbers: const [0, 2],
                                   value: dailyDeeds.additionalPrayers.fajrPre,
-                                  title: const Text("ركعتا الفجر"),
+                                  title: Text(S.of(context).fajrPre),
                                   onChanged: (value) {
                                     setState(() {
                                       dailyDeeds = dailyDeeds.copyWith(
@@ -216,7 +215,7 @@ class _DailyDeedsEditorState extends State<DailyDeedsEditor> {
                                 PrayerCountSelector(
                                   numbers: const [0, 2, 4, 6, 8],
                                   value: dailyDeeds.additionalPrayers.doha,
-                                  title: const Text("الضحى"),
+                                  title: Text(S.of(context).doha),
                                   onChanged: (value) {
                                     setState(() {
                                       dailyDeeds = dailyDeeds.copyWith(
@@ -230,7 +229,7 @@ class _DailyDeedsEditorState extends State<DailyDeedsEditor> {
                                 PrayerCountSelector(
                                   numbers: const [0, 4],
                                   value: dailyDeeds.additionalPrayers.dhuhrPre,
-                                  title: const Text("الظهر القبليه"),
+                                  title: Text(S.of(context).dhuhrPre),
                                   onChanged: (value) {
                                     setState(() {
                                       dailyDeeds = dailyDeeds.copyWith(
@@ -245,7 +244,7 @@ class _DailyDeedsEditorState extends State<DailyDeedsEditor> {
                                   numbers: const [0, 2, 4],
                                   value:
                                       dailyDeeds.additionalPrayers.dhuhrAfter,
-                                  title: const Text("الظهر البعديه"),
+                                  title: Text(S.of(context).dhuhrAfter),
                                   onChanged: (value) {
                                     setState(() {
                                       dailyDeeds = dailyDeeds.copyWith(
@@ -259,7 +258,7 @@ class _DailyDeedsEditorState extends State<DailyDeedsEditor> {
                                 PrayerCountSelector(
                                   numbers: const [0, 4],
                                   value: dailyDeeds.additionalPrayers.asrPre,
-                                  title: const Text("العصر القبليه"),
+                                  title: Text(S.of(context).asrPre),
                                   onChanged: (value) {
                                     setState(() {
                                       dailyDeeds = dailyDeeds.copyWith(
@@ -274,7 +273,7 @@ class _DailyDeedsEditorState extends State<DailyDeedsEditor> {
                                   numbers: const [0, 2],
                                   value:
                                       dailyDeeds.additionalPrayers.maghribPre,
-                                  title: const Text("المغرب القبليه"),
+                                  title: Text(S.of(context).maghribPre),
                                   onChanged: (value) {
                                     setState(() {
                                       dailyDeeds = dailyDeeds.copyWith(
@@ -289,7 +288,7 @@ class _DailyDeedsEditorState extends State<DailyDeedsEditor> {
                                   numbers: const [0, 2],
                                   value:
                                       dailyDeeds.additionalPrayers.maghribAfter,
-                                  title: const Text("المغرب البعديه"),
+                                  title: Text(S.of(context).maghribAfter),
                                   onChanged: (value) {
                                     setState(() {
                                       dailyDeeds = dailyDeeds.copyWith(
@@ -303,7 +302,7 @@ class _DailyDeedsEditorState extends State<DailyDeedsEditor> {
                                 PrayerCountSelector(
                                   numbers: const [0, 2],
                                   value: dailyDeeds.additionalPrayers.ishaaPre,
-                                  title: const Text("العشاء القبليه"),
+                                  title: Text(S.of(context).ishaaPre),
                                   onChanged: (value) {
                                     setState(() {
                                       dailyDeeds = dailyDeeds.copyWith(
@@ -318,7 +317,7 @@ class _DailyDeedsEditorState extends State<DailyDeedsEditor> {
                                   numbers: const [0, 2],
                                   value:
                                       dailyDeeds.additionalPrayers.ishaaAfter,
-                                  title: const Text("العشاء البعديه"),
+                                  title: Text(S.of(context).ishaaAfter),
                                   onChanged: (value) {
                                     setState(() {
                                       dailyDeeds = dailyDeeds.copyWith(
@@ -346,7 +345,7 @@ class _DailyDeedsEditorState extends State<DailyDeedsEditor> {
                                   ],
                                   value:
                                       dailyDeeds.additionalPrayers.nightPrayer,
-                                  title: const Text("صلاة الليل"),
+                                  title: Text(S.of(context).nightPrayer),
                                   onChanged: (value) {
                                     setState(() {
                                       dailyDeeds = dailyDeeds.copyWith(
@@ -368,8 +367,8 @@ class _DailyDeedsEditorState extends State<DailyDeedsEditor> {
                         children: [
                           Expanded(
                             child: ListTile(
-                              title: const Text(
-                                'الغاء',
+                              title: Text(
+                                S.of(context).action_close,
                                 textAlign: TextAlign.center,
                               ),
                               onTap: () {
@@ -379,8 +378,10 @@ class _DailyDeedsEditorState extends State<DailyDeedsEditor> {
                           ),
                           Expanded(
                             child: ListTile(
-                              title:
-                                  const Text('تم', textAlign: TextAlign.center),
+                              title: Text(
+                                S.of(context).action_done,
+                                textAlign: TextAlign.center,
+                              ),
                               onTap: () {
                                 Navigator.of(context).pop(dailyDeeds);
                               },

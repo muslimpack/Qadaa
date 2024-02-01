@@ -50,6 +50,26 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  /// `Close`
+  String get action_close {
+    return Intl.message(
+      'Close',
+      name: 'action_close',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Done`
+  String get action_done {
+    return Intl.message(
+      'Done',
+      name: 'action_done',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Activate App Lock`
   String get activate_app_lock {
     return Intl.message(
@@ -85,6 +105,16 @@ class S {
     return Intl.message(
       'Add Days',
       name: 'add_days',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Additional Prayers`
+  String get additionalPrayers {
+    return Intl.message(
+      'Additional Prayers',
+      name: 'additionalPrayers',
       desc: '',
       args: [],
     );
@@ -410,6 +440,16 @@ class S {
     );
   }
 
+  /// `General`
+  String get general {
+    return Intl.message(
+      'General',
+      name: 'general',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Ishaa`
   String get ishaa {
     return Intl.message(
@@ -545,6 +585,16 @@ class S {
     return Intl.message(
       'No Missed Prayer',
       name: 'no_missed_prayer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Obligatory Prayers`
+  String get obligatoryPrayers {
+    return Intl.message(
+      'Obligatory Prayers',
+      name: 'obligatoryPrayers',
       desc: '',
       args: [],
     );

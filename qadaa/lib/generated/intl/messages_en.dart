@@ -22,11 +22,15 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "action_close": MessageLookupByLibrary.simpleMessage("Close"),
+        "action_done": MessageLookupByLibrary.simpleMessage("Done"),
         "activate_app_lock":
             MessageLookupByLibrary.simpleMessage("Activate App Lock"),
         "add": MessageLookupByLibrary.simpleMessage("Add"),
         "add_day": MessageLookupByLibrary.simpleMessage("Add Day"),
         "add_days": MessageLookupByLibrary.simpleMessage("Add Days"),
+        "additionalPrayers":
+            MessageLookupByLibrary.simpleMessage("Additional Prayers"),
         "alert": MessageLookupByLibrary.simpleMessage("ALert"),
         "app_lang": MessageLookupByLibrary.simpleMessage("App Language"),
         "app_lock": MessageLookupByLibrary.simpleMessage("App Lock"),
@@ -70,6 +74,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "fajr": MessageLookupByLibrary.simpleMessage("Fajr"),
         "fajrPre": MessageLookupByLibrary.simpleMessage("Pre Fajr"),
         "fast": MessageLookupByLibrary.simpleMessage("Fast"),
+        "general": MessageLookupByLibrary.simpleMessage("General"),
         "ishaa": MessageLookupByLibrary.simpleMessage("Ishaa"),
         "ishaaAfter": MessageLookupByLibrary.simpleMessage("Ishaa After"),
         "ishaaPre": MessageLookupByLibrary.simpleMessage("Ishaa Pre"),
@@ -86,6 +91,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "no": MessageLookupByLibrary.simpleMessage("No"),
         "no_missed_prayer":
             MessageLookupByLibrary.simpleMessage("No Missed Prayer"),
+        "obligatoryPrayers":
+            MessageLookupByLibrary.simpleMessage("Obligatory Prayers"),
         "open_in_google_play":
             MessageLookupByLibrary.simpleMessage("Open in Google Play"),
         "other_settings": MessageLookupByLibrary.simpleMessage("others"),

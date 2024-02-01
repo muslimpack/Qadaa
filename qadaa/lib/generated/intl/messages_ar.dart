@@ -22,11 +22,14 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "action_close": MessageLookupByLibrary.simpleMessage("الغاء"),
+        "action_done": MessageLookupByLibrary.simpleMessage("تم"),
         "activate_app_lock":
             MessageLookupByLibrary.simpleMessage("تفعيل قفل التطبيق"),
         "add": MessageLookupByLibrary.simpleMessage("إضافة"),
         "add_day": MessageLookupByLibrary.simpleMessage("أضف يوما"),
         "add_days": MessageLookupByLibrary.simpleMessage("أضف أياما"),
+        "additionalPrayers": MessageLookupByLibrary.simpleMessage("النوافل"),
         "alert": MessageLookupByLibrary.simpleMessage("تنبيه"),
         "app_lang": MessageLookupByLibrary.simpleMessage("لغة التطبيق"),
         "app_lock": MessageLookupByLibrary.simpleMessage("قفل التطبيق"),
@@ -66,6 +69,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "fajr": MessageLookupByLibrary.simpleMessage("فجر"),
         "fajrPre": MessageLookupByLibrary.simpleMessage("ركعتا الفجر"),
         "fast": MessageLookupByLibrary.simpleMessage("الصوم"),
+        "general": MessageLookupByLibrary.simpleMessage("عام"),
         "ishaa": MessageLookupByLibrary.simpleMessage("عشاء"),
         "ishaaAfter": MessageLookupByLibrary.simpleMessage("العشاء البعديه"),
         "ishaaPre": MessageLookupByLibrary.simpleMessage("العشاء القبليه"),
@@ -74,7 +78,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "maghribPre": MessageLookupByLibrary.simpleMessage("المغرب القبليه"),
         "make_up_missed_prayers":
             MessageLookupByLibrary.simpleMessage("قضاء الصلوات الفائتة"),
-        "missedDeeds": MessageLookupByLibrary.simpleMessage("الفوائت"),
+        "missedDeeds": MessageLookupByLibrary.simpleMessage("الفائت"),
         "missed_prayer":
             MessageLookupByLibrary.simpleMessage("الصلوات الفائتة"),
         "month": MessageLookupByLibrary.simpleMessage("ضهر"),
@@ -83,6 +87,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "no": MessageLookupByLibrary.simpleMessage("لا"),
         "no_missed_prayer":
             MessageLookupByLibrary.simpleMessage("لا صلوات فائتة"),
+        "obligatoryPrayers": MessageLookupByLibrary.simpleMessage("الفروض"),
         "open_in_google_play":
             MessageLookupByLibrary.simpleMessage("فتح في متجر GooglePlay"),
         "other_settings": MessageLookupByLibrary.simpleMessage("أخرى"),
@@ -109,11 +114,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "splash_static_image":
             MessageLookupByLibrary.simpleMessage("صورة ثابتة"),
         "start": MessageLookupByLibrary.simpleMessage("البدء"),
-        "statistics": MessageLookupByLibrary.simpleMessage("احصائيات"),
+        "statistics": MessageLookupByLibrary.simpleMessage("إحصائيات"),
         "sure_to_reset_everything_msg": MessageLookupByLibrary.simpleMessage(
             "هل أنت متأكد أنك تريد إعادة ضبط كل شيء؟"),
         "timesDone": MessageLookupByLibrary.simpleMessage("عدد المرات"),
-        "timesMissed": MessageLookupByLibrary.simpleMessage("عدد الفوائت"),
+        "timesMissed": MessageLookupByLibrary.simpleMessage("عدد الفائت"),
         "today": MessageLookupByLibrary.simpleMessage("اليوم"),
         "ui": MessageLookupByLibrary.simpleMessage("الواجهة"),
         "version": MessageLookupByLibrary.simpleMessage("إصدار"),
