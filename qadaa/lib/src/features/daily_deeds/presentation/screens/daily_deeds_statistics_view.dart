@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:qadaa/generated/l10n.dart';
 import 'package:qadaa/src/core/shared/loading.dart';
 import 'package:qadaa/src/features/daily_deeds/presentation/components/liquid_linear_progress.dart';
+import 'package:qadaa/src/features/daily_deeds/presentation/components/stats_card_header.dart';
 import 'package:qadaa/src/features/daily_deeds/presentation/components/stats_tile.dart';
 import 'package:qadaa/src/features/daily_deeds/presentation/controller/daily_deeds_stats_controller.dart';
 
@@ -38,14 +39,12 @@ class DailyDeedsStatisticsView extends StatelessWidget {
                         padding: const EdgeInsets.all(10),
                         child: Column(
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(S.of(context).prayerName),
-                                Text(S.of(context).timesMissed),
+                            StatsCardHeader.labels(
+                              labels: [
+                                S.of(context).prayerName,
+                                S.of(context).timesMissed,
                               ],
                             ),
-                            const Divider(),
                             ...controller.obligatoryElements.map(
                               (e) => StatsTile(
                                 label: e.label,
@@ -62,14 +61,12 @@ class DailyDeedsStatisticsView extends StatelessWidget {
                         padding: const EdgeInsets.all(10),
                         child: Column(
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Text(""),
-                                Text(S.of(context).timesDone),
+                            StatsCardHeader.labels(
+                              labels: [
+                                "",
+                                S.of(context).count,
                               ],
                             ),
-                            const Divider(),
                             StatsTile(
                               label: controller.fastingElement.label,
                               times: controller.fastingElement.times,
@@ -84,15 +81,13 @@ class DailyDeedsStatisticsView extends StatelessWidget {
                         padding: const EdgeInsets.all(10),
                         child: Column(
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(S.of(context).prayerName),
-                                Text(S.of(context).timesDone),
-                                Text(S.of(context).count),
+                            StatsCardHeader.labels(
+                              labels: [
+                                S.of(context).prayerName,
+                                S.of(context).timesDone,
+                                S.of(context).count,
                               ],
                             ),
-                            const Divider(),
                             ...controller.additionalElements.map(
                               (e) => StatsTile(
                                 label: e.label,
