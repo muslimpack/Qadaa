@@ -42,7 +42,7 @@ class AddNew extends StatelessWidget {
                 ),
                 MyTile(
                   title: S.of(context).day,
-                  icon: Icons.add,
+                  icon: Icons.plus_one,
                   trailing: controller.getDays().toString(),
                   onTap: () {
                     controller.addDay(value: 1);
@@ -50,7 +50,7 @@ class AddNew extends StatelessWidget {
                 ),
                 MyTile(
                   title: S.of(context).week,
-                  icon: Icons.add,
+                  icon: Icons.plus_one,
                   trailing: (controller.getDays() ~/ 7).toString(),
                   onTap: () {
                     controller.addWeek(value: 1);
@@ -58,7 +58,7 @@ class AddNew extends StatelessWidget {
                 ),
                 MyTile(
                   title: S.of(context).month,
-                  icon: Icons.add,
+                  icon: Icons.plus_one,
                   trailing: (controller.getDays() ~/ 30).toString(),
                   onTap: () {
                     controller.addMonth(value: 1);
@@ -66,7 +66,7 @@ class AddNew extends StatelessWidget {
                 ),
                 MyTile(
                   title: S.of(context).year,
-                  icon: Icons.add,
+                  icon: Icons.plus_one,
                   trailing: (controller.getDays() ~/ 365).toString(),
                   onTap: () {
                     controller.addYear(value: 1);
@@ -90,7 +90,7 @@ class AddNew extends StatelessWidget {
                 ),
                 MyTile(
                   title: S.of(context).fajr,
-                  icon: Icons.add,
+                  icon: Icons.plus_one,
                   trailing: controller.getFajr().toString(),
                   onTap: () {
                     controller.addPrayer(fajr: 1);
@@ -98,7 +98,7 @@ class AddNew extends StatelessWidget {
                 ),
                 MyTile(
                   title: S.of(context).dhuhr,
-                  icon: Icons.add,
+                  icon: Icons.plus_one,
                   trailing: controller.getDhuhr().toString(),
                   onTap: () {
                     controller.addPrayer(dhuhr: 1);
@@ -106,7 +106,7 @@ class AddNew extends StatelessWidget {
                 ),
                 MyTile(
                   title: S.of(context).asr,
-                  icon: Icons.add,
+                  icon: Icons.plus_one,
                   trailing: controller.getAsr().toString(),
                   onTap: () {
                     controller.addPrayer(asr: 1);
@@ -114,7 +114,7 @@ class AddNew extends StatelessWidget {
                 ),
                 MyTile(
                   title: S.of(context).maghrib,
-                  icon: Icons.add,
+                  icon: Icons.plus_one,
                   trailing: controller.getMaghrib().toString(),
                   onTap: () {
                     controller.addPrayer(maghrib: 1);
@@ -122,7 +122,7 @@ class AddNew extends StatelessWidget {
                 ),
                 MyTile(
                   title: S.of(context).ishaa,
-                  icon: Icons.add,
+                  icon: Icons.plus_one,
                   trailing: controller.getIsha().toString(),
                   onTap: () {
                     controller.addPrayer(isha: 1);

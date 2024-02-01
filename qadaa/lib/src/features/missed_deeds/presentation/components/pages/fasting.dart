@@ -67,7 +67,7 @@ class FastingPage extends StatelessWidget {
                 const Divider(),
                 MyTile(
                   title: S.of(context).add_day,
-                  icon: Icons.done,
+                  icon: Icons.plus_one,
                   trailing: controller.getFasting().toString(),
                   onTap: () async {
                     controller.addFasting(days: 1);
@@ -75,7 +75,7 @@ class FastingPage extends StatelessWidget {
                 ),
                 MyTile(
                   title: S.of(context).add_days,
-                  icon: Icons.done,
+                  icon: Icons.add,
                   trailing: controller.getFasting().toString(),
                   onTap: () async {
                     showModalBottomSheet(
