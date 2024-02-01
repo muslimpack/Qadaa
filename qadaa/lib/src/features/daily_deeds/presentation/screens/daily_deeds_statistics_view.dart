@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:qadaa/generated/l10n.dart';
 import 'package:qadaa/src/features/daily_deeds/presentation/components/liquid_circular_progress.dart';
@@ -46,26 +47,142 @@ class DailyDeedsStatisticsView extends StatelessWidget {
               ),
             ],
           ),
-          const Card(
-            child: Column(
-              children: [
-                ListTile(
-                  title: Text("ركعتا الفجر"),
-                ),
-                ListTile(title: Text("الضحى")),
-                ListTile(title: Text("الظهر القبيله")),
-                ListTile(title: Text("الظهر البعديه")),
-                ListTile(title: Text("العصر القبليه")),
-                ListTile(title: Text("المغرب القبليه")),
-                ListTile(title: Text("المغرب البعديه")),
-                ListTile(title: Text("العشاء القبليه")),
-                ListTile(title: Text("العشاء البعديه")),
-                ListTile(title: Text("صلاة الليل")),
-              ],
+          Card(
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                children: [
+                  StatsTile(
+                    label: S.of(context).fajr,
+                    count: 50,
+                    value: .5,
+                  ),
+                  StatsTile(
+                    label: S.of(context).dhuhr,
+                    count: 50,
+                    value: .5,
+                  ),
+                  StatsTile(
+                    label: S.of(context).asr,
+                    count: 50,
+                    value: .5,
+                  ),
+                  StatsTile(
+                    label: S.of(context).maghrib,
+                    count: 50,
+                    value: .5,
+                  ),
+                  StatsTile(
+                    label: S.of(context).ishaa,
+                    count: 50,
+                    value: .5,
+                  ),
+                ],
+              ),
             ),
           ),
-          const LinearLiquidProgress(
-            value: .25,
+          Card(
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: StatsTile(
+                label: S.of(context).fast,
+                count: 50,
+                value: .5,
+              ),
+            ),
+          ),
+          const Card(
+            child: Padding(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                children: [
+                  StatsTile(
+                    label: "ركعتا الفجر",
+                    count: 50,
+                    value: .5,
+                  ),
+                  StatsTile(
+                    label: "الضحى",
+                    count: 50,
+                    value: .5,
+                  ),
+                  StatsTile(
+                    label: "الظهر القبيله",
+                    count: 50,
+                    value: .5,
+                  ),
+                  StatsTile(
+                    label: "الظهر البعديه",
+                    count: 50,
+                    value: .5,
+                  ),
+                  StatsTile(
+                    label: "العصر القبليه",
+                    count: 50,
+                    value: .5,
+                  ),
+                  StatsTile(
+                    label: "المغرب القبليه",
+                    count: 50,
+                    value: .5,
+                  ),
+                  StatsTile(
+                    label: "المغرب البعديه",
+                    count: 50,
+                    value: .5,
+                  ),
+                  StatsTile(
+                    label: "العشاء القبليه",
+                    count: 50,
+                    value: .5,
+                  ),
+                  StatsTile(
+                    label: "العشاء البعديه",
+                    count: 50,
+                    value: .5,
+                  ),
+                  StatsTile(
+                    label: "صلاة الليل",
+                    count: 50,
+                    value: .5,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class StatsTile extends StatelessWidget {
+  final String label;
+  final double value;
+  final int count;
+  const StatsTile({
+    super.key,
+    required this.label,
+    required this.value,
+    required this.count,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 2),
+      child: Row(
+        children: [
+          ConstrainedBox(
+            constraints: const BoxConstraints(minWidth: 100),
+            child: Text(label),
+          ),
+          const SizedBox(width: 10),
+          Expanded(child: LinearLiquidProgress(value: value)),
+          const SizedBox(width: 10),
+          ConstrainedBox(
+            constraints: const BoxConstraints(minWidth: 25),
+            child: Text("$count"),
           ),
         ],
       ),
