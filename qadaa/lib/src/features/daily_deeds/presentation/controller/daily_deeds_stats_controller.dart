@@ -5,8 +5,9 @@ import 'package:qadaa/src/features/daily_deeds/data/models/stats_model.dart';
 class DailyDeedsStatisticsController extends GetxController {
   late final int totalDays;
   bool isLoading = true;
-  List<StatsElement> obligatoryElements = [];
-  List<StatsElement> additional = [];
+  final List<StatsElement> obligatoryElements = [];
+  final List<StatsElement> additionalElements = [];
+  late StatsElement fastElement;
   static const List<String> obligatoryColumn = [
     "fajr",
     "dhuhr",
@@ -30,16 +31,33 @@ class DailyDeedsStatisticsController extends GetxController {
   @override
   void onInit() {
     loadData();
-
     super.onInit();
   }
 
   Future loadData() async {
     totalDays = await dailyDeedsRepo.daysCount();
+    await loadFasting();
     await loadObligatory();
     await loadAdditional();
     isLoading = false;
     update();
+  }
+
+  Future loadFasting() async {
+    const String label = "fasting";
+    final double percentage;
+    final int count;
+
+    if (totalDays == 0) {
+      percentage = 1;
+      count = 0;
+    } else {
+      count = await dailyDeedsRepo.countNonZeroValues(label);
+      percentage = count / totalDays;
+    }
+
+    fastElement =
+        StatsElement(label: label, count: count, percentage: percentage);
   }
 
   Future loadObligatory() async {
@@ -62,5 +80,23 @@ class DailyDeedsStatisticsController extends GetxController {
     }
   }
 
-  Future loadAdditional() async {}
+  Future loadAdditional() async {
+    for (final element in additionalColumn) {
+      final String label = element;
+      final double percentage;
+      final int count;
+
+      if (totalDays == 0) {
+        percentage = 1;
+        count = 0;
+      } else {
+        count = await dailyDeedsRepo.countNonZeroValues(label);
+        percentage = count / totalDays;
+      }
+
+      additionalElements.add(
+        StatsElement(label: label, count: count, percentage: percentage),
+      );
+    }
+  }
 }
