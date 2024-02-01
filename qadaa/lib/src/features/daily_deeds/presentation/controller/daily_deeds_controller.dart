@@ -21,6 +21,7 @@ class DailyDeedsController extends GetxController {
   @override
   void onInit() {
     controller = CalendarController();
+
     loadData();
 
     super.onInit();
