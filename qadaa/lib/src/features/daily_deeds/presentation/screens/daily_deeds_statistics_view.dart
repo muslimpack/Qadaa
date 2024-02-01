@@ -1,157 +1,167 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:qadaa/generated/l10n.dart';
+import 'package:qadaa/src/core/shared/loading.dart';
 import 'package:qadaa/src/features/daily_deeds/presentation/components/liquid_circular_progress.dart';
 import 'package:qadaa/src/features/daily_deeds/presentation/components/liquid_linear_progress.dart';
+import 'package:qadaa/src/features/daily_deeds/presentation/controller/daily_deeds_stats_controller.dart';
 
 class DailyDeedsStatisticsView extends StatelessWidget {
   const DailyDeedsStatisticsView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ListView(
-        padding: const EdgeInsets.all(15),
-        children: [
-          Row(
-            children: [
-              Expanded(
-                child: CircularLiquidProgress(
-                  value: 1,
-                  child: S.of(context).fajr,
+    return GetBuilder(
+      init: DailyDeedsStatisticsController(),
+      builder: (controller) {
+        return controller.isLoading
+            ? const Loading()
+            : Scaffold(
+                body: ListView(
+                  padding: const EdgeInsets.all(15),
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(
+                          child: CircularLiquidProgress(
+                            value: 1,
+                            child: S.of(context).fajr,
+                          ),
+                        ),
+                        Expanded(
+                          child: CircularLiquidProgress(
+                            value: .5,
+                            child: S.of(context).dhuhr,
+                          ),
+                        ),
+                        Expanded(
+                          child: CircularLiquidProgress(
+                            value: .75,
+                            child: S.of(context).asr,
+                          ),
+                        ),
+                        Expanded(
+                          child: CircularLiquidProgress(
+                            value: .8,
+                            child: S.of(context).maghrib,
+                          ),
+                        ),
+                        Expanded(
+                          child: CircularLiquidProgress(
+                            value: .1,
+                            child: S.of(context).ishaa,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Column(
+                          children: [
+                            StatsTile(
+                              label: S.of(context).fajr,
+                              count: 50,
+                              value: .5,
+                            ),
+                            StatsTile(
+                              label: S.of(context).dhuhr,
+                              count: 50,
+                              value: .5,
+                            ),
+                            StatsTile(
+                              label: S.of(context).asr,
+                              count: 50,
+                              value: .5,
+                            ),
+                            StatsTile(
+                              label: S.of(context).maghrib,
+                              count: 50,
+                              value: .5,
+                            ),
+                            StatsTile(
+                              label: S.of(context).ishaa,
+                              count: 50,
+                              value: .5,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    // Card(
+                    //   child: Padding(
+                    //     padding: const EdgeInsets.all(10),
+                    //     child: StatsTile(
+                    //       label: S.of(context).fast,
+                    //       count: 50,
+                    //       value: .5,
+                    //     ),
+                    //   ),
+                    // ),
+                    const Card(
+                      child: Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Column(
+                          children: [
+                            StatsTile(
+                              label: "ركعتا الفجر",
+                              count: 50,
+                              value: .5,
+                            ),
+                            StatsTile(
+                              label: "الضحى",
+                              count: 50,
+                              value: .5,
+                            ),
+                            StatsTile(
+                              label: "الظهر القبيله",
+                              count: 50,
+                              value: .5,
+                            ),
+                            StatsTile(
+                              label: "الظهر البعديه",
+                              count: 50,
+                              value: .5,
+                            ),
+                            StatsTile(
+                              label: "العصر القبليه",
+                              count: 50,
+                              value: .5,
+                            ),
+                            StatsTile(
+                              label: "المغرب القبليه",
+                              count: 50,
+                              value: .5,
+                            ),
+                            StatsTile(
+                              label: "المغرب البعديه",
+                              count: 50,
+                              value: .5,
+                            ),
+                            StatsTile(
+                              label: "العشاء القبليه",
+                              count: 50,
+                              value: .5,
+                            ),
+                            StatsTile(
+                              label: "العشاء البعديه",
+                              count: 50,
+                              value: .5,
+                            ),
+                            StatsTile(
+                              label: "صلاة الليل",
+                              count: 50,
+                              value: .5,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-              Expanded(
-                child: CircularLiquidProgress(
-                  value: .5,
-                  child: S.of(context).dhuhr,
-                ),
-              ),
-              Expanded(
-                child: CircularLiquidProgress(
-                  value: .75,
-                  child: S.of(context).asr,
-                ),
-              ),
-              Expanded(
-                child: CircularLiquidProgress(
-                  value: .8,
-                  child: S.of(context).maghrib,
-                ),
-              ),
-              Expanded(
-                child: CircularLiquidProgress(
-                  value: .1,
-                  child: S.of(context).ishaa,
-                ),
-              ),
-            ],
-          ),
-          Card(
-            child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: Column(
-                children: [
-                  StatsTile(
-                    label: S.of(context).fajr,
-                    count: 50,
-                    value: .5,
-                  ),
-                  StatsTile(
-                    label: S.of(context).dhuhr,
-                    count: 50,
-                    value: .5,
-                  ),
-                  StatsTile(
-                    label: S.of(context).asr,
-                    count: 50,
-                    value: .5,
-                  ),
-                  StatsTile(
-                    label: S.of(context).maghrib,
-                    count: 50,
-                    value: .5,
-                  ),
-                  StatsTile(
-                    label: S.of(context).ishaa,
-                    count: 50,
-                    value: .5,
-                  ),
-                ],
-              ),
-            ),
-          ),
-          // Card(
-          //   child: Padding(
-          //     padding: const EdgeInsets.all(10),
-          //     child: StatsTile(
-          //       label: S.of(context).fast,
-          //       count: 50,
-          //       value: .5,
-          //     ),
-          //   ),
-          // ),
-          const Card(
-            child: Padding(
-              padding: EdgeInsets.all(10),
-              child: Column(
-                children: [
-                  StatsTile(
-                    label: "ركعتا الفجر",
-                    count: 50,
-                    value: .5,
-                  ),
-                  StatsTile(
-                    label: "الضحى",
-                    count: 50,
-                    value: .5,
-                  ),
-                  StatsTile(
-                    label: "الظهر القبيله",
-                    count: 50,
-                    value: .5,
-                  ),
-                  StatsTile(
-                    label: "الظهر البعديه",
-                    count: 50,
-                    value: .5,
-                  ),
-                  StatsTile(
-                    label: "العصر القبليه",
-                    count: 50,
-                    value: .5,
-                  ),
-                  StatsTile(
-                    label: "المغرب القبليه",
-                    count: 50,
-                    value: .5,
-                  ),
-                  StatsTile(
-                    label: "المغرب البعديه",
-                    count: 50,
-                    value: .5,
-                  ),
-                  StatsTile(
-                    label: "العشاء القبليه",
-                    count: 50,
-                    value: .5,
-                  ),
-                  StatsTile(
-                    label: "العشاء البعديه",
-                    count: 50,
-                    value: .5,
-                  ),
-                  StatsTile(
-                    label: "صلاة الليل",
-                    count: 50,
-                    value: .5,
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
+              );
+      },
     );
   }
 }
