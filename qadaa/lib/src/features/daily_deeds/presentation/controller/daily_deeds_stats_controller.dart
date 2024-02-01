@@ -1,4 +1,5 @@
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:qadaa/generated/l10n.dart';
 import 'package:qadaa/src/features/daily_deeds/data/data_source/daily_deeds_repo.dart';
 import 'package:qadaa/src/features/daily_deeds/data/models/stats_model.dart';
 
@@ -18,6 +19,7 @@ class DailyDeedsStatisticsController extends GetxController {
   ];
   static const List<String> additionalColumn = [
     "fajrPre",
+    "doha",
     "dhuhrPre",
     "dhuhrAfter",
     "asrPre",
@@ -25,7 +27,6 @@ class DailyDeedsStatisticsController extends GetxController {
     "maghribAfter",
     "ishaaPre",
     "ishaaAfter",
-    "doha",
     "nightPrayer",
   ];
 
@@ -57,7 +58,7 @@ class DailyDeedsStatisticsController extends GetxController {
     }
 
     fastingElement = StatsElement(
-      label: fastingColumn,
+      label: readableColumnName(fastingColumn),
       times: count,
       percentage: percentage,
     );
@@ -68,25 +69,21 @@ class DailyDeedsStatisticsController extends GetxController {
       final String label = element;
       final double percentage;
       final int times;
-      final int count;
 
       if (totalDays == 0) {
         percentage = 1;
         times = 0;
-        count = 0;
       } else {
         times = await dailyDeedsRepo.countNonZeroValues(label);
-        count = await dailyDeedsRepo.sumColumn(label);
 
         percentage = times / totalDays;
       }
 
       obligatoryElements.add(
         StatsElement(
-          label: label,
-          times: times,
+          label: readableColumnName(label),
+          times: totalDays - times,
           percentage: percentage,
-          count: count,
         ),
       );
     }
@@ -111,12 +108,67 @@ class DailyDeedsStatisticsController extends GetxController {
 
       additionalElements.add(
         StatsElement(
-          label: label,
+          label: readableColumnName(label),
           times: times,
           percentage: percentage,
           count: count,
         ),
       );
+    }
+  }
+
+  String readableColumnName(String column) {
+    switch (column) {
+      case "fasting":
+        return S.current.fast;
+
+      case "fajr":
+        return S.current.fajr;
+
+      case "dhuhr":
+        return S.current.dhuhr;
+
+      case "asr":
+        return S.current.asr;
+
+      case "maghrib":
+        return S.current.maghrib;
+
+      case "ishaa":
+        return S.current.ishaa;
+
+      case "fajrPre":
+        return S.current.fajrPre;
+
+      case "dhuhrPre":
+        return S.current.dhuhrPre;
+
+      case "dhuhrAfter":
+        return S.current.dhuhrAfter;
+
+      case "asrPre":
+        return S.current.asrPre;
+
+      case "maghribPre":
+        return S.current.maghribPre;
+
+      case "maghribAfter":
+        return S.current.maghribAfter;
+
+      case "ishaaPre":
+        return S.current.ishaaPre;
+
+      case "ishaaAfter":
+        return S.current.ishaaAfter;
+
+      case "doha":
+        return S.current.doha;
+
+      case "nightPrayer":
+        return S.current.nightPrayer;
+
+      default:
+        return "";
     }
   }
 }
