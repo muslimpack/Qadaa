@@ -42,8 +42,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Reset Password"),
         "asr": MessageLookupByLibrary.simpleMessage("Asr"),
         "asrPre": MessageLookupByLibrary.simpleMessage("Asr Pre"),
+        "calender": MessageLookupByLibrary.simpleMessage("Calender"),
         "completion_date":
             MessageLookupByLibrary.simpleMessage("Completion Date"),
+        "count": MessageLookupByLibrary.simpleMessage("Count"),
         "custom_add_period":
             MessageLookupByLibrary.simpleMessage("Custom Add Period"),
         "custom_add_prayers":
@@ -52,6 +54,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Custom Add Period"),
         "custom_done_prayers":
             MessageLookupByLibrary.simpleMessage("Custom Done Prayers"),
+        "dailyDeeds": MessageLookupByLibrary.simpleMessage("Daily Deeds"),
         "day": MessageLookupByLibrary.simpleMessage("Day"),
         "days": MessageLookupByLibrary.simpleMessage("Days"),
         "dhuhr": MessageLookupByLibrary.simpleMessage("Dhuhr"),
@@ -75,6 +78,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "maghribPre": MessageLookupByLibrary.simpleMessage("Maghrib Pre"),
         "make_up_missed_prayers":
             MessageLookupByLibrary.simpleMessage("Make up Missed Prayers"),
+        "missedDeeds": MessageLookupByLibrary.simpleMessage("Missed Deeds"),
         "missed_prayer": MessageLookupByLibrary.simpleMessage("Missed Prayer"),
         "month": MessageLookupByLibrary.simpleMessage("Month"),
         "new_prayer": MessageLookupByLibrary.simpleMessage("New Prayer"),
@@ -87,6 +91,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "other_settings": MessageLookupByLibrary.simpleMessage("others"),
         "periods_done_title": MessageLookupByLibrary.simpleMessage("Time"),
         "periods_title": MessageLookupByLibrary.simpleMessage("Add Time"),
+        "prayerName": MessageLookupByLibrary.simpleMessage("Prayer Name"),
         "prayer_Settings":
             MessageLookupByLibrary.simpleMessage("Prayer Settings"),
         "prayers_done_title": MessageLookupByLibrary.simpleMessage("Prayers"),
@@ -109,8 +114,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "splash_static_image":
             MessageLookupByLibrary.simpleMessage("Static Image"),
         "start": MessageLookupByLibrary.simpleMessage("Start"),
+        "statistics": MessageLookupByLibrary.simpleMessage("Statistics"),
         "sure_to_reset_everything_msg": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to reset everything?"),
+        "timesDone": MessageLookupByLibrary.simpleMessage("Done Times"),
+        "timesMissed": MessageLookupByLibrary.simpleMessage("Missed Times"),
         "today": MessageLookupByLibrary.simpleMessage("Today"),
         "ui": MessageLookupByLibrary.simpleMessage("UI"),
         "version": MessageLookupByLibrary.simpleMessage("Version"),

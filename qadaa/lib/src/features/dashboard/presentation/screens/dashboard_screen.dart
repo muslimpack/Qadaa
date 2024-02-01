@@ -62,14 +62,14 @@ class _DashboardScreenState extends State<DashboardScreen>
             tabController.animateTo(value);
           });
         },
-        destinations: const [
+        destinations: [
           NavigationDestination(
-            icon: Icon(Icons.mosque),
-            label: " قضاء",
+            icon: const Icon(Icons.mosque),
+            label: S.of(context).missedDeeds,
           ),
           NavigationDestination(
-            icon: Icon(Icons.calendar_month_outlined),
-            label: " المتابعة اليومية",
+            icon: const Icon(Icons.calendar_month_outlined),
+            label: S.of(context).dailyDeeds,
           ),
         ],
       ),

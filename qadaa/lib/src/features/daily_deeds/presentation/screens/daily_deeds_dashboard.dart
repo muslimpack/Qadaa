@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:qadaa/generated/l10n.dart';
 import 'package:qadaa/src/core/constants/constant.dart';
 import 'package:qadaa/src/features/daily_deeds/presentation/screens/daily_deeds_calender_view.dart';
 import 'package:qadaa/src/features/daily_deeds/presentation/screens/daily_deeds_statistics_view.dart';
@@ -30,12 +31,12 @@ class _DailyDeedsDashBoardState extends State<DailyDeedsDashBoard> {
               labelStyle: const TextStyle(
                 fontWeight: FontWeight.bold,
               ),
-              tabs: const <Widget>[
+              tabs: <Widget>[
                 Tab(
-                  text: "التقويم",
+                  text: S.of(context).calender,
                 ),
                 Tab(
-                  text: "إحصائيات",
+                  text: S.of(context).statistics,
                 ),
               ],
             ),

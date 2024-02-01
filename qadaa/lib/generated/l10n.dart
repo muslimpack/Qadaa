@@ -190,11 +190,31 @@ class S {
     );
   }
 
+  /// `Calender`
+  String get calender {
+    return Intl.message(
+      'Calender',
+      name: 'calender',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Completion Date`
   String get completion_date {
     return Intl.message(
       'Completion Date',
       name: 'completion_date',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Count`
+  String get count {
+    return Intl.message(
+      'Count',
+      name: 'count',
       desc: '',
       args: [],
     );
@@ -235,6 +255,16 @@ class S {
     return Intl.message(
       'Custom Done Prayers',
       name: 'custom_done_prayers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Daily Deeds`
+  String get dailyDeeds {
+    return Intl.message(
+      'Daily Deeds',
+      name: 'dailyDeeds',
       desc: '',
       args: [],
     );
@@ -460,6 +490,16 @@ class S {
     );
   }
 
+  /// `Missed Deeds`
+  String get missedDeeds {
+    return Intl.message(
+      'Missed Deeds',
+      name: 'missedDeeds',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Month`
   String get month {
     return Intl.message(
@@ -555,6 +595,16 @@ class S {
     return Intl.message(
       'Prayer Settings',
       name: 'prayer_Settings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Prayer Name`
+  String get prayerName {
+    return Intl.message(
+      'Prayer Name',
+      name: 'prayerName',
       desc: '',
       args: [],
     );
@@ -690,11 +740,41 @@ class S {
     );
   }
 
+  /// `Statistics`
+  String get statistics {
+    return Intl.message(
+      'Statistics',
+      name: 'statistics',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Are you sure you want to reset everything?`
   String get sure_to_reset_everything_msg {
     return Intl.message(
       'Are you sure you want to reset everything?',
       name: 'sure_to_reset_everything_msg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Done Times`
+  String get timesDone {
+    return Intl.message(
+      'Done Times',
+      name: 'timesDone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Missed Times`
+  String get timesMissed {
+    return Intl.message(
+      'Missed Times',
+      name: 'timesMissed',
       desc: '',
       args: [],
     );

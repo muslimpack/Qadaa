@@ -42,12 +42,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("إعادة تعيين كلمة السر"),
         "asr": MessageLookupByLibrary.simpleMessage("عصر"),
         "asrPre": MessageLookupByLibrary.simpleMessage("العصر القبليه"),
+        "calender": MessageLookupByLibrary.simpleMessage("التقويم"),
         "completion_date": MessageLookupByLibrary.simpleMessage("تاريخ القضاء"),
+        "count": MessageLookupByLibrary.simpleMessage("إجمالي المرات"),
         "custom_add_period": MessageLookupByLibrary.simpleMessage("أضف مدة"),
         "custom_add_prayers": MessageLookupByLibrary.simpleMessage("أضف صلوات"),
         "custom_done_period": MessageLookupByLibrary.simpleMessage("قضيت مدة"),
         "custom_done_prayers":
             MessageLookupByLibrary.simpleMessage("قضيت صلوات"),
+        "dailyDeeds": MessageLookupByLibrary.simpleMessage("المتابعة اليومية"),
         "day": MessageLookupByLibrary.simpleMessage("يوم"),
         "days": MessageLookupByLibrary.simpleMessage("أيام"),
         "dhuhr": MessageLookupByLibrary.simpleMessage("ظهر"),
@@ -71,6 +74,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "maghribPre": MessageLookupByLibrary.simpleMessage("المغرب القبليه"),
         "make_up_missed_prayers":
             MessageLookupByLibrary.simpleMessage("قضاء الصلوات الفائتة"),
+        "missedDeeds": MessageLookupByLibrary.simpleMessage("الفوائت"),
         "missed_prayer":
             MessageLookupByLibrary.simpleMessage("الصلوات الفائتة"),
         "month": MessageLookupByLibrary.simpleMessage("ضهر"),
@@ -84,6 +88,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "other_settings": MessageLookupByLibrary.simpleMessage("أخرى"),
         "periods_done_title": MessageLookupByLibrary.simpleMessage("مدة"),
         "periods_title": MessageLookupByLibrary.simpleMessage("إضافة مدة"),
+        "prayerName": MessageLookupByLibrary.simpleMessage("اسم الصلاة"),
         "prayer_Settings":
             MessageLookupByLibrary.simpleMessage("إعدادات الصلوات"),
         "prayers_done_title": MessageLookupByLibrary.simpleMessage("فروض"),
@@ -104,8 +109,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "splash_static_image":
             MessageLookupByLibrary.simpleMessage("صورة ثابتة"),
         "start": MessageLookupByLibrary.simpleMessage("البدء"),
+        "statistics": MessageLookupByLibrary.simpleMessage("احصائيات"),
         "sure_to_reset_everything_msg": MessageLookupByLibrary.simpleMessage(
             "هل أنت متأكد أنك تريد إعادة ضبط كل شيء؟"),
+        "timesDone": MessageLookupByLibrary.simpleMessage("عدد المرات"),
+        "timesMissed": MessageLookupByLibrary.simpleMessage("عدد الفوائت"),
         "today": MessageLookupByLibrary.simpleMessage("اليوم"),
         "ui": MessageLookupByLibrary.simpleMessage("الواجهة"),
         "version": MessageLookupByLibrary.simpleMessage("إصدار"),

@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:qadaa/generated/l10n.dart';
 import 'package:qadaa/src/core/shared/loading.dart';
 import 'package:qadaa/src/features/daily_deeds/presentation/components/liquid_linear_progress.dart';
 import 'package:qadaa/src/features/daily_deeds/presentation/components/stats_tile.dart';
@@ -36,25 +37,23 @@ class DailyDeedsStatisticsView extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(10),
                         child: Column(
-                          children: controller.obligatoryElements
-                              .map(
-                                (e) => StatsTile(
-                                  label: e.label,
-                                  times: e.times,
-                                  value: e.percentage,
-                                ),
-                              )
-                              .toList(),
-                        ),
-                      ),
-                    ),
-                    Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: StatsTile(
-                          label: controller.fastingElement.label,
-                          times: controller.fastingElement.times,
-                          value: 1,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(S.of(context).prayerName),
+                                Text(S.of(context).timesMissed),
+                              ],
+                            ),
+                            const Divider(),
+                            ...controller.obligatoryElements.map(
+                              (e) => StatsTile(
+                                label: e.label,
+                                times: e.times,
+                                value: e.percentage,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -62,16 +61,47 @@ class DailyDeedsStatisticsView extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(10),
                         child: Column(
-                          children: controller.additionalElements
-                              .map(
-                                (e) => StatsTile(
-                                  label: e.label,
-                                  times: e.times,
-                                  value: e.percentage,
-                                  count: e.count,
-                                ),
-                              )
-                              .toList(),
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text(""),
+                                Text(S.of(context).timesDone),
+                              ],
+                            ),
+                            const Divider(),
+                            StatsTile(
+                              label: controller.fastingElement.label,
+                              times: controller.fastingElement.times,
+                              value: 1,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(S.of(context).prayerName),
+                                Text(S.of(context).timesDone),
+                                Text(S.of(context).count),
+                              ],
+                            ),
+                            const Divider(),
+                            ...controller.additionalElements.map(
+                              (e) => StatsTile(
+                                label: e.label,
+                                times: e.times,
+                                value: e.percentage,
+                                count: e.count,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
