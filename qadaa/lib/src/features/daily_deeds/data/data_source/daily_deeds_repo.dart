@@ -231,8 +231,7 @@ class DailyDeedsRepo {
 
     if (dbLastAdded != null && dbLastAdded == now) return;
 
-    final DateTime lastAdded =
-        dbLastAdded ?? now.subtract(const Duration(days: 55));
+    final DateTime lastAdded = dbLastAdded ?? now;
 
     final List<DateTime> dates = [];
 
