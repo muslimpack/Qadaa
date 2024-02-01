@@ -32,22 +32,26 @@ class OnBoardingController extends GetxController {
       isImage: false,
       icon: Icons.translate,
       title: S.current.app_lang,
+      description: "إضافة اللغة الفارسية",
     ),
     OnboardingItem(
-      imagePath: "assets/images/rukia.png",
-      title: "تطبيق رقية",
+      isImage: false,
+      icon: Icons.calendar_month_outlined,
+      title: S.current.dailyDeeds,
+      description: S.current.dailyDeeds,
+    ),
+    OnboardingItem(
+      title: "المزيد من إصدارتنا",
+      imagePath: "",
       description: """
-الرقية الشرعية من القرآن الكريم والسنة النبوية للدكتور خالد بن عبدالرحمن الجريسي
-
-محتويات التطبيق
--آداب وإرشادات عامة تراعى عند الرقية
--الرقية المختصرة  -الرقية المتوسطة  -الرقية المطولة
-
-- من إصداراتنا -
+تطبيق قرآن
+تطبيق الأذكار النووية
+تطبيق حصن المسلم
+تطبيق رقية
 """,
       onButtonCLick: () => {
         openURL(
-          "https://play.google.com/store/apps/details?id=com.hassaneltantawy.ruqayyah",
+          "https://play.google.com/store/apps/dev?id=4949997098744780639",
         ),
       },
       buttonText: S.current.open_in_google_play,
