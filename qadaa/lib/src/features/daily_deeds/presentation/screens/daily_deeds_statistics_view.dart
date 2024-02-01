@@ -72,7 +72,7 @@ class DailyDeedsStatisticsView extends StatelessWidget {
                               .map(
                                 (e) => StatsTile(
                                   label: e.label,
-                                  count: e.times,
+                                  times: e.times,
                                   value: e.percentage,
                                 ),
                               )
@@ -84,8 +84,8 @@ class DailyDeedsStatisticsView extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(10),
                         child: StatsTile(
-                          label: controller.fastElement.label,
-                          count: controller.fastElement.times,
+                          label: controller.fastingElement.label,
+                          times: controller.fastingElement.times,
                           value: 1,
                         ),
                       ),
@@ -98,8 +98,9 @@ class DailyDeedsStatisticsView extends StatelessWidget {
                               .map(
                                 (e) => StatsTile(
                                   label: e.label,
-                                  count: e.times,
+                                  times: e.times,
                                   value: e.percentage,
+                                  count: e.count,
                                 ),
                               )
                               .toList(),
@@ -169,12 +170,14 @@ class DailyDeedsStatisticsView extends StatelessWidget {
 class StatsTile extends StatelessWidget {
   final String label;
   final double value;
-  final int count;
+  final int times;
+  final int? count;
   const StatsTile({
     super.key,
     required this.label,
     required this.value,
-    required this.count,
+    required this.times,
+    this.count,
   });
 
   @override
@@ -193,10 +196,20 @@ class StatsTile extends StatelessWidget {
           ConstrainedBox(
             constraints: const BoxConstraints(minWidth: 50),
             child: Text(
-              "$count",
+              "$times",
               textAlign: TextAlign.center,
             ),
           ),
+          if (count != null) ...[
+            const SizedBox(width: 10),
+            ConstrainedBox(
+              constraints: const BoxConstraints(minWidth: 50),
+              child: Text(
+                "$count",
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ],
         ],
       ),
     );

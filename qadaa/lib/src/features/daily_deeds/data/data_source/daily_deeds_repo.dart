@@ -256,7 +256,7 @@ class DailyDeedsRepo {
   Future<int> sumColumn(String columnName) async {
     final Database db = await database;
     final List<Map<String, dynamic>> result = await db.rawQuery('''
-      SELECT SUM($columnName) as total FROM your_table
+      SELECT SUM($columnName) as total FROM $tableName
     ''');
 
     final int total = result.first['total'] as int? ?? 0;

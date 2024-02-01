@@ -7,7 +7,8 @@ class DailyDeedsStatisticsController extends GetxController {
   bool isLoading = true;
   final List<StatsElement> obligatoryElements = [];
   final List<StatsElement> additionalElements = [];
-  late StatsElement fastElement;
+  late StatsElement fastingElement;
+  static const String fastingColumn = "fasting";
   static const List<String> obligatoryColumn = [
     "fajr",
     "dhuhr",
@@ -44,7 +45,6 @@ class DailyDeedsStatisticsController extends GetxController {
   }
 
   Future loadFasting() async {
-    const String label = "fasting";
     final double percentage;
     final int count;
 
@@ -52,30 +52,42 @@ class DailyDeedsStatisticsController extends GetxController {
       percentage = 1;
       count = 0;
     } else {
-      count = await dailyDeedsRepo.countNonZeroValues(label);
+      count = await dailyDeedsRepo.countNonZeroValues(fastingColumn);
       percentage = count / totalDays;
     }
 
-    fastElement =
-        StatsElement(label: label, times: count, percentage: percentage);
+    fastingElement = StatsElement(
+      label: fastingColumn,
+      times: count,
+      percentage: percentage,
+    );
   }
 
   Future loadObligatory() async {
     for (final element in obligatoryColumn) {
       final String label = element;
       final double percentage;
+      final int times;
       final int count;
 
       if (totalDays == 0) {
         percentage = 1;
+        times = 0;
         count = 0;
       } else {
-        count = await dailyDeedsRepo.countNonZeroValues(label);
-        percentage = count / totalDays;
+        times = await dailyDeedsRepo.countNonZeroValues(label);
+        count = await dailyDeedsRepo.sumColumn(label);
+
+        percentage = times / totalDays;
       }
 
       obligatoryElements.add(
-        StatsElement(label: label, times: count, percentage: percentage),
+        StatsElement(
+          label: label,
+          times: times,
+          percentage: percentage,
+          count: count,
+        ),
       );
     }
   }
@@ -84,18 +96,26 @@ class DailyDeedsStatisticsController extends GetxController {
     for (final element in additionalColumn) {
       final String label = element;
       final double percentage;
+      final int times;
       final int count;
 
       if (totalDays == 0) {
         percentage = 1;
+        times = 0;
         count = 0;
       } else {
-        count = await dailyDeedsRepo.countNonZeroValues(label);
-        percentage = count / totalDays;
+        count = await dailyDeedsRepo.sumColumn(label);
+        times = await dailyDeedsRepo.countNonZeroValues(label);
+        percentage = times / totalDays;
       }
 
       additionalElements.add(
-        StatsElement(label: label, times: count, percentage: percentage),
+        StatsElement(
+          label: label,
+          times: times,
+          percentage: percentage,
+          count: count,
+        ),
       );
     }
   }
