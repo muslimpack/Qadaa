@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:qadaa/generated/l10n.dart';
 import 'package:qadaa/src/core/managers/transition_animation.dart';
+import 'package:qadaa/src/core/utils/open_url.dart';
 import 'package:qadaa/src/features/daily_deeds/presentation/screens/daily_deeds_dashboard.dart';
 import 'package:qadaa/src/features/missed_deeds/presentation/screens/missed_deeds_screen.dart';
 import 'package:qadaa/src/features/settings/presentation/screens/settings.dart';
@@ -29,20 +30,27 @@ class _DashboardScreenState extends State<DashboardScreen>
         title: Text(S.of(context).qadaa),
         centerTitle: true,
         actions: [
-          GestureDetector(
-            onTap: () {
+          IconButton(
+            onPressed: () {
+              openURL(
+                "https://play.google.com/store/apps/dev?id=4949997098744780639",
+              );
+            },
+            icon: const Icon(
+              Icons.more_vert,
+              size: 30,
+            ),
+          ),
+          IconButton(
+            onPressed: () {
               transitionAnimation.fromLeft2Right(
                 context: context,
                 goToPage: const Settings(),
               );
             },
-            child: const CircleAvatar(
-              backgroundColor: Colors.transparent,
-              child: Icon(
-                Icons.settings,
-                color: Colors.white,
-                size: 30,
-              ),
+            icon: const Icon(
+              Icons.settings,
+              size: 30,
             ),
           ),
         ],
