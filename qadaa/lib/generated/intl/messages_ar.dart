@@ -41,6 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "app_lock_reset_password":
             MessageLookupByLibrary.simpleMessage("إعادة تعيين كلمة السر"),
         "asr": MessageLookupByLibrary.simpleMessage("عصر"),
+        "asrPre": MessageLookupByLibrary.simpleMessage("العصر القبليه"),
         "completion_date": MessageLookupByLibrary.simpleMessage("تاريخ القضاء"),
         "custom_add_period": MessageLookupByLibrary.simpleMessage("أضف مدة"),
         "custom_add_prayers": MessageLookupByLibrary.simpleMessage("أضف صلوات"),
@@ -50,6 +51,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "day": MessageLookupByLibrary.simpleMessage("يوم"),
         "days": MessageLookupByLibrary.simpleMessage("أيام"),
         "dhuhr": MessageLookupByLibrary.simpleMessage("ظهر"),
+        "dhuhrAfter": MessageLookupByLibrary.simpleMessage("الظهر البعديه"),
+        "dhuhrPre": MessageLookupByLibrary.simpleMessage("الظهر القبليه"),
+        "doha": MessageLookupByLibrary.simpleMessage("صلاة الضحى"),
         "done": MessageLookupByLibrary.simpleMessage("قضاء"),
         "done_day": MessageLookupByLibrary.simpleMessage("قضيت يوما"),
         "done_days": MessageLookupByLibrary.simpleMessage("قضيت أياما"),
@@ -57,15 +61,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "enter_password":
             MessageLookupByLibrary.simpleMessage("أدخل كلمة السر"),
         "fajr": MessageLookupByLibrary.simpleMessage("فجر"),
+        "fajrPre": MessageLookupByLibrary.simpleMessage("ركعتا الفجر"),
         "fast": MessageLookupByLibrary.simpleMessage("الصوم"),
         "ishaa": MessageLookupByLibrary.simpleMessage("عشاء"),
+        "ishaaAfter": MessageLookupByLibrary.simpleMessage("العشاء البعديه"),
+        "ishaaPre": MessageLookupByLibrary.simpleMessage("العشاء القبليه"),
         "maghrib": MessageLookupByLibrary.simpleMessage("مغرب"),
+        "maghribAfter": MessageLookupByLibrary.simpleMessage("المغرب البعديه"),
+        "maghribPre": MessageLookupByLibrary.simpleMessage("المغرب القبليه"),
         "make_up_missed_prayers":
             MessageLookupByLibrary.simpleMessage("قضاء الصلوات الفائتة"),
         "missed_prayer":
             MessageLookupByLibrary.simpleMessage("الصلوات الفائتة"),
         "month": MessageLookupByLibrary.simpleMessage("ضهر"),
         "new_prayer": MessageLookupByLibrary.simpleMessage("فروض جديدة"),
+        "nightPrayer": MessageLookupByLibrary.simpleMessage("قيام الليل"),
         "no": MessageLookupByLibrary.simpleMessage("لا"),
         "no_missed_prayer":
             MessageLookupByLibrary.simpleMessage("لا صلوات فائتة"),

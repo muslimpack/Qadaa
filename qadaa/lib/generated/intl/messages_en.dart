@@ -41,6 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "app_lock_reset_password":
             MessageLookupByLibrary.simpleMessage("Reset Password"),
         "asr": MessageLookupByLibrary.simpleMessage("Asr"),
+        "asrPre": MessageLookupByLibrary.simpleMessage("Asr Pre"),
         "completion_date":
             MessageLookupByLibrary.simpleMessage("Completion Date"),
         "custom_add_period":
@@ -54,6 +55,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "day": MessageLookupByLibrary.simpleMessage("Day"),
         "days": MessageLookupByLibrary.simpleMessage("Days"),
         "dhuhr": MessageLookupByLibrary.simpleMessage("Dhuhr"),
+        "dhuhrAfter": MessageLookupByLibrary.simpleMessage("Dhuhr After"),
+        "dhuhrPre": MessageLookupByLibrary.simpleMessage("Dhuhr Pre"),
+        "doha": MessageLookupByLibrary.simpleMessage("Doha"),
         "done": MessageLookupByLibrary.simpleMessage("Done"),
         "done_day": MessageLookupByLibrary.simpleMessage("Done Day"),
         "done_days": MessageLookupByLibrary.simpleMessage("Done Days"),
@@ -61,14 +65,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "enter_password":
             MessageLookupByLibrary.simpleMessage("Enter Password"),
         "fajr": MessageLookupByLibrary.simpleMessage("Fajr"),
+        "fajrPre": MessageLookupByLibrary.simpleMessage("Pre Fajr"),
         "fast": MessageLookupByLibrary.simpleMessage("Fast"),
         "ishaa": MessageLookupByLibrary.simpleMessage("Ishaa"),
+        "ishaaAfter": MessageLookupByLibrary.simpleMessage("Ishaa After"),
+        "ishaaPre": MessageLookupByLibrary.simpleMessage("Ishaa Pre"),
         "maghrib": MessageLookupByLibrary.simpleMessage("Maghrib"),
+        "maghribAfter": MessageLookupByLibrary.simpleMessage("Maghrib After"),
+        "maghribPre": MessageLookupByLibrary.simpleMessage("Maghrib Pre"),
         "make_up_missed_prayers":
             MessageLookupByLibrary.simpleMessage("Make up Missed Prayers"),
         "missed_prayer": MessageLookupByLibrary.simpleMessage("Missed Prayer"),
         "month": MessageLookupByLibrary.simpleMessage("Month"),
         "new_prayer": MessageLookupByLibrary.simpleMessage("New Prayer"),
+        "nightPrayer": MessageLookupByLibrary.simpleMessage("Night Prayer"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
         "no_missed_prayer":
             MessageLookupByLibrary.simpleMessage("No Missed Prayer"),
