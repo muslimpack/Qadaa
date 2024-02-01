@@ -57,7 +57,7 @@ class DailyDeedsStatisticsController extends GetxController {
     }
 
     fastElement =
-        StatsElement(label: label, count: count, percentage: percentage);
+        StatsElement(label: label, times: count, percentage: percentage);
   }
 
   Future loadObligatory() async {
@@ -75,7 +75,7 @@ class DailyDeedsStatisticsController extends GetxController {
       }
 
       obligatoryElements.add(
-        StatsElement(label: label, count: count, percentage: percentage),
+        StatsElement(label: label, times: count, percentage: percentage),
       );
     }
   }
@@ -95,7 +95,7 @@ class DailyDeedsStatisticsController extends GetxController {
       }
 
       additionalElements.add(
-        StatsElement(label: label, count: count, percentage: percentage),
+        StatsElement(label: label, times: count, percentage: percentage),
       );
     }
   }

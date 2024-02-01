@@ -72,7 +72,7 @@ class DailyDeedsStatisticsView extends StatelessWidget {
                               .map(
                                 (e) => StatsTile(
                                   label: e.label,
-                                  count: e.count,
+                                  count: e.times,
                                   value: e.percentage,
                                 ),
                               )
@@ -85,7 +85,7 @@ class DailyDeedsStatisticsView extends StatelessWidget {
                         padding: const EdgeInsets.all(10),
                         child: StatsTile(
                           label: controller.fastElement.label,
-                          count: controller.fastElement.count,
+                          count: controller.fastElement.times,
                           value: 1,
                         ),
                       ),
@@ -98,7 +98,7 @@ class DailyDeedsStatisticsView extends StatelessWidget {
                               .map(
                                 (e) => StatsTile(
                                   label: e.label,
-                                  count: e.count,
+                                  count: e.times,
                                   value: e.percentage,
                                 ),
                               )

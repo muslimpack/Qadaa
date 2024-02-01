@@ -1,11 +1,11 @@
 class StatsElement {
   final String label;
-  final int count;
+  final int times;
   final double percentage;
 
   StatsElement({
     required this.label,
-    required this.count,
+    required this.times,
     required this.percentage,
   });
 }
