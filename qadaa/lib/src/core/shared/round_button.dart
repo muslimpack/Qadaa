@@ -20,9 +20,9 @@ class RoundButton extends StatelessWidget {
       child: ElevatedButton(
         style: isTransparent
             ? ButtonStyle(
-                elevation: MaterialStateProperty.all(0),
-                backgroundColor: MaterialStateProperty.all(Colors.transparent),
-                foregroundColor: MaterialStateProperty.all(Colors.pink),
+                elevation: WidgetStateProperty.all(0),
+                backgroundColor: WidgetStateProperty.all(Colors.transparent),
+                foregroundColor: WidgetStateProperty.all(Colors.pink),
               )
             : const ButtonStyle(),
         onPressed: () {
