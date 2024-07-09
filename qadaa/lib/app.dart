@@ -7,7 +7,6 @@ import 'package:qadaa/src/core/managers/storage_repo.dart';
 import 'package:qadaa/src/core/shared/loading.dart';
 import 'package:qadaa/src/core/utils/print.dart';
 import 'package:qadaa/src/features/dashboard/presentation/screens/app_dashboard.dart';
-import 'package:qadaa/src/features/onboarding/presentation/screens/onboarding.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -64,9 +63,10 @@ class _MyAppState extends State<MyApp> {
             locale: storageRepo.locale,
             supportedLocales: S.delegate.supportedLocales,
             home: () {
-              return isFirstOpen
-                  ? const OnBoardingPage()
-                  : const AppDashboard();
+              return const AppDashboard();
+              // return isFirstOpen
+              //     ? const OnBoardingPage()
+              //     : const AppDashboard();
             }(),
           );
   }
