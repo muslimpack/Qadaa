@@ -33,9 +33,22 @@ class _UIAppBarState extends State<UIAppBar> {
             if (PlatformExtension.isDesktop)
               Expanded(
                 child: DragToMoveArea(
-                  child: Align(
-                    alignment: AlignmentDirectional.centerStart,
-                    child: Text(S.of(context).qadaa),
+                  child: Row(
+                    children: [
+                      Align(
+                        alignment: AlignmentDirectional.centerStart,
+                        child: Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: Image.asset(
+                            "assets/images/app_icon.png",
+                          ),
+                        ),
+                      ),
+                      Align(
+                        alignment: AlignmentDirectional.centerStart,
+                        child: Text(S.of(context).qadaa),
+                      ),
+                    ],
                   ),
                 ),
               ),
