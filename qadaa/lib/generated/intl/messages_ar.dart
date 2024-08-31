@@ -40,6 +40,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تم إعادة تعيين كلمة السر"),
         "app_lock_reset_password":
             MessageLookupByLibrary.simpleMessage("إعادة تعيين كلمة السر"),
+        "app_open_msg": MessageLookupByLibrary.simpleMessage(
+            "لم تقتح التطبيق منذ مدة طويلة"),
         "asr": MessageLookupByLibrary.simpleMessage("عصر"),
         "completion_date": MessageLookupByLibrary.simpleMessage("تاريخ القضاء"),
         "custom_add_period": MessageLookupByLibrary.simpleMessage("أضف مدة"),
@@ -50,6 +52,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "day": MessageLookupByLibrary.simpleMessage("يوم"),
         "days": MessageLookupByLibrary.simpleMessage("أيام"),
         "dhuhr": MessageLookupByLibrary.simpleMessage("ظهر"),
+        "dismiss": MessageLookupByLibrary.simpleMessage("تجاهل"),
         "done": MessageLookupByLibrary.simpleMessage("قضاء"),
         "done_day": MessageLookupByLibrary.simpleMessage("قضيت يوما"),
         "done_days": MessageLookupByLibrary.simpleMessage("قضيت أياما"),
