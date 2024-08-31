@@ -41,7 +41,7 @@ class StorageRepo {
   void addFasting({
     required int days,
   }) {
-    _addSingle(valToAdd: days, key: "Fasting", maxKey: "MaxFasting");
+    _addSingle(valToAdd: days, key: fastingKey, maxKey: maxFastingKey);
   }
 
   void addPrayer({
@@ -51,11 +51,11 @@ class StorageRepo {
     int maghrib = 0,
     int isha = 0,
   }) {
-    _addSingle(valToAdd: fajr, key: "Fajr", maxKey: "MaxFajr");
-    _addSingle(valToAdd: dhuhr, key: "Dhuhr", maxKey: "MaxDhuhr");
-    _addSingle(valToAdd: asr, key: "Asr", maxKey: "MaxAsr");
-    _addSingle(valToAdd: maghrib, key: "Maghrib", maxKey: "MaxMaghrib");
-    _addSingle(valToAdd: isha, key: "Isha", maxKey: "MaxIsha");
+    _addSingle(valToAdd: fajr, key: fajrKey, maxKey: maxFajrKey);
+    _addSingle(valToAdd: dhuhr, key: dhuhrKey, maxKey: maxDhuhrKey);
+    _addSingle(valToAdd: asr, key: asrKey, maxKey: maxAsrKey);
+    _addSingle(valToAdd: maghrib, key: maghribKey, maxKey: maxMaghribKey);
+    _addSingle(valToAdd: isha, key: ishaKey, maxKey: maxIshaKey);
   }
 
   void _addSingle({
@@ -140,17 +140,17 @@ class StorageRepo {
     return (pray0.isNaN || pray0.isInfinite) ? 0 : pray0;
   }
 
-  int getFajr() => _getNumber("Fajr");
+  int getFajr() => _getNumber(fajrKey);
 
-  int getDhuhr() => _getNumber("Dhuhr");
+  int getDhuhr() => _getNumber(dhuhrKey);
 
-  int getAsr() => _getNumber("Asr");
+  int getAsr() => _getNumber(asrKey);
 
-  int getMaghrib() => _getNumber("Maghrib");
+  int getMaghrib() => _getNumber(maghribKey);
 
-  int getIsha() => _getNumber("Isha");
+  int getIsha() => _getNumber(ishaKey);
 
-  int getFasting() => _getNumber("Fasting");
+  int getFasting() => _getNumber(fastingKey);
 
   /// ******************************
   /// Get Max Zone
@@ -161,17 +161,17 @@ class StorageRepo {
     return (pray0.isNaN || pray0.isInfinite || pray0 < 1) ? 1 : pray0;
   }
 
-  int getMaxFajr() => _getMax("MaxFajr");
+  int getMaxFajr() => _getMax(maxFajrKey);
 
-  int getMaxDhuhr() => _getMax("MaxDhuhr");
+  int getMaxDhuhr() => _getMax(maxDhuhrKey);
 
-  int getMaxAsr() => _getMax("MaxAsr");
+  int getMaxAsr() => _getMax(maxAsrKey);
 
-  int getMaxMaghrib() => _getMax("MaxMaghrib");
+  int getMaxMaghrib() => _getMax(maxMaghribKey);
 
-  int getMaxIsha() => _getMax("MaxIsha");
+  int getMaxIsha() => _getMax(maxIshaKey);
 
-  int getMaxFasting() => _getMax("MaxFasting");
+  int getMaxFasting() => _getMax(maxFastingKey);
 
   /// ******************************
   /// Settings
@@ -183,19 +183,19 @@ class StorageRepo {
 
   void reset() {
     // Prayer
-    prayerBox.put("Fajr", 0);
-    prayerBox.put("Dhuhr", 0);
-    prayerBox.put("Asr", 0);
-    prayerBox.put("Maghrib", 0);
-    prayerBox.put("Isha", 0);
-    prayerBox.put("MaxFajr", 1);
-    prayerBox.put("MaxDhuhr", 1);
-    prayerBox.put("MaxAsr", 1);
-    prayerBox.put("MaxMaghrib", 1);
-    prayerBox.put("MaxIsha", 1);
+    prayerBox.put(fajrKey, 0);
+    prayerBox.put(dhuhrKey, 0);
+    prayerBox.put(asrKey, 0);
+    prayerBox.put(maghribKey, 0);
+    prayerBox.put(ishaKey, 0);
+    prayerBox.put(maxFajrKey, 1);
+    prayerBox.put(maxDhuhrKey, 1);
+    prayerBox.put(maxAsrKey, 1);
+    prayerBox.put(maxMaghribKey, 1);
+    prayerBox.put(maxIshaKey, 1);
     // Fasting
-    prayerBox.put("Fasting", 0);
-    prayerBox.put("MaxFasting", 1);
+    prayerBox.put(fastingKey, 0);
+    prayerBox.put(maxFastingKey, 1);
   }
 
   /// ******************************
