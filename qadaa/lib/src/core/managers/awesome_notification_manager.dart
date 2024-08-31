@@ -60,7 +60,9 @@ class AwesomeNotificationManager {
   }
 
   @pragma("vm:entry-point")
-  Future<void> onActionReceivedMethod(ReceivedAction receivedAction) async {
+  static Future<void> onActionReceivedMethod(
+    ReceivedAction receivedAction,
+  ) async {
     final List<String?> payloadsList = receivedAction.payload!.values.toList();
     final String? payload = payloadsList[0];
     qadaaPrint("actionStream: $payload");
@@ -243,7 +245,7 @@ class AwesomeNotificationManager {
   }
 
   ///
-  void onNotificationClick(String payload) {}
+  static void onNotificationClick(String payload) {}
 
   void dispose() {
     // AwesomeNotifications().actionSink.close();
