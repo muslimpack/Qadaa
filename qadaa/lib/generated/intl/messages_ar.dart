@@ -64,7 +64,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("قضاء الصلوات الفائتة"),
         "missed_prayer":
             MessageLookupByLibrary.simpleMessage("الصلوات الفائتة"),
-        "month": MessageLookupByLibrary.simpleMessage("ضهر"),
+        "month": MessageLookupByLibrary.simpleMessage("شهر"),
         "new_prayer": MessageLookupByLibrary.simpleMessage("فروض جديدة"),
         "no": MessageLookupByLibrary.simpleMessage("لا"),
         "no_missed_prayer":
