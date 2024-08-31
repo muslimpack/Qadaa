@@ -40,6 +40,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Password Reset Done"),
         "app_lock_reset_password":
             MessageLookupByLibrary.simpleMessage("Reset Password"),
+        "app_open_msg": MessageLookupByLibrary.simpleMessage(
+            "You haven\'t opened the app for a long time."),
         "asr": MessageLookupByLibrary.simpleMessage("Asr"),
         "completion_date":
             MessageLookupByLibrary.simpleMessage("Completion Date"),
@@ -54,6 +56,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "day": MessageLookupByLibrary.simpleMessage("Day"),
         "days": MessageLookupByLibrary.simpleMessage("Days"),
         "dhuhr": MessageLookupByLibrary.simpleMessage("Dhuhr"),
+        "dismiss": MessageLookupByLibrary.simpleMessage("Dismiss"),
         "done": MessageLookupByLibrary.simpleMessage("Done"),
         "done_day": MessageLookupByLibrary.simpleMessage("Done Day"),
         "done_days": MessageLookupByLibrary.simpleMessage("Done Days"),
