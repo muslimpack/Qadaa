@@ -14,6 +14,28 @@ class StorageRepo {
   }
 
   /// ******************************
+  /// Keys
+  /// ******************************
+
+  // Prayer
+  static const String fajrKey = "Fajr";
+  static const String dhuhrKey = "Dhuhr";
+  static const String asrKey = "Asr";
+  static const String maghribKey = "Maghrib";
+  static const String ishaKey = "Isha";
+
+  /// Prayers Max
+  static const String maxFajrKey = "MaxFajr";
+  static const String maxDhuhrKey = "MaxDhuhr";
+  static const String maxAsrKey = "MaxAsr";
+  static const String maxMaghribKey = "MaxMaghrib";
+  static const String maxIshaKey = "MaxIsha";
+
+  // Fasting
+  static const String fastingKey = "Fasting";
+  static const String maxFastingKey = "MaxFasting";
+
+  /// ******************************
   /// Add Zone
   /// ******************************
   void addFasting({
