@@ -10,7 +10,7 @@ class StorageRepo {
   static late Box prayerBox;
 
   static void initialStorage() {
-    prayerBox = Hive.box("Prayers");
+    prayerBox = Hive.box(kAppStorageBoxName);
   }
 
   /// ******************************

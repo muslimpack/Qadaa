@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 AppConstant appConstant = AppConstant();
 
+const String kAppStorageBoxName = "Prayers";
+
 class AppConstant {
   static Color mainColor = Colors.pink;
   static Color mainColorLight = Colors.pinkAccent;

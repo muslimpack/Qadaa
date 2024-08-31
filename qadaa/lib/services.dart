@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
+import 'package:qadaa/src/core/constants/constant.dart';
 import 'package:qadaa/src/core/managers/awesome_notification_manager.dart';
 import 'package:qadaa/src/core/managers/storage_repo.dart';
 import 'package:qadaa/src/core/utils/print.dart';
@@ -17,7 +18,7 @@ Future<void> initServices() async {
         await path_provider.getApplicationDocumentsDirectory();
     Hive.init(appDocumentDirectory.path);
 
-    await Hive.openBox("Prayers");
+    await Hive.openBox(kAppStorageBoxName);
 
     StorageRepo.initialStorage();
 
