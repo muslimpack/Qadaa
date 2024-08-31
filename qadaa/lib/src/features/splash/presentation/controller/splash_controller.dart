@@ -7,7 +7,7 @@ import 'package:qadaa/src/core/managers/effect_manager.dart';
 import 'package:qadaa/src/core/managers/prayer_controller.dart';
 import 'package:qadaa/src/core/managers/storage_repo.dart';
 import 'package:qadaa/src/features/settings/presentation/controller/settings_controller.dart';
-import 'package:wakelock/wakelock.dart';
+import 'package:wakelock_plus/wakelock_plus.dart';
 
 class SplashController extends GetxController {
   /* *************** Variables *************** */
@@ -34,13 +34,13 @@ class SplashController extends GetxController {
 
     splashBackGroundEnum = mySettingsController.getSplashBackground();
 
-    await Wakelock.enable();
+    await WakelockPlus.enable();
     update();
   }
 
   @override
   void onClose() {
-    Wakelock.disable();
+    WakelockPlus.disable();
     super.onClose();
   }
 

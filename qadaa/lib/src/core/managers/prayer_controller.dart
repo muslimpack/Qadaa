@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:qadaa/generated/l10n.dart';
 import 'package:qadaa/src/core/managers/storage_repo.dart';
-import 'package:qadaa/src/core/utils/print.dart';
 
 class PrayersController extends GetxController {
   bool isLoading = true;
@@ -159,7 +158,7 @@ class PrayersController extends GetxController {
         toDay.add(Duration(days: storageRepo.getFasting()));
 
     final Duration difference = dueDate.difference(toDay);
-    qadaaPrint(difference);
+
     if (difference.inDays == 0) {
       return S.current.no_missed_prayer;
     } else {

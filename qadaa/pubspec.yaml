@@ -9,14 +9,10 @@ environment:
   # sdk: ">=2.18.5 <3.0.0"
   sdk: ">=3.0.0 <4.0.0"
 
-dependency_overrides:
-  intl: ^0.18.0
-
 dependencies:
   audioplayers: ^6.1.0
   awesome_notifications: ^0.9.3+1
   confetti: ^0.7.0
-
   cupertino_icons: ^1.0.5
   flutter:
     sdk: flutter
@@ -33,7 +29,7 @@ dependencies:
   rxdart: ^0.28.0
   sleek_circular_slider: ^2.0.1
   url_launcher: ^6.3.0
-  wakelock: ^0.6.2
+  wakelock_plus: ^1.2.8
 
 dev_dependencies:
   flutter_lints: ^4.0.0
