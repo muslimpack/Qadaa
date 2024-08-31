@@ -5,6 +5,7 @@ import 'package:hive/hive.dart';
 import 'package:qadaa/src/core/constants/constant.dart';
 import 'package:qadaa/src/core/enum/enum.dart';
 import 'package:qadaa/src/core/enum/splash_background.dart';
+import 'package:qadaa/src/core/extensions/extension_platform.dart';
 import 'package:qadaa/src/core/utils/print.dart';
 
 final StorageRepo storageRepo = StorageRepo();
@@ -289,8 +290,19 @@ class StorageRepo {
   static const String _localeKey = "locale";
   Locale? get locale {
     final value = prayerBox.get(_localeKey) as String?;
-    if (value == null) return null;
-    return Locale(value);
+    final Locale? locale;
+    if (value == null) {
+      final languageCode = PlatformExtension.languageCode;
+      if (languageCode == null) {
+        locale = null;
+      } else {
+        locale = Locale(PlatformExtension.languageCode!);
+      }
+    } else {
+      locale = Locale(value);
+    }
+
+    return locale;
   }
 
   Future localeChange(Locale locale) async {
