@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
+import 'package:qadaa/generated/l10n.dart';
 import 'package:qadaa/src/core/constants/constant.dart';
 import 'package:qadaa/src/core/extensions/extension_platform.dart';
 import 'package:qadaa/src/core/managers/awesome_notification_manager.dart';
@@ -22,6 +23,8 @@ Future<void> initServices() async {
     await Hive.openBox(kAppStorageBoxName);
 
     StorageRepo.initialStorage();
+
+    await loadLocalizations();
 
     // Make Phone StatusBar Transparent
     SystemChrome.setSystemUIOverlayStyle(
@@ -63,4 +66,11 @@ Future<void> initServices() async {
       await windowManager.focus();
     });
   }
+}
+
+Future loadLocalizations() async {
+  Locale? localeToSet = storageRepo.locale;
+  final languageCode = PlatformExtension.languageCode;
+  localeToSet ??= Locale.fromSubtags(languageCode: languageCode ?? "en");
+  await S.load(localeToSet);
 }
