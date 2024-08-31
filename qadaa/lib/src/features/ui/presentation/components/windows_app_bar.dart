@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:qadaa/generated/l10n.dart';
 import 'package:qadaa/src/core/extensions/extension_platform.dart';
 import 'package:qadaa/src/features/ui/presentation/components/windows_button.dart';
 import 'package:window_manager/window_manager.dart';
@@ -25,16 +26,16 @@ class _UIAppBarState extends State<UIAppBar> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             if (kIsWeb)
-              const Align(
+              Align(
                 alignment: AlignmentDirectional.centerStart,
-                child: Text("الأذكار النووية"),
+                child: Text(S.of(context).qadaa),
               ),
             if (PlatformExtension.isDesktop)
-              const Expanded(
+              Expanded(
                 child: DragToMoveArea(
                   child: Align(
                     alignment: AlignmentDirectional.centerStart,
-                    child: Text("الأذكار النووية"),
+                    child: Text(S.of(context).qadaa),
                   ),
                 ),
               ),

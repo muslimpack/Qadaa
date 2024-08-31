@@ -300,10 +300,12 @@ class StorageRepo {
   ///* ******* desktop Window Size ******* */
   static const String desktopWindowSizeKey = "desktopWindowSize";
   Size? get desktopWindowSize {
+    const defaultSize = Size(450, 900);
     try {
-      final data =
-          jsonDecode(prayerBox.get(desktopWindowSizeKey) as String? ?? "{}")
-              as Map<String, dynamic>;
+      final data = jsonDecode(
+        prayerBox.get(desktopWindowSizeKey) as String? ??
+            '{"width":${defaultSize.width},"height":${defaultSize.height}}',
+      ) as Map<String, dynamic>;
 
       final double width = (data['width'] as num).toDouble();
       final double height = (data['height'] as num).toDouble();
@@ -312,7 +314,7 @@ class StorageRepo {
     } catch (e) {
       qadaaPrint(e);
     }
-    return const Size(400, 800);
+    return defaultSize;
   }
 
   Future<void> changeDesktopWindowSize(Size value) async {

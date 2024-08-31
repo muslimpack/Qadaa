@@ -3,10 +3,12 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:qadaa/generated/l10n.dart';
+import 'package:qadaa/src/core/extensions/extension_platform.dart';
 import 'package:qadaa/src/core/managers/storage_repo.dart';
 import 'package:qadaa/src/core/shared/loading.dart';
 import 'package:qadaa/src/core/utils/print.dart';
 import 'package:qadaa/src/features/dashboard/presentation/screens/app_dashboard.dart';
+import 'package:qadaa/src/features/ui/presentation/components/desktop_window_wrapper.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -62,6 +64,14 @@ class _MyAppState extends State<MyApp> {
             ],
             locale: storageRepo.locale,
             supportedLocales: S.delegate.supportedLocales,
+            builder: (context, child) {
+              if (PlatformExtension.isDesktop) {
+                return DesktopWindowWrapper(
+                  child: child,
+                );
+              }
+              return child ?? const SizedBox();
+            },
             home: () {
               return const AppDashboard();
               // return isFirstOpen
