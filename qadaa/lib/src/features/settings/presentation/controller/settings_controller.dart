@@ -61,6 +61,6 @@ class SettingsController extends GetxController {
 
   Future changeThemeLocale(Locale locale) async {
     await storageRepo.localeChange(locale);
-    Get.updateLocale(locale);
+    await Get.updateLocale(locale);
   }
 }

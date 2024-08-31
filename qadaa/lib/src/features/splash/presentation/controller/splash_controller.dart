@@ -34,7 +34,7 @@ class SplashController extends GetxController {
 
     splashBackGroundEnum = mySettingsController.getSplashBackground();
 
-    Wakelock.enable();
+    await Wakelock.enable();
     update();
   }
 

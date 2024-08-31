@@ -38,10 +38,10 @@ class StorageRepo {
   /// ******************************
   /// Add Zone
   /// ******************************
-  void addFasting({
+  Future addFasting({
     required int days,
-  }) {
-    _addSingle(valToAdd: days, key: fastingKey, maxKey: maxFastingKey);
+  }) async {
+    await _addSingle(valToAdd: days, key: fastingKey, maxKey: maxFastingKey);
   }
 
   Future addPrayer({

@@ -36,8 +36,8 @@ class Done extends StatelessWidget {
                   trailing: controller.getDays().toString(),
                   onTap: () async {
                     if (controller.getDays() > 0) {
-                      controller.addDay(value: -1);
-                      showRandomNotification();
+                      await controller.addDay(value: -1);
+                      await showRandomNotification();
                       await effectManager.playConfetti(
                         milliseconds: 5000,
                       );
@@ -60,10 +60,10 @@ class Done extends StatelessWidget {
                             if (value <= 0) return;
 
                             if (controller.getDays() > 0) {
-                              controller.addDay(
+                              await controller.addDay(
                                 value: -value,
                               );
-                              showRandomNotification();
+                              await showRandomNotification();
                             }
 
                             await effectManager.playConfetti(
@@ -81,7 +81,7 @@ class Done extends StatelessWidget {
                   icon: Icons.done,
                   trailing: controller.getFajr().toString(),
                   onTap: () async {
-                    controller.addPrayer(fajr: -1);
+                    await controller.addPrayer(fajr: -1);
 
                     await effectManager.playConfetti(
                       alignment: Alignment.center,
@@ -94,7 +94,7 @@ class Done extends StatelessWidget {
                   icon: Icons.done,
                   trailing: controller.getDhuhr().toString(),
                   onTap: () async {
-                    controller.addPrayer(dhuhr: -1);
+                    await controller.addPrayer(dhuhr: -1);
 
                     await effectManager.playConfetti(
                       alignment: Alignment.center,
@@ -107,7 +107,7 @@ class Done extends StatelessWidget {
                   icon: Icons.done,
                   trailing: controller.getAsr().toString(),
                   onTap: () async {
-                    controller.addPrayer(asr: -1);
+                    await controller.addPrayer(asr: -1);
 
                     await effectManager.playConfetti(
                       alignment: Alignment.center,
@@ -120,7 +120,7 @@ class Done extends StatelessWidget {
                   icon: Icons.done,
                   trailing: controller.getMaghrib().toString(),
                   onTap: () async {
-                    controller.addPrayer(maghrib: -1);
+                    await controller.addPrayer(maghrib: -1);
 
                     await effectManager.playConfetti(
                       alignment: Alignment.center,
@@ -133,7 +133,7 @@ class Done extends StatelessWidget {
                   icon: Icons.done,
                   trailing: controller.getIsha().toString(),
                   onTap: () async {
-                    controller.addPrayer(isha: -1);
+                    await controller.addPrayer(isha: -1);
 
                     await effectManager.playConfetti(
                       alignment: Alignment.center,
