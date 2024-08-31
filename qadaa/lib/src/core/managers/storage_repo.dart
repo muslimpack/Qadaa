@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:qadaa/src/core/constants/constant.dart';
 import 'package:qadaa/src/core/enum/enum.dart';
 import 'package:qadaa/src/core/enum/splash_background.dart';
+import 'package:qadaa/src/core/utils/print.dart';
 
 final StorageRepo storageRepo = StorageRepo();
 
@@ -292,5 +295,32 @@ class StorageRepo {
 
   Future localeChange(Locale locale) async {
     await prayerBox.put(_localeKey, locale.languageCode);
+  }
+
+  ///* ******* desktop Window Size ******* */
+  static const String desktopWindowSizeKey = "desktopWindowSize";
+  Size? get desktopWindowSize {
+    try {
+      final data =
+          jsonDecode(prayerBox.get(desktopWindowSizeKey) as String? ?? "{}")
+              as Map<String, dynamic>;
+
+      final double width = (data['width'] as num).toDouble();
+      final double height = (data['height'] as num).toDouble();
+
+      return Size(width, height);
+    } catch (e) {
+      qadaaPrint(e);
+    }
+    return const Size(400, 800);
+  }
+
+  Future<void> changeDesktopWindowSize(Size value) async {
+    final screenSize = {
+      'width': value.width,
+      'height': value.height,
+    };
+    final String data = jsonEncode(screenSize);
+    return prayerBox.put(desktopWindowSizeKey, data);
   }
 }

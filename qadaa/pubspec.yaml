@@ -30,6 +30,7 @@ dependencies:
   sleek_circular_slider: ^2.0.1
   url_launcher: ^6.3.0
   wakelock_plus: ^1.2.8
+  window_manager: ^0.4.2
 
 dev_dependencies:
   flutter_lints: ^4.0.0
