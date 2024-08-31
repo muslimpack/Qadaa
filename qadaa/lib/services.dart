@@ -56,7 +56,7 @@ Future<void> initServices() async {
       size: storageRepo.desktopWindowSize,
       center: true,
     );
-    windowManager.waitUntilReadyToShow(windowOptions, () async {
+    await windowManager.waitUntilReadyToShow(windowOptions, () async {
       await windowManager.setTitleBarStyle(
         TitleBarStyle.hidden,
         windowButtonVisibility: false,
