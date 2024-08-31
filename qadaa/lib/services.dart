@@ -1,4 +1,3 @@
-import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
@@ -38,14 +37,8 @@ Future<void> initServices() async {
   }
 
   try {
-    await AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
-      if (!isAllowed && storageRepo.isFirstOpen()) {
-        AwesomeNotifications().requestPermissionToSendNotifications();
-      }
-    });
-
-    //U Doesn't open app notification
     await awesomeNotificationManager.init();
+    //App open notification
     await awesomeNotificationManager.appOpenNotification();
   } catch (e) {
     qadaaPrint(e);

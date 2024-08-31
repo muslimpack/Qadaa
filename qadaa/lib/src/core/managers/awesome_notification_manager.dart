@@ -12,6 +12,12 @@ AwesomeNotificationManager awesomeNotificationManager =
 class AwesomeNotificationManager {
   Future<void> init() async {
     try {
+      await AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
+        if (!isAllowed) {
+          AwesomeNotifications().requestPermissionToSendNotifications();
+        }
+      });
+
       await AwesomeNotifications().initialize(
         /// using null here mean it will use app icon for notification icon
         /// If u want use custom one replace null with below
@@ -41,25 +47,19 @@ class AwesomeNotificationManager {
         ],
         debug: true,
       );
+
+      await listen();
     } catch (e) {
       qadaaPrint(e);
     }
   }
 
-  void listen() {
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
-        if (!isAllowed) {
-          AwesomeNotifications().requestPermissionToSendNotifications();
-        }
-      });
-
-      ///
-      await AwesomeNotifications()
-          .setListeners(onActionReceivedMethod: onActionReceivedMethod);
-    });
+  Future listen() async {
+    await AwesomeNotifications()
+        .setListeners(onActionReceivedMethod: onActionReceivedMethod);
   }
 
+  @pragma("vm:entry-point")
   Future<void> onActionReceivedMethod(ReceivedAction receivedAction) async {
     final List<String?> payloadsList = receivedAction.payload!.values.toList();
     final String? payload = payloadsList[0];
