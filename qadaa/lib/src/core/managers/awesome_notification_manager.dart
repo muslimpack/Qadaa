@@ -12,9 +12,11 @@ AwesomeNotificationManager awesomeNotificationManager =
 class AwesomeNotificationManager {
   Future<void> init() async {
     try {
-      await AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
+      await AwesomeNotifications()
+          .isNotificationAllowed()
+          .then((isAllowed) async {
         if (!isAllowed) {
-          AwesomeNotifications().requestPermissionToSendNotifications();
+          await AwesomeNotifications().requestPermissionToSendNotifications();
         }
       });
 
