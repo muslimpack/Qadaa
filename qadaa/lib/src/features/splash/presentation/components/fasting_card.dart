@@ -20,7 +20,7 @@ class FastingCard extends StatelessWidget {
     final PrayersController prayersController = Get.put(PrayersController());
     return GestureDetector(
       onTap: () async {
-        prayersController.addFasting(days: -1);
+        await prayersController.addFasting(days: -1);
         qadaaPrint("GestureDetector");
         await effectManager.playConfetti();
         onUpdate.call();

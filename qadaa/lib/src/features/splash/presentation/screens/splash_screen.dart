@@ -65,7 +65,7 @@ class SplashScreen extends StatelessWidget {
                       initialValue: controller.prayersController.getDays(),
                       max: controller.prayersController.getDaysMax(),
                       onTap: () async {
-                        controller.prayersController.addDay(value: -1);
+                        await controller.prayersController.addDay(value: -1);
 
                         await controller.effectManager.playConfetti();
 

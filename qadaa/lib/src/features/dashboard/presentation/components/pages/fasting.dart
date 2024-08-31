@@ -35,7 +35,7 @@ class FastingPage extends StatelessWidget {
                   icon: Icons.done,
                   trailing: controller.getFasting().toString(),
                   onTap: () async {
-                    controller.addFasting(days: -1);
+                    await controller.addFasting(days: -1);
                     await effectManager.playConfetti();
                     controller.update();
                   },
@@ -55,7 +55,7 @@ class FastingPage extends StatelessWidget {
                           onConfirm: (value) async {
                             if (value <= 0) return;
 
-                            controller.addFasting(days: -value);
+                            await controller.addFasting(days: -value);
                             await effectManager.playConfetti();
                             controller.update();
                           },
@@ -70,7 +70,7 @@ class FastingPage extends StatelessWidget {
                   icon: Icons.done,
                   trailing: controller.getFasting().toString(),
                   onTap: () async {
-                    controller.addFasting(days: 1);
+                    await controller.addFasting(days: 1);
                   },
                 ),
                 MyTile(
@@ -88,7 +88,7 @@ class FastingPage extends StatelessWidget {
                           onConfirm: (value) async {
                             if (value <= 0) return;
 
-                            controller.addFasting(days: value);
+                            await controller.addFasting(days: value);
                             controller.update();
                           },
                         );

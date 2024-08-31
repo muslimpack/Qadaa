@@ -1,7 +1,8 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:io';
+
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:qadaa/src/core/utils/print.dart';
 
@@ -9,58 +10,16 @@ AwesomeNotificationManager awesomeNotificationManager =
     AwesomeNotificationManager();
 
 class AwesomeNotificationManager {
-  Future<void> checkIfAllowed(BuildContext context) async {
-    try {
-      await AwesomeNotifications().isNotificationAllowed().then(
-        (isAllowed) {
-          if (!isAllowed) {
-            showDialog(
-              context: context,
-              builder: (context) => AlertDialog(
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                ),
-                title: Text("Allow app to send notifications?".tr),
-                content: Text(
-                  "Hisn ELmoslem need notification permission to send zikr reminders."
-                      .tr,
-                ),
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Text(
-                      "Later".tr,
-                      style: const TextStyle(color: Colors.grey, fontSize: 18),
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () => AwesomeNotifications()
-                        .requestPermissionToSendNotifications()
-                        .then((_) => Navigator.pop(context)),
-                    child: Text(
-                      "Allow".tr,
-                      style: const TextStyle(
-                        color: Colors.teal,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            );
-          }
-        },
-      );
-    } catch (e) {
-      qadaaPrint(e);
-    }
-  }
-
   Future<void> init() async {
     try {
+      await AwesomeNotifications()
+          .isNotificationAllowed()
+          .then((isAllowed) async {
+        if (!isAllowed) {
+          await AwesomeNotifications().requestPermissionToSendNotifications();
+        }
+      });
+
       await AwesomeNotifications().initialize(
         /// using null here mean it will use app icon for notification icon
         /// If u want use custom one replace null with below
@@ -90,23 +49,22 @@ class AwesomeNotificationManager {
         ],
         debug: true,
       );
+
+      await listen();
     } catch (e) {
       qadaaPrint(e);
     }
   }
 
-  void listen() {
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      /// Check if awesome notification is allowed
-      await awesomeNotificationManager.checkIfAllowed(Get.context!);
-
-      ///
-      await AwesomeNotifications()
-          .setListeners(onActionReceivedMethod: onActionReceivedMethod);
-    });
+  Future listen() async {
+    await AwesomeNotifications()
+        .setListeners(onActionReceivedMethod: onActionReceivedMethod);
   }
 
-  Future<void> onActionReceivedMethod(ReceivedAction receivedAction) async {
+  @pragma("vm:entry-point")
+  static Future<void> onActionReceivedMethod(
+    ReceivedAction receivedAction,
+  ) async {
     final List<String?> payloadsList = receivedAction.payload!.values.toList();
     final String? payload = payloadsList[0];
     qadaaPrint("actionStream: $payload");
@@ -289,10 +247,19 @@ class AwesomeNotificationManager {
   }
 
   ///
-  void onNotificationClick(String payload) {}
+  static void onNotificationClick(String payload) {}
 
   void dispose() {
     // AwesomeNotifications().actionSink.close();
     // AwesomeNotifications().createdSink.close();
   }
+}
+
+class Time {
+  final int hour;
+  final int minute;
+  Time({
+    required this.hour,
+    required this.minute,
+  });
 }

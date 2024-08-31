@@ -10,53 +10,75 @@ class StorageRepo {
   static late Box prayerBox;
 
   static void initialStorage() {
-    prayerBox = Hive.box("Prayers");
+    prayerBox = Hive.box(kAppStorageBoxName);
   }
+
+  /// ******************************
+  /// Keys
+  /// ******************************
+
+  // Prayer
+  static const String fajrKey = "Fajr";
+  static const String dhuhrKey = "Dhuhr";
+  static const String asrKey = "Asr";
+  static const String maghribKey = "Maghrib";
+  static const String ishaKey = "Isha";
+
+  /// Prayers Max
+  static const String maxFajrKey = "MaxFajr";
+  static const String maxDhuhrKey = "MaxDhuhr";
+  static const String maxAsrKey = "MaxAsr";
+  static const String maxMaghribKey = "MaxMaghrib";
+  static const String maxIshaKey = "MaxIsha";
+
+  // Fasting
+  static const String fastingKey = "Fasting";
+  static const String maxFastingKey = "MaxFasting";
 
   /// ******************************
   /// Add Zone
   /// ******************************
-  void addFasting({
+  Future addFasting({
     required int days,
-  }) {
-    _addSingle(valToAdd: days, key: "Fasting", maxKey: "MaxFasting");
+  }) async {
+    await _addSingle(valToAdd: days, key: fastingKey, maxKey: maxFastingKey);
   }
 
-  void addPrayer({
+  Future addPrayer({
     int fajr = 0,
     int dhuhr = 0,
     int asr = 0,
     int maghrib = 0,
     int isha = 0,
-  }) {
-    _addSingle(valToAdd: fajr, key: "Fajr", maxKey: "MaxFajr");
-    _addSingle(valToAdd: dhuhr, key: "Dhuhr", maxKey: "MaxDhuhr");
-    _addSingle(valToAdd: asr, key: "Asr", maxKey: "MaxAsr");
-    _addSingle(valToAdd: maghrib, key: "Maghrib", maxKey: "MaxMaghrib");
-    _addSingle(valToAdd: isha, key: "Isha", maxKey: "MaxIsha");
+  }) async {
+    await _addSingle(valToAdd: fajr, key: fajrKey, maxKey: maxFajrKey);
+    await _addSingle(valToAdd: dhuhr, key: dhuhrKey, maxKey: maxDhuhrKey);
+    await _addSingle(valToAdd: asr, key: asrKey, maxKey: maxAsrKey);
+    await _addSingle(valToAdd: maghrib, key: maghribKey, maxKey: maxMaghribKey);
+    await _addSingle(valToAdd: isha, key: ishaKey, maxKey: maxIshaKey);
   }
 
-  void _addSingle({
+  Future _addSingle({
     required int valToAdd,
     required String key,
     required String maxKey,
-  }) {
+  }) async {
     final int newVal = _getNumber(key) + valToAdd;
 
     if (newVal > _getMax(maxKey)) {
-      prayerBox.put(maxKey, newVal);
+      await prayerBox.put(maxKey, newVal);
     }
 
     if (newVal == 0) {
-      prayerBox.put(maxKey, 1);
+      await prayerBox.put(maxKey, 1);
     }
 
-    prayerBox.put(key, newVal < 0 ? 0 : newVal);
+    await prayerBox.put(key, newVal < 0 ? 0 : newVal);
   }
 
-  void addDay({required int? value}) {
+  Future addDay({required int? value}) async {
     if (value == null) return;
-    addPrayer(
+    await addPrayer(
       fajr: value,
       dhuhr: value,
       asr: value,
@@ -65,19 +87,19 @@ class StorageRepo {
     );
   }
 
-  void addWeek({required int? value}) {
+  Future<void> addWeek({required int? value}) async {
     if (value == null) return;
-    addDay(value: value * 7);
+    await addDay(value: value * 7);
   }
 
-  void addMonth({required int? value}) {
+  Future<void> addMonth({required int? value}) async {
     if (value == null) return;
-    addDay(value: value * 30);
+    await addDay(value: value * 30);
   }
 
-  void addYear({required int? value}) {
+  Future<void> addYear({required int? value}) async {
     if (value == null) return;
-    addDay(value: value * 365);
+    await addDay(value: value * 365);
   }
 
   int getDays() {
@@ -118,17 +140,17 @@ class StorageRepo {
     return (pray0.isNaN || pray0.isInfinite) ? 0 : pray0;
   }
 
-  int getFajr() => _getNumber("Fajr");
+  int getFajr() => _getNumber(fajrKey);
 
-  int getDhuhr() => _getNumber("Dhuhr");
+  int getDhuhr() => _getNumber(dhuhrKey);
 
-  int getAsr() => _getNumber("Asr");
+  int getAsr() => _getNumber(asrKey);
 
-  int getMaghrib() => _getNumber("Maghrib");
+  int getMaghrib() => _getNumber(maghribKey);
 
-  int getIsha() => _getNumber("Isha");
+  int getIsha() => _getNumber(ishaKey);
 
-  int getFasting() => _getNumber("Fasting");
+  int getFasting() => _getNumber(fastingKey);
 
   /// ******************************
   /// Get Max Zone
@@ -139,17 +161,17 @@ class StorageRepo {
     return (pray0.isNaN || pray0.isInfinite || pray0 < 1) ? 1 : pray0;
   }
 
-  int getMaxFajr() => _getMax("MaxFajr");
+  int getMaxFajr() => _getMax(maxFajrKey);
 
-  int getMaxDhuhr() => _getMax("MaxDhuhr");
+  int getMaxDhuhr() => _getMax(maxDhuhrKey);
 
-  int getMaxAsr() => _getMax("MaxAsr");
+  int getMaxAsr() => _getMax(maxAsrKey);
 
-  int getMaxMaghrib() => _getMax("MaxMaghrib");
+  int getMaxMaghrib() => _getMax(maxMaghribKey);
 
-  int getMaxIsha() => _getMax("MaxIsha");
+  int getMaxIsha() => _getMax(maxIshaKey);
 
-  int getMaxFasting() => _getMax("MaxFasting");
+  int getMaxFasting() => _getMax(maxFastingKey);
 
   /// ******************************
   /// Settings
@@ -159,21 +181,21 @@ class StorageRepo {
     return getFajr() + getDhuhr() + getAsr() + getMaghrib() + getIsha();
   }
 
-  void reset() {
+  Future reset() async {
     // Prayer
-    prayerBox.put("Fajr", 0);
-    prayerBox.put("Dhuhr", 0);
-    prayerBox.put("Asr", 0);
-    prayerBox.put("Maghrib", 0);
-    prayerBox.put("Isha", 0);
-    prayerBox.put("MaxFajr", 1);
-    prayerBox.put("MaxDhuhr", 1);
-    prayerBox.put("MaxAsr", 1);
-    prayerBox.put("MaxMaghrib", 1);
-    prayerBox.put("MaxIsha", 1);
+    await prayerBox.put(fajrKey, 0);
+    await prayerBox.put(dhuhrKey, 0);
+    await prayerBox.put(asrKey, 0);
+    await prayerBox.put(maghribKey, 0);
+    await prayerBox.put(ishaKey, 0);
+    await prayerBox.put(maxFajrKey, 1);
+    await prayerBox.put(maxDhuhrKey, 1);
+    await prayerBox.put(maxAsrKey, 1);
+    await prayerBox.put(maxMaghribKey, 1);
+    await prayerBox.put(maxIshaKey, 1);
     // Fasting
-    prayerBox.put("Fasting", 0);
-    prayerBox.put("MaxFasting", 1);
+    await prayerBox.put(fastingKey, 0);
+    await prayerBox.put(maxFastingKey, 1);
   }
 
   /// ******************************
@@ -188,12 +210,12 @@ class StorageRepo {
     return data == "0" ? "1" : data;
   }
 
-  void setQadaaEveryDay(String? count) {
-    prayerBox.put("qadaaEveryDay", count ?? 1);
+  Future setQadaaEveryDay(String? count) async {
+    await prayerBox.put("qadaaEveryDay", count ?? 1);
   }
 
-  void resetQadaaEveryDay() {
-    prayerBox.put("qadaaEveryDay", 1);
+  Future resetQadaaEveryDay() async {
+    await prayerBox.put("qadaaEveryDay", 1);
   }
 
   /// ******************************
@@ -207,16 +229,16 @@ class StorageRepo {
     ) as bool;
   }
 
-  void setFirstOpen(bool val) {
-    prayerBox.put("is_${AppConstant.appVersion}_first_open", val);
+  Future setFirstOpen(bool val) async {
+    await prayerBox.put("is_${AppConstant.appVersion}_first_open", val);
   }
 
   /// ******************************
   /// Settings
   /// ******************************
 
-  void toggleSplashBackground() {
-    prayerBox.put(
+  Future toggleSplashBackground() async {
+    await prayerBox.put(
       "SplashBackground",
       enumToMap(getSplashBackground().toggle()),
     );
@@ -243,8 +265,8 @@ class StorageRepo {
     return (index.isNaN || index.isInfinite) ? 0 : index;
   }
 
-  void setSplashBackgroundIndex(int index) {
-    prayerBox.put("SplashBackgroundIndex", index);
+  Future setSplashBackgroundIndex(int index) async {
+    await prayerBox.put("SplashBackgroundIndex", index);
   }
 
   bool get isLockEnabled =>
@@ -253,12 +275,12 @@ class StorageRepo {
   String get passCode =>
       prayerBox.get("passcode", defaultValue: "0000") as String;
 
-  void setIsLockEnabled(bool value) {
-    prayerBox.put("is_app_locked", value);
+  Future setIsLockEnabled(bool value) async {
+    await prayerBox.put("is_app_locked", value);
   }
 
-  void setPassCode(String passCode) {
-    prayerBox.put("passcode", passCode);
+  Future setPassCode(String passCode) async {
+    await prayerBox.put("passcode", passCode);
   }
 
   static const String _localeKey = "locale";
@@ -269,6 +291,6 @@ class StorageRepo {
   }
 
   Future localeChange(Locale locale) async {
-    return prayerBox.put(_localeKey, locale.languageCode);
+    await prayerBox.put(_localeKey, locale.languageCode);
   }
 }

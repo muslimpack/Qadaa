@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
+import 'package:qadaa/src/core/constants/constant.dart';
 import 'package:qadaa/src/core/enum/splash_background.dart';
 import 'package:qadaa/src/core/managers/prayer_controller.dart';
 import 'package:qadaa/src/core/managers/storage_repo.dart';
@@ -12,7 +13,7 @@ class SettingsController extends GetxController {
   late TextEditingController qadaaController;
   final PrayersController prayersController = Get.put(PrayersController());
 
-  final prayerBox = Hive.box("Prayers");
+  final prayerBox = Hive.box(kAppStorageBoxName);
 
   /* *************** Controller life cycle *************** */
   @override
@@ -60,6 +61,6 @@ class SettingsController extends GetxController {
 
   Future changeThemeLocale(Locale locale) async {
     await storageRepo.localeChange(locale);
-    Get.updateLocale(locale);
+    await Get.updateLocale(locale);
   }
 }

@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:qadaa/generated/l10n.dart';
 import 'package:qadaa/src/core/managers/storage_repo.dart';
-import 'package:qadaa/src/core/utils/print.dart';
 
 class PrayersController extends GetxController {
   bool isLoading = true;
@@ -13,19 +12,19 @@ class PrayersController extends GetxController {
     update();
   }
 
-  void reset() {
-    storageRepo.reset();
+  Future reset() async {
+    await storageRepo.reset();
     update();
   }
 
-  void addPrayer({
+  Future addPrayer({
     int fajr = 0,
     int dhuhr = 0,
     int asr = 0,
     int maghrib = 0,
     int isha = 0,
-  }) {
-    storageRepo.addPrayer(
+  }) async {
+    await storageRepo.addPrayer(
       fajr: fajr,
       dhuhr: dhuhr,
       asr: asr,
@@ -35,33 +34,33 @@ class PrayersController extends GetxController {
     update();
   }
 
-  void addDay({required int? value}) {
+  Future addDay({required int? value}) async {
     if (value == null) return;
-    storageRepo.addDay(value: value);
+    await storageRepo.addDay(value: value);
     update();
   }
 
-  void addWeek({required int? value}) {
+  Future addWeek({required int? value}) async {
     if (value == null) return;
-    storageRepo.addWeek(value: value);
+    await storageRepo.addWeek(value: value);
     update();
   }
 
-  void addMonth({required int? value}) {
+  Future addMonth({required int? value}) async {
     if (value == null) return;
-    storageRepo.addMonth(value: value);
+    await storageRepo.addMonth(value: value);
     update();
   }
 
-  void addYear({required int? value}) {
+  Future addYear({required int? value}) async {
     if (value == null) return;
-    addDay(value: value * 365);
+    await addDay(value: value * 365);
     update();
   }
 
-  void addFasting({required int? days}) {
+  Future addFasting({required int? days}) async {
     if (days == null) return;
-    storageRepo.addFasting(days: days);
+    await storageRepo.addFasting(days: days);
     update();
   }
 
@@ -159,7 +158,7 @@ class PrayersController extends GetxController {
         toDay.add(Duration(days: storageRepo.getFasting()));
 
     final Duration difference = dueDate.difference(toDay);
-    qadaaPrint(difference);
+
     if (difference.inDays == 0) {
       return S.current.no_missed_prayer;
     } else {
@@ -186,13 +185,13 @@ class PrayersController extends GetxController {
     return storageRepo.getQadaaEveryDay();
   }
 
-  void setQadaaEveryDay(String? count) {
-    storageRepo.setQadaaEveryDay(count);
+  Future setQadaaEveryDay(String? count) async {
+    await storageRepo.setQadaaEveryDay(count);
     update();
   }
 
-  void resetQadaaEveryDay() {
-    storageRepo.resetQadaaEveryDay();
+  Future resetQadaaEveryDay() async {
+    await storageRepo.resetQadaaEveryDay();
     update();
   }
 }
