@@ -44,8 +44,7 @@ class Settings extends StatelessWidget {
                     children: S.delegate.supportedLocales
                         .map(
                           (locale) => ChoiceChip(
-                            selected: controller.locale?.languageCode ==
-                                locale.languageCode,
+                            selected: controller.locale?.languageCode == locale.languageCode,
                             label: Text(locale.languageCode),
                             onSelected: (value) {
                               controller.changeThemeLocale(locale);
@@ -66,7 +65,7 @@ class Settings extends StatelessWidget {
                       leading: const Icon(Icons.lock),
                       title: Text(S.of(context).activate_app_lock),
                     ),
-                    activeColor: Colors.pink,
+                    activeThumbColor: Colors.pink,
                     value: controller.isLockEnabled,
                     onChanged: (value) {
                       controller.setIsLockEnabled(value);
@@ -89,8 +88,7 @@ class Settings extends StatelessWidget {
                       ),
                       onTap: () {
                         screenLock(
-                          title:
-                              Text(S.of(context).app_lock_enter_old_password),
+                          title: Text(S.of(context).app_lock_enter_old_password),
                           context: context,
                           correctString: controller.passCode,
                           onUnlocked: () {
@@ -132,8 +130,7 @@ class Settings extends StatelessWidget {
                 },
                 trailing: controller.getSplashBackground().toArabic(),
               ),
-              if (controller.getSplashBackground() ==
-                  SplashBackGroundEnum.staticImage)
+              if (controller.getSplashBackground() == SplashBackGroundEnum.staticImage)
                 Card(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 15),
@@ -165,8 +162,7 @@ class Settings extends StatelessWidget {
                           controller.prayersController.resetQadaaEveryDay();
                           controller.prayersController.update();
                           controller.setPassCode("0000");
-                          controller.qadaaController =
-                              TextEditingController(text: "1");
+                          controller.qadaaController = TextEditingController(text: "1");
                           controller.update();
                         },
                       );

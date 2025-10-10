@@ -1,4 +1,5 @@
 import 'dart:math';
+
 import 'package:audioplayers/audioplayers.dart';
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
@@ -25,8 +26,7 @@ class EffectManager extends GetxController {
     super.onInit();
 
     //
-    confettiController =
-        ConfettiController(duration: const Duration(seconds: 2));
+    confettiController = ConfettiController(duration: const Duration(seconds: 2));
     //
     update();
   }
@@ -88,7 +88,6 @@ class EffectManager extends GetxController {
           AssetSource("sounds/small_finish.mp3"),
           mode: PlayerMode.mediaPlayer,
         );
-      default:
     }
   }
 }
