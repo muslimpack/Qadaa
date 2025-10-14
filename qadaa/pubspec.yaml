@@ -10,7 +10,7 @@ environment:
   sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
-  audioplayers: ^6.1.0
+  audioplayers: ^6.5.1
   awesome_notifications: ^0.10.1
   confetti: ^0.8.0
   cupertino_icons: ^1.0.5
@@ -19,24 +19,24 @@ dependencies:
   flutter_local_notifications: ^19.4.2
   flutter_localizations:
     sdk: flutter
-  flutter_native_splash: ^2.4.1
-  flutter_screen_lock: ^9.1.0
-  get: ^4.6.6
+  flutter_native_splash: ^2.4.6
+  flutter_screen_lock: ^9.2.2+2
+  get: ^4.7.2
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   intl: ^0.20.2
-  path_provider: ^2.1.4
+  path_provider: ^2.1.5
   rxdart: ^0.28.0
-  sleek_circular_slider: ^2.0.1
+  sleek_circular_slider: ^2.1.0
   url_launcher: ^6.3.0
-  wakelock_plus: ^1.2.8
+  wakelock_plus: ^1.4.0
   window_manager: ^0.5.1
 
 dev_dependencies:
   flutter_lints: ^6.0.0
   flutter_test:
     sdk: flutter
-  lint: ^2.3.0
+  lint: ^2.8.0
 
 flutter_native_splash:
   android: true
