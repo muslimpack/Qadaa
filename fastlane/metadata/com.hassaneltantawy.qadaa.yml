@@ -18,7 +18,7 @@ Builds:
     versionCode: 6
     commit: 662accdb56140760c3ca030c30b86074f300300c
     subdir: qadaa
-    output: build/app/outputs/flutter-apk/app-release.apk
+    output: build/app/outputs/flutter-apk/app-prod-release.apk
     srclibs:
       - flutter@3.16.9
     rm:
@@ -31,7 +31,7 @@ Builds:
       - qadaa/.pub-cache
     build:
       - export PUB_CACHE=$(pwd)/.pub-cache
-      - $$flutter$$/bin/flutter build apk --release
+      - $$flutter$$/bin/flutter build apk --release --flavour prod
 
 AutoUpdateMode: Version
 UpdateCheckMode: Tags
