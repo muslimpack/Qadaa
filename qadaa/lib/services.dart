@@ -16,8 +16,7 @@ Future<void> initServices() async {
 
   try {
     //Hive Initializes
-    final appDocumentDirectory =
-        await path_provider.getApplicationDocumentsDirectory();
+    final appDocumentDirectory = await path_provider.getApplicationDocumentsDirectory();
     Hive.init(appDocumentDirectory.path);
 
     await Hive.openBox(kAppStorageBoxName);
@@ -25,11 +24,6 @@ Future<void> initServices() async {
     StorageRepo.initialStorage();
 
     await loadLocalizations();
-
-    // Make Phone StatusBar Transparent
-    SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
-    );
 
     /// Keep app in portrait mode and
     /// make it static when phone rotation change
