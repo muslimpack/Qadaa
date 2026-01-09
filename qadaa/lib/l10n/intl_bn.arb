@@ -59,5 +59,10 @@
   "version": "সংস্করণ",
   "week": "সপ্তাহ",
   "year": "বছর",
-  "yes": "হ্যাঁ"
+  "yes": "হ্যাঁ",
+  "last_updated": "সর্বশেষ আপডেট",
+  "last_updated_never": "সর্বশেষ আপডেট: কখনও না",
+  "yesterday": "গতকাল",
+  "days_ago_prefix": "",
+  "days_ago_suffix": "দিন আগে"
 }

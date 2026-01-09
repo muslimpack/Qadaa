@@ -59,5 +59,10 @@
   "version": "Version",
   "week": "Semaine",
   "year": "Année",
-  "yes": "Oui"
+  "yes": "Oui",
+  "last_updated": "Dernière mise à jour",
+  "last_updated_never": "Dernière mise à jour : Jamais",
+  "yesterday": "Hier",
+  "days_ago_prefix": "Il y a",
+  "days_ago_suffix": "jours"
 }

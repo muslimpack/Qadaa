@@ -59,5 +59,10 @@
   "version": "نسخه",
   "week": "هفته",
   "year": "سال",
-  "yes": "بله"
+  "yes": "بله",
+  "last_updated": "آخرین به‌روزرسانی",
+  "last_updated_never": "آخرین به‌روزرسانی: هرگز",
+  "yesterday": "دیروز",
+  "days_ago_prefix": "",
+  "days_ago_suffix": "روز پیش"
 }

@@ -61,5 +61,10 @@
   "version": "إصدار",
   "week": "أسبوع",
   "year": "سنة",
-  "yes": "نعم"
+  "yes": "نعم",
+  "last_updated": "آخر تحديث",
+  "last_updated_never": "آخر تحديث: لم يتم التحديث",
+  "yesterday": "أمس",
+  "days_ago_prefix": "منذ",
+  "days_ago_suffix": "يوم"
 }

@@ -39,6 +39,9 @@ class StorageRepo {
   static const String fastingKey = "Fasting";
   static const String maxFastingKey = "MaxFasting";
 
+  // Last Updated
+  static const String lastUpdatedKey = "LastUpdated";
+
   /// ******************************
   /// Add Zone
   /// ******************************
@@ -78,6 +81,12 @@ class StorageRepo {
     }
 
     await prayerBox.put(key, newVal < 0 ? 0 : newVal);
+    
+    // Update last updated timestamp only when completing (decreasing count)
+    // Not when adding prayers back (increasing count)
+    if (valToAdd < 0) {
+      await updateLastUpdated();
+    }
   }
 
   Future addDay({required int? value}) async {
@@ -200,6 +209,8 @@ class StorageRepo {
     // Fasting
     await prayerBox.put(fastingKey, 0);
     await prayerBox.put(maxFastingKey, 1);
+    // Last Updated
+    await prayerBox.delete(lastUpdatedKey);
   }
 
   /// ******************************
@@ -336,5 +347,30 @@ class StorageRepo {
     };
     final String data = jsonEncode(screenSize);
     return prayerBox.put(desktopWindowSizeKey, data);
+  }
+
+  /// ******************************
+  /// Last Updated
+  /// ******************************
+
+  Future<void> updateLastUpdated() async {
+    await prayerBox.put(lastUpdatedKey, DateTime.now().toIso8601String());
+  }
+
+  DateTime? getLastUpdated() {
+    final String? timestamp = prayerBox.get(lastUpdatedKey) as String?;
+    if (timestamp == null) return null;
+    try {
+      return DateTime.parse(timestamp);
+    } catch (e) {
+      qadaaPrint(e);
+      return null;
+    }
+  }
+
+  int? getDaysSinceLastUpdate() {
+    final DateTime? lastUpdated = getLastUpdated();
+    if (lastUpdated == null) return null;
+    return DateTime.now().difference(lastUpdated).inDays;
   }
 }

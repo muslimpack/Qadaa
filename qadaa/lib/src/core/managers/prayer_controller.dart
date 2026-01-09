@@ -194,4 +194,43 @@ class PrayersController extends GetxController {
     await storageRepo.resetQadaaEveryDay();
     update();
   }
+
+  /// ******************************
+  /// Last Updated
+  /// ******************************
+
+  String getLastUpdatedText() {
+    final DateTime? lastUpdated = storageRepo.getLastUpdated();
+    if (lastUpdated == null) {
+      return S.current.last_updated_never;
+    }
+
+    final int? daysAgo = storageRepo.getDaysSinceLastUpdate();
+    final String formattedDate = _formatDateTime(lastUpdated);
+    
+    if (daysAgo == null) {
+      return '${S.current.last_updated}: $formattedDate';
+    }
+
+    String daysAgoText;
+    if (daysAgo == 0) {
+      daysAgoText = S.current.today;
+    } else if (daysAgo == 1) {
+      daysAgoText = S.current.yesterday;
+    } else {
+      final String prefix = S.current.days_ago_prefix.isNotEmpty 
+          ? '${S.current.days_ago_prefix} ' 
+          : '';
+      final String suffix = S.current.days_ago_suffix.isNotEmpty 
+          ? ' ${S.current.days_ago_suffix}' 
+          : '';
+      daysAgoText = '$prefix$daysAgo$suffix';
+    }
+
+    return '${S.current.last_updated}: $daysAgoText\n$formattedDate';
+  }
+
+  String _formatDateTime(DateTime dateTime) {
+    return '${dateTime.day}/${dateTime.month}/${dateTime.year} ${dateTime.hour.toString().padLeft(2, '0')}:${dateTime.minute.toString().padLeft(2, '0')}';
+  }
 }
