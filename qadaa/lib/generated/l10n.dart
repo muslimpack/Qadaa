@@ -679,6 +679,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Last Updated`
+  String get last_updated {
+    return Intl.message(
+      'Last Updated',
+      name: 'last_updated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last Updated: Never`
+  String get last_updated_never {
+    return Intl.message(
+      'Last Updated: Never',
+      name: 'last_updated_never',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yesterday`
+  String get yesterday {
+    return Intl.message(
+      'Yesterday',
+      name: 'yesterday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get days_ago_prefix {
+    return Intl.message(
+      '',
+      name: 'days_ago_prefix',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `days ago`
+  String get days_ago_suffix {
+    return Intl.message(
+      'days ago',
+      name: 'days_ago_suffix',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

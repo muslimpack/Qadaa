@@ -61,5 +61,10 @@
   "version": "Version",
   "week": "Week",
   "year": "Year",
-  "yes": "Yes"
+  "yes": "Yes",
+  "last_updated": "Last Updated",
+  "last_updated_never": "Last Updated: Never",
+  "yesterday": "Yesterday",
+  "days_ago_prefix": "",
+  "days_ago_suffix": "days ago"
 }

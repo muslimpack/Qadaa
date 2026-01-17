@@ -54,10 +54,15 @@
   "splash_static_image": "Image statique",
   "start": "Commencer",
   "sure_to_reset_everything_msg": "Êtes-vous sûr de vouloir tout réinitialiser ?",
-  "today": "Aujourd’hui",
+  "today": "Aujourd'hui",
   "ui": "UI",
   "version": "Version",
   "week": "Semaine",
   "year": "Année",
-  "yes": "Oui"
+  "yes": "Oui",
+  "last_updated": "Dernière mise à jour",
+  "last_updated_never": "Dernière mise à jour : Jamais",
+  "yesterday": "Hier",
+  "days_ago_prefix": "Il y a",
+  "days_ago_suffix": "jours"
 }

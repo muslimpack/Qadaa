@@ -178,6 +178,17 @@ class SplashScreen extends StatelessWidget {
                         textAlign: TextAlign.center,
                       ),
                     ),
+                    const SizedBox(height: 15),
+                    Center(
+                      child: Text(
+                        controller.prayersController.getLastUpdatedText(),
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.grey.shade400,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
                   ],
                 ),
               ),

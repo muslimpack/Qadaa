@@ -59,5 +59,10 @@
   "version": "ورژن",
   "week": "ہفتہ",
   "year": "سال",
-  "yes": "ہاں"
+  "yes": "ہاں",
+  "last_updated": "آخری اپ ڈیٹ",
+  "last_updated_never": "آخری اپ ڈیٹ: کبھی نہیں",
+  "yesterday": "کل",
+  "days_ago_prefix": "",
+  "days_ago_suffix": "دن پہلے"
 }
