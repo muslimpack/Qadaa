@@ -1,7 +1,7 @@
 name: Build and Release Qadaa
 
-# Tag vX.Y.Z       -> GitHub release     + Google Play production
-# Tag vX.Y.Z-rc.1  -> GitHub pre-release + Google Play internal track
+# Tag vX.Y.Z       -> GitHub release     + Google Play production + TestFlight (iOS)
+# Tag vX.Y.Z-rc.1  -> GitHub pre-release + Google Play internal track + TestFlight (iOS)
 # Run workflow     -> pick platforms and where (or whether) to publish
 
 on:
@@ -47,7 +47,7 @@ jobs:
       app_directory: qadaa
       package_name: com.hassaneltantawy.qadaa
       java_version: '17'
-      platforms: ${{ inputs.platforms || 'android,windows' }}
+      platforms: ${{ inputs.platforms || 'android,windows,ios' }}
       github_release: ${{ inputs.github_release || 'auto' }}
       play_track: ${{ inputs.play_track || 'auto' }}
       play_rollout: ${{ inputs.play_rollout || '100' }}
