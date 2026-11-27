@@ -55,6 +55,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Prières personnalisées faites"),
         "day": MessageLookupByLibrary.simpleMessage("Jour"),
         "days": MessageLookupByLibrary.simpleMessage("Jours"),
+        "days_ago_prefix": MessageLookupByLibrary.simpleMessage("Il y a"),
+        "days_ago_suffix": MessageLookupByLibrary.simpleMessage("jours"),
         "dhuhr": MessageLookupByLibrary.simpleMessage("Dhuhr"),
         "done": MessageLookupByLibrary.simpleMessage("Terminé"),
         "done_day": MessageLookupByLibrary.simpleMessage("Jour fait"),
@@ -65,6 +67,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "fajr": MessageLookupByLibrary.simpleMessage("Fajr"),
         "fast": MessageLookupByLibrary.simpleMessage("Jeûne"),
         "ishaa": MessageLookupByLibrary.simpleMessage("Ishaa"),
+        "last_updated": MessageLookupByLibrary.simpleMessage("Dernière mise à jour"),
+        "last_updated_never": MessageLookupByLibrary.simpleMessage("Dernière mise à jour : Jamais"),
         "maghrib": MessageLookupByLibrary.simpleMessage("Maghrib"),
         "make_up_missed_prayers": MessageLookupByLibrary.simpleMessage(
             "Rattraper les prières manquées"),
@@ -72,6 +76,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "month": MessageLookupByLibrary.simpleMessage("Mois"),
         "new_prayer": MessageLookupByLibrary.simpleMessage("Nouvelle prière"),
         "no": MessageLookupByLibrary.simpleMessage("Non"),
+        "no_missed_fasting": MessageLookupByLibrary.simpleMessage("Pas de jeûne manqué"),
         "no_missed_prayer":
             MessageLookupByLibrary.simpleMessage("Pas de prière manquée"),
         "open_in_google_play":
@@ -110,6 +115,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "version": MessageLookupByLibrary.simpleMessage("Version"),
         "week": MessageLookupByLibrary.simpleMessage("Semaine"),
         "year": MessageLookupByLibrary.simpleMessage("Année"),
-        "yes": MessageLookupByLibrary.simpleMessage("Oui")
+        "yes": MessageLookupByLibrary.simpleMessage("Oui"),
+        "yesterday": MessageLookupByLibrary.simpleMessage("Hier")
       };
 }

@@ -61,23 +61,18 @@ class _AddPeriodDialogState extends State<AddPeriodDialog> {
                     style:
                         TextStyle(fontSize: 20, color: AppConstant.mainColor),
                   ),
-                  onTap: () {
-                    if (daysController.text.isNotEmpty) {
-                      controller.addDay(value: int.parse(daysController.text));
-                    }
+                  onTap: () async {
+                    int read(TextEditingController c) =>
+                        int.tryParse(c.text) ?? 0;
 
-                    if (monthsController.text.isNotEmpty) {
-                      controller.addMonth(
-                        value: int.parse(monthsController.text),
-                      );
-                    }
+                    // Add everything in one call: separate un-awaited calls
+                    // race on the same Hive keys and only one of them sticks.
+                    final int days = read(daysController) +
+                        read(monthsController) * 30 +
+                        read(yearsController) * 365;
+                    if (days > 0) await controller.addDay(value: days);
 
-                    if (yearsController.text.isNotEmpty) {
-                      controller.addYear(
-                        value: int.parse(yearsController.text),
-                      );
-                    }
-
+                    if (!context.mounted) return;
                     Navigator.pop(context, false);
                   },
                 ),

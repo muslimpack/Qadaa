@@ -53,6 +53,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("پوری ہو گئی نمازیں"),
         "day": MessageLookupByLibrary.simpleMessage("دن"),
         "days": MessageLookupByLibrary.simpleMessage("دن"),
+        "days_ago_prefix": MessageLookupByLibrary.simpleMessage(""),
+        "days_ago_suffix": MessageLookupByLibrary.simpleMessage("دن پہلے"),
         "dhuhr": MessageLookupByLibrary.simpleMessage("ظہر"),
         "done": MessageLookupByLibrary.simpleMessage("پوری ہو گئی"),
         "done_day": MessageLookupByLibrary.simpleMessage("پورا ہو گیا دن"),
@@ -63,6 +65,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "fajr": MessageLookupByLibrary.simpleMessage("فجر"),
         "fast": MessageLookupByLibrary.simpleMessage("روزہ"),
         "ishaa": MessageLookupByLibrary.simpleMessage("عشاء"),
+        "last_updated": MessageLookupByLibrary.simpleMessage("آخری اپ ڈیٹ"),
+        "last_updated_never": MessageLookupByLibrary.simpleMessage("آخری اپ ڈیٹ: کبھی نہیں"),
         "maghrib": MessageLookupByLibrary.simpleMessage("مغرب"),
         "make_up_missed_prayers":
             MessageLookupByLibrary.simpleMessage("چھٹی ہوئی نمازیں"),
@@ -71,6 +75,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "month": MessageLookupByLibrary.simpleMessage("مہینہ"),
         "new_prayer": MessageLookupByLibrary.simpleMessage("نئی نمازیں"),
         "no": MessageLookupByLibrary.simpleMessage("نہیں"),
+        "no_missed_fasting": MessageLookupByLibrary.simpleMessage("کوئی قضا روزہ نہیں"),
         "no_missed_prayer":
             MessageLookupByLibrary.simpleMessage("کوئی چھوٹ گئی نماز نہیں"),
         "open_in_google_play":
@@ -106,6 +111,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "version": MessageLookupByLibrary.simpleMessage("ورژن"),
         "week": MessageLookupByLibrary.simpleMessage("ہفتہ"),
         "year": MessageLookupByLibrary.simpleMessage("سال"),
-        "yes": MessageLookupByLibrary.simpleMessage("ہاں")
+        "yes": MessageLookupByLibrary.simpleMessage("ہاں"),
+        "yesterday": MessageLookupByLibrary.simpleMessage("کل")
       };
 }

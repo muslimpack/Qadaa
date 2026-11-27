@@ -70,7 +70,8 @@ class StorageRepo {
     required String key,
     required String maxKey,
   }) async {
-    final int newVal = _getNumber(key) + valToAdd;
+    final int oldVal = _getNumber(key);
+    final int newVal = oldVal + valToAdd;
 
     if (newVal > _getMax(maxKey)) {
       await prayerBox.put(maxKey, newVal);
@@ -80,11 +81,13 @@ class StorageRepo {
       await prayerBox.put(maxKey, 1);
     }
 
-    await prayerBox.put(key, newVal < 0 ? 0 : newVal);
-    
-    // Update last updated timestamp only when completing (decreasing count)
-    // Not when adding prayers back (increasing count)
-    if (valToAdd < 0) {
+    final int storedVal = newVal < 0 ? 0 : newVal;
+    await prayerBox.put(key, storedVal);
+
+    // Update last updated timestamp only when a prayer was actually completed
+    // (the count went down). Not when adding prayers back, and not when
+    // "done" is tapped on a counter that is already at 0.
+    if (storedVal < oldVal) {
       await updateLastUpdated();
     }
   }
@@ -218,19 +221,23 @@ class StorageRepo {
   /// ******************************
 
   // qadaa every day
-  String getQadaaEveryDay() {
-    final String data =
-        prayerBox.get("qadaaEveryDay", defaultValue: "1").toString();
+  /// One full day of qadaa: all five prayers.
+  static const int defaultQadaaEveryDay = 5;
 
-    return data == "0" ? "1" : data;
+  String getQadaaEveryDay() {
+    final String data = prayerBox
+        .get("qadaaEveryDay", defaultValue: "$defaultQadaaEveryDay")
+        .toString();
+
+    return data == "0" ? "$defaultQadaaEveryDay" : data;
   }
 
   Future setQadaaEveryDay(String? count) async {
-    await prayerBox.put("qadaaEveryDay", count ?? 1);
+    await prayerBox.put("qadaaEveryDay", count ?? "$defaultQadaaEveryDay");
   }
 
   Future resetQadaaEveryDay() async {
-    await prayerBox.put("qadaaEveryDay", 1);
+    await prayerBox.put("qadaaEveryDay", "$defaultQadaaEveryDay");
   }
 
   /// ******************************
@@ -371,6 +378,12 @@ class StorageRepo {
   int? getDaysSinceLastUpdate() {
     final DateTime? lastUpdated = getLastUpdated();
     if (lastUpdated == null) return null;
-    return DateTime.now().difference(lastUpdated).inDays;
+    // Count calendar days, so an update at 23:00 shows "yesterday" at 01:00.
+    // DateTime.utc avoids daylight saving shifts in the difference.
+    final DateTime now = DateTime.now();
+    final DateTime today = DateTime.utc(now.year, now.month, now.day);
+    final DateTime updatedDay =
+        DateTime.utc(lastUpdated.year, lastUpdated.month, lastUpdated.day);
+    return today.difference(updatedDay).inDays;
   }
 }

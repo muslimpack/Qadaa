@@ -51,6 +51,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("قضيت صلوات"),
         "day": MessageLookupByLibrary.simpleMessage("يوم"),
         "days": MessageLookupByLibrary.simpleMessage("أيام"),
+        "days_ago_prefix": MessageLookupByLibrary.simpleMessage("منذ"),
+        "days_ago_suffix": MessageLookupByLibrary.simpleMessage("يوم"),
         "dhuhr": MessageLookupByLibrary.simpleMessage("ظهر"),
         "dismiss": MessageLookupByLibrary.simpleMessage("تجاهل"),
         "done": MessageLookupByLibrary.simpleMessage("قضاء"),
@@ -62,6 +64,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "fajr": MessageLookupByLibrary.simpleMessage("فجر"),
         "fast": MessageLookupByLibrary.simpleMessage("الصوم"),
         "ishaa": MessageLookupByLibrary.simpleMessage("عشاء"),
+        "last_updated": MessageLookupByLibrary.simpleMessage("آخر تحديث"),
+        "last_updated_never": MessageLookupByLibrary.simpleMessage("آخر تحديث: لم يتم التحديث"),
         "maghrib": MessageLookupByLibrary.simpleMessage("مغرب"),
         "make_up_missed_prayers":
             MessageLookupByLibrary.simpleMessage("قضاء الصلوات الفائتة"),
@@ -70,6 +74,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "month": MessageLookupByLibrary.simpleMessage("شهر"),
         "new_prayer": MessageLookupByLibrary.simpleMessage("فروض جديدة"),
         "no": MessageLookupByLibrary.simpleMessage("لا"),
+        "no_missed_fasting": MessageLookupByLibrary.simpleMessage("لا أيام صيام فائتة"),
         "no_missed_prayer":
             MessageLookupByLibrary.simpleMessage("لا صلوات فائتة"),
         "open_in_google_play":
@@ -104,6 +109,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "version": MessageLookupByLibrary.simpleMessage("إصدار"),
         "week": MessageLookupByLibrary.simpleMessage("أسبوع"),
         "year": MessageLookupByLibrary.simpleMessage("سنة"),
-        "yes": MessageLookupByLibrary.simpleMessage("نعم")
+        "yes": MessageLookupByLibrary.simpleMessage("نعم"),
+        "yesterday": MessageLookupByLibrary.simpleMessage("أمس")
       };
 }

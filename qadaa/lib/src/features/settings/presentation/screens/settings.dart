@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:qadaa/generated/l10n.dart';
 import 'package:qadaa/src/core/constants/constant.dart';
 import 'package:qadaa/src/core/enum/splash_background.dart';
+import 'package:qadaa/src/core/managers/storage_repo.dart';
 import 'package:qadaa/src/core/shared/dialogs/yes__no_popup.dart';
 import 'package:qadaa/src/core/shared/tile.dart';
 import 'package:qadaa/src/core/utils/show_toast.dart';
@@ -162,7 +163,9 @@ class Settings extends StatelessWidget {
                           controller.prayersController.resetQadaaEveryDay();
                           controller.prayersController.update();
                           controller.setPassCode("0000");
-                          controller.qadaaController = TextEditingController(text: "1");
+                          controller.qadaaController = TextEditingController(
+                            text: "${StorageRepo.defaultQadaaEveryDay}",
+                          );
                           controller.update();
                         },
                       );
