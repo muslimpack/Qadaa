@@ -124,60 +124,62 @@ class PrayersController extends GetxController {
     return storageRepo.getAllRemainingPrayer();
   }
 
-  DateTime updateEndDateOfQadaa() {
-    int prayersPerDay = 1;
-    prayersPerDay = int.parse(getQadaaEveryDay());
+  /// Prayers per day from settings, falling back to the default on a bad
+  /// stored value instead of throwing.
+  int _prayersPerDay() {
+    final int? value = int.tryParse(getQadaaEveryDay());
+    return (value == null || value < 1)
+        ? StorageRepo.defaultQadaaEveryDay
+        : value;
+  }
 
-    return DateTime.now()
-        .add(Duration(days: getAllRemainingPrayer() ~/ prayersPerDay));
+  /// Number of days needed to make up all remaining prayers, rounded up:
+  /// 7 prayers at 5 a day still takes 2 days.
+  int _qadaaDaysLeft() {
+    final int prayersPerDay = _prayersPerDay();
+    return (getAllRemainingPrayer() + prayersPerDay - 1) ~/ prayersPerDay;
+  }
+
+  static DateTime _today() {
+    final DateTime now = DateTime.now();
+    return DateTime(now.year, now.month, now.day);
+  }
+
+  /// Last day of qadaa, counting today as day 1. Uses calendar days, so
+  /// daylight saving changes cannot shift the date.
+  DateTime updateEndDateOfQadaa() {
+    final DateTime today = _today();
+    final int days = _qadaaDaysLeft();
+    return DateTime(today.year, today.month, today.day + (days - 1));
   }
 
   String getPrayerEndDateText() {
-    final DateTime dueDate = updateEndDateOfQadaa();
-    final Duration difference = dueDate.difference(DateTime.now());
-
     if (getAllRemainingPrayer() == 0) {
       return S.current.no_missed_prayer;
-    } else {
-      if ((difference.inHours / 24).round() == 0) {
-        return "${S.current.completion_date}:\n ${S.current.today}";
-      } else {
-        return '${S.current.completion_date}:\n ${dueDate.day} / ${dueDate.month} / ${dueDate.year}';
-      }
     }
+
+    if (_qadaaDaysLeft() <= 1) {
+      return "${S.current.completion_date}:\n ${S.current.today}";
+    }
+
+    final DateTime dueDate = updateEndDateOfQadaa();
+    return '${S.current.completion_date}:\n ${dueDate.day} / ${dueDate.month} / ${dueDate.year}';
   }
 
   String getFastingEndDateText() {
-    final DateTime now = DateTime.now();
-    final DateTime toDay = DateTime(
-      now.year,
-      now.month,
-      now.day,
-    );
-    final DateTime dueDate =
-        toDay.add(Duration(days: storageRepo.getFasting()));
-
-    final Duration difference = dueDate.difference(toDay);
-
-    if (difference.inDays == 0) {
-      return S.current.no_missed_prayer;
-    } else {
-      return '${S.current.completion_date}: ${dueDate.day} / ${dueDate.month} / ${dueDate.year}';
+    final int fasting = storageRepo.getFasting();
+    if (fasting == 0) {
+      return S.current.no_missed_fasting;
     }
+
+    final DateTime today = _today();
+    final DateTime dueDate =
+        DateTime(today.year, today.month, today.day + fasting);
+    return '${S.current.completion_date}: ${dueDate.day} / ${dueDate.month} / ${dueDate.year}';
   }
 
   Duration fastingDifference() {
-    final DateTime now = DateTime.now();
-    final DateTime toDay = DateTime(
-      now.year,
-      now.month,
-      now.day,
-    );
-    final DateTime dueDate =
-        toDay.add(Duration(days: storageRepo.getFasting()));
-
-    final Duration difference = dueDate.difference(toDay);
-    return difference;
+    return Duration(days: storageRepo.getFasting());
   }
 
   // qadaa every day

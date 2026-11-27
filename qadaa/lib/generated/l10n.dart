@@ -420,6 +420,16 @@ class S {
     );
   }
 
+  /// `No Missed Fasting`
+  String get no_missed_fasting {
+    return Intl.message(
+      'No Missed Fasting',
+      name: 'no_missed_fasting',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `No Missed Prayer`
   String get no_missed_prayer {
     return Intl.message(

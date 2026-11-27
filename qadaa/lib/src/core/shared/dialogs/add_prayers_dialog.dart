@@ -70,31 +70,21 @@ class _AddPrayersDialogState extends State<AddPrayersDialog> {
                     style:
                         TextStyle(fontSize: 20, color: AppConstant.mainColor),
                   ),
-                  onTap: () {
-                    if (fajrController.text.isNotEmpty) {
-                      controller.addPrayer(
-                        fajr: int.parse(fajrController.text),
-                      );
-                    }
-                    if (dhuhrController.text.isNotEmpty) {
-                      controller.addPrayer(
-                        dhuhr: int.parse(dhuhrController.text),
-                      );
-                    }
-                    if (asrController.text.isNotEmpty) {
-                      controller.addPrayer(asr: int.parse(asrController.text));
-                    }
-                    if (maghribController.text.isNotEmpty) {
-                      controller.addPrayer(
-                        maghrib: int.parse(maghribController.text),
-                      );
-                    }
-                    if (ishaController.text.isNotEmpty) {
-                      controller.addPrayer(
-                        isha: int.parse(ishaController.text),
-                      );
-                    }
+                  onTap: () async {
+                    int read(TextEditingController c) =>
+                        int.tryParse(c.text) ?? 0;
 
+                    // One call: separate un-awaited calls race on the same
+                    // Hive keys and can overwrite each other.
+                    await controller.addPrayer(
+                      fajr: read(fajrController),
+                      dhuhr: read(dhuhrController),
+                      asr: read(asrController),
+                      maghrib: read(maghribController),
+                      isha: read(ishaController),
+                    );
+
+                    if (!context.mounted) return;
                     Navigator.pop(context, false);
                   },
                 ),
